@@ -20,7 +20,7 @@
 <meta property="og:description" content="BallMove:基于Qt的GUI小项目简介在暑假学科目二的时候顺便看着 Qt学习之路2 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。 今天写下这篇博客，就是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候复习。 这个项目基于QGraphicsScene + QGraphicsItem + QGraphicsView模拟了一个小球在现实世界中的运动。 项目地">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-21T11:46:01.000Z">
-<meta property="article:modified_time" content="2022-08-21T14:21:51.168Z">
+<meta property="article:modified_time" content="2022-08-21T23:18:27.889Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Qt">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661091731454">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661123928428">
     
-    <link rel="stylesheet" href="/css/style.css?v=1661091731454">
+    <link rel="stylesheet" href="/css/style.css?v=1661123928428">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -167,8 +167,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约577字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要2分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约1.3k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
     
 </div>
 
@@ -202,7 +202,39 @@
 </li>
 <li><p>想要实现物体的运动，就要让物体的位置在每一帧里进行改变&#x2F;刷新（本程序的帧率是120），而<code>QGraphicsScene</code> 提供一个<code>advance()</code> 函数，该函数会调用所有在场景里的<code>QGraphicsItem</code> 对象的<code>advance()</code> 函数，因此我们只要每经过 1000 &#x2F; 120 毫秒 就调用一次<code>QGraphicsScene::advance()</code> 函数，就可以进行场景刷新，从而实现物体的运动。</p>
 </li>
+<li><p>每个<code>QGraphicsItem::advance(int phase)</code> 都会被一个<code>QGraphicsScene::advance()</code> 调用两次，第一次时，Item已经准备好刷新，此时传入的phase &#x3D; 0，第二次<code>QGraphicsScene::advance()</code> 将phase  &#x3D; 1 传入函数并调用。</p>
+<p>基于此，我们只需要在phase &#x3D; 1是进行处理，phase &#x3D; 0 是我们什么也不做。否则我们程序的帧率会变成原来的二倍。</p>
+</li>
+<li><p>Qt 的坐标系统，在本程序中，我们用到了Qt的两套坐标。第一个是在<code>QGraphicsScene</code> 中的全局坐标系，它记录了每个<code>QGraphicsItem</code> 的位置。第二个是每个<code>QGraphicsItem</code> 对象都会有的本地坐标系。在我们绘制每个部件时，我们就会基于本地坐标系绘制。</p>
+</li>
+<li><p>每个继承了<code>QGraphicsItem</code> 的类都要重载以下四个函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">QRectF <span class="hljs-title">boundingRect</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function">QPainterPath <span class="hljs-title">shape</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget = <span class="hljs-literal">nullptr</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">advance</span><span class="hljs-params">(<span class="hljs-type">int</span> phase)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><code>boundingRect()</code> 返回一个包裹住<code>QGraphicsItem</code>  对象的矩形（比对象大一点或很多）。这个矩形使用的是全局坐标系，用于碰撞检测等功能。</p>
+<p><code>shape()</code> 返回图型的准确形状。如对于我们的小球来说，这个函数返回一个圆轨迹。</p>
+<p><code>void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr)</code> </p>
+<p>该函数一般由<code>QGraphicsScene</code> 自动调用，绘制该项目。</p>
+<p>这个函数一般这样写</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Ball::paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget)</span></span><br><span class="hljs-function"></span>&#123;<br>    painter-&gt;<span class="hljs-built_in">save</span>();		<span class="hljs-comment">// 保存画笔状态</span><br>	<br>    <span class="hljs-comment">//设置新的画笔状态</span><br>    painter-&gt;<span class="hljs-built_in">setRenderHint</span>(QPainter::Antialiasing);     <span class="hljs-comment">// 设置反走线（抗锯齿）</span><br>    painter-&gt;<span class="hljs-built_in">fillPath</span>(<span class="hljs-built_in">shape</span>(), Qt::blue);	<span class="hljs-comment">// 绘制图型</span><br><br>    painter-&gt;<span class="hljs-built_in">restore</span>();		<span class="hljs-comment">// 还原画笔状态</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们要保证该函数调用过之后，画笔的状态不被改变，因此使用save和restore。</p>
+<p><code>painter-&gt;fillPath(shape(), Qt::blue);</code> 这一行绘制我们在<code>shape()</code> 中返回的图型，在此之前我们可以设置画笔的状态。</p>
+</li>
+<li><p>编写头文件的建议</p>
+<p>如果我们在头文件中#include 了另一个文件，那么我们的这个头文件就依赖另一个文件。如果我们依赖的文件发生改变，本文件也要重新编译。</p>
+<p>为了减少编译时间，我们要减少头文件的依赖。为此我们使用前置声明法。</p>
+<p>即，在头文件中，我们尽量使用需要使用到的类的指针，并将此类的声明写在头文件前，这样我们就不需要在头文件中include 这个类，也就减少了头文件的依赖。</p>
+</li>
 </ol>
+<h2 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++">在这颗树中，一个类是另一个类的子树，就表示这个类是另一个类的私有对象<br>另外，这棵树也为我们展示了本项目的设计思路。<br>└─MainWindow<br>    ├─Controller<br>    │  ├─Ball<br>    │  ├─Balldata<br>    │  ├─Ground<br>    │  └─QGraphicsScene - Reference<br>    ├─QGraphicsScene<br>    └─QGraphicsView<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="项目实现"><a href="#项目实现" class="headerlink" title="项目实现"></a>项目实现</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/K346K346/article/details/50568472">(33条消息) C++ 头文件使用规范建议_恋喵大鲤鱼的博客-CSDN博客_c++头文件规范</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.devbean.net/2012/12/qt-study-road-2-snake-1/">Qt 学习之路 2（31）：贪吃蛇游戏（1） - DevBean Tech World</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cutemypig/article/details/122131997">(33条消息) QTimer::singleShot(0, this, slot函数)；_奋斗的大庆的博客-CSDN博客_qtimer singleshot</a> </p>
 
   </article>
 
@@ -279,7 +311,7 @@
 
  
 
-<script async src="/js/app.js?v=1661091731456"></script>
+<script async src="/js/app.js?v=1661123928430"></script>
 
 
 
