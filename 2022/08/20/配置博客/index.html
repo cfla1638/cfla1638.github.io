@@ -12,17 +12,17 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="博客配置 &amp; 使用教程[TOC] 简介该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。 本文章记录了配置博客和使用博客的一些细节，供以后的我参考。 持续更新中 …… 工作原理在本地书写博客，使用hexo生成静态网页，部署到GitHub上，即可使用GitHub访问生成的静态网页。即我们看到的博客。 基本命令 调试： hexo server --debug">
+    <meta name="description" content="博客配置 &amp; 使用教程简介该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。 本文章记录了配置博客和使用博客的一些细节，供以后的我参考。 持续更新中 …… 工作原理在本地书写博客，使用hexo生成静态网页，部署到GitHub上，即可使用GitHub访问生成的静态网页。即我们看到的博客。 基本命令 调试： hexo server --debug 在本地运行服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置博客">
 <meta property="og:url" content="https://cfla1638.github.io/2022/08/20/%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="博客配置 &amp; 使用教程[TOC] 简介该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。 本文章记录了配置博客和使用博客的一些细节，供以后的我参考。 持续更新中 …… 工作原理在本地书写博客，使用hexo生成静态网页，部署到GitHub上，即可使用GitHub访问生成的静态网页。即我们看到的博客。 基本命令 调试： hexo server --debug">
+<meta property="og:description" content="博客配置 &amp; 使用教程简介该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。 本文章记录了配置博客和使用博客的一些细节，供以后的我参考。 持续更新中 …… 工作原理在本地书写博客，使用hexo生成静态网页，部署到GitHub上，即可使用GitHub访问生成的静态网页。即我们看到的博客。 基本命令 调试： hexo server --debug 在本地运行服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114450.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114595.png">
 <meta property="article:published_time" content="2022-08-20T14:58:00.000Z">
-<meta property="article:modified_time" content="2022-08-21T03:30:12.885Z">
+<meta property="article:modified_time" content="2022-08-21T07:54:04.326Z">
 <meta property="article:author" content="cfla">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114450.png">
@@ -32,9 +32,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661067936730">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661068460585">
     
-    <link rel="stylesheet" href="/css/style.css?v=1661067936730">
+    <link rel="stylesheet" href="/css/style.css?v=1661068460585">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -155,13 +155,12 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约583字</a>
+        <a><i class="nexmoefont icon-areachart"></i>约645字</a>
         <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要2分钟</a>
     
 </div>
 
-      <h1 id="博客配置-amp-使用教程"><a href="#博客配置-amp-使用教程" class="headerlink" title="博客配置 &amp; 使用教程"></a>博客配置 &amp; 使用教程</h1><p>[TOC]</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。</p>
+      <h1 id="博客配置-amp-使用教程"><a href="#博客配置-amp-使用教程" class="headerlink" title="博客配置 &amp; 使用教程"></a>博客配置 &amp; 使用教程</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。</p>
 <p>本文章记录了配置博客和使用博客的一些细节，供以后的我参考。</p>
 <p>持续更新中 ……</p>
 <h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>在本地书写博客，使用hexo生成静态网页，部署到GitHub上，即可使用GitHub访问生成的静态网页。即我们看到的博客。</p>
@@ -205,6 +204,7 @@
 <li>关于 “关于博客”：是<code>./</code> 目录下的一个markdown文件，与其他博文相同。</li>
 <li>其他部件可以在<code>_config.nexmoe.yml</code> 里配置</li>
 </ol>
+<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>nexmoe 支持几种评论系统，其中利用GitHub issue的gitment和gitalk，都因为墙的问题无法使用，所以本博客使用 <a target="_blank" rel="noopener" href="https://valine.js.org/">Valine</a> ，使用方法非常简单，按照Valine的官方手册一步步操作即可。</p>
 <h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p><a target="_blank" rel="noopener" href="https://www.iconfont.cn/home/index?spm=a313x.7781069.1998910419.2">iconfont-阿里巴巴矢量图标库</a> </p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo参考文档</a> </p>
 <p><a target="_blank" rel="noopener" href="https://docs.nexmoe.com/v3.2/">Nexmoe 参考文档</a> </p>
@@ -284,7 +284,7 @@
 
  
 
-<script async src="/js/app.js?v=1661067936731"></script>
+<script async src="/js/app.js?v=1661068460586"></script>
 
 
 
