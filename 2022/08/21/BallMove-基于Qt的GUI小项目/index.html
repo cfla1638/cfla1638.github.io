@@ -12,16 +12,16 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="BallMove:基于Qt的GUI小项目简介在暑假学科目二的时候顺便看着 Qt学习之路2 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。 今天写下这篇博客，就是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候复习。 这个项目基于QGraphicsScene + QGraphicsItem + QGraphicsView模拟了一个小球在现实世界中的运动。 项目地">
+    <meta name="description" content="BallMove:基于Qt的GUI小项目简介在暑假学科目二的时候，看着 Qt学习之路2 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。 今天写下这篇博客，是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候能够快速上手。 这个项目基于QGraphicsScene + QGraphicsItem + QGraphicsView， 模拟了一个小球在现实世界中的运动。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BallMove:基于Qt的GUI小项目">
 <meta property="og:url" content="https://cfla1638.github.io/2022/08/21/BallMove-%E5%9F%BA%E4%BA%8EQt%E7%9A%84GUI%E5%B0%8F%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="BallMove:基于Qt的GUI小项目简介在暑假学科目二的时候顺便看着 Qt学习之路2 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。 今天写下这篇博客，就是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候复习。 这个项目基于QGraphicsScene + QGraphicsItem + QGraphicsView模拟了一个小球在现实世界中的运动。 项目地">
+<meta property="og:description" content="BallMove:基于Qt的GUI小项目简介在暑假学科目二的时候，看着 Qt学习之路2 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。 今天写下这篇博客，是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候能够快速上手。 这个项目基于QGraphicsScene + QGraphicsItem + QGraphicsView， 模拟了一个小球在现实世界中的运动。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208220742986.png">
 <meta property="article:published_time" content="2022-08-21T11:46:01.000Z">
-<meta property="article:modified_time" content="2022-08-22T02:03:03.186Z">
+<meta property="article:modified_time" content="2022-08-22T06:58:30.813Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Qt">
 <meta name="twitter:card" content="summary">
@@ -32,9 +32,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661133804091">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661151988136">
     
-    <link rel="stylesheet" href="/css/style.css?v=1661133804091">
+    <link rel="stylesheet" href="/css/style.css?v=1661151988136">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -169,15 +169,15 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约3.5k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要14分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约4k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要16分钟</a>
     
 </div>
 
-      <h1 id="BallMove-基于Qt的GUI小项目"><a href="#BallMove-基于Qt的GUI小项目" class="headerlink" title="BallMove:基于Qt的GUI小项目"></a>BallMove:基于Qt的GUI小项目</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在暑假学科目二的时候顺便看着 <a target="_blank" rel="noopener" href="https://www.devbean.net/2012/08/qt-study-road-2-catelog/">Qt学习之路2</a> 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。</p>
-<p>今天写下这篇博客，就是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候复习。</p>
-<p>这个项目基于<code>QGraphicsScene + QGraphicsItem + QGraphicsView</code>模拟了一个小球在现实世界中的运动。</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/cfla1638/BallMove">cfla1638&#x2F;BallMove: 模拟实心球的运动，使用Qt完成的小项目，参考《Qt学习之路2》的贪吃蛇。 (github.com)</a> </p>
+      <h1 id="BallMove-基于Qt的GUI小项目"><a href="#BallMove-基于Qt的GUI小项目" class="headerlink" title="BallMove:基于Qt的GUI小项目"></a>BallMove:基于Qt的GUI小项目</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在暑假学科目二的时候，看着 <a target="_blank" rel="noopener" href="https://www.devbean.net/2012/08/qt-study-road-2-catelog/">Qt学习之路2</a> 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。</p>
+<p>今天写下这篇博客，是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候能够快速上手。</p>
+<p>这个项目基于<code>QGraphicsScene + QGraphicsItem + QGraphicsView</code>， 模拟了一个小球在现实世界中的运动。</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/cfla1638/BallMove">cfla1638&#x2F;BallMove</a> </p>
 <h2 id="设定"><a href="#设定" class="headerlink" title="设定"></a>设定</h2><p><strong>功能</strong>：实现了实心球的运动。</p>
 <p>考虑的因素有：</p>
 <ol>
@@ -193,9 +193,9 @@
 <p>空气阻力使用公式：F &#x3D; 1&#x2F;2 * CρSv^2^ ，其中C取0.3，ρ取1.293，S取 3.14 * 0.04^2^ 。</p>
 <p>尺寸换算：1m &#x3D; 250px。</p>
 <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol>
-<li><p>Qt 绘制系统的工作流程是这样的：</p>
-<p><code>QGraphicsScene</code> 提供一个场景，所有要显示的实体都可以放到这个场景中。</p>
-<p><code>QGraphicsItem</code> 是在<code>QGraphicsScene</code> 中的实体的父类，在本项目中的实体都要继承这个类。继承这个类的实体可以被添加到<code>QGraphicsScene</code>，进行显示和管理。</p>
+<li><p>Qt的绘制系统由<code>QGraphicsScene + QGraphicsItem + QGraphicsView</code> 相互配合使用。</p>
+<p><code>QGraphicsScene</code> 提供一个场景(Scene)，所有要显示的实体都可以放到这个场景中。</p>
+<p><code>QGraphicsItem</code> 是在<code>QGraphicsScene</code> 中实体对象类的父类，在本项目中的实体类都要继承这个类。继承这个类的实体可以被添加到<code>QGraphicsScene</code>，进行显示和管理。</p>
 <p><code>QGraphicsView</code> 提供了一个观察的视角，配合<code>QGraphicsScene</code> 进行显示。这个类可以被设为<code>QMainWindow</code> 的<code>CentralWidget</code>。</p>
 </li>
 <li><p>只有<code>QObject</code> 的子类可以使用信号槽的机制</p>
@@ -204,10 +204,10 @@
 </li>
 <li><p>想要实现物体的运动，就要让物体的位置在每一帧里进行改变&#x2F;刷新（本程序的帧率是120），而<code>QGraphicsScene</code> 提供一个<code>advance()</code> 函数，该函数会调用所有在场景里的<code>QGraphicsItem</code> 对象的<code>advance()</code> 函数，因此我们只要每经过 1000 &#x2F; 120 毫秒 就调用一次<code>QGraphicsScene::advance()</code> 函数，就可以进行场景刷新，从而实现物体的运动。</p>
 </li>
-<li><p>每个<code>QGraphicsItem::advance(int phase)</code> 都会被一个<code>QGraphicsScene::advance()</code> 调用两次，第一次时，Item已经准备好刷新，此时传入的phase &#x3D; 0，第二次<code>QGraphicsScene::advance()</code> 将phase  &#x3D; 1 传入函数并调用。</p>
+<li><p>每个<code>QGraphicsItem::advance(int phase)</code> 都会被一个<code>QGraphicsScene::advance()</code> 调用两次。在第一次时，Item已经准备好刷新，此时传入的phase &#x3D; 0。第二次<code>QGraphicsScene::advance()</code> 将phase  &#x3D; 1 传入函数并调用。</p>
 <p>基于此，我们只需要在phase &#x3D; 1是进行处理，phase &#x3D; 0 是我们什么也不做。否则我们程序的帧率会变成原来的二倍。</p>
 </li>
-<li><p>Qt 的坐标系统，在本程序中，我们用到了Qt的两套坐标。第一个是在<code>QGraphicsScene</code> 中的全局坐标系，它记录了每个<code>QGraphicsItem</code> 的位置。第二个是每个<code>QGraphicsItem</code> 对象都会有的本地坐标系。在我们绘制每个部件时，我们就会基于本地坐标系绘制。</p>
+<li><p>Qt 的坐标系统。在本程序中，我们用到了Qt的两套坐标。第一个是在<code>QGraphicsScene</code> 中的全局坐标系，它记录了每个<code>QGraphicsItem</code> 的位置。第二个是每个<code>QGraphicsItem</code> 对象都会有的本地坐标系。在我们绘制每个部件时，我们就会基于本地坐标系绘制。</p>
 </li>
 <li><p>每个继承了<code>QGraphicsItem</code> 的类都要重载以下四个函数。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">QRectF <span class="hljs-title">boundingRect</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function">QPainterPath <span class="hljs-title">shape</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget = <span class="hljs-literal">nullptr</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">advance</span><span class="hljs-params">(<span class="hljs-type">int</span> phase)</span></span>;<br></code></pre></td></tr></table></figure>
@@ -309,10 +309,31 @@
 <p>由于每次更新，我们都要对碰撞进行检测，因此我们首先调用场景地advance函数。</p>
 <p>等运动结束之后，我们使用Qt地碰撞检测函数<code>collidesWithItem()</code>看小球是否接触地面。</p>
 <p>接着我们根据碰撞检测地结果，依次处理摩擦力和空气阻力。</p>
-<p>其实我们还可以将处理各种力地程序写到小球地advance()中，但为了让我们地程序更符合controller的功能，我们为controller也添加了advance()函数，由它调用scene的advance()函数。</p>
+<p>其实我们还可以将处理各种力地程序写到小球地advance()中，但为了让我们地程序更符合controller控的概念，我们为controller也添加了advance()函数，由它调用scene的advance()函数。</p>
+<h3 id="MainWindow-类"><a href="#MainWindow-类" class="headerlink" title="MainWindow 类"></a>MainWindow 类</h3><p>MainWindow类的代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MainWindow</span> : <span class="hljs-keyword">public</span> QMainWindow<br>&#123;<br>    Q_OBJECT<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MainWindow</span>(QWidget *parent = <span class="hljs-literal">nullptr</span>);<br>    ~<span class="hljs-built_in">MainWindow</span>();<br><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">adjustViewSize</span><span class="hljs-params">()</span></span>;<br><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">initScene</span><span class="hljs-params">()</span></span>;<br>    QGraphicsView * view;<br>    QGraphicsScene * scene;<br>    Controller * controller;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>唯一需要解释的函数是它的构造函数，其他的函数都会在构造函数里被调用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++">MainWindow::<span class="hljs-built_in">MainWindow</span>(QWidget *parent) : <span class="hljs-built_in">QMainWindow</span>(parent)<br>&#123;<br>    scene = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsScene</span>(<span class="hljs-keyword">this</span>);<br>    view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsView</span>(scene, <span class="hljs-keyword">this</span>);<br>    controller = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Controller</span>(*scene, <span class="hljs-keyword">this</span>);<br>    <span class="hljs-built_in">setCentralWidget</span>(view);<br>    <span class="hljs-built_in">resize</span>(<span class="hljs-number">750</span>, <span class="hljs-number">750</span>);<br><br>    <span class="hljs-built_in">initScene</span>();<br>    QTimer::<span class="hljs-built_in">singleShot</span>(<span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">adjustViewSize</span>()));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在构造函数中，我们首先初始化了scene、view和controller，紧接着我们将view设为了窗口的<code>centralWidget</code> 并调整了窗口大小。</p>
+<p>在倒数第二步，调用<code>initScene</code> 对scene进行调整。</p>
+<p>以上的这些步骤都不会有什么问题，只有最后一步令人困惑：</p>
+<p><code>QTimer::singleShot(0, this, SLOT(adjustViewSize()));</code> </p>
+<p>首先解释<code>singleShot()</code> 函数，这个函数的声明如下</p>
+<p><code>void QTimer::singleShot(int msec, const QObject *receiver, const char *member)</code> </p>
+<p>它的含义是在msec 毫秒后调用receiver的槽函数member，这是一个很方便的函数，这样你就可以在不去手动计时的情况下达到同样的效果。</p>
+<p>那么为什么要使用这个功能呢？</p>
+<p>这里有两个解释</p>
+<blockquote>
+<p>那么，<code>QTimer::signleShot(0, ...)</code>意思是，在下一次事件循环开始时，立刻调用指定的槽函数。在我们的例子中，我们需要在视图绘制完毕后才去改变大小（视图绘制当然是在<code>paintEvent()</code>事件中），因此我们需要在下一次事件循环中调用<code>adjustViewSize()</code>函数。这就是为什么我们需要用<code>QTimer</code>而不是直接调用<code>adjustViewSize()</code>。如果熟悉 flash，这相当于 flash 里面的<code>callLater()</code>函数。</p>
+</blockquote>
+<p>这个解释来自<a target="_blank" rel="noopener" href="https://www.devbean.net/2012/12/qt-study-road-2-snake-1/">《Qt学习之路2》</a> 但我并不清楚这里的 “下一次事件循环” 的意思。</p>
+<p>依我的理解，应该是这个意思：某个<code>QObject</code> 发出 <code>paintEvent()</code> 事件，但对这个事件的处理比较耗时，如果此时直接调用<code>adjustViewSize()</code> ，视图还没有绘制完成，自然就不能起到调节视图的效果。事实也是这样，如果直接调用<code>adjustViewSize()</code> ，我们会发现视图小小的挤在屏幕的中间。</p>
+<p>后来我又在网上发现了这篇博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cutemypig/article/details/122131997">QTimer::singleShot(0, this, slot函数)；</a>  ，意思和我理解的大概相似。 </p>
+<p>但还是挖个坑，等我以后学精了一定回来解释清楚。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/K346K346/article/details/50568472">C++ 头文件使用规范建议_恋喵大鲤鱼的博客-CSDN博客_c++头文件规范</a> </p>
 <p><a target="_blank" rel="noopener" href="https://www.devbean.net/2012/12/qt-study-road-2-snake-1/">Qt 学习之路 2（31）：贪吃蛇游戏（1） - DevBean Tech World</a> </p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cutemypig/article/details/122131997">QTimer::singleShot(0, this, slot函数)；_奋斗的大庆的博客-CSDN博客_qtimer singleshot</a> </p>
 
   </article>
 
@@ -389,7 +410,7 @@
 
  
 
-<script async src="/js/app.js?v=1661133804092"></script>
+<script async src="/js/app.js?v=1661151988138"></script>
 
 
 
