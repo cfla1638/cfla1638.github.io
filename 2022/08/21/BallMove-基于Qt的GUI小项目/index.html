@@ -19,20 +19,22 @@
 <meta property="og:site_name" content="cfla&#39;s blog">
 <meta property="og:description" content="BallMove:基于Qt的GUI小项目简介在暑假学科目二的时候顺便看着 Qt学习之路2 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。 今天写下这篇博客，就是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候复习。 这个项目基于QGraphicsScene + QGraphicsItem + QGraphicsView模拟了一个小球在现实世界中的运动。 项目地">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208220742986.png">
 <meta property="article:published_time" content="2022-08-21T11:46:01.000Z">
-<meta property="article:modified_time" content="2022-08-21T23:18:27.889Z">
+<meta property="article:modified_time" content="2022-08-22T00:31:12.613Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Qt">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208220742986.png">
     
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
 <link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661123928428">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1661128295820">
     
-    <link rel="stylesheet" href="/css/style.css?v=1661123928428">
+    <link rel="stylesheet" href="/css/style.css?v=1661128295820">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -167,8 +169,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约1.3k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约1.7k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要6分钟</a>
     
 </div>
 
@@ -226,12 +228,19 @@
 <p>即，在头文件中，我们尽量使用需要使用到的类的指针，并将此类的声明写在头文件前，这样我们就不需要在头文件中include 这个类，也就减少了头文件的依赖。</p>
 </li>
 </ol>
-<h2 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++">在这颗树中，一个类是另一个类的子树，就表示这个类是另一个类的私有对象<br>另外，这棵树也为我们展示了本项目的设计思路。<br>└─MainWindow<br>    ├─Controller<br>    │  ├─Ball<br>    │  ├─Balldata<br>    │  ├─Ground<br>    │  └─QGraphicsScene - Reference<br>    ├─QGraphicsScene<br>    └─QGraphicsView<br></code></pre></td></tr></table></figure>
+<h2 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h2><p>首先来看一下运行效果：</p>
+<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208220742986.png" alt="image-20220822074244433" data-caption="image-20220822074244433" loading="lazy"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++">在这颗树中，一个类是另一个类的子树，就表示这个类是另一个类的私有对象<br>另外，这棵树也为我们展示了本项目的设计思路。<br>└─MainWindow<br>    ├─Controller<br>    │  ├─Ball<br>    │  ├─Balldata<br>    │  ├─Ground<br>    │  └─QGraphicsScene - Reference<br>    ├─QGraphicsScene<br>    └─QGraphicsView<br></code></pre></td></tr></table></figure>
 
-
-
-
-
+<p>自下而上，首先来看Controller下的三个类，</p>
+<p>Controller下有三个类，分别是Ball, Balldata, Ground，他们都是<code>QGraphicsItem</code> 的子类，分别对应运行结果中的蓝色小球，上面绿色的信息显示和下面黑色的地面。</p>
+<p>这三个类定义了自身的形状和他们的运动逻辑。以Ball为例，Ball类有四个上述提到的函数，用来绘制他的形状，还有记录它自身加速度和速度的私有类型。</p>
+<p>值得一提的是，Controller类有一个引用，QGraphicsScene - Reference，它其实是MainWindow的私有对象，但由于Controller类需要经常使用这个对象，为了方便，我们就将它的引用放在了Controller类中。</p>
+<p>接着是Controller类。</p>
+<p>顾名思义，Controller类是我们程序的控制器。</p>
+<p>Controller类可以控制程序的开始结束，控制界面的刷新，对Qt的时间进行处理。</p>
+<p>最后我们看一下最外层的MainWindow类，他是程序的主窗口。它下面的QGraphicsScene和QGraphicsView 分别是画布和观察窗口。</p>
+<p>当程序开始执行时，首先执行MainWindow类的构造函数，分别构造QGraphicsScene，QGraphicsView和Controller。在Controller类进行构造时，Controller下的物体就被添加到了Scene中，程序也就开始运行了。当MainWindow下的对象都构造完成时。main.cpp 的<code>QMainWindow::show()</code> 和 <code>QApplication :: exec()</code> 函数分别将程序主窗口显示，并且开始程序的事件循环，接受事件，交给Controller进行处理。</p>
 <h2 id="项目实现"><a href="#项目实现" class="headerlink" title="项目实现"></a>项目实现</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/K346K346/article/details/50568472">(33条消息) C++ 头文件使用规范建议_恋喵大鲤鱼的博客-CSDN博客_c++头文件规范</a> </p>
 <p><a target="_blank" rel="noopener" href="https://www.devbean.net/2012/12/qt-study-road-2-snake-1/">Qt 学习之路 2（31）：贪吃蛇游戏（1） - DevBean Tech World</a> </p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cutemypig/article/details/122131997">(33条消息) QTimer::singleShot(0, this, slot函数)；_奋斗的大庆的博客-CSDN博客_qtimer singleshot</a> </p>
@@ -311,7 +320,7 @@
 
  
 
-<script async src="/js/app.js?v=1661123928430"></script>
+<script async src="/js/app.js?v=1661128295821"></script>
 
 
 
