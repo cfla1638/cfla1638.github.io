@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>动态数组,二维数组,指针 - cfla&#39;s blog</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/icon.png" type="image/png" />
+    <meta name="description" content="动态数组、二维数组、指针本文会讲：  二维数组的存储形式 数组类型为什么会退化？ 二维数组的动态分配  1 二维数组的存储形式以下这个程序可以很好的说明二维数组的存储形式 #include &lt;stdio.h&gt;int main(void)&amp;#123;    int a[4][2];    &#x2F;&#x2F; 初始化    for (int i &#x3D; 0; i &lt; 4; i++)        fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态数组,二维数组,指针">
+<meta property="og:url" content="https://cfla1638.github.io/2022/09/06/%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="动态数组、二维数组、指针本文会讲：  二维数组的存储形式 数组类型为什么会退化？ 二维数组的动态分配  1 二维数组的存储形式以下这个程序可以很好的说明二维数组的存储形式 #include &lt;stdio.h&gt;int main(void)&amp;#123;    int a[4][2];    &#x2F;&#x2F; 初始化    for (int i &#x3D; 0; i &lt; 4; i++)        fo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061948605.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209062002932.png">
+<meta property="article:published_time" content="2022-09-06T12:45:24.000Z">
+<meta property="article:modified_time" content="2022-09-06T12:46:41.480Z">
+<meta property="article:author" content="cfla">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061948605.png">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1662468405355">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1662468405355">
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="cfla" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="cfla">
+            <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla" alt="cfla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>8</div>
+        <div><span>标签</span>4</div>
+        <div><span>分类</span>5</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/Archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/CS-APP/">CS:APP</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/使用教程/">使用教程</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/06/%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88/">动态数组,二维数组,指针</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/">存储器层次结构 - CS:APP 第六章</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/">CS:APP 读后感</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/02/ubuntu-%E9%85%8D%E7%BD%AE/">ubuntu 配置</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/">数据结构课程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 cfla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="动态数组,二维数组,指针" loading="lazy">
+              <h1>动态数组,二维数组,指针</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月06日</a>
+</div>
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    
+        <a><i class="nexmoefont icon-areachart"></i>约4.4k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要20分钟</a>
+    
+</div>
+
+      <h1 id="动态数组、二维数组、指针"><a href="#动态数组、二维数组、指针" class="headerlink" title="动态数组、二维数组、指针"></a>动态数组、二维数组、指针</h1><p>本文会讲：</p>
+<ul>
+<li>二维数组的存储形式</li>
+<li>数组类型为什么会退化？</li>
+<li>二维数组的动态分配</li>
+</ul>
+<h2 id="1-二维数组的存储形式"><a href="#1-二维数组的存储形式" class="headerlink" title="1 二维数组的存储形式"></a>1 二维数组的存储形式</h2><p>以下这个程序可以很好的说明二维数组的存储形式</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>];<br><br>    <span class="hljs-comment">// 初始化</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            a[i][j] = i * <span class="hljs-number">10</span> + j;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(int):\t%llu\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a):\t%llu\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a[0]):\t%llu\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a[<span class="hljs-number">0</span>]));<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a:\t%p\n&quot;</span>, a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a:\t%p\n&quot;</span>, &amp;a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d][%d]:\t%02d\n&quot;</span>, i, j, a[i][j]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d]:\t%p\n&quot;</span>, i, a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*a[%d]:\t%d\n&quot;</span>, i, *a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[%d]:\t%p\n&quot;</span>, i, &amp;a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[%d][%d]:\t%p\n&quot;</span>, i, j, &amp;a[i][j]);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个程序的运行结果是这样的</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>):    <span class="hljs-number">4</span><br><span class="hljs-keyword">sizeof</span>(a):      <span class="hljs-number">32</span>      <br><span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]):   <span class="hljs-number">8</span>       <br><br>a:      <span class="hljs-number">000000000064F</span>DD0<br>&amp;a:     <span class="hljs-number">000000000064F</span>DD0<br><br>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">00</span><br>a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">01</span><br>a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">10</span><br>a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">11</span><br>a[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">20</span><br>a[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">21</span><br>a[<span class="hljs-number">3</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">30</span><br>a[<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">31</span><br><br>a[<span class="hljs-number">0</span>]:   <span class="hljs-number">000000000064F</span>DD0<br>a[<span class="hljs-number">1</span>]:   <span class="hljs-number">000000000064F</span>DD8<br>a[<span class="hljs-number">2</span>]:   <span class="hljs-number">000000000064F</span>DE0<br>a[<span class="hljs-number">3</span>]:   <span class="hljs-number">000000000064F</span>DE8<br><br>*a[<span class="hljs-number">0</span>]:  <span class="hljs-number">0</span><br>*a[<span class="hljs-number">1</span>]:  <span class="hljs-number">10</span><br>*a[<span class="hljs-number">2</span>]:  <span class="hljs-number">20</span><br>*a[<span class="hljs-number">3</span>]:  <span class="hljs-number">30</span><br><br>&amp;a[<span class="hljs-number">0</span>]:  <span class="hljs-number">000000000064F</span>DD0<br>&amp;a[<span class="hljs-number">1</span>]:  <span class="hljs-number">000000000064F</span>DD8<br>&amp;a[<span class="hljs-number">2</span>]:  <span class="hljs-number">000000000064F</span>DE0<br>&amp;a[<span class="hljs-number">3</span>]:  <span class="hljs-number">000000000064F</span>DE8<br><br>&amp;a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">000000000064F</span>DD0<br>&amp;a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">000000000064F</span>DD4<br>&amp;a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">000000000064F</span>DD8<br>&amp;a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">000000000064F</span>DDC<br>&amp;a[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">000000000064F</span>DE0<br>&amp;a[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">000000000064F</span>DE4<br>&amp;a[<span class="hljs-number">3</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">000000000064F</span>DE8<br>&amp;a[<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">000000000064F</span>DEC<br></code></pre></td></tr></table></figure>
+
+<p>可以看出，二维数组是连续储存的，有<code>&amp;a = a = &amp;a[0] = a[0] = &amp;a[0][0] </code> ，以此类推。</p>
+<p>我们可以这样表示二维数组</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a[0]</td>
+<td></td>
+<td>a[1]</td>
+<td></td>
+<td>a[2]</td>
+<td></td>
+<td>a[3]</td>
+<td></td>
+</tr>
+<tr>
+<td>a[0] [0]</td>
+<td>a[0] [1]</td>
+<td>a[1] [0]</td>
+<td>a[1] [1]</td>
+<td>a[2] [0]</td>
+<td>a[2] [1]</td>
+<td>a[3] [0]</td>
+<td>a[3] [1]</td>
+</tr>
+</tbody></table>
+<h2 id="2-数组类型为什么会退化？"><a href="#2-数组类型为什么会退化？" class="headerlink" title="2 数组类型为什么会退化？"></a>2 数组类型为什么会退化？</h2><p>有的时候会出现这种情况：</p>
+<p>在主函数里声明了一个二维数组，使用sizeof 会得到它的大小，但传到函数里，却只能得到指针的大小，这是为什么呢？</p>
+<p>详见：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/464844221/answer/1940453834">https://www.zhihu.com/question/464844221/answer/1940453834</a></p>
+<h2 id="3-动态分配二维数组"><a href="#3-动态分配二维数组" class="headerlink" title="3 动态分配二维数组"></a>3 动态分配二维数组</h2><h3 id="3-1-第一种方法"><a href="#3-1-第一种方法" class="headerlink" title="3.1 第一种方法"></a>3.1 第一种方法</h3><p>先申请一维数组，在将该一维数组强制转换成二维数组</p>
+<p>前置知识：</p>
+<p>一维数组的数组名是：一个指向数据类型的指针，如int *，初次之外没有任何多余的信息</p>
+<p>二维数组的数组名是：一个【指向一维数组的指针】，在这里，一维数组就相当于数据类型，</p>
+<p>即<code>int q[][4]</code> 和<code>int (*q)[4]</code> 是等价的，两者都是指向一维数组的指针，当对这个指针 + 2时，就等价于<code>q += 2 * 4 * sizeof(int)</code></p>
+<p>直接贴代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> *a = (<span class="hljs-type">int</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">2</span> * <span class="hljs-number">4</span> * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++)<br>        a[i] = i;<br>    <span class="hljs-type">int</span> (*b)[<span class="hljs-number">4</span>] = (<span class="hljs-type">int</span> (*)[<span class="hljs-number">4</span>])a;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">4</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, b[i][j]);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们首先创建了一个一维数组，这个数组存储了8个连续的整数类型。</p>
+<p>我们用<code>int (*b)[4]</code> 声明了一个指向 四个元素的数组 的指针。</p>
+<p>然后对数组a进行强制类型转换，将它转换成了一个指向4个元素数组的指针。</p>
+<p>这样动态分配的指针和直接<code>int b[2][4]</code> 是一样的。</p>
+<p>下面我们使用 1 中的方法对这个数组进行仔细检查</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-comment">// 初始化数组</span><br>    <span class="hljs-type">int</span> *b = (<span class="hljs-type">int</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">2</span> * <span class="hljs-number">4</span> * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++)<br>        b[i] = i;<br>    <span class="hljs-type">int</span> (*a)[<span class="hljs-number">2</span>] = (<span class="hljs-type">int</span> (*)[<span class="hljs-number">2</span>])b;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(int):\t%llu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a):\t%llu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a[0]):\t%llu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]));<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a:\t%p\n&quot;</span>, a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a:\t%p\n&quot;</span>, &amp;a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d][%d]:\t%02d\n&quot;</span>, i, j, a[i][j]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d]:\t%p\n&quot;</span>, i, a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*a[%d]:\t%d\n&quot;</span>, i, *a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[%d]:\t%p\n&quot;</span>, i, &amp;a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[%d][%d]:\t%p\n&quot;</span>, i, j, &amp;a[i][j]);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>运行结果如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>):    <span class="hljs-number">4</span><br><span class="hljs-keyword">sizeof</span>(a):      <span class="hljs-number">8</span>       <br><span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]):   <span class="hljs-number">8</span>       <br><br>a:      <span class="hljs-number">00000000009</span>C1420<br>&amp;a:     <span class="hljs-number">000000000064F</span>DF0<br><br>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">00</span>      <br>a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">01</span>      <br>a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">02</span><br>a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">03</span><br>a[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">04</span><br>a[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">05</span><br>a[<span class="hljs-number">3</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">06</span><br>a[<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">07</span><br><br>a[<span class="hljs-number">0</span>]:   <span class="hljs-number">00000000009</span>C1420<br>a[<span class="hljs-number">1</span>]:   <span class="hljs-number">00000000009</span>C1428<br>a[<span class="hljs-number">2</span>]:   <span class="hljs-number">00000000009</span>C1430<br>a[<span class="hljs-number">3</span>]:   <span class="hljs-number">00000000009</span>C1438<br><br>*a[<span class="hljs-number">0</span>]:  <span class="hljs-number">0</span><br>*a[<span class="hljs-number">1</span>]:  <span class="hljs-number">2</span><br>*a[<span class="hljs-number">2</span>]:  <span class="hljs-number">4</span><br>*a[<span class="hljs-number">3</span>]:  <span class="hljs-number">6</span><br><br>&amp;a[<span class="hljs-number">0</span>]:  <span class="hljs-number">00000000009</span>C1420<br>&amp;a[<span class="hljs-number">1</span>]:  <span class="hljs-number">00000000009</span>C1428<br>&amp;a[<span class="hljs-number">2</span>]:  <span class="hljs-number">00000000009</span>C1430<br>&amp;a[<span class="hljs-number">3</span>]:  <span class="hljs-number">00000000009</span>C1438<br><br>&amp;a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">00000000009</span>C1420<br>&amp;a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">00000000009</span>C1424<br>&amp;a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">00000000009</span>C1428<br>&amp;a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">00000000009</span>C142C<br>&amp;a[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">00000000009</span>C1430<br>&amp;a[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">00000000009</span>C1434<br>&amp;a[<span class="hljs-number">3</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">00000000009</span>C1438<br>&amp;a[<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">00000000009</span>C143C<br></code></pre></td></tr></table></figure>
+
+<p>可以看到除了小部分细节（sizeof(a) 、&amp;a）与我们直接声明二维数组表现得不一样，其他的行为与直接声明二维数组是一模一样的。</p>
+<p>这种方法得到的二维数组虽然和原生的二维数组一样，但它也有缺点，就是它不能动态分配行的长度，即列的大小。因此只能说是半个动态数组。而且，更令人烦恼的是，指向数组的指针，int (*)[len] 这个类型也无法作为函数的返回值，或者使用typedef来取别名，不方便我们对它进行包装。 </p>
+<h3 id="3-2-第二种方法："><a href="#3-2-第二种方法：" class="headerlink" title="3.2 第二种方法："></a>3.2 第二种方法：</h3><blockquote>
+<p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/morewindows/article/details/7664479#">https://blog.csdn.net/morewindows/article/details/7664479#</a> 我这里将原文的int 替换成了size_t</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//C语言中动态的申请二维数组 malloc free</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-comment">//动态申请二维数组</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function">T** <span class="hljs-title">malloc_Array2D</span><span class="hljs-params">(<span class="hljs-type">int</span> row, <span class="hljs-type">int</span> col)</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-type">int</span> size = <span class="hljs-built_in">sizeof</span>(T);<br>  <span class="hljs-type">int</span> point_size = <span class="hljs-built_in">sizeof</span>(T*);<br>  <span class="hljs-comment">//先申请内存，其中point_size * row表示存放row个行指针</span><br>  T **arr = (T **) <span class="hljs-built_in">malloc</span>(point_size * row + size * row * col);<br>  <span class="hljs-keyword">if</span> (arr != <span class="hljs-literal">NULL</span>)<br>  &#123;	<br>    <span class="hljs-built_in">memset</span>(arr, <span class="hljs-number">0</span>, point_size * row + size * row * col);<br>    T *head = (T*)((<span class="hljs-type">size_t</span>)arr + point_size * row);    <span class="hljs-comment">// 这里将arr转换成int型是为了直接进行算数相加，但我觉得还是转换成size_t好</span><br>    <span class="hljs-keyword">while</span> (row--)<br>      arr[row] = (T*)((<span class="hljs-type">size_t</span>)head + row * col * size);<br>  &#125;<br>  <span class="hljs-keyword">return</span> (T**)arr;<br>&#125;<br><br><span class="hljs-comment">//释放二维数组</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">free_Aarray2D</span><span class="hljs-params">(<span class="hljs-type">void</span> **arr)</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-keyword">if</span> (arr != <span class="hljs-literal">NULL</span>)<br>    <span class="hljs-built_in">free</span>(arr);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;  C语言中动态的申请二维数组 malloc free\n&quot;</span>);  <br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; -- by MoreWindows( http://blog.csdn.net/MoreWindows ) --\n\n&quot;</span>);<br> <br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入行列(以空格分开): &quot;</span>);<br>  <span class="hljs-type">int</span> nRow, nCol;<br>  <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;nRow, &amp;nCol);<br> <br>  <span class="hljs-comment">//动态申请连续的二维数组</span><br>  <span class="hljs-type">int</span> **p = <span class="hljs-built_in">malloc_Array2D</span>&lt;<span class="hljs-type">int</span>&gt;(nRow, nCol);<br> <br>  <span class="hljs-comment">//为二维数组赋值	</span><br>  <span class="hljs-type">int</span> i, j;	<br>  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; nRow; i++)<br>    <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; nCol; j++)<br>      p[i][j] = i + j;<br> <br>  <span class="hljs-comment">//输出二维数组	</span><br>  <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; nRow; i++)<br>  &#123;<br>    <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; nCol; j++)<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%4d &quot;</span>, p[i][j]);<br>    <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;\n&#x27;</span>);<br>  &#125;<br> <br>  <span class="hljs-built_in">free_Aarray2D</span>((<span class="hljs-type">void</span>**)p);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里，原作者对指针的操作让我叹为观止。</p>
+<p>但是，用这种方法创作出来的二维数组和直接<code>int b[2][4]</code> 得到的二维数组，结构显然是不一样的，这里我们不在进行仔细地检查。</p>
+<p>它的具体结构我将在下一小节介绍</p>
+<h3 id="3-3-第三种方法"><a href="#3-3-第三种方法" class="headerlink" title="3.3 第三种方法"></a>3.3 第三种方法</h3><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/houqd2012/article/details/8146070">https://blog.csdn.net/houqd2012/article/details/8146070</a></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> **<span class="hljs-title function_">make_array2D</span><span class="hljs-params">(<span class="hljs-type">int</span> row, <span class="hljs-type">int</span> col)</span><br>&#123;<br>    <span class="hljs-type">int</span> **arr = (<span class="hljs-type">int</span> **)<span class="hljs-built_in">malloc</span>(row * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span> *));<br>    arr[<span class="hljs-number">0</span>] = (<span class="hljs-type">int</span> *)<span class="hljs-built_in">malloc</span>(row * col * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++)<br>        arr[i] = arr[i - <span class="hljs-number">1</span>] + col;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">free_array2D</span><span class="hljs-params">(<span class="hljs-type">int</span> **arr)</span><br>&#123;<br>    <span class="hljs-built_in">free</span>(arr[<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">free</span>(arr);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> **a = make_array2D(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">4</span>; j++)<br>            a[i][j] = <span class="hljs-number">10</span> * i + j;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">4</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i][j]);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    free_array2D(a);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>乍一看，这种方法生成地数组，其地址是连续地，应该和原生的二维数组是一样的(包括这种方法的原作者也是这样认为的)，但如果我们仔细检查，我们会发现它其实和原生的二维数组是不一样的。</p>
+<p>我们使用 1 中的程序对这个数组进行详细的检查。代码如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> **<span class="hljs-title function_">make_array2D</span><span class="hljs-params">(<span class="hljs-type">int</span> row, <span class="hljs-type">int</span> col)</span><br>&#123;<br>    <span class="hljs-type">int</span> **arr = (<span class="hljs-type">int</span> **)<span class="hljs-built_in">malloc</span>(row * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span> *));<br>    arr[<span class="hljs-number">0</span>] = (<span class="hljs-type">int</span> *)<span class="hljs-built_in">malloc</span>(row * col * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++)<br>        arr[i] = arr[i - <span class="hljs-number">1</span>] + col;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">free_array2D</span><span class="hljs-params">(<span class="hljs-type">int</span> **arr)</span><br>&#123;<br>    <span class="hljs-built_in">free</span>(arr[<span class="hljs-number">0</span>]);<br>    <span class="hljs-built_in">free</span>(arr);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> **a = make_array2D(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>);<br>    <br>    <span class="hljs-comment">// 初始化</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            a[i][j] = <span class="hljs-number">10</span> * i + j;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(int):\t%llu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a):\t%llu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a[0]):\t%llu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]));<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a:\t%p\n&quot;</span>, a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a:\t%p\n&quot;</span>, &amp;a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d][%d]:\t%02d\n&quot;</span>, i, j, a[i][j]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d]:\t%p\n&quot;</span>, i, a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*a[%d]:\t%d\n&quot;</span>, i, *a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[%d]:\t%p\n&quot;</span>, i, &amp;a[i]);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">2</span>; j++)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[%d][%d]:\t%p\n&quot;</span>, i, j, &amp;a[i][j]);<br>    free_array2D(a);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>):    <span class="hljs-number">4</span><br><span class="hljs-keyword">sizeof</span>(a):      <span class="hljs-number">8</span><br><span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]):   <span class="hljs-number">8</span><br><br>a:      <span class="hljs-number">0000000000701420</span><br>&amp;a:     <span class="hljs-number">000000000064F</span>DF0<br><br>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">00</span><br>a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">01</span><br>a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">10</span><br>a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">11</span><br>a[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">20</span><br>a[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">21</span><br>a[<span class="hljs-number">3</span>][<span class="hljs-number">0</span>]:        <span class="hljs-number">30</span><br>a[<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]:        <span class="hljs-number">31</span><br><br>a[<span class="hljs-number">0</span>]:   <span class="hljs-number">0000000000701450</span><br>a[<span class="hljs-number">1</span>]:   <span class="hljs-number">0000000000701458</span><br>a[<span class="hljs-number">2</span>]:   <span class="hljs-number">0000000000701460</span><br>a[<span class="hljs-number">3</span>]:   <span class="hljs-number">0000000000701468</span><br><br>*a[<span class="hljs-number">0</span>]:  <span class="hljs-number">0</span><br>*a[<span class="hljs-number">1</span>]:  <span class="hljs-number">10</span><br>*a[<span class="hljs-number">2</span>]:  <span class="hljs-number">20</span><br>*a[<span class="hljs-number">3</span>]:  <span class="hljs-number">30</span><br><br>&amp;a[<span class="hljs-number">0</span>]:  <span class="hljs-number">0000000000701420</span><br>&amp;a[<span class="hljs-number">1</span>]:  <span class="hljs-number">0000000000701428</span><br>&amp;a[<span class="hljs-number">2</span>]:  <span class="hljs-number">0000000000701430</span><br>&amp;a[<span class="hljs-number">3</span>]:  <span class="hljs-number">0000000000701438</span><br><br>&amp;a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">0000000000701450</span><br>&amp;a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">0000000000701454</span><br>&amp;a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">0000000000701458</span><br>&amp;a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">000000000070145</span>C<br>&amp;a[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">0000000000701460</span><br>&amp;a[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">0000000000701464</span><br>&amp;a[<span class="hljs-number">3</span>][<span class="hljs-number">0</span>]:       <span class="hljs-number">0000000000701468</span><br>&amp;a[<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]:       <span class="hljs-number">000000000070146</span>C<br></code></pre></td></tr></table></figure>
+
+<p>从上面的结果可以看出，这种方法生成的二维数组，虽然地址是连续的，但它的结构和直接<code>int b[2][4]</code> 得到的二维数组，还是不一样的。</p>
+<p>它的具体结构我将在下一小节介绍</p>
+<h3 id="3-4-总结-：-下标运算符"><a href="#3-4-总结-：-下标运算符" class="headerlink" title="3.4 总结 ： 下标运算符"></a>3.4 总结 ： 下标运算符</h3><p>首先我们介绍下标运算符，上面的三种动态分配二维数组的方法，其原理都是基于下标运算符。</p>
+<p>下标运算符是左结合的，我们引用二维数组，通常是这样的	<code>arr[i][j]</code> 但其实也可以这样 <code>(arr[i])[j]</code> 这两种形式是等价的。</p>
+<p>下面我们详细地描述下标运算符 </p>
+<p><code>ElementType[i] = *((size_t)ElementType + i * sizeof(ElementType))</code></p>
+<p>可见下标运算符最重要的就是ElementType，这个ElementType 可以是内置类型 int，可以是指针类型<code>int **</code>, 也可以是数组类型 <code>int (*)[]</code>，在使用下标运算符时，我们要尤其注意ElementType，尤其是在我们接下来分析二维数组时。</p>
+<p>首先我们来看内置的数组类型</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a[0]</td>
+<td></td>
+<td>a[1]</td>
+<td></td>
+<td>a[2]</td>
+<td></td>
+<td>a[3]</td>
+<td></td>
+</tr>
+<tr>
+<td>a[0] [0]</td>
+<td>a[0] [1]</td>
+<td>a[1] [0]</td>
+<td>a[1] [1]</td>
+<td>a[2] [0]</td>
+<td>a[2] [1]</td>
+<td>a[3] [0]</td>
+<td>a[3] [1]</td>
+</tr>
+</tbody></table>
+<p>一个内置数组类型表示为<code>int a[5][5]</code> ，但拎出来a，他的类型是 <code>int (*)[5]</code> 所以<code>arr[1]</code> 其实是指<code>a[1][0]</code> 这个位置。<code>a[1]</code> 的类型是<code>int *</code> 所以<code>(a[1])[1]</code> 的类型就是<code>int</code></p>
+<p>接下来我们看动态分配二维数组的第一种方法：</p>
+<p>这种方法一开始申请了一个一维数组<code>int *a = (int *)malloc(2 * 4 * sizeof(int))</code> a的类型是<code>int *</code></p>
+<p>接下来我们使用强制类型转换，将a由<code>int *</code> 转换为<code>int (*)[4]</code> ，这样它就和内置的二维数组一样了。也可以使用两个下标运算符进行访问。</p>
+<p>接下类我们看动态分配二维数组的第二种方法：</p>
+<p>首先我们将这种方法分配的图画出来</p>
+<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061948605.png" alt="image-20220906194800829" data-caption="image-20220906194800829" loading="lazy">  </p>
+<p>设行数为row，列数为col，假设二维数组存储的类型为 int</p>
+<p>第二种方法申请了 <code>row * sizeof(int *) + row * col * sizeof(int)</code> 字节的空间。</p>
+<p>这个表达式的前一项<code>row * sizeof(int *)</code> 代表a[0] a[1] a[2] 的空间，后一项<code>row * col * sizeof(int)</code> 指的是连续的二维数组的存储空间。</p>
+<p>这个程序做的就是让a[0]指向a[0] [0]，让a[1] 指向 a[1] [0]，依此类推。</p>
+<p>需要注意的是这个二维数组的类型，虽然这个二维数组可以使用两个下标运算符引用，但原理却和内置的二维数组完全不同。第二种二维数组的类型是<code>int **</code> 而不是<code>int (*)[col]</code> ，也决不能是<code>int (*)[col]</code> 。要理解这个，我们看一下在使用下标运算符时究竟发生了什么？</p>
+<p>首先a的类型时<code>int **</code> ，a[1]，代表a之后一个指针大小位置的内容，即</p>
+<p><code>*((size_t)a + 1 * sizeof(int *))</code>，就是a[1] [0]的地址，而<code>(a[1])[0]</code> 就是a[1] [0]的内容。</p>
+<p>为了保证我们第一个下表运算符能够得到a[1] [0] 的地址，我们必须保证这个二维数组的类型是<code>int **</code> </p>
+<p>第三种二维数组的分析与第二种类似，这里我们给出它的表示</p>
+<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209062002932.png" alt="image-20220906200208361" data-caption="image-20220906200208361" loading="lazy"> </p>
+<h2 id="4-指针"><a href="#4-指针" class="headerlink" title="4 指针"></a>4 指针</h2><p>我们使用一个程序来展示 <code>int (*)[col]</code> 类型</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">func_1</span><span class="hljs-params">(<span class="hljs-type">int</span> a[][<span class="hljs-number">8</span>], <span class="hljs-type">int</span> n)</span><br>&#123;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>  &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">8</span>; j++)<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i][j]);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">func_2</span><span class="hljs-params">(<span class="hljs-type">int</span> (*a)[<span class="hljs-number">8</span>], <span class="hljs-type">int</span> n)</span><br>&#123;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>  &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">8</span>; j++)<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i][j]);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">func_3</span><span class="hljs-params">(<span class="hljs-type">int</span> (*a)[<span class="hljs-number">8</span>])</span>  <span class="hljs-comment">// 指向数组的指针</span><br>&#123;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, (*a)[i]);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>  <span class="hljs-type">int</span> q[<span class="hljs-number">4</span>][<span class="hljs-number">8</span>];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">8</span>; j++)<br>      q[i][j] = <span class="hljs-number">10</span> * i + j;<br><br>  func_1(q, <span class="hljs-number">4</span>);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>  func_2(q, <span class="hljs-number">4</span>);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>  <span class="hljs-type">int</span> p[<span class="hljs-number">8</span>] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>&#125;;<br>  func_3(&amp;p);		<span class="hljs-comment">// 因为是指向数组的指针，p必须要取地址</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>贴一篇文章 ：<a target="_blank" rel="noopener" href="https://blog.csdn.net/soonfly/article/details/51131141">https://blog.csdn.net/soonfly/article/details/51131141</a></p>
+<p>这篇文章里对指针类型的分析很好</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> p; <span class="hljs-comment">//这是一个普通的整型变量</span><br><span class="hljs-type">int</span> *p; <span class="hljs-comment">//首先从P 处开始,先与*结合,所以说明P 是一个指针,然后再与int 结合,说明指针所指向的内容的类型为int 型.所以P是一个返回整型数据的指针</span><br><span class="hljs-type">int</span> p[<span class="hljs-number">3</span>]; <span class="hljs-comment">//首先从P 处开始,先与[]结合,说明P 是一个数组,然后与int 结合,说明数组里的元素是整型的,所以P 是一个由整型数据组成的数组</span><br><span class="hljs-type">int</span> *p[<span class="hljs-number">3</span>]; <span class="hljs-comment">//首先从P 处开始,先与[]结合,因为其优先级比*高,所以P 是一个数组,然后再与*结合,说明数组里的元素是指针类型,然后再与int 结合,说明指针所指向的内容的类型是整型的,所以P 是一个由返回整型数据的指针所组成的数组</span><br><span class="hljs-type">int</span> (*p)[<span class="hljs-number">3</span>]; <span class="hljs-comment">//首先从P 处开始,先与*结合,说明P 是一个指针然后再与[]结合(与&quot;()&quot;这步可以忽略,只是为了改变优先级),说明指针所指向的内容是一个数组,然后再与int 结合,说明数组里的元素是整型的.所以P 是一个指向由整型数据组成的数组的指针</span><br><span class="hljs-type">int</span> **p; <span class="hljs-comment">//首先从P 开始,先与*结合,说是P 是一个指针,然后再与*结合,说明指针所指向的元素是指针,然后再与int 结合,说明该指针所指向的元素是整型数据.由于二级指针以及更高级的指针极少用在复杂的类型中,所以后面更复杂的类型我们就不考虑多级指针了,最多只考虑一级指针.</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">p</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span>; <span class="hljs-comment">//从P 处起,先与()结合,说明P 是一个函数,然后进入()里分析,说明该函数有一个整型变量的参数,然后再与外面的int 结合,说明函数的返回值是一个整型数据</span><br>Int (*p)(<span class="hljs-type">int</span>); <span class="hljs-comment">//从P 处开始,先与指针结合,说明P 是一个指针,然后与()结合,说明指针指向的是一个函数,然后再与()里的int 结合,说明函数有一个int 型的参数,再与最外层的int 结合,说明函数的返回类型是整型,所以P 是一个指向有一个整型参数且返回类型为整型的函数的指针</span><br><span class="hljs-type">int</span> *(*p(<span class="hljs-type">int</span>))[<span class="hljs-number">3</span>]; <span class="hljs-comment">//可以先跳过,不看这个类型,过于复杂从P 开始,先与()结合,说明P 是一个函数,然后进入()里面,与int 结合,说明函数有一个整型变量参数,然后再与外面的*结合,说明函数返回的是一个指针,,然后到最外面一层,先与[]结合,说明返回的指针指向的是一个数组,然后再与*结合,说明数组里的元素是指针,然后再与int 结合,说明指针指向的内容是整型数据.所以P 是一个参数为一个整数据且返回一个指向由整型指针变量组成的数组的指针变量的函数.</span><br></code></pre></td></tr></table></figure>
+
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>cfla<br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/09/06/%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;06&#x2F;%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;06&#x2F;%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
+    })
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%E3%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E3%80%81%E6%8C%87%E9%92%88"><span class="toc-number">1.</span> <span class="toc-text">动态数组、二维数组、指针</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%AD%98%E5%82%A8%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1 二维数组的存储形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E9%80%80%E5%8C%96%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2 数组类型为什么会退化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">1.3.</span> <span class="toc-text">3 动态分配二维数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 第一种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 第二种方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%AC%AC%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 第三种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%80%BB%E7%BB%93-%EF%BC%9A-%E4%B8%8B%E6%A0%87%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 总结 ： 下标运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%8C%87%E9%92%88"><span class="toc-number">1.4.</span> <span class="toc-text">4 指针</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1662468405374"></script>
+
+
+	<script async src="/js/search.js?v=1662468405374"></script>
+
+
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
