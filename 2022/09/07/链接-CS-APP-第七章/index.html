@@ -23,8 +23,9 @@
 <meta property="og:image" content="c:/Users/cfla/AppData/Roaming/Typora/typora-user-images/image-20220910192419982.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101743742.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101815751.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209112059039.png">
 <meta property="article:published_time" content="2022-09-07T11:47:36.000Z">
-<meta property="article:modified_time" content="2022-09-11T09:45:09.036Z">
+<meta property="article:modified_time" content="2022-09-11T13:02:37.320Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -35,9 +36,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1662889557495">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1662901382013">
     
-    <link rel="stylesheet" href="/css/style.css?v=1662889557495">
+    <link rel="stylesheet" href="/css/style.css?v=1662901382013">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -239,8 +240,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约4.1k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要16分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约4.7k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要19分钟</a>
     
 </div>
 
@@ -341,8 +342,20 @@
 <h3 id="2-2-可执行目标文件格式"><a href="#2-2-可执行目标文件格式" class="headerlink" title="2.2 可执行目标文件格式"></a>2.2 可执行目标文件格式</h3><p>下面是典型的ELF 可执行目标文件</p>
 <p><img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220910192419982.png" alt="image-20220910192419982" data-caption="image-20220910192419982" loading="lazy"></p>
 <p>在ELF 头和节之间，有一个特殊的段头部表，接下来我们通过<code>readelf</code> 来看一下这个段头部表</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">LOAD           <span class="hljs-number">0x0000000000000000</span> <span class="hljs-number">0x0000000000400000</span> <span class="hljs-number">0x0000000000400000</span><br>               <span class="hljs-number">0x0000000000000498</span> <span class="hljs-number">0x0000000000000498</span>  R      <span class="hljs-number">0x1000</span><br>LOAD           <span class="hljs-number">0x0000000000001000</span> <span class="hljs-number">0x0000000000401000</span> <span class="hljs-number">0x0000000000401000</span><br>               <span class="hljs-number">0x0000000000000205</span> <span class="hljs-number">0x0000000000000205</span>  R E    <span class="hljs-number">0x1000</span><br>LOAD           <span class="hljs-number">0x0000000000002000</span> <span class="hljs-number">0x0000000000402000</span> <span class="hljs-number">0x0000000000402000</span><br>               <span class="hljs-number">0x0000000000000120</span> <span class="hljs-number">0x0000000000000120</span>  R      <span class="hljs-number">0x1000</span><br>LOAD           <span class="hljs-number">0x0000000000002e50</span> <span class="hljs-number">0x0000000000403e50</span> <span class="hljs-number">0x0000000000403e50</span><br>               <span class="hljs-number">0x00000000000001e0</span> <span class="hljs-number">0x00000000000001e8</span>  RW     <span class="hljs-number">0x1000</span> <br></code></pre></td></tr></table></figure>
 
+<p> 我们知道，程序的代码从0x0000000000400000开始，从上面这个程序头部表中我们看到它将文件中0x00000000000000000处的内容映射到了虚拟内存0x0000000000400000处，这正是程序开始运行的地方。</p>
+<blockquote>
+<p>ELF可执行文件被设计为很容易加载到存储器，连续的可执行文件的组块(cuks)被映射到连续的存储器段。段头表(segment header table)描述了这种映射关系。</p>
+</blockquote>
+<p>加载可执行文件：</p>
+<p>在shell中输入 <code>./prog</code> 后：</p>
+<ol>
+<li>shell调用fork() 函数，创建子进程</li>
+<li>子进程调用execve()，execve调用加载器，加载prog程序</li>
+<li>加载器讲可执行文件加载到内存后(在段头部表的引导下)，跳转到程序的入口点(_start函数地址)</li>
+<li>_start 调用系统函数 __libc_start_main，初始化执行环境，调用用户层的main函数</li>
+</ol>
 <h3 id="2-3-可共享目标文件格式"><a href="#2-3-可共享目标文件格式" class="headerlink" title="2.3 可共享目标文件格式"></a>2.3 可共享目标文件格式</h3><h2 id="3-三种链接和链接的过程"><a href="#3-三种链接和链接的过程" class="headerlink" title="3 三种链接和链接的过程"></a>3 三种链接和链接的过程</h2><p>三种链接：</p>
 <ol>
 <li>静态链接</li>
@@ -404,8 +417,20 @@
 <p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101815751.png" alt="image-20220910181532038" data-caption="image-20220910181532038" loading="lazy"></p>
 <p>我们要写成<code> gcc A.o B.a C.a B.a -o prog</code>  因为A.o 是目标文件，它的所有符号都被解析了，所以它只需要出现一次，而B.a则需要出现两次。</p>
 <h4 id="3-1-2-重定位"><a href="#3-1-2-重定位" class="headerlink" title="3.1.2 重定位"></a>3.1.2 重定位</h4><p>《深入理解计算机系统》原书第三版 P 478 7.7</p>
-<p>adsfghjk</p>
-<h3 id="3-2-动态链接库"><a href="#3-2-动态链接库" class="headerlink" title="3.2 动态链接库"></a>3.2 动态链接库</h3><h3 id="3-3-程序运行时链接共享库"><a href="#3-3-程序运行时链接共享库" class="headerlink" title="3.3 程序运行时链接共享库"></a>3.3 程序运行时链接共享库</h3><h2 id="名词索引"><a href="#名词索引" class="headerlink" title="名词索引"></a>名词索引</h2><p>ELF-64 目标文件格式</p>
+<h3 id="3-2-动态链接库"><a href="#3-2-动态链接库" class="headerlink" title="3.2 动态链接库"></a>3.2 动态链接库</h3><p>静态库的代码被嵌入到链接的程序，如果一个静态库被几乎所有的程序使用，就会造成大量的空间浪费，因此出现了动态库。</p>
+<p>所有引用一个动态库的可执行目标文件共享一个动态库，而不是像静态库一样，代码被嵌入进程序中。</p>
+<p>创建动态库 <code>gcc -shared -fpic -o libvector.so addvec.c multvec.c</code> </p>
+<p>与动态库链接：</p>
+<p><code>gcc -o prog main.c ./libvector.so</code></p>
+<p>与动态库链接的时候，只会讲重定位和符号表信息复制到可执行文件中，而不会嵌入其他数据。</p>
+<p>下面是动态链接库的过程：</p>
+<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209112059039.png" alt="image-20220911205952800" data-caption="image-20220911205952800" loading="lazy"></p>
+<h3 id="3-3-程序运行时链接共享库"><a href="#3-3-程序运行时链接共享库" class="headerlink" title="3.3 程序运行时链接共享库"></a>3.3 程序运行时链接共享库</h3><p>可以在运行时，从动态库中寻找该符号，动态加载到程序中。示例程序：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 7.11 load and link shared library from an application</span><br><span class="hljs-comment">// to compile this file : &quot;gcc -rdynamic -o prog_runtime_load dll.c -ldl&quot;</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;dlfcn.h&gt;</span></span><br><br><span class="hljs-type">int</span> x[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;;<br><span class="hljs-type">int</span> y[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;;<br><span class="hljs-type">int</span> z[<span class="hljs-number">2</span>];<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">void</span> * handle;  <span class="hljs-comment">// shared lib handle</span><br>    <span class="hljs-type">void</span> (*addvec)(<span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span>);  <span class="hljs-comment">// point to a function</span><br>    <span class="hljs-type">void</span> (*multvec)(<span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span>);  <span class="hljs-comment">// point to a function</span><br>    <span class="hljs-type">char</span> * error;   <span class="hljs-comment">// point to error massages string</span><br><br>    <span class="hljs-comment">// load shared library</span><br>    handle = dlopen(<span class="hljs-string">&quot;./libvector.so&quot;</span>, RTLD_LAZY);<br>    <span class="hljs-keyword">if</span> (!handle)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;%s\n&quot;</span>, dlerror());<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// search the symbol &quot;multvec&quot; from the shared library</span><br>    multvec = dlsym(handle, <span class="hljs-string">&quot;multvec&quot;</span>);<br>    <span class="hljs-keyword">if</span> ((error = (dlerror())) != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;%s\n&quot;</span>, error);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// execute the function</span><br>    multvec(x, y, z, <span class="hljs-number">2</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;z = [%d %d]\n&quot;</span>, z[<span class="hljs-number">0</span>], z[<span class="hljs-number">1</span>]);<br><br>    <span class="hljs-comment">// unload the shared library</span><br>    <span class="hljs-keyword">if</span> (dlclose(handle) &lt; <span class="hljs-number">0</span>)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;%s\n&quot;</span>, dlerror());<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="名词索引"><a href="#名词索引" class="headerlink" title="名词索引"></a>名词索引</h2><p>ELF-64 目标文件格式</p>
 <p>PIC(Position-Independent Code) 位置无关代码</p>
 
   </article>
@@ -493,10 +518,10 @@
 
  
 
-<script async src="/js/app.js?v=1662889557505"></script>
+<script async src="/js/app.js?v=1662901382023"></script>
 
 
-	<script async src="/js/search.js?v=1662889557505"></script>
+	<script async src="/js/search.js?v=1662901382023"></script>
 
 
 <script>
