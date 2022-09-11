@@ -20,8 +20,11 @@
 <meta property="og:description" content="链接本文将介绍：  编译的过程 三种目标文件 三种链接和链接的过程  1 编译的过程 源文件（.c &#x2F;.cpp）经过翻译，形成可重定位目标文件（.o） 具体过程： 预处理 cpp main.c -o main.i 或 gcc -E -o main.c main.c  编译器 ：翻译成汇编语言 cc1 或 cc main.i -o main.s 或 gcc -S -o main.s mai">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209091204533.png">
+<meta property="og:image" content="c:/Users/cfla/AppData/Roaming/Typora/typora-user-images/image-20220910192419982.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101743742.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101815751.png">
 <meta property="article:published_time" content="2022-09-07T11:47:36.000Z">
-<meta property="article:modified_time" content="2022-09-09T11:30:07.889Z">
+<meta property="article:modified_time" content="2022-09-11T09:45:09.036Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -32,9 +35,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1662776067705">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1662889557495">
     
-    <link rel="stylesheet" href="/css/style.css?v=1662776067705">
+    <link rel="stylesheet" href="/css/style.css?v=1662889557495">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -133,7 +136,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
-          <span class="category-list-count">2</span>
+          <span class="category-list-count">3</span>
         </li>
 
         
@@ -185,7 +188,7 @@
       <ul>
         
           <li>
-            <a href="/2022/09/09/%E6%A8%A1%E7%94%B5%E5%9F%BA%E7%A1%80-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">模电基础 - 大学课程</a>
+            <a href="/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">模电课程 - 大学课程</a>
           </li>
         
           <li>
@@ -236,8 +239,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约2.9k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要12分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约4.1k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要16分钟</a>
     
 </div>
 
@@ -264,6 +267,9 @@
 </ol>
 <p>如果想要一步一步生成<code>.i</code> <code>.s</code> <code>.o</code> 文件，建议使用gcc 加参数，而不是使用cpp cc1 as ld，这里面水很深，你把握不住。</p>
 <p>除了以上的方法，你也可以在使用gcc是，加上-v参数，让gcc显示编译过程。不过，它显示的信息实在太多了，不如一步一步使用 <code>-E</code> <code>-S</code> <code>-c</code> 参数进行编译。</p>
+<blockquote>
+<p>顺带一提，在bash中，可以通过 <code>echo $?</code> 来展示上一次程序退出的返回值</p>
+</blockquote>
 <h2 id="2-三种目标文件"><a href="#2-三种目标文件" class="headerlink" title="2 三种目标文件"></a>2 三种目标文件</h2><p>首先，什么是目标文件？</p>
 <blockquote>
 <p>计算机科学中存放目标代码的计算机文件,包含着机器代码，代码在运行时使用的数据，调试信息等，是从源代码文件产生程序文件这一过程的中间产物。</p>
@@ -332,7 +338,12 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">func_1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>  <span class="hljs-type">static</span> <span class="hljs-type">int</span> x = n + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">func_2</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>    <span class="hljs-type">static</span> <span class="hljs-type">int</span> x = n + <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这两个静态变量虽然都是x，但显然他们不是同一个变量，因此编译器会在符号表中通过加上一个后辍的形式来区分他们。</p>
-<h3 id="2-2-可执行目标文件格式"><a href="#2-2-可执行目标文件格式" class="headerlink" title="2.2 可执行目标文件格式"></a>2.2 可执行目标文件格式</h3><h3 id="2-3-可共享目标文件格式"><a href="#2-3-可共享目标文件格式" class="headerlink" title="2.3 可共享目标文件格式"></a>2.3 可共享目标文件格式</h3><h2 id="3-三种链接和链接的过程"><a href="#3-三种链接和链接的过程" class="headerlink" title="3 三种链接和链接的过程"></a>3 三种链接和链接的过程</h2><p>三种链接：</p>
+<h3 id="2-2-可执行目标文件格式"><a href="#2-2-可执行目标文件格式" class="headerlink" title="2.2 可执行目标文件格式"></a>2.2 可执行目标文件格式</h3><p>下面是典型的ELF 可执行目标文件</p>
+<p><img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220910192419982.png" alt="image-20220910192419982" data-caption="image-20220910192419982" loading="lazy"></p>
+<p>在ELF 头和节之间，有一个特殊的段头部表，接下来我们通过<code>readelf</code> 来看一下这个段头部表</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-3-可共享目标文件格式"><a href="#2-3-可共享目标文件格式" class="headerlink" title="2.3 可共享目标文件格式"></a>2.3 可共享目标文件格式</h3><h2 id="3-三种链接和链接的过程"><a href="#3-三种链接和链接的过程" class="headerlink" title="3 三种链接和链接的过程"></a>3 三种链接和链接的过程</h2><p>三种链接：</p>
 <ol>
 <li>静态链接</li>
 <li>动态链接库</li>
@@ -346,9 +357,54 @@
 <h4 id="3-1-1-符号解析"><a href="#3-1-1-符号解析" class="headerlink" title="3.1.1 符号解析"></a>3.1.1 符号解析</h4><p>链接器解析符号引用的方法是，讲每个引用与它输入的可重定位目标文件的符号表中的一个确定的符号定义关联起来。</p>
 <p>对于局部符号，它不会出现在符号表中。</p>
 <p>对于本地静态变量，编译器会确保它们有唯一的名字 （回忆一下，编译器会通过给名称相同的静态变量加后缀来区分他们），因此也很好解析。</p>
-<p>唯一难得是对全局符号（全局变量，非static 的函数声明）的引用。</p>
+<p>唯一难处理的是对全局符号（全局变量，非static 的函数声明）的引用。</p>
 <p>对于一个不在当前模块定义的符号，编译器会假定它定义在其他模块，并生成一条符号表条目，将它交给链接器处理。</p>
-<p>而编译器向链接器输出的这些符号，都会被划分为强的活弱的</p>
+<p>而编译器向链接器输出的这些符号，都会被划分为强符号或弱符号。</p>
+<p>强符号：函数和已初始化的全局变量</p>
+<p>弱符号：未初始化的全局变量 (在COMMON伪节)</p>
+<p>接着使用以下规则来处理这些符号：</p>
+<ol>
+<li>不允许有多个同名的强符号</li>
+<li>如果一个强符号与多个弱符号同名，选择强符号</li>
+<li>若有多个弱符号同名，从这些弱符号中任选一个。</li>
+</ol>
+<blockquote>
+<p>这三个规则很容易造成一些不易察觉的运行时错误。</p>
+</blockquote>
+<blockquote>
+<p>为什么会有.COMMON伪节？</p>
+<p>如果有一个未初始化的全局变量x，编译器不知道这是一个extern 声明还是一个定义，不知道其他模块是否还有一个x，因此它把这个决定权留给链接器。</p>
+<p>而如果是一个初始化为0的全局变量，根据强符号的规则，它是唯一的，因此编译器可以把他放到.bss节</p>
+</blockquote>
+<p>以上讲的是几个.o 文件的链接，他们都是<code>目标文件</code> </p>
+<p>接下来我们讲与静态库的链接，其中会有<code>存档文件</code> 这个概念，注意区别</p>
+<blockquote>
+<p>静态库，封装了很多函数编译出来的目标文件的文件，一般是一个一个的函数。静态库即存档文件，后辍是  .a</p>
+<p>在链接时，链接器指挥复制静态库里被使用的存档文件，从而节省空间。</p>
+</blockquote>
+<p>生成静态库：</p>
+<p>首先编译：<code>gcc -c addvec.c multvec.c</code></p>
+<p>接着生成静态库：<code>ar rcs libvector.a addvec.o multvec.o</code> </p>
+<p>得到静态库 <code>libvector.a</code>，存档文件</p>
+<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101743742.png" alt="image-20220910174348618" data-caption="image-20220910174348618" loading="lazy"> </p>
+<p>(重要) 链接器如何使用静态库来解析引用：</p>
+<blockquote>
+<p>链接器维持一个可重定位目标文件的集合E,这个集合中的文件会被合并起来形成可执行文件，和一个未解析的符号（也就是，引用了但是尚未定义的符号)集合U,以及一个在前面输入文件中已定义的符号集合D。初始地，E、U和D都是空的。</p>
+<ul>
+<li>对于命令行上的每个输入文件f，链接器会判断 f 是一个目标文件还是一个存档文件。如果f是一个目标文件，那么链接器把f添加到E,修改U和D来反映 f 中的符号定义和引用，并继续下一个输入文件。</li>
+<li>如果f是一个存档文件，那么链接器就尝试匹配U中未解析的符号和由存档文件成员定义<br>的符号。如果某个存档文件成员m,定义了一个符号来解析U中的一个引用，那么就将m<br>加到E中，并且链接器修改U和D来反映m中的符号定义和引用。对存档文件中所有的成<br>员目标文件都反复进行这个过程，直到U和D都不再发生变化。在此时，任何不包含在E<br>中的成员目标文件都被丢弃，而链接器将继续到下一个输入文件。</li>
+<li>如果当链接器完成对命令行上输入文件的扫描后，U是非空的，那么链接器就会输出一个错<br>误并终止。否则，它会合并和重定位E中的目标文件，从而构建输出的可执行文件。</li>
+</ul>
+</blockquote>
+<p>注意：链接器对待存档文件和目标文件是有区别的，对于目标文件，他会解析所有的符号，而对待存档文件，如果U中没有这个符号，该存档文件就会被抛弃。</p>
+<p>因此，如果有几个相互依赖的目标文件，他们在命令行中出现的顺序是无关紧要的。</p>
+<p>但如果几个存档文件相互依赖，那么他们在命令行中出现的顺序就是需要特别关注的</p>
+<p>如果文件A的符号定义在文件B中，我们就说文件A依赖文件B A→B</p>
+<p>假如有这样的依赖关系：</p>
+<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101815751.png" alt="image-20220910181532038" data-caption="image-20220910181532038" loading="lazy"></p>
+<p>我们要写成<code> gcc A.o B.a C.a B.a -o prog</code>  因为A.o 是目标文件，它的所有符号都被解析了，所以它只需要出现一次，而B.a则需要出现两次。</p>
+<h4 id="3-1-2-重定位"><a href="#3-1-2-重定位" class="headerlink" title="3.1.2 重定位"></a>3.1.2 重定位</h4><p>《深入理解计算机系统》原书第三版 P 478 7.7</p>
+<p>adsfghjk</p>
 <h3 id="3-2-动态链接库"><a href="#3-2-动态链接库" class="headerlink" title="3.2 动态链接库"></a>3.2 动态链接库</h3><h3 id="3-3-程序运行时链接共享库"><a href="#3-3-程序运行时链接共享库" class="headerlink" title="3.3 程序运行时链接共享库"></a>3.3 程序运行时链接共享库</h3><h2 id="名词索引"><a href="#名词索引" class="headerlink" title="名词索引"></a>名词索引</h2><p>ELF-64 目标文件格式</p>
 <p>PIC(Position-Independent Code) 位置无关代码</p>
 
@@ -402,7 +458,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1 编译的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%89%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">2 三种目标文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 可重定位目标文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 符号表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 可执行目标文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%8F%AF%E5%85%B1%E4%BA%AB%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 可共享目标文件格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%89%E7%A7%8D%E9%93%BE%E6%8E%A5%E5%92%8C%E9%93%BE%E6%8E%A5%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3 三种链接和链接的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 静态链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">3.1.1 符号解析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 动态链接库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E9%93%BE%E6%8E%A5%E5%85%B1%E4%BA%AB%E5%BA%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 程序运行时链接共享库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E7%B4%A2%E5%BC%95"><span class="toc-number">1.4.</span> <span class="toc-text">名词索引</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1 编译的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%89%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">2 三种目标文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 可重定位目标文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 符号表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 可执行目标文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%8F%AF%E5%85%B1%E4%BA%AB%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 可共享目标文件格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%89%E7%A7%8D%E9%93%BE%E6%8E%A5%E5%92%8C%E9%93%BE%E6%8E%A5%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3 三种链接和链接的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 静态链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">3.1.1 符号解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">3.1.2 重定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 动态链接库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E9%93%BE%E6%8E%A5%E5%85%B1%E4%BA%AB%E5%BA%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 程序运行时链接共享库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E7%B4%A2%E5%BC%95"><span class="toc-number">1.4.</span> <span class="toc-text">名词索引</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -437,10 +493,10 @@
 
  
 
-<script async src="/js/app.js?v=1662776067713"></script>
+<script async src="/js/app.js?v=1662889557505"></script>
 
 
-	<script async src="/js/search.js?v=1662776067713"></script>
+	<script async src="/js/search.js?v=1662889557505"></script>
 
 
 <script>
