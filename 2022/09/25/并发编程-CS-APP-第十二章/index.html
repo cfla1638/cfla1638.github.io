@@ -20,7 +20,7 @@
 <meta property="og:description" content="并发编程 - CS:APP 第十二章本章主要内容：  实现并发程序的三种方法： fork() 进程 I&#x2F;O 多路复用 使用线程   使用信号量同步线程 线程安全问题  使用进程进行并发编程fork() &amp; execve  优点：进程模型清晰，有独立的地址空间 缺点：不方便进程之间共享信息 基于进程的并发echo服务器 #include &lt;csapp.h&gt;void ec">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-25T14:10:57.000Z">
-<meta property="article:modified_time" content="2022-09-25T14:58:06.789Z">
+<meta property="article:modified_time" content="2022-09-26T06:38:29.889Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664117906580">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664177964922">
     
-    <link rel="stylesheet" href="/css/style.css?v=1664117906580">
+    <link rel="stylesheet" href="/css/style.css?v=1664177964922">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -234,8 +234,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约1k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约2.7k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要12分钟</a>
     
 </div>
 
@@ -281,8 +281,56 @@
 <li>可结合的：能被其他线程回收和杀死，但它的内存资源需要被显示回收</li>
 <li>分离的：不能被其他线程杀死，内存资源结束时由系统自动释放</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">void</span> *(func)(<span class="hljs-type">void</span> *);<br><br><span class="hljs-comment">// 创建线程</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_create</span><span class="hljs-params">(<span class="hljs-type">pthread_t</span> *tid, <span class="hljs-type">pthread_attr_t</span> * attr, func *f, <span class="hljs-type">void</span> *arg)</span>;<br><br><span class="hljs-comment">// 获取自己的tid</span><br><span class="hljs-type">pthread_t</span> <span class="hljs-title function_">pthread_self</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">pthread_exit</span><span class="hljs-params">(<span class="hljs-type">void</span> *thread_return)</span>;<br><br><span class="hljs-comment">// </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cancel</span><span class="hljs-params">(<span class="hljs-type">pthread_t</span> tid)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_join</span><span class="hljs-params">(<span class="hljs-type">pthread_t</span> tid, <span class="hljs-type">void</span> **thread_return)</span>;<br><br><span class="hljs-type">pthread_once_t</span> once_control = PTHREAD_ONCE_INIT;<br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_once</span><span class="hljs-params">(<span class="hljs-type">pthread_once_t</span> *once_control, <span class="hljs-type">void</span> (*init_routine)(<span class="hljs-type">void</span>))</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">void</span> *(func)(<span class="hljs-type">void</span> *);<br><br><span class="hljs-comment">// 创建线程</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_create</span><span class="hljs-params">(<span class="hljs-type">pthread_t</span> *tid, <span class="hljs-type">pthread_attr_t</span> * attr, func *f, <span class="hljs-type">void</span> *arg)</span>;<br><br><span class="hljs-comment">// 获取自己的tid</span><br><span class="hljs-type">pthread_t</span> <span class="hljs-title function_">pthread_self</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br><br><span class="hljs-comment">// 当前线程会显示的终止，如果主调线程是主线程，那么他会等待其他对等线程终止，然后终止这个进程</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">pthread_exit</span><span class="hljs-params">(<span class="hljs-type">void</span> *thread_return)</span>;<br><br><span class="hljs-comment">// 终止 tid</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cancel</span><span class="hljs-params">(<span class="hljs-type">pthread_t</span> tid)</span>;<br><br><span class="hljs-comment">// 阻塞，等待tid终止</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_join</span><span class="hljs-params">(<span class="hljs-type">pthread_t</span> tid, <span class="hljs-type">void</span> **thread_return)</span>;<br><br><span class="hljs-comment">// 当这个线程第一次被调用时，执行 init_routine()，用于初始化</span><br><span class="hljs-type">pthread_once_t</span> once_control = PTHREAD_ONCE_INIT;<br><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_once</span><span class="hljs-params">(<span class="hljs-type">pthread_once_t</span> *once_control, <span class="hljs-type">void</span> (*init_routine)(<span class="hljs-type">void</span>))</span>;<br></code></pre></td></tr></table></figure>
 
+
+
+<h2 id="用信号量同步线程"><a href="#用信号量同步线程" class="headerlink" title="用信号量同步线程"></a>用信号量同步线程</h2><p>如果两个线程交错地调用某个共享变量，如果第一个线程还没有将新值更新，第二个线程就已经取出了共享变量的值，就可能会造成错误</p>
+<blockquote>
+<p>对于线程i，操作共享变量的指令，构成了一个关于共享变量的临界区，这个临界区不应该和其他程序的临界区交错执行。换句话说，我们想要确保每个线程在执行它的临界区中的指令时，拥有对共享变量互斥的访问。</p>
+</blockquote>
+<p>想要实现互斥的访问，我们可以使用信号量机制</p>
+<p>信号量：</p>
+<p>信号量s是具有非负整数值的全局变量，只能通过两种操作来改变它：</p>
+<ul>
+<li>P(s) : 如果s是非零的，那么P将s减1，并且立即返回。如果s为零，那么就挂起进程，直到s变为非零，并且该进程被一个V操作重启。在重启之后，P操作将s减1，并将控制返回给调用者。</li>
+<li>V(S) : V操作将s加1。如果有任何进程阻塞在P操作等待s变成非零，那么V操作会重启这些进程中的一个，然后该进程将s减1，完成它的P操作。</li>
+</ul>
+<p>P中测试和加一的操作是不可分割的</p>
+<p>V中测试和加以的操作也是不可分割的</p>
+<p>如果s的值只能是0或者1，我们就将这个信号量成为互斥锁，它可以提供对共享变量互斥的访问。</p>
+<p>互斥锁的使用：当一个线程要使用共享变量时，它对S进行P操作，互斥锁加锁，S变为0，当另一个线程想要使用共享变量时，他也对s进行P操作，因为P已经变为了0，所以这个线程被挂起，等待一个其他线程的V操作将它激活。当第一个线程使用完共享变量，它执行V操作，互斥锁解锁，第二个线程被激活。</p>
+<h3 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h3><blockquote>
+<p>生产者线程反复地生成新的项目(item),并把它们插入到缓冲区中。消费者线程不断地从缓冲区中取出这些项目，然后消费它们。</p>
+<p>因为插入和取出项目都包括更新共享变量，所以我们必须保证对缓冲区的访问是互斥的。但是只保证互斥访问是不够的，我们还需要调度对缓冲区的访问。如果缓冲区是满的（没有空的槽位)，那么生产者必须等待直到有一个槽位变为可用。与之相似，如果缓冲区是空的（没有可取用的项目），那么消费者必须等待直到有一个可用的项目。</p>
+</blockquote>
+<p>基于生产者消费者的sbuf包：</p>
+<p><code>sbuf.h</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> H_SBUF</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> H_SBUF</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;csapp.h&gt;</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-type">int</span> *buf;  <span class="hljs-comment">// 缓冲区</span><br>    <span class="hljs-type">int</span> n;    <span class="hljs-comment">// 缓冲区长度</span><br>    <span class="hljs-type">int</span> front;  <span class="hljs-comment">// 队列头</span><br>    <span class="hljs-type">int</span> rear;  <span class="hljs-comment">// 队列尾</span><br>    <span class="hljs-type">sem_t</span> mutex;  <span class="hljs-comment">// 对缓冲区的互斥锁</span><br>    <span class="hljs-type">sem_t</span> slots;  <span class="hljs-comment">// 控制生产者的信号量</span><br>    <span class="hljs-type">sem_t</span> items;  <span class="hljs-comment">// 控制消费者的信号量</span><br>&#125;<span class="hljs-type">sbuf_t</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">sbuf_init</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp, <span class="hljs-type">int</span> n)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">sbuf_deinit</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">sbuf_insert</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp, <span class="hljs-type">int</span> item)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">sbuf_remove</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp)</span>;<br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><code>sbuf.c</code> </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;sbuf.h&quot;</span></span><br><br><span class="hljs-comment">// 初始化</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">sbuf_init</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp, <span class="hljs-type">int</span> n)</span><br>&#123;<br>    sp-&gt;buf = Calloc(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    sp-&gt;n = n;<br>    sp-&gt;front = sp-&gt;rear = <span class="hljs-number">0</span>;<br>    Sem_init(&amp;sp-&gt;mutex, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);<br>    Sem_init(&amp;sp-&gt;slots, <span class="hljs-number">0</span>, n);<br>    Sem_init(&amp;sp-&gt;items, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-comment">// 释放缓冲区空间</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">sbuf_deinit</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp)</span><br>&#123;<br>    Free(sp-&gt;buf);<br>&#125;<br><br><span class="hljs-comment">// 向缓冲区插入数据</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">sbuf_insert</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp, <span class="hljs-type">int</span> item)</span><br>&#123;<br>    P(&amp;sp-&gt;slots);  <span class="hljs-comment">// 如果缓冲区已满，想要插入的线程会阻塞在这里</span><br>    P(&amp;sp-&gt;mutex);  <span class="hljs-comment">// 互斥锁加锁</span><br>    sp-&gt;buf[(++sp-&gt;rear) % (sp-&gt;n)] = item;    <span class="hljs-comment">// 因为信号量的机制，我们不用担心插入的数据大小超过缓冲区大小</span><br>    V(&amp;sp-&gt;mutex);  <span class="hljs-comment">// 互斥锁解锁</span><br>    V(&amp;sp-&gt;items);  <span class="hljs-comment">// 如果有线程因为缓冲区为空而阻塞在这里，这个操作会激活它们</span><br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">sbuf_remove</span><span class="hljs-params">(<span class="hljs-type">sbuf_t</span> *sp)</span><br>&#123;<br>    <span class="hljs-type">int</span> item;<br>    P(&amp;sp-&gt;items);  <span class="hljs-comment">// 如果缓冲区为空，想要取出的线程会阻塞</span><br>    P(&amp;sp-&gt;mutex);<br>    item = sp-&gt;buf[(++sp-&gt;front) % sp-&gt;n];    <span class="hljs-comment">// 因为信号量的机制，我们不用担心从空缓冲区里取出数据</span><br>    V(&amp;sp-&gt;mutex);<br>    V(&amp;sp-&gt;slots);  <span class="hljs-comment">// 如果有线程因为缓冲区已满而阻塞在这里，这个操作会通知激活他们</span><br>    <span class="hljs-keyword">return</span> item;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>基于预线程化的并发服务器</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;csapp.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;sbuf.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> NTHREADS 4</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SBUFSIZE 16</span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">echo_cnt</span><span class="hljs-params">(<span class="hljs-type">int</span> connfd)</span>;<br><span class="hljs-type">void</span> *<span class="hljs-title function_">thread</span><span class="hljs-params">(<span class="hljs-type">void</span> *vargp)</span>;<br><br><span class="hljs-type">sbuf_t</span> sbuf;<br><br><span class="hljs-type">static</span> <span class="hljs-type">int</span> byte_cnt;<br><span class="hljs-type">static</span> <span class="hljs-type">sem_t</span> mutex;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> **argv)</span><br>&#123;<br>    <span class="hljs-type">int</span> i, listenfd, connfd;<br>    <span class="hljs-type">socklen_t</span> clientlen;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_storage</span> <span class="hljs-title">clientaddr</span>;</span><br>    <span class="hljs-type">pthread_t</span> tid;<br><br>    <span class="hljs-keyword">if</span> (argc != <span class="hljs-number">2</span>) &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;usage: %s &lt;port&gt;\n&quot;</span>, argv[<span class="hljs-number">0</span>]);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>    &#125;<br><br>    listenfd = Open_listenfd(argv[<span class="hljs-number">1</span>]);<br><br>    sbuf_init(&amp;sbuf, SBUFSIZE);<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; NTHREADS; i++)<br>        Pthread_create(&amp;tid, <span class="hljs-literal">NULL</span>, thread, <span class="hljs-literal">NULL</span>);<br><br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        clientlen = <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> sockaddr_storage);<br>        connfd = Accept(listenfd, (SA*)&amp;clientaddr, &amp;clientlen);<br>        sbuf_insert(&amp;sbuf, connfd);<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> *<span class="hljs-title function_">thread</span><span class="hljs-params">(<span class="hljs-type">void</span> *vargp)</span><br>&#123;<br>    Pthread_detach(pthread_self());<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-type">int</span> connfd = sbuf_remove(&amp;sbuf);<br>        echo_cnt(connfd);<br>        Close(connfd);<br>    &#125;<br>&#125;<br><br><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">init_echo_cnt</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    Sem_init(&amp;mutex, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);<br>    byte_cnt = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">echo_cnt</span><span class="hljs-params">(<span class="hljs-type">int</span> connfd)</span><br>&#123;<br>    <span class="hljs-type">int</span> n;<br>    <span class="hljs-type">char</span> buf[MAXLINE];<br>    <span class="hljs-type">rio_t</span> rio;<br>    <span class="hljs-type">static</span> <span class="hljs-type">pthread_once_t</span> once = PTHREAD_ONCE_INIT;<br><br>    Pthread_once(&amp;once, init_echo_cnt);<br>    Rio_readinitb(&amp;rio, connfd);<br>    <span class="hljs-keyword">while</span> ((n = Rio_readlineb(&amp;rio, buf, MAXLINE)) != <span class="hljs-number">0</span>) &#123;<br>        P(&amp;mutex);<br>        byte_cnt += n;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;server received %d (%d total) bytes on fd %d\n&quot;</span>, n, byte_cnt, connfd);<br>        V(&amp;mutex);<br>        Rio_writen(connfd, buf, n);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h2><h3 id="四个种不安全的函数"><a href="#四个种不安全的函数" class="headerlink" title="四个种不安全的函数"></a>四个种不安全的函数</h3><ul>
+<li>不保护共享变量的函数</li>
+<li>保持跨越多个调用的状态的函数（依赖前次调用结果的函数）</li>
+<li>返回指向静态变量指针的函数</li>
+<li>调用线程不安全函数的函数</li>
+</ul>
+<h3 id="可重入的函数"><a href="#可重入的函数" class="headerlink" title="可重入的函数"></a>可重入的函数</h3><p>通常与线程安全的函数相混淆，但其实可重入的函数是线程安全函数的子集</p>
+<p>定义：当它被多个线程使用时，不会引用任何共享数据</p>
+<h3 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h3><p>一个程序的正确性依赖于一个线程要在另一个线程到达y点之前到达它控制流种的x点时，就会发生竞争</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>deadlock：一个程序被阻塞了，等待一个永远也不会为真的条件</p>
+<p>给定所有互斥操作的一个全序，如果每个线程都是以一种顺序获得互斥锁，并以相反的顺序释放，那么这个程序是无死锁的</p>
 
   </article>
 
@@ -334,7 +382,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">并发编程 - CS:APP 第十二章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%9B%E7%A8%8B%E8%BF%9B%E8%A1%8C%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">使用进程进行并发编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">IO多路复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">基于线程的并发编程</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">并发编程 - CS:APP 第十二章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%9B%E7%A8%8B%E8%BF%9B%E8%A1%8C%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">使用进程进行并发编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">IO多路复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">基于线程的并发编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%90%8C%E6%AD%A5%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">用信号量同步线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.1.</span> <span class="toc-text">生产者消费者问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="toc-number">1.5.</span> <span class="toc-text">线程安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%A7%8D%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.1.</span> <span class="toc-text">四个种不安全的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%85%A5%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.2.</span> <span class="toc-text">可重入的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89"><span class="toc-number">1.5.3.</span> <span class="toc-text">竞争</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-number">1.5.4.</span> <span class="toc-text">死锁</span></a></li></ol></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -369,10 +417,10 @@
 
  
 
-<script async src="/js/app.js?v=1664117906586"></script>
+<script async src="/js/app.js?v=1664177964939"></script>
 
 
-	<script async src="/js/search.js?v=1664117906586"></script>
+	<script async src="/js/search.js?v=1664177964939"></script>
 
 
 <script>
