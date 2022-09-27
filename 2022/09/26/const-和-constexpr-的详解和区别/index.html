@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>分类：琐碎记录 - cfla&#39;s blog</title>
+    <title>const 和 constexpr 的详解和区别 - cfla&#39;s blog</title>
     <meta charset="UTF-8">
     <meta name="keywords" content="Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,13 +12,17 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="cfla&#39;s blog">
-<meta property="og:url" content="https://cfla1638.github.io/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/index.html">
+    <meta name="description" content="const和constexprconstexpr常量表达式：是指值不会改变且在编译期间就可以计算处结果的表达式 常量表达式是由  数据类型 数据初始值  决定的。 int a &#x3D; 1 a 不是一个常量表达式，因为它的数据类型不是常量 const int b &#x3D; get_val() b不是一个常量表达式，因为它的初始值不是常量 由于使用const 不能确定一个表达式是不是常量，因此C++11使用co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="const 和 constexpr 的详解和区别">
+<meta property="og:url" content="https://cfla1638.github.io/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="const和constexprconstexpr常量表达式：是指值不会改变且在编译期间就可以计算处结果的表达式 常量表达式是由  数据类型 数据初始值  决定的。 int a &#x3D; 1 a 不是一个常量表达式，因为它的数据类型不是常量 const int b &#x3D; get_val() b不是一个常量表达式，因为它的初始值不是常量 由于使用const 不能确定一个表达式是不是常量，因此C++11使用co">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-26T07:40:53.000Z">
+<meta property="article:modified_time" content="2022-09-26T14:00:40.262Z">
 <meta property="article:author" content="cfla">
-<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
     
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
@@ -26,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664286659114">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664286659021">
     
-    <link rel="stylesheet" href="/css/style.css?v=1664286659114">
+    <link rel="stylesheet" href="/css/style.css?v=1664286659021">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -214,74 +218,86 @@
     </div>
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
-            <section class="nexmoe-posts">
-    
-    <div class="nexmoe-post">
-        <a href="/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="const 和 constexpr 的详解和区别" loading="lazy">
-                    <h1>const 和 constexpr 的详解和区别</h1>
-                </div>
-            
-        </a>
+            <div class="nexmoe-post">
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月26日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="const 和 constexpr 的详解和区别" loading="lazy">
+              <h1>const 和 constexpr 的详解和区别</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月26日</a>
+</div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
         <a><i class="nexmoefont icon-areachart"></i>约406字</a>
         <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
     
 </div>
 
-        <article>
-            
-        </article>
+      <h1 id="const和constexpr"><a href="#const和constexpr" class="headerlink" title="const和constexpr"></a><code>const</code>和<code>constexpr</code></h1><h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a><code>constexpr</code></h2><p>常量表达式：是指值不会改变且在编译期间就可以计算处结果的表达式</p>
+<p>常量表达式是由</p>
+<ul>
+<li>数据类型</li>
+<li>数据初始值</li>
+</ul>
+<p>决定的。</p>
+<p><code>int a = 1</code> a 不是一个常量表达式，因为它的数据类型不是常量</p>
+<p><code>const int b = get_val()</code> b不是一个常量表达式，因为它的初始值不是常量</p>
+<p>由于使用<code>const</code> 不能确定一个表达式是不是常量，因此C++11使用<code>constexpr</code> 修饰符，可以让编译器在编译期间检查一个表达式是不是常量。</p>
+<p>下面这个程序是不正确的，因为a虽然被<code>const</code> 修饰，但它并不是常量表达式，它引用了非常量表达式，因此在编译期间就可以确定它不是常量表达式</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> b = <span class="hljs-number">3</span>;<br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> a = b;<br>    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> i = a;<br>    <span class="hljs-type">int</span> arr[i];<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>而只要将<code>a = b</code> 改为 <code>a = 1</code> 程序就不会报错了，因为此时a的确是一个常量表达式</p>
+<h3 id="constexpr-函数"><a href="#constexpr-函数" class="headerlink" title="constexpr 函数"></a><code>constexpr</code> 函数</h3><p>普通的函数不是常量表达式，但我们可以定义<code>constexpr</code> 类型的函数，它可以作为常量表达式，但这个函数必须简单到可以在编译期间被确定</p>
+<h3 id="constexpr-指针-amp-引用"><a href="#constexpr-指针-amp-引用" class="headerlink" title="constexpr 指针 &amp; 引用"></a><code>constexpr</code> 指针 &amp; 引用</h3><p><code>constexpr</code> 指向的位置必须是全局变量，静态变量，或者字面值等放在<code>.bss</code> 节<code>.data</code> 位置的数据，而不能是放在栈上的本地变量，因为他们必须在运行时才能确定位置，而不能在编译时确定位置。</p>
+<p>未完待续 … </p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>cfla<br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;26&#x2F;const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;26&#x2F;const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
     </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2022/09/06/%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="动态数组,二维数组,指针" loading="lazy">
-                    <h1>动态数组,二维数组,指针</h1>
-                </div>
-            
-        </a>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月06日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a><i class="nexmoefont icon-areachart"></i>约4.4k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要20分钟</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
     
 </div>
 
-        <article>
-            
-        </article>
-    </div>
-    
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
+    })
+</script>
 </section>
-
+      </div>
+  
+</div>
             <div class="nexmoe-post-right">
               <div class="nexmoe-fixed">
                   <div class="nexmoe-tool"> 
@@ -289,6 +305,13 @@
                       
                         
                           
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#const%E5%92%8Cconstexpr"><span class="toc-number">1.</span> <span class="toc-text">const和constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#constexpr"><span class="toc-number">1.1.</span> <span class="toc-text">constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">constexpr 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr-%E6%8C%87%E9%92%88-amp-%E5%BC%95%E7%94%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">constexpr 指针 &amp; 引用</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
                           
                           
                       
@@ -321,10 +344,10 @@
 
  
 
-<script async src="/js/app.js?v=1664286659115"></script>
+<script async src="/js/app.js?v=1664286659024"></script>
 
 
-	<script async src="/js/search.js?v=1664286659115"></script>
+	<script async src="/js/search.js?v=1664286659024"></script>
 
 
 <script>
