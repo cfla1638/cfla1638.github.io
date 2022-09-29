@@ -20,7 +20,7 @@
 <meta property="og:description" content="const和constexprconstexpr常量表达式：是指值不会改变且在编译期间就可以计算处结果的表达式 常量表达式是由  数据类型 数据初始值  决定的。 int a &#x3D; 1 a 不是一个常量表达式，因为它的数据类型不是常量 const int b &#x3D; get_val() b不是一个常量表达式，因为它的初始值不是常量 由于使用const 不能确定一个表达式是不是常量，因此C++11使用co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-26T07:40:53.000Z">
-<meta property="article:modified_time" content="2022-09-26T14:00:40.262Z">
+<meta property="article:modified_time" content="2022-09-29T07:45:33.300Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664286659021">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664437570448">
     
-    <link rel="stylesheet" href="/css/style.css?v=1664286659021">
+    <link rel="stylesheet" href="/css/style.css?v=1664437570448">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -234,8 +234,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约406字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约770字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要2分钟</a>
     
 </div>
 
@@ -255,7 +255,30 @@
 <p>而只要将<code>a = b</code> 改为 <code>a = 1</code> 程序就不会报错了，因为此时a的确是一个常量表达式</p>
 <h3 id="constexpr-函数"><a href="#constexpr-函数" class="headerlink" title="constexpr 函数"></a><code>constexpr</code> 函数</h3><p>普通的函数不是常量表达式，但我们可以定义<code>constexpr</code> 类型的函数，它可以作为常量表达式，但这个函数必须简单到可以在编译期间被确定</p>
 <h3 id="constexpr-指针-amp-引用"><a href="#constexpr-指针-amp-引用" class="headerlink" title="constexpr 指针 &amp; 引用"></a><code>constexpr</code> 指针 &amp; 引用</h3><p><code>constexpr</code> 指向的位置必须是全局变量，静态变量，或者字面值等放在<code>.bss</code> 节<code>.data</code> 位置的数据，而不能是放在栈上的本地变量，因为他们必须在运行时才能确定位置，而不能在编译时确定位置。</p>
-<p>未完待续 … </p>
+<h2 id="const"><a href="#const" class="headerlink" title="const"></a><code>const</code></h2><p><code>const</code>用来修饰变量，根据<code>const</code> 出现的位置，可以分为两种<code>const</code> ：顶层<code>const</code> 和底层<code>const</code> </p>
+<p>顶层<code>const</code> 可以表示任意的对象是常量</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">const</span> <span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;    <span class="hljs-comment">// a不能改变，是顶层const</span><br><span class="hljs-type">int</span> *<span class="hljs-type">const</span> p = &amp;a;    <span class="hljs-comment">// p不能改变指向，是顶层const</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>低层<code>const</code> 与指针和引用有关，表示，不能通过这个途径修改他们指向或者引用的变量</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">const</span> <span class="hljs-type">int</span> *p = &amp;a;    <span class="hljs-comment">// 指向a的指针，不能通过这个指针修改a的值，是底层const</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;ref = a;    <span class="hljs-comment">// a的引用，不能通过这种方式修改a, 是底层const</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="const-与参数传递"><a href="#const-与参数传递" class="headerlink" title="const  与参数传递"></a><code>const </code> 与参数传递</h3><ul>
+<li><p>在参数传递时，顶层<code>const</code>会被忽略掉，因此下面这两个函数不能重载，因为他们忽略掉顶层<code>const</code> 后没有区别</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">int</span> i)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用非常量初始化底层<code>const</code> ，但不能使用常量去初始化非底层<code>const</code> </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> b = <span class="hljs-number">1</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;ref_1 = a;  <span class="hljs-comment">// 可以， 可以使用非常量初始化底层const</span><br><span class="hljs-type">int</span> &amp;ret_2 = b;      <span class="hljs-comment">// 不可以， 不能使用常量去初始化非底层const</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>非常量的引用必须是左值，常量的引用可以是左值，也可以是右值</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;a = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 正确</span><br><span class="hljs-type">int</span> &amp;b = <span class="hljs-number">2</span>;    <span class="hljs-comment">// 错误</span><br></code></pre></td></tr></table></figure>
+
+<p>因此<strong>尽量将不会改变形参的函数的形参定义成底层<code>const</code></strong> ，因为这样定义我们可以使用字面量（rvalue）。</p>
+</li>
+</ul>
 
   </article>
 
@@ -309,7 +332,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#const%E5%92%8Cconstexpr"><span class="toc-number">1.</span> <span class="toc-text">const和constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#constexpr"><span class="toc-number">1.1.</span> <span class="toc-text">constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">constexpr 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr-%E6%8C%87%E9%92%88-amp-%E5%BC%95%E7%94%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">constexpr 指针 &amp; 引用</span></a></li></ol></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#const%E5%92%8Cconstexpr"><span class="toc-number">1.</span> <span class="toc-text">const和constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#constexpr"><span class="toc-number">1.1.</span> <span class="toc-text">constexpr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">constexpr 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr-%E6%8C%87%E9%92%88-amp-%E5%BC%95%E7%94%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">constexpr 指针 &amp; 引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const"><span class="toc-number">1.2.</span> <span class="toc-text">const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#const-%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">1.2.1.</span> <span class="toc-text">const  与参数传递</span></a></li></ol></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -344,10 +367,10 @@
 
  
 
-<script async src="/js/app.js?v=1664286659024"></script>
+<script async src="/js/app.js?v=1664437570452"></script>
 
 
-	<script async src="/js/search.js?v=1664286659024"></script>
+	<script async src="/js/search.js?v=1664437570452"></script>
 
 
 <script>
