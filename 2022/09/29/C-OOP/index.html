@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>C++ OOP - cfla&#39;s blog</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/icon.png" type="image/png" />
+    <meta name="description" content="C++ OOPC++ 的类this 指针调用成员函数时，成员函数通过名为this的额外隐式参数访问调用它的那个对象。 在成员函数内部，任何对类成员的直接访问都被看作是对this的隐式使用 this指针总是指向调用成员函数的对象，因此，this指针是一个常量指针，它的const是顶层const，即它永远不会改变它指向的位置。 常量成员函数即使this指针是隐式的，但初始化this指针也要遵循初始化规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ OOP">
+<meta property="og:url" content="https://cfla1638.github.io/2022/09/29/C-OOP/index.html">
+<meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="C++ OOPC++ 的类this 指针调用成员函数时，成员函数通过名为this的额外隐式参数访问调用它的那个对象。 在成员函数内部，任何对类成员的直接访问都被看作是对this的隐式使用 this指针总是指向调用成员函数的对象，因此，this指针是一个常量指针，它的const是顶层const，即它永远不会改变它指向的位置。 常量成员函数即使this指针是隐式的，但初始化this指针也要遵循初始化规">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-29T07:48:03.000Z">
+<meta property="article:modified_time" content="2022-10-02T15:00:52.448Z">
+<meta property="article:author" content="cfla">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1664722882248">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1664722882248">
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="cfla" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="cfla">
+            <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla" alt="cfla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>17</div>
+        <div><span>标签</span>4</div>
+        <div><span>分类</span>5</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/Archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/CS-APP/">CS:APP</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/使用教程/">使用教程</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">17</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/29/C-OOP/">C++ OOP</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">const 和 constexpr 的详解和区别</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/25/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">并发编程 - CS:APP 第十二章</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/22/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">网络编程 - CS:APP 第十一章</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/">系统级I/O - CS:APP 第十章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 cfla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209291550710.jpg" alt="C++ OOP" loading="lazy">
+              <h1>C++ OOP</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月29日</a>
+</div>
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    
+        <a><i class="nexmoefont icon-areachart"></i>约3.1k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要11分钟</a>
+    
+</div>
+
+      <h1 id="C-OOP"><a href="#C-OOP" class="headerlink" title="C++ OOP"></a>C++ OOP</h1><h2 id="C-的类"><a href="#C-的类" class="headerlink" title="C++ 的类"></a>C++ 的类</h2><h3 id="this-指针"><a href="#this-指针" class="headerlink" title="this 指针"></a>this 指针</h3><p>调用成员函数时，成员函数通过名为this的额外隐式参数访问调用它的那个对象。</p>
+<p>在成员函数内部，任何对类成员的直接访问都被看作是对this的隐式使用</p>
+<p><strong>this指针总是指向调用成员函数的对象，因此，this指针是一个常量指针，它的const是顶层const，即它永远不会改变它指向的位置。</strong></p>
+<h3 id="常量成员函数"><a href="#常量成员函数" class="headerlink" title="常量成员函数"></a>常量成员函数</h3><p>即使this指针是隐式的，但初始化this指针也要遵循初始化规则，即不能用一个常量去初始化非底层<code>const</code>的的this指针。</p>
+<p>由于这条规则的存在，我们无法调用一个被声明成const的对象的普通成员函数，因为这个成员函数的this指针不是底层const的指针。</p>
+<p>为了解决这个问题，我们可以将成员函数声明成<code>const</code> </p>
+<p>例如，像下面这样，在参数列表后添加上<code>const</code> </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get_a</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;&#125;;<br>    <br>    <span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此时，这个this指针，既是顶层<code>const</code> (this指针所固有的属性)，又是底层<code>const</code> （我们声明的结果）</p>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><blockquote>
+<p>P241, P250</p>
+</blockquote>
+<p>想让其他类或其他函数访问类的私有成员，需要在一条友元声明，友元声明必须出现在类的内部</p>
+<p>由于友元声明并不是类的成员，因此他和访问说明符（public:, private:） 无关，可以出现在类的任意位置</p>
+<p>可以将一个类声明成另一个类的友元</p>
+<blockquote>
+<p> 如果一个类是另一个类的友元，那么友元类的成员函数可以访问类的所有成员</p>
+</blockquote>
+<p>可以将一个类的成员函数声明成另一个类的友元函数</p>
+<p>友元声明是单向的，友元声明不具有传递性</p>
+<p>关于友元的作用域：P252</p>
+<h3 id="类的类型成员"><a href="#类的类型成员" class="headerlink" title="类的类型成员"></a>类的类型成员</h3><p>类的成员不只可以有变量和函数，还可以有类型</p>
+<p>类内定义的类型也有访问权限的限制</p>
+<p>用来定义类型的成员必须先定义再使用</p>
+<blockquote>
+<p>原因：&#x2F;&#x2F; TODO</p>
+</blockquote>
+<h3 id="类的内联函数"><a href="#类的内联函数" class="headerlink" title="类的内联函数"></a>类的内联函数</h3><blockquote>
+<p>内联函数(inline)：一些小的，简单的函数可以被定义为内联函数，以减少调用函数的开销</p>
+<p>内联函数会在编译时，被编译器展开</p>
+<p>例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">const</span> string &amp; <span class="hljs-title">shorterString</span><span class="hljs-params">(<span class="hljs-type">const</span> string &amp;s1, <span class="hljs-type">const</span> string &amp;s2)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> s1.<span class="hljs-built_in">size</span>() &lt;= s2.<span class="hljs-built_in">size</span>() ? s1 : s2;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>max(), min() 之类的函数特别适合被定义为内联函数</p>
+</blockquote>
+<ul>
+<li>定义在类内部的成员函数，它们默认是内联函数</li>
+<li>可以在类内声明时使用<code>inline</code>，同时在类外定义函数时也同时使用<code>inline</code> ，但最好是只在类外部定义函数时使用<code>inline</code> 声明。</li>
+</ul>
+<h3 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h3><p>如果在定义类的成员时，使用<code>mutable</code> 关键字，那么，即使这个对象被声明成<code>const</code> ，我们依然可以改变这个成员变量的值</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> &#123;</span><br>     public:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">inc</span><span class="hljs-params">()</span> <span class="hljs-type">const</span>;<br>    private:<br>    mutable <span class="hljs-type">size_t</span> cnt;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">A::inc</span><span class="hljs-params">()</span> <span class="hljs-type">const</span><br>&#123;<br>    cnt++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="返回-this-左值"><a href="#返回-this-左值" class="headerlink" title="返回*this 左值"></a>返回*this 左值</h3><p>当成员函数是const 版本时，this指针具有底层的const， 因此它的返回的左值也是带底层const的左值</p>
+<p>我们可以根据this指针是否具有底层<code>const</code> 来对函数进行重载</p>
+<blockquote>
+<p>底层const的重载见：P206</p>
+<p>P247</p>
+</blockquote>
+<h3 id="类的前向声明"><a href="#类的前向声明" class="headerlink" title="类的前向声明"></a>类的前向声明</h3><p>可以使用类似这种形式声明类</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这是一个不完整类型，我们可以使用这种类型的指针或者引用，但不能创建这种类型的引用。</p>
+<p>前向声明可以放在类的头文件中，从而减少依赖。</p>
+<h3 id="类的名字查找"><a href="#类的名字查找" class="headerlink" title="类的名字查找"></a>类的名字查找</h3><ul>
+<li><p>我们可以在成员函数的任意地方使用类的成员</p>
+<blockquote>
+<p>原因在于编译器如何处理类：</p>
+<ol>
+<li>编译所有的成员声明</li>
+<li>编译函数体</li>
+</ol>
+</blockquote>
+</li>
+<li><p>如果编译器无法在类内找到一个符号，编译器会在类的外层作用域继续寻找该名字，但只会考虑该语句之前出现过的外层作用域里的符号。</p>
+</li>
+<li><p>在内层作用域中可以重定义名字，但外层作用域中定义的类型（使用<code>typedef</code> 或使用<code>using symbol = type</code>）不能再类中重定义。</p>
+</li>
+<li><p>成员函数的名字查找规则</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 在成员函数内查找名字（成员函数体定义的名字，形参的名字）<br><span class="hljs-bullet">2.</span> 在类作用域内查找名字<br><span class="hljs-bullet">3.</span> 在成员函数定义之前的作用域内继续查找<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要在成员函数内使用一个类作用域的名字（该名字已经在成员函数的块作用域内被覆盖），可以使用作用域运算符。</p>
+</li>
+</ul>
+<h3 id="类的隐式类型转换"><a href="#类的隐式类型转换" class="headerlink" title="类的隐式类型转换"></a>类的隐式类型转换</h3><blockquote>
+<p>P263 隐式的类类型转换 P514 重载类型转换运算符</p>
+</blockquote>
+<ul>
+<li><p>如果类的某个构造函数只接受一个参数，它就是一个转换构造函数，定义了一个由其他类型到这个类的隐式类型转换</p>
+<p>这种类型转换只允许一步类型转换</p>
+</li>
+<li><p>一直类的隐式类型转换：</p>
+<p>使用关键字<code>explicit</code> </p>
+<p>该关键字只能在类内声明中使用，不能在类外重复</p>
+<p>该关键字只能用于接受一个值的构造函数前面</p>
+</li>
+</ul>
+<h3 id="类的静态成员"><a href="#类的静态成员" class="headerlink" title="类的静态成员"></a>类的静态成员</h3><p>由于静态成员和全局变量一样，都需要链接器来处理，因此，两者的性质十分相似</p>
+<ul>
+<li>在<code>.h</code> 文件的类的定义中，静态成员可以是不完整类型，因为它需要链接器处理</li>
+<li>我们可以使用类的静态成员作为成员函数的默认实参</li>
+</ul>
+<h2 id="拷贝控制"><a href="#拷贝控制" class="headerlink" title="拷贝控制"></a>拷贝控制</h2><blockquote>
+<p>类的初始化、对象拷贝、移动、销毁</p>
+<p>由以下六个函数决定：</p>
+<ul>
+<li>构造函数</li>
+<li>拷贝构造函数</li>
+<li>拷贝赋值运算符</li>
+<li>移动构造函数</li>
+<li>移动赋值运算符</li>
+<li>析构函数</li>
+</ul>
+<p>后五个称为类的拷贝控制操作</p>
+</blockquote>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><blockquote>
+<p>C++ Primer P235、P257、P551、P689</p>
+</blockquote>
+<ul>
+<li>构造函数没有返回值</li>
+<li>构造函数可以重载</li>
+<li>构造函数不能被声明称const，在构造const对象时，构造函数可以改变它，只有构造函数完成初始化之后，该对象才具有const的属性。</li>
+</ul>
+<h4 id="合成的默认构造函数"><a href="#合成的默认构造函数" class="headerlink" title="合成的默认构造函数"></a>合成的默认构造函数</h4><p>如果没有定义构造函数，编译器会为类定义默认的构造函数，规则如下</p>
+<ol>
+<li>如果存在类内的初始值，用它来初始化成员</li>
+<li>否则，默认初始化。（内置类型垃圾值，其他类调用默认构造函数）</li>
+</ol>
+<p>如果出现以下情况，编译器无法为类构造合成的默认构造函数</p>
+<ol>
+<li><p>类有定义一个构造函数</p>
+<blockquote>
+<p>遇到这种情况，可以使用 <code>类名() = defalut</code> 来给予类一个默认的构造函数</p>
+</blockquote>
+</li>
+<li><p>类存在一个成员，这个成员没有默认的构造函数</p>
+</li>
+</ol>
+<h4 id="构造函数的初始化列表"><a href="#构造函数的初始化列表" class="headerlink" title="构造函数的初始化列表"></a>构造函数的初始化列表</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">Sales_data</span>(<span class="hljs-type">const</span> std::string &amp;s) : <span class="hljs-built_in">BookNo</span>(s) &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当某个数据成员被构造函数的初始化列表忽略时，它将以合成默认构造函数相同的方式隐式初始化</p>
+<p>（重要）当某个数据成员被构造函数的初始化列表忽略时，他将在执行构造函数函数体之前被默认初始化</p>
+<p>由于有的类没有默认构造函数，因此我们必须使用列表初始化对其进行初始化。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span><br><span class="hljs-class">&#123;</span><br><span class="hljs-comment">// 没有默认构造函数</span><br>public:<br>    A(<span class="hljs-type">int</span> num) : elem(num) &#123;&#125;<br>private:<br>    <span class="hljs-type">int</span> elem = <span class="hljs-number">0</span>;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span><br><span class="hljs-class">&#123;</span><br>public:<br>    B(<span class="hljs-type">int</span> num) : elem_int(num) &#123;&#125;  <span class="hljs-comment">// 错误，因为A没有默认构造函数，所以必须对它进行列表初始化</span><br>private:<br>    A elem_A;<br>    <span class="hljs-type">int</span> elem_int;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>因为所有的类成员都会在构造函数体执行前进行初始化（列表初始化或默认初始化）因此使用列表初始化一定会比在构造函数中赋值更加高效。</p>
+<p>（重要）列表初始化的初始化顺序</p>
+<p>列表初始化的顺序与他们在类的定义中出现的顺序一样，而与列表初始化的列表顺序无关，如果初始化变量之间会相互依赖，一定要注意他们初始化的顺序！！</p>
+<h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sales_data</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 非委托构造函数要使用的构造函数</span><br>    <span class="hljs-built_in">Sales_data</span>(std::string s, <span class="hljs-type">unsigned</span> cnt, <span class="hljs-type">double</span> price) : <br>          <span class="hljs-built_in">bookNo</span>(s), <span class="hljs-built_in">units_sold</span>(cnt), <span class="hljs-built_in">revenue</span>(cnt * price) &#123;&#125;<br>    <span class="hljs-comment">// 委托构造函数</span><br>    <span class="hljs-built_in">Sales_data</span>() : <span class="hljs-built_in">Sales_data</span>(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)&#123;&#125;<br>    <span class="hljs-built_in">Sales_data</span>(std::string s) : <span class="hljs-built_in">Sales_data</span>(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) &#123;&#125;<br>    <span class="hljs-built_in">Sales_data</span>(std::istream &amp;is) : <span class="hljs-built_in">Sales_data</span>() &#123;<span class="hljs-built_in">read</span>(is, *<span class="hljs-keyword">this</span>);&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>委托构造函数首先执行列表初始化的被委托构造函数的列表初始化，在执行被委托构造函数的函数体，最后执行委托构造函数的函数体</p>
+<h4 id="默认构造函数被调用的时机"><a href="#默认构造函数被调用的时机" class="headerlink" title="默认构造函数被调用的时机"></a>默认构造函数被调用的时机</h4><blockquote>
+<p>C++ Primer P262</p>
+</blockquote>
+<p>默认初始化</p>
+<ol>
+<li>在块作用域内不适用任何初始值定义一个非静态变量</li>
+<li>一个类类型本身含有类成员，并且使用合成的默认构造函数时</li>
+<li>没有在列表初始化中被显示初始化时</li>
+</ol>
+<p>值初始化</p>
+<ol>
+<li>数组初始化时，提供的值小于数组的大小</li>
+<li>不适用初始值定义一个局部静态变量</li>
+<li>使用<code>T()</code> 这种表达式来显示请求值初始化</li>
+</ol>
+<h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p>定义：如果一个构造函数的第一个参数是自身类型的引用，且其他任何的额外参数都有默认值，则此构造函数是一个拷贝构造函数。</p>
+<blockquote>
+<p>拷贝构造函数的形式通常是 <code>ClassType(const ClassType &amp;)</code> </p>
+<p>拷贝构造函数通常不应该是explicit的</p>
+</blockquote>
+<h4 id="合成的拷贝构造函数"><a href="#合成的拷贝构造函数" class="headerlink" title="合成的拷贝构造函数"></a>合成的拷贝构造函数</h4><p>如果我们没有定义类的拷贝构造函数，编译器会为我们合成一个默认的拷贝构造函数</p>
+<p>对于内置类型，合成的拷贝构造函数会直接拷贝</p>
+<p>对于类类型，合成的拷贝构造函数会调用它的拷贝构造函数</p>
+<p>对于数组，合成的拷贝构造函数会逐个拷贝它的元素</p>
+<blockquote>
+<p> <strong>一、默认初始化、值初始化、直接初始化和拷贝初始化 几个术语的含义及其区别：</strong></p>
+<blockquote>
+<p>几种初始化的区别：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38231713/article/details/106291397">https://blog.csdn.net/qq_38231713/article/details/106291397</a></p>
+</blockquote>
+<p>默认初始化：对象可能产生未定义的值，出现场景：</p>
+<ol>
+<li>块作用域内不使用任何初始值定义一个非静态变量；</li>
+<li>类通过默认构造函数来控制默认初始化过程，默认构造函数以如下规则初始化类的数据成员<ul>
+<li>如果存在类内初始值，用它来初始化成员</li>
+<li>否则，默认初始化该成员</li>
+</ul>
+</li>
+</ol>
+<p>值初始化：对象的值是确定（预设）的，出现场景：</p>
+<ol>
+<li><p>数组初始化时，初始值数量小于数组的长度。</p>
+</li>
+<li><p>不使用初始值定义一个静态变量（带有初始值0）</p>
+</li>
+<li><p>使用类似<code>classType()</code> 形式表达式显示请求值初始化</p>
+</li>
+<li><p>只提供vector可以容纳的元素数量，不提供初始值，库会自动进行值初始化</p>
+<p><code>vector&lt;int&gt; vec(10);</code> 值初始化为0</p>
+</li>
+</ol>
+<p>直接初始化：使用<code>classType()</code> 初始化对象</p>
+<p>拷贝初始化：使用<code>classType foo = classType()</code> 初始化对象</p>
+<p><strong>二、不同的初始化方式会调用那种构造函数</strong></p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sksukai/article/details/104741675/">https://blog.csdn.net/sksukai/article/details/104741675/</a></p>
+</blockquote>
+<p>当定义类时，会有直接初始化和拷贝初始化两种区别</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">foo var1;      <span class="hljs-comment">// 直接初始化，使用默认构造函数</span><br><span class="hljs-function">foo <span class="hljs-title">var2</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;    <span class="hljs-comment">// 直接初始化，使用一个参数的构造函数</span><br>foo var3 = <span class="hljs-number">50</span>;    <span class="hljs-comment">// 拷贝初始化，本来是50先使用构造函数构造临时对象，再使用拷贝构造函数初始化var3，但经过实际测试，编译优化了这一部分，直接使用构造函数初始化了var3</span><br>foo var4 = <span class="hljs-built_in">foo</span>(<span class="hljs-number">50</span>); <span class="hljs-comment">// 和var3的情况完全相同，优化后也是只使用了一次接受一个对象的构造函数</span><br>foo var5 = var3;  <span class="hljs-comment">// 拷贝初始化，调用拷贝构造函数</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><h3 id="移动构造函数"><a href="#移动构造函数" class="headerlink" title="移动构造函数"></a>移动构造函数</h3><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象+"></a>面向对象+</h2>
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>cfla<br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/09/29/C-OOP/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;29&#x2F;C-OOP&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;29&#x2F;C-OOP&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
+    })
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-OOP"><span class="toc-number">1.</span> <span class="toc-text">C++ OOP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E7%9A%84%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">C++ 的类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#this-%E6%8C%87%E9%92%88"><span class="toc-number">1.1.1.</span> <span class="toc-text">this 指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">常量成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8B%E5%85%83"><span class="toc-number">1.1.3.</span> <span class="toc-text">友元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%88%90%E5%91%98"><span class="toc-number">1.1.4.</span> <span class="toc-text">类的类型成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.5.</span> <span class="toc-text">类的内联函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-number">1.1.6.</span> <span class="toc-text">可变数据成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E-this-%E5%B7%A6%E5%80%BC"><span class="toc-number">1.1.7.</span> <span class="toc-text">返回*this 左值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%89%8D%E5%90%91%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.8.</span> <span class="toc-text">类的前向声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE"><span class="toc-number">1.1.9.</span> <span class="toc-text">类的名字查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.10.</span> <span class="toc-text">类的隐式类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-number">1.1.11.</span> <span class="toc-text">类的静态成员</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">拷贝控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E6%88%90%E7%9A%84%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">合成的默认构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">构造函数的初始化列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">委托构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%A2%AB%E8%B0%83%E7%94%A8%E7%9A%84%E6%97%B6%E6%9C%BA"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">默认构造函数被调用的时机</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">拷贝构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E6%88%90%E7%9A%84%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">合成的拷贝构造函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">析构函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">移动构造函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.3.</span> <span class="toc-text">面向对象+</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1664722882255"></script>
+
+
+	<script async src="/js/search.js?v=1664722882255"></script>
+
+
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
