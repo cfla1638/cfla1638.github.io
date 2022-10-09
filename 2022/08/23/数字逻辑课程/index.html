@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202210031001060.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202210031008326.png">
 <meta property="article:published_time" content="2022-08-23T03:44:02.000Z">
-<meta property="article:modified_time" content="2022-10-03T02:09:21.674Z">
+<meta property="article:modified_time" content="2022-10-06T11:22:32.536Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -52,9 +52,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1665050220725">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1665301994902">
     
-    <link rel="stylesheet" href="/css/style.css?v=1665050220725">
+    <link rel="stylesheet" href="/css/style.css?v=1665301994902">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -79,7 +79,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>17</div>
+        <div><span>文章</span>18</div>
         <div><span>标签</span>4</div>
         <div><span>分类</span>5</div>
     </div>
@@ -160,7 +160,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
-          <span class="category-list-count">3</span>
+          <span class="category-list-count">4</span>
         </li>
 
         
@@ -191,7 +191,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">17</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">18</span></li></ul>
     </div>
   </div>
 
@@ -203,6 +203,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/">模板与泛型编程 - C++</a>
+          </li>
         
           <li>
             <a href="/2022/09/29/C-OOP/">C++ OOP</a>
@@ -218,10 +222,6 @@
         
           <li>
             <a href="/2022/09/22/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">网络编程 - CS:APP 第十一章</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/">系统级I/O - CS:APP 第十章</a>
           </li>
         
       </ul>
@@ -256,8 +256,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约5.4k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要20分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约5.6k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要21分钟</a>
     
 </div>
 
@@ -893,6 +893,26 @@
 </li>
 </ol>
 <p><code>第七次课到此结束</code> </p>
+<h3 id="3-4-应用MSI功能块的组合线路设计"><a href="#3-4-应用MSI功能块的组合线路设计" class="headerlink" title="3.4 应用MSI功能块的组合线路设计"></a>3.4 应用MSI功能块的组合线路设计</h3><p>SSI：小规模集成电路</p>
+<p>MSI：中规模集成电路</p>
+<ul>
+<li><p>利用数据多路选择器进行设计</p>
+<p>首先要知道数据多路选择器的原理</p>
+<p>f &#x3D; a<del>0</del>┐x<del>0</del>┐x<del>1</del> +  a<del>1</del>┐x<del>0</del>x<del>1</del> + a<del>2</del>x<del>0</del>┐x<del>1</del> + a<del>3</del>x<del>0</del>x<del>1</del> </p>
+<p>设计步骤：</p>
+<ol>
+<li><p>首先，对于给定n变量的逻辑函数，我们选择N &#x3D; 2^n-1^ 路数据选择器</p>
+</li>
+<li><p>选定n-1个变量作为地址输入，作为数据选择器的控制端，根据选择的地址输入，确定数据选择器输入端的各表达式输入</p>
+<p>对于如何确定数据选择器输入端的各表达式，我们可以使用代数方法得到，也可以使用卡诺图方法得到。</p>
+</li>
+</ol>
+</li>
+<li><p>利用译码器进行线路设计</p>
+<p>将对应逻辑表达式转换为最小项表达式，直接将译码出来的最小项用或门连接（高电平译中）或用与非门连接（低电平译中），输出即可。</p>
+</li>
+</ul>
+<p><code>第八次课到此结束</code> </p>
 
   </article>
 
@@ -944,7 +964,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="toc-number">1.</span> <span class="toc-text">数字逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 逻辑代数基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 布尔代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 逻辑函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 三种表示法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E4%B8%A4%E7%A7%8D%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">1.2.2 两种标准形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">1.2.3 逻辑函数的三种表示法的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86-amp-%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 主要定理 &amp; 常用公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1个主要定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-5%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 5个常用公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E5%BC%82%E6%88%96%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">1.3.3 异或的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">1.3.4 应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%96%E7%AE%80"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 逻辑函数的化简</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1 卡诺图法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 组合电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%90%84%E7%A7%8D%E9%97%A8%E7%94%B5%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 各种门电路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%97%A8%E7%94%B5%E8%B7%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 门电路的主要参数以及组合电路的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A0%BC%E9%9B%B7%E7%A0%81%E8%BD%AC8421%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5.格雷码转8421码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E5%99%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 奇偶校验器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 组合线路的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 逻辑函数的变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%A9%E7%94%A8%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 利用任意项的线路设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%A4%9A%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1%EF%BC%88%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E5%85%B1%E4%BA%AB%E9%A1%B9%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 多输出函数的线路设计（需要考虑共享项）</span></a></li></ol></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="toc-number">1.</span> <span class="toc-text">数字逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 逻辑代数基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 布尔代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 逻辑函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 三种表示法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E4%B8%A4%E7%A7%8D%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">1.2.2 两种标准形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">1.2.3 逻辑函数的三种表示法的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86-amp-%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 主要定理 &amp; 常用公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1个主要定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-5%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 5个常用公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E5%BC%82%E6%88%96%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">1.3.3 异或的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">1.3.4 应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%96%E7%AE%80"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 逻辑函数的化简</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1 卡诺图法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 组合电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%90%84%E7%A7%8D%E9%97%A8%E7%94%B5%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 各种门电路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%97%A8%E7%94%B5%E8%B7%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 门电路的主要参数以及组合电路的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A0%BC%E9%9B%B7%E7%A0%81%E8%BD%AC8421%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5.格雷码转8421码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E5%99%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 奇偶校验器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 组合线路的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 逻辑函数的变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%A9%E7%94%A8%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 利用任意项的线路设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%A4%9A%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1%EF%BC%88%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E5%85%B1%E4%BA%AB%E9%A1%B9%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 多输出函数的线路设计（需要考虑共享项）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%BA%94%E7%94%A8MSI%E5%8A%9F%E8%83%BD%E5%9D%97%E7%9A%84%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 应用MSI功能块的组合线路设计</span></a></li></ol></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -979,10 +999,10 @@
 
  
 
-<script async src="/js/app.js?v=1665050220730"></script>
+<script async src="/js/app.js?v=1665301994907"></script>
 
 
-	<script async src="/js/search.js?v=1665050220730"></script>
+	<script async src="/js/search.js?v=1665301994907"></script>
 
 
 <script>
