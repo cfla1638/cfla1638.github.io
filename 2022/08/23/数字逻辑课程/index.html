@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202210031001060.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202210031008326.png">
 <meta property="article:published_time" content="2022-08-23T03:44:02.000Z">
-<meta property="article:modified_time" content="2022-10-06T11:22:32.536Z">
+<meta property="article:modified_time" content="2022-10-13T11:51:02.539Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -52,9 +52,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1665301994902">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1665661908888">
     
-    <link rel="stylesheet" href="/css/style.css?v=1665301994902">
+    <link rel="stylesheet" href="/css/style.css?v=1665661908888">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -256,8 +256,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约5.6k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要21分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约6.1k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要22分钟</a>
     
 </div>
 
@@ -913,6 +913,39 @@
 </li>
 </ul>
 <p><code>第八次课到此结束</code> </p>
+<h2 id="第四章-时序电路的分析"><a href="#第四章-时序电路的分析" class="headerlink" title="第四章 时序电路的分析"></a>第四章 时序电路的分析</h2><h3 id="4-1-触发器的外特性"><a href="#4-1-触发器的外特性" class="headerlink" title="4.1 触发器的外特性"></a>4.1 触发器的外特性</h3><h4 id="4-1-1-基本触发器"><a href="#4-1-1-基本触发器" class="headerlink" title="4.1.1 基本触发器"></a>4.1.1 基本触发器</h4><p>基本触发器通过其电路的设计，可以具有存储二进制位的功能，其电路就是存储器，而不是有单独的存储器。</p>
+<p>基本触发器有两个稳态，分别表示0和1。当基本触发器（R<del>D</del> ，S<del>D</del>）输入 1，1时，基本触发器里存储的位被保持输出，当输入0，1时，基本触发器被置零，当输入1，0时，基本触发器被置一，当输入0，0时不能确定输出的是当前存储的状态，还是其他状态。因此不能输入0。</p>
+<p>基本触发器的R<del>D</del> 和S<del>D</del> 端都是低电平有效，R端是Reset重置，置零端，S端是Set，置一端。</p>
+<p>基本触发器的特征表达式</p>
+<p>┐R<del>D</del>┐ S<del>D</del> &#x3D; 0 (R<del>D</del> 和S<del>D</del> 不能同时为0)</p>
+<p>Q^n+1^  &#x3D; ┐S<del>D</del> + R<del>D</del> Q</p>
+<h4 id="4-1-2-RS触发器"><a href="#4-1-2-RS触发器" class="headerlink" title="4.1.2 RS触发器"></a>4.1.2 RS触发器</h4><blockquote>
+<p>电位触发，高电位时触发</p>
+</blockquote>
+<p>五个输入端，R<del>D</del> , S<del>D</del> ，R, S, CP</p>
+<p>CP只有在为1时才有效，CP为0时保持。</p>
+<p>特征方程：</p>
+<p>Q^n+1^ &#x3D; S + ┐RQ</p>
+<h4 id="4-1-3-D-触发器"><a href="#4-1-3-D-触发器" class="headerlink" title="4.1.3 D 触发器"></a>4.1.3 D 触发器</h4><blockquote>
+<p>边缘触发器，正跳变触发</p>
+<p>关于电位触发和边缘触发：</p>
+<p>边缘触发：输出不能迟于触发信号到达，但触发信号已到达，输入信号就可以撤下来</p>
+<p>电位触发：输入信号可以迟于触发电位到达，但在触发电位变回非触发电位前，输入信号不能改变</p>
+</blockquote>
+<p>Q^n+1^ &#x3D; D</p>
+<h4 id="4-1-4-JK-触发器"><a href="#4-1-4-JK-触发器" class="headerlink" title="4.1.4 JK 触发器"></a>4.1.4 JK 触发器</h4><blockquote>
+<p>边缘触发器，负跳变触发</p>
+</blockquote>
+<p>Q^n+1^ &#x3D; J ┐Q^n^  + ┐K Q^n^ </p>
+<p>当J，K同为0时，输出Q</p>
+<p>当J，K同为1时，输出┐Q</p>
+<p>当J，K相异时，输出 J</p>
+<h4 id="4-1-5-T触发器"><a href="#4-1-5-T触发器" class="headerlink" title="4.1.5 T触发器"></a>4.1.5 T触发器</h4><blockquote>
+<p>边缘触发器，负跳变触发</p>
+</blockquote>
+<p>Q^n+1^ &#x3D; T┐Q^n^ + ┐TQ^n^ </p>
+<p>当T为0时，输出Q</p>
+<p>当T为1时，输出┐Q</p>
 
   </article>
 
@@ -964,7 +997,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="toc-number">1.</span> <span class="toc-text">数字逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 逻辑代数基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 布尔代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 逻辑函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 三种表示法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E4%B8%A4%E7%A7%8D%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">1.2.2 两种标准形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">1.2.3 逻辑函数的三种表示法的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86-amp-%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 主要定理 &amp; 常用公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1个主要定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-5%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 5个常用公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E5%BC%82%E6%88%96%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">1.3.3 异或的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">1.3.4 应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%96%E7%AE%80"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 逻辑函数的化简</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1 卡诺图法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 组合电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%90%84%E7%A7%8D%E9%97%A8%E7%94%B5%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 各种门电路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%97%A8%E7%94%B5%E8%B7%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 门电路的主要参数以及组合电路的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A0%BC%E9%9B%B7%E7%A0%81%E8%BD%AC8421%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5.格雷码转8421码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E5%99%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 奇偶校验器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 组合线路的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 逻辑函数的变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%A9%E7%94%A8%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 利用任意项的线路设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%A4%9A%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1%EF%BC%88%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E5%85%B1%E4%BA%AB%E9%A1%B9%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 多输出函数的线路设计（需要考虑共享项）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%BA%94%E7%94%A8MSI%E5%8A%9F%E8%83%BD%E5%9D%97%E7%9A%84%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 应用MSI功能块的组合线路设计</span></a></li></ol></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="toc-number">1.</span> <span class="toc-text">数字逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 逻辑代数基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 布尔代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 逻辑函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 三种表示法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E4%B8%A4%E7%A7%8D%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">1.2.2 两种标准形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">1.2.3 逻辑函数的三种表示法的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86-amp-%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 主要定理 &amp; 常用公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1个主要定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-5%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 5个常用公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E5%BC%82%E6%88%96%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">1.3.3 异或的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">1.3.4 应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%96%E7%AE%80"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 逻辑函数的化简</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1 卡诺图法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 组合电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%90%84%E7%A7%8D%E9%97%A8%E7%94%B5%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 各种门电路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%97%A8%E7%94%B5%E8%B7%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 门电路的主要参数以及组合电路的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A0%BC%E9%9B%B7%E7%A0%81%E8%BD%AC8421%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5.格雷码转8421码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E5%99%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 奇偶校验器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 组合线路的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 逻辑函数的变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%A9%E7%94%A8%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 利用任意项的线路设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%A4%9A%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1%EF%BC%88%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E5%85%B1%E4%BA%AB%E9%A1%B9%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 多输出函数的线路设计（需要考虑共享项）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%BA%94%E7%94%A8MSI%E5%8A%9F%E8%83%BD%E5%9D%97%E7%9A%84%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 应用MSI功能块的组合线路设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 时序电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%A4%96%E7%89%B9%E6%80%A7"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 触发器的外特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-%E5%9F%BA%E6%9C%AC%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">4.1.1 基本触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-RS%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">4.1.2 RS触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-D-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">4.1.3 D 触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-JK-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">4.1.4 JK 触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-5-T%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">4.1.5 T触发器</span></a></li></ol></li></ol></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -999,10 +1032,10 @@
 
  
 
-<script async src="/js/app.js?v=1665301994907"></script>
+<script async src="/js/app.js?v=1665661908891"></script>
 
 
-	<script async src="/js/search.js?v=1665301994907"></script>
+	<script async src="/js/search.js?v=1665661908891"></script>
 
 
 <script>
