@@ -12,15 +12,15 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库">
+    <meta name="description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库 二叉树的性质 二叉树的第i层至多有2^i-1^ 个结点  深度为k的二叉树至多有2^k^ -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构课程">
 <meta property="og:url" content="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库">
+<meta property="og:description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库 二叉树的性质 二叉树的第i层至多有2^i-1^ 个结点  深度为k的二叉树至多有2^k^ -">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-23T03:50:55.000Z">
-<meta property="article:modified_time" content="2022-09-22T07:47:01.264Z">
+<meta property="article:modified_time" content="2022-10-20T01:30:36.302Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1665661908892">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1666229453753">
     
-    <link rel="stylesheet" href="/css/style.css?v=1665661908892">
+    <link rel="stylesheet" href="/css/style.css?v=1666229453753">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -234,7 +234,7 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约103字</a>
+        <a><i class="nexmoefont icon-areachart"></i>约355字</a>
         <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
     
 </div>
@@ -276,6 +276,22 @@
 <p>隐式数据共享</p>
 <p>想做到：</p>
 <p>写成模板形式，可以尽可能向STL靠近，打包成静态库</p>
+<h2 id="二叉树的性质"><a href="#二叉树的性质" class="headerlink" title="二叉树的性质"></a>二叉树的性质</h2><ol>
+<li><p>二叉树的第i层至多有2^i-1^ 个结点</p>
+</li>
+<li><p>深度为k的二叉树至多有2^k^ -1个结点</p>
+</li>
+<li><p>对任何一棵二叉树，若它含有n<del>0</del> 个叶子结点、n<del>2</del> 个度（出度）为 2 的结点，则必存在关系式：n<del>0</del> &#x3D; n2+1。</p>
+</li>
+<li><p>具有n个结点的完全二叉树的深度为 <code>floor(log2 n) + 1</code></p>
+<blockquote>
+<p>cell()向上取整，floor向下取整</p>
+</blockquote>
+</li>
+<li><p>若对含 n 个结点的完全二叉树从上到下且从左至右进行 1 至 n 的编号，则对完全二叉树中任意一个编号为 i 的结点：<br> (1) 若 i&#x3D;1，则该结点是二叉树的根，无双亲，</p>
+<p>否则，编号为<code>floor(i/2)</code> 的结点为其双亲结点；<br> (2) 若 2i&gt;n，则该结点无左孩子，<br>  否则，编号为 2i 的结点为其左孩子结点；<br> (3) 若 2i+1&gt;n，则该结点无右孩子结点，<br>  否则，编号为2i+1 的结点为其右孩子结点。</p>
+</li>
+</ol>
 
   </article>
 
@@ -327,7 +343,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.</span> <span class="toc-text">二叉树的性质</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -362,10 +378,10 @@
 
  
 
-<script async src="/js/app.js?v=1665661908893"></script>
+<script async src="/js/app.js?v=1666229453754"></script>
 
 
-	<script async src="/js/search.js?v=1665661908893"></script>
+	<script async src="/js/search.js?v=1666229453754"></script>
 
 
 <script>
