@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>cmake学习之路 - cfla&#39;s blog</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="/icon.png" type="image/png" />
+    <meta name="description" content="cmake 学习之路 参考链接 CMake 如何入门？ - 知乎 (zhihu.com)  ttroy50&#x2F;cmake-examples: Useful CMake Examples (github.com)  超详细的cmake入门教程【转载】_Korpse的博客-CSDN博客_cmake 教程   01-basicA-hello cmake概念：  CMakeLists.txt :">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmake学习之路">
+<meta property="og:url" content="https://cfla1638.github.io/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/index.html">
+<meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="cmake 学习之路 参考链接 CMake 如何入门？ - 知乎 (zhihu.com)  ttroy50&#x2F;cmake-examples: Useful CMake Examples (github.com)  超详细的cmake入门教程【转载】_Korpse的博客-CSDN博客_cmake 教程   01-basicA-hello cmake概念：  CMakeLists.txt :">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-22T15:28:14.000Z">
+<meta property="article:modified_time" content="2022-10-24T12:09:39.066Z">
+<meta property="article:author" content="cfla">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="cmake">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1668440604014">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1668440604014">
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="cfla" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="cfla">
+            <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla" alt="cfla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>20</div>
+        <div><span>标签</span>5</div>
+        <div><span>分类</span>5</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/Archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/CS-APP/">CS:APP</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/使用教程/">使用教程</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/cmake/" style="font-size: 10px;">cmake</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a>
+    </div>
+    
+  </div>
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/">在vscode配置cmake</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">cmake学习之路</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/">模板与泛型编程 - C++</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/29/C-OOP/">C++ OOP</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">const 和 constexpr 的详解和区别</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 cfla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="cmake学习之路" loading="lazy">
+              <h1>cmake学习之路</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年10月22日</a>
+</div>
+
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    
+        <a><i class="nexmoefont icon-areachart"></i>约733字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要3分钟</a>
+    
+</div>
+
+      <h1 id="cmake-学习之路"><a href="#cmake-学习之路" class="headerlink" title="cmake 学习之路"></a>cmake 学习之路</h1><blockquote>
+<p>参考链接</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/58949190/answer/999701073">CMake 如何入门？ - 知乎 (zhihu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ttroy50/cmake-examples">ttroy50&#x2F;cmake-examples: Useful CMake Examples (github.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Kprogram/article/details/126010833">超详细的cmake入门教程【转载】_Korpse的博客-CSDN博客_cmake 教程</a> </p>
+</blockquote>
+<h2 id="01-basic"><a href="#01-basic" class="headerlink" title="01-basic"></a>01-basic</h2><h3 id="A-hello-cmake"><a href="#A-hello-cmake" class="headerlink" title="A-hello cmake"></a>A-hello cmake</h3><p>概念：</p>
+<blockquote>
+<p><code>CMakeLists.txt</code> : 存储cmake命令，当在一个文件夹中运行cmake时，cmake会寻找这个文件，如果找不到会报错。</p>
+</blockquote>
+<p>三个命令：</p>
+<blockquote>
+<p><code>cmake_minimum_required(VERSION 3.5)</code> 最小的cmake版本</p>
+<p><code>project()</code> 指定项目的名称，cmake可以通过include一个项目名称来引用另一个项目，这对多项目是很方便的。另外这个命令也会创建一个名为 <code>$&#123;PROJECT_NAME&#125;</code> 的变量，它的内容就是我们指定的项目名称。</p>
+<p><code>add_executable(hello_cmake hello_cmake.cpp)</code> 第一个参数是我们生成可执行文件的名称，第二个参数以后则是为了生成这个可执行文件需要的源文件列表</p>
+</blockquote>
+<p>两种构建方式</p>
+<ol>
+<li><p>In-Place Build</p>
+<p>将生成的二进制文件和源文件放在一起，这样构建会比较混乱</p>
+<p>在Linux上的方法是 </p>
+<p><code>cmake .</code> 参数代表CMakeLists.txt 所在的位置</p>
+<p><code>make</code></p>
+<blockquote>
+<p>注意，在window上，默认的生成器是nmake</p>
+<p>要使用mingw的make应当这样：</p>
+<p><code>cmake -G &quot;MinGW Makefiles&quot; .</code> 注意字符串大小写严格</p>
+<p><code>cmake .</code></p>
+<p><code>make</code></p>
+</blockquote>
+</li>
+<li><p>Out-of-Source Build</p>
+<p>将生成的二进制文件单独放在一个文件夹中，这样比较整洁</p>
+<p>具体的方法是（Linux） </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mkdir build <br>cd build <br>cmake ..<br>make<br></code></pre></td></tr></table></figure>
+
+<p>在 window上的方法是</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mkdir build <br>cd build <br>cmake -G &quot;MinGW Makefiles&quot; ..<br>cmake ..<br>make<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="B-hello-headers"><a href="#B-hello-headers" class="headerlink" title="B hello headers"></a>B hello headers</h3><p>将头文件和源文件分离编译</p>
+<p>我们有一个include目录和一个src目录</p>
+<p>CMakeLists.txt ：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># Set the minimum version of CMake that can be used</span><br><span class="hljs-comment"># To find the cmake version run</span><br><span class="hljs-comment"># $ cmake --version</span><br><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.5</span>)<br><br><span class="hljs-comment"># Set the project name</span><br><span class="hljs-keyword">project</span> (hello_headers)<br><br><span class="hljs-comment"># Create a sources variable with a link to all cpp files to compile</span><br><span class="hljs-keyword">set</span>(SOURCES<br>    src/Hello.cpp<br>    src/main.cpp<br>)<br><br><span class="hljs-comment"># Add an executable with the above sources</span><br><span class="hljs-keyword">add_executable</span>(hello_headers <span class="hljs-variable">$&#123;SOURCES&#125;</span>)<br><br><span class="hljs-comment"># Set the directories that should be included in the build command for this target</span><br><span class="hljs-comment"># when running g++ these will be included as -I/directory/path/</span><br><span class="hljs-keyword">target_include_directories</span>(hello_headers<br>    PRIVATE <br>        <span class="hljs-variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="hljs-keyword">include</span><br>)<br></code></pre></td></tr></table></figure>
+
+<p> 有两个需要注意的点：</p>
+<ol>
+<li><p>首先我们使用了set函数，将源文件甚至为了其内容，<code>add_executable()</code> 函数的第二个参数也使用该变量。</p>
+</li>
+<li><p>使用了<code>target_include_directories</code> 函数，这个函数的文档[在这里](<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/target_include_directories.html">target_include_directories — CMake 3.0.2 Documentation</a>) ，需要注意的是，这个函数必须在我们已经添加了源文件或库之后才能使用。否则会构建失败。</p>
+<p>详见文档</p>
+<blockquote>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">target_include_directories</span>(&lt;<span class="hljs-keyword">target</span>&gt; [SYSTEM] [BEFORE]<br>  &lt;INTERFACE|PUBLIC|PRIVATE&gt; [items1...]<br>  [&lt;INTERFACE|PUBLIC|PRIVATE&gt; [items2...] ...])<br></code></pre></td></tr></table></figure>
+
+<p>Specify include directories or targets to use when compiling a given target. The named <code>&lt;target&gt;</code> must have been created by a command such as <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/add_executable.html#command:add_executable"><code>add_executable()</code></a> or <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/add_library.html#command:add_library"><code>add_library()</code></a> and must not be an <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/prop_tgt/IMPORTED.html#prop_tgt:IMPORTED"><code>IMPORTED</code></a> target.</p>
+</blockquote>
+</li>
+</ol>
+<p>附：cmake 预先定义的一些变量</p>
+<table>
+<thead>
+<tr>
+<th align="left">Variable</th>
+<th align="left">Info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CMAKE_SOURCE_DIR</td>
+<td align="left">The root source directory</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_SOURCE_DIR</td>
+<td align="left">The current source directory if using sub-projects and directories.</td>
+</tr>
+<tr>
+<td align="left">PROJECT_SOURCE_DIR</td>
+<td align="left">The source directory of the current cmake project.</td>
+</tr>
+<tr>
+<td align="left">CMAKE_BINARY_DIR</td>
+<td align="left">The root binary &#x2F; build directory. This is the directory where you ran the cmake command.</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_BINARY_DIR</td>
+<td align="left">The build directory you are currently in.</td>
+</tr>
+<tr>
+<td align="left">PROJECT_BINARY_DIR</td>
+<td align="left">The build directory for the current project.</td>
+</tr>
+</tbody></table>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>cfla<br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;10&#x2F;22&#x2F;cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;10&#x2F;22&#x2F;cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/cmake/" rel="tag">cmake</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
+    })
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cmake-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">cmake 学习之路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-basic"><span class="toc-number">1.1.</span> <span class="toc-text">01-basic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-hello-cmake"><span class="toc-number">1.1.1.</span> <span class="toc-text">A-hello cmake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-hello-headers"><span class="toc-number">1.1.2.</span> <span class="toc-text">B hello headers</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1668440604018"></script>
+
+
+	<script async src="/js/search.js?v=1668440604018"></script>
+
+
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

@@ -12,15 +12,15 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库 二叉树的性质 二叉树的第i层至多有2^i-1^ 个结点  深度为k的二叉树至多有2^k^ -">
+    <meta name="description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库 树1.1 二叉树的性质 二叉树的第i层至多有2^i-1^ 个结点  深度为k的二叉树至多有2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构课程">
 <meta property="og:url" content="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库 二叉树的性质 二叉树的第i层至多有2^i-1^ 个结点  深度为k的二叉树至多有2^k^ -">
+<meta property="og:description" content="数据结构TODO： 初步：写好面向对象 要实现的数据结构：  顺序表 栈 队列   链表 循环链表 双向链表 游标实现   树 二叉树 AVL树 红黑树   堆 二叉堆 左式堆 二项队列   哈希表 高级数据结构 红黑树 …    隐式数据共享 想做到： 写成模板形式，可以尽可能向STL靠近，打包成静态库 树1.1 二叉树的性质 二叉树的第i层至多有2^i-1^ 个结点  深度为k的二叉树至多有2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-23T03:50:55.000Z">
-<meta property="article:modified_time" content="2022-10-20T01:30:36.302Z">
+<meta property="article:modified_time" content="2022-10-28T02:49:29.057Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1666229453753">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1668440604088">
     
-    <link rel="stylesheet" href="/css/style.css?v=1666229453753">
+    <link rel="stylesheet" href="/css/style.css?v=1668440604088">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -57,8 +57,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>18</div>
-        <div><span>标签</span>4</div>
+        <div><span>文章</span>20</div>
+        <div><span>标签</span>5</div>
         <div><span>分类</span>5</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -138,7 +138,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
-          <span class="category-list-count">4</span>
+          <span class="category-list-count">5</span>
         </li>
 
         
@@ -159,7 +159,7 @@
     
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a>
+      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/cmake/" style="font-size: 10px;">cmake</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a>
     </div>
     
   </div>
@@ -169,7 +169,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">18</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
@@ -183,6 +183,14 @@
       <ul>
         
           <li>
+            <a href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/">在vscode配置cmake</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">cmake学习之路</a>
+          </li>
+        
+          <li>
             <a href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/">模板与泛型编程 - C++</a>
           </li>
         
@@ -192,14 +200,6 @@
         
           <li>
             <a href="/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">const 和 constexpr 的详解和区别</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/25/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">并发编程 - CS:APP 第十二章</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/22/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">网络编程 - CS:APP 第十一章</a>
           </li>
         
       </ul>
@@ -234,8 +234,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约355字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约809字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要3分钟</a>
     
 </div>
 
@@ -276,20 +276,59 @@
 <p>隐式数据共享</p>
 <p>想做到：</p>
 <p>写成模板形式，可以尽可能向STL靠近，打包成静态库</p>
-<h2 id="二叉树的性质"><a href="#二叉树的性质" class="headerlink" title="二叉树的性质"></a>二叉树的性质</h2><ol>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="1-1-二叉树的性质"><a href="#1-1-二叉树的性质" class="headerlink" title="1.1 二叉树的性质"></a>1.1 二叉树的性质</h3><ol>
 <li><p>二叉树的第i层至多有2^i-1^ 个结点</p>
 </li>
 <li><p>深度为k的二叉树至多有2^k^ -1个结点</p>
 </li>
 <li><p>对任何一棵二叉树，若它含有n<del>0</del> 个叶子结点、n<del>2</del> 个度（出度）为 2 的结点，则必存在关系式：n<del>0</del> &#x3D; n2+1。</p>
+<blockquote>
+<p>推论：适用于Huffman树</p>
+<p>对于有n<del>0</del> 个结点的Huffman树，它的总结点数为n<del>0</del> + n<del>2</del> &#x3D; 2n<del>0</del> -1</p>
+</blockquote>
 </li>
 <li><p>具有n个结点的完全二叉树的深度为 <code>floor(log2 n) + 1</code></p>
 <blockquote>
 <p>cell()向上取整，floor向下取整</p>
 </blockquote>
 </li>
-<li><p>若对含 n 个结点的完全二叉树从上到下且从左至右进行 1 至 n 的编号，则对完全二叉树中任意一个编号为 i 的结点：<br> (1) 若 i&#x3D;1，则该结点是二叉树的根，无双亲，</p>
+<li><p>若对含 n 个结点的完全二叉树从上到下且从左至右进行 1 至 n 的编号，则对完全二叉树中任意一个编号为 i 的结点：<br>(1) 若 i&#x3D;1，则该结点是二叉树的根，无双亲，</p>
 <p>否则，编号为<code>floor(i/2)</code> 的结点为其双亲结点；<br> (2) 若 2i&gt;n，则该结点无左孩子，<br>  否则，编号为 2i 的结点为其左孩子结点；<br> (3) 若 2i+1&gt;n，则该结点无右孩子结点，<br>  否则，编号为2i+1 的结点为其右孩子结点。</p>
+</li>
+</ol>
+<h3 id="1-2-线索化："><a href="#1-2-线索化：" class="headerlink" title="1.2 线索化："></a>1.2 线索化：</h3><p>可以以线性的方式访问二叉树结构</p>
+<h4 id="1-2-1-中序线索树"><a href="#1-2-1-中序线索树" class="headerlink" title="1.2.1 中序线索树"></a>1.2.1 中序线索树</h4><blockquote>
+<p>对于中序线索树，我们约定：</p>
+<p>它有两个存储左右子树标记的域，如果左子树的标记为0，那么它存储的是其左孩子，如果左子树的标记为1，那么它存储的是其中序遍历时的直接前驱.</p>
+<p>如果右子树的标记为0，它存储的是其右孩子。如果右子树的标记为1，那么它存储的是中序遍历时的直接后继。</p>
+</blockquote>
+<ul>
+<li><p>求中序线索树的前驱：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">如果 左标记为1:<br>  直接返回其左孩子<br>否则:<br>  返回其左子树的最右下的结点<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>求中序线索树的后继：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">如果 右标记为1:<br>  返回其右孩子<br>否则:<br>  返回其右子树的最左下的孩子<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>建立中序线索树</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">InThreading</span><span class="hljs-params">(BiTree&amp; T)</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-keyword">if</span>(T) &#123;<br>    <span class="hljs-built_in">InThreading</span>(T-&gt;lchild);<br>    <span class="hljs-keyword">if</span>(!T-&gt;lchild) &#123;<br>      T-&gt;LTag=<span class="hljs-number">1</span>;<br>      T-&gt;lchild=Pre;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>      T-&gt;LTag=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span>(!Pre-&gt;rchild) &#123;<br>      Pre-&gt;RTag=<span class="hljs-number">1</span>;<br>      Pre-&gt;rchild=T;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>      Pre-&gt;RTag=<span class="hljs-number">0</span>;<br>    Pre=T;<br>    <span class="hljs-built_in">InThreading</span>(T-&gt;rchild);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="1-3-一般的树和森林的表示："><a href="#1-3-一般的树和森林的表示：" class="headerlink" title="1.3 一般的树和森林的表示："></a>1.3 一般的树和森林的表示：</h3><p>三种表示法：</p>
+<ol>
+<li><p>父亲表示法（并查集的实现方法）</p>
+</li>
+<li><p>孩子表示法</p>
+</li>
+<li><p>孩子表示法（将一般的树或森林转换成二叉树）</p>
+<p>让二叉树结点的左孩子指向这个一般的树的第一个孩子，右孩子指向下一个兄弟</p>
+</li>
+</ol>
+<h3 id="1-4-一般的树和森林的遍历："><a href="#1-4-一般的树和森林的遍历：" class="headerlink" title="1.4 一般的树和森林的遍历："></a>1.4 一般的树和森林的遍历：</h3><p>树的遍历：</p>
+<ol>
+<li><p>先根遍历（二叉树的先序遍历）</p>
+</li>
+<li><p>后根遍历（二叉树的中序遍历）</p>
+</li>
+<li><p>层次遍历</p>
 </li>
 </ol>
 
@@ -343,7 +382,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.</span> <span class="toc-text">二叉树的性质</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.1.</span> <span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 二叉树的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%BA%BF%E7%B4%A2%E5%8C%96%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 线索化：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E4%B8%AD%E5%BA%8F%E7%BA%BF%E7%B4%A2%E6%A0%91"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 中序线索树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%80%E8%88%AC%E7%9A%84%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E8%A1%A8%E7%A4%BA%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 一般的树和森林的表示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%B8%80%E8%88%AC%E7%9A%84%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 一般的树和森林的遍历：</span></a></li></ol></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -378,10 +417,10 @@
 
  
 
-<script async src="/js/app.js?v=1666229453754"></script>
+<script async src="/js/app.js?v=1668440604089"></script>
 
 
-	<script async src="/js/search.js?v=1666229453754"></script>
+	<script async src="/js/search.js?v=1668440604089"></script>
 
 
 <script>
