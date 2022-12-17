@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>标签：C/C++ - cfla&#39;s blog</title>
+    <title>placement new - cfla&#39;s blog</title>
     <meta charset="UTF-8">
     <meta name="keywords" content="Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,13 +12,17 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="cfla&#39;s blog">
-<meta property="og:url" content="https://cfla1638.github.io/tags/C-C/index.html">
+    <meta name="description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw();  placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="placement new">
+<meta property="og:url" content="https://cfla1638.github.io/2022/12/17/placement-new/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw();  placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&amp;gt">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-17T14:11:27.000Z">
+<meta property="article:modified_time" content="2022-12-17T14:17:06.052Z">
 <meta property="article:author" content="cfla">
-<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
     
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
@@ -26,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1671286638949">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1671286638712">
     
-    <link rel="stylesheet" href="/css/style.css?v=1671286638949">
+    <link rel="stylesheet" href="/css/style.css?v=1671286638712">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -214,202 +218,80 @@
     </div>
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
-            <section class="nexmoe-posts">
-    
-    <div class="nexmoe-post">
-        <a href="/2022/12/17/placement-new/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="placement new" loading="lazy">
-                    <h1>placement new</h1>
-                </div>
-            
-        </a>
+            <div class="nexmoe-post">
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年12月17日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="placement new" loading="lazy">
+              <h1>placement new</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年12月17日</a>
+</div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
         <a><i class="nexmoefont icon-areachart"></i>约248字</a>
         <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
     
 </div>
 
-        <article>
-            
-        </article>
+      <h1 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h1><p>最典型的<code>placement new</code> 的签名如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> * <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">(std::<span class="hljs-type">size_t</span>, <span class="hljs-type">void</span> * pMemory)</span> <span class="hljs-title">throw</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><code>placement new</code> 就得名于这个最典型的new。</p>
+<p>下面这个程序将展示这种<code>placement new</code> 的用法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;new&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">obj</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">obj</span>() &#123;num = <span class="hljs-number">233</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;cout &lt;&lt; num &lt;&lt; endl;&#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> num;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(obj);<br>    obj * p = (obj *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (obj));<br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    obj * t = <span class="hljs-built_in">new</span>(p) <span class="hljs-built_in">obj</span>();       <span class="hljs-comment">// placement new : 在一片已分配但未使用的区域调用构造函数</span><br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    cout &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; t;        <span class="hljs-comment">// p 和 t的值相同，说明placement new 的返回值就是p</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-number">411689296</span><br><span class="hljs-number">233</span><br><span class="hljs-number">0xb25fb0</span> <span class="hljs-number">0xb25fb0</span><br></code></pre></td></tr></table></figure>
+
+<p>当最初使用malloc时，<code>obj</code>的构造函数并没有被调用，因此<code>num</code>的值是垃圾值，当使用<code>placement new</code>之后，在原位置调用了构造函数，因此<code>num</code>的值变为了233，而这个<code>placement new</code>的返回值也就是我们传入的那个<code>rawMemory</code></p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>cfla<br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/12/17/placement-new/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;12&#x2F;17&#x2F;placement-new&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;12&#x2F;17&#x2F;placement-new&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
     </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="cmake学习之路" loading="lazy">
-                    <h1>cmake学习之路</h1>
-                </div>
-            
-        </a>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年10月22日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/cmake/" rel="tag">cmake</a>
-            
-        </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a><i class="nexmoefont icon-areachart"></i>约733字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要3分钟</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
     
 </div>
 
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209291550710.jpg" alt="模板与泛型编程 - C++" loading="lazy">
-                    <h1>模板与泛型编程 - C++</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年10月08日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约2.1k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要7分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2022/09/29/C-OOP/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209291550710.jpg" alt="C++ OOP" loading="lazy">
-                    <h1>C++ OOP</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月29日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约5.7k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要20分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="const 和 constexpr 的详解和区别" loading="lazy">
-                    <h1>const 和 constexpr 的详解和区别</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月26日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约770字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要2分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2022/09/06/%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="动态数组,二维数组,指针" loading="lazy">
-                    <h1>动态数组,二维数组,指针</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月06日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约4.4k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要20分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
+    })
+</script>
 </section>
-
+      </div>
+  
+</div>
             <div class="nexmoe-post-right">
               <div class="nexmoe-fixed">
                   <div class="nexmoe-tool"> 
@@ -417,6 +299,13 @@
                       
                         
                           
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#placement-new"><span class="toc-number">1.</span> <span class="toc-text">placement new</span></a></li></ol>
+                                  </div>
+                              </button>
                           
                           
                       
@@ -449,10 +338,10 @@
 
  
 
-<script async src="/js/app.js?v=1671286638950"></script>
+<script async src="/js/app.js?v=1671286638719"></script>
 
 
-	<script async src="/js/search.js?v=1671286638950"></script>
+	<script async src="/js/search.js?v=1671286638719"></script>
 
 
 <script>
