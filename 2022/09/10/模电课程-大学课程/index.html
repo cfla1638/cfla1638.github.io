@@ -20,7 +20,7 @@
 <meta property="og:description" content="电工学基础知识基尔霍夫电压定理 基尔霍夫电流定理 结点电压法：第1章-直流电路分析理论-1.12结点电压法 - 知乎 (zhihu.com)  回路电流法： 叠加定理：电学基础理论之叠加定理 (baidu.com)  戴维南等效电路 二极管： 正向压降 ： 正向通过后，电压的减小量。 二极管的功能：  钳位 钳位二极管_百度百科 (baidu.com)   隔离  稳压 ： 见下面稳压二极管视频">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-10T04:17:18.000Z">
-<meta property="article:modified_time" content="2022-12-01T06:38:45.254Z">
+<meta property="article:modified_time" content="2022-12-19T11:36:11.863Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1671286638783">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1671460015617">
     
-    <link rel="stylesheet" href="/css/style.css?v=1671286638783">
+    <link rel="stylesheet" href="/css/style.css?v=1671460015617">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -57,9 +57,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>21</div>
+        <div><span>文章</span>22</div>
         <div><span>标签</span>5</div>
-        <div><span>分类</span>5</div>
+        <div><span>分类</span>6</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -137,6 +137,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/文章收藏/">文章收藏</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
           <span class="category-list-count">6</span>
         </li>
@@ -169,7 +176,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">21</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">22</span></li></ul>
     </div>
   </div>
 
@@ -181,6 +188,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/19/%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%AF%E8%92%99%E8%BF%90%E5%8A%A8/">什么是启蒙运动？</a>
+          </li>
         
           <li>
             <a href="/2022/12/17/placement-new/">placement new</a>
@@ -196,10 +207,6 @@
         
           <li>
             <a href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/">模板与泛型编程 - C++</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/29/C-OOP/">C++ OOP</a>
           </li>
         
       </ul>
@@ -234,8 +241,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约1.6k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要6分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约2.2k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要8分钟</a>
     
 </div>
 
@@ -402,6 +409,58 @@
 <p>Uo &#x3D; U12 - U11</p>
 </li>
 </ul>
+<h2 id="第十八章-直流稳压电源"><a href="#第十八章-直流稳压电源" class="headerlink" title="第十八章 直流稳压电源"></a>第十八章 直流稳压电源</h2><h3 id="整流"><a href="#整流" class="headerlink" title="整流"></a>整流</h3><ul>
+<li><p>单相半波整流</p>
+<p>变压器的输出（整流电路输入的交流电压）为 u &#x3D; √2Usin wt (U为交流电压的有效值，也叫变压器的二次电压有效值)</p>
+<p>整流电压的平均值 U<del>O</del> &#x3D; 0.45U</p>
+<p>整流电流（负载电流）的平均值 I<del>O</del> &#x3D; U<del>O</del> &#x2F; R<del>L</del> &#x3D; 0.45U&#x2F;R<del>L</del> </p>
+<p>整流元件截止时的最高反向电压 U<del>RM</del> &#x3D; √2U (并不是元件能承受的最大电压，元件能承受的最大反向电压要看元件自己的参数)</p>
+</li>
+<li><p>单向桥式整流</p>
+<p>U<del>O</del> &#x3D; 0.9U</p>
+<p>I<del>O</del> &#x3D; 0.9U&#x2F;R<del>L</del></p>
+<p>每个二极管中流过的平均电流 I<del>D</del> &#x3D; (1&#x2F;2)I<del>O</del> &#x3D; 0.45U&#x2F;R<del>L</del> </p>
+<p>U<del>RM</del> &#x3D; √2U</p>
+<blockquote>
+<p>变压器的变比K &#x3D; 交流电源电压 &#x2F; 二次电压有效值</p>
+<p>变压器容量 S &#x3D; UI &#x3D; 变压器二次电压有效值 * 变压器二次电流有效值</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h3><h3 id="直流稳压电源"><a href="#直流稳压电源" class="headerlink" title="直流稳压电源"></a>直流稳压电源</h3><ul>
+<li><p>稳压二极管稳压电路</p>
+<p>一般交流电压经过整流（桥式整流）和滤波之后，得到的直流电仍存在波动，此时需要进行稳压</p>
+<p>引起负载电压变化的原因有二：</p>
+<ol>
+<li>交流电源电压的变化</li>
+<li>负载电流的变化</li>
+</ol>
+<p>可以对负载电阻，先串联一个保护电阻，在并联一个稳压二极管，稳压二极管通过提高或减小电流，是的保护电阻承担增大或减少的电压。</p>
+<p>选取稳压二极管时，一般取：</p>
+<ul>
+<li><p>U<del>Z</del> &#x3D; U<del>O</del> （U<del>Z</del> 为稳压二极管的稳定电压，Uo为输出的负载电压）</p>
+</li>
+<li><p>I<del>ZM</del> &#x3D; (1.5<del>3) I</del>OM~ （I<del>ZM</del> 为最大稳压电流，I<del>OM</del> 为负载电流的最大值） </p>
+</li>
+<li><p>U<del>1</del> &#x3D; (2<del>3) U</del>O~ (其中U<del>1</del> 是经过整流 滤波后的输出电压，也就是稳压部分的输入电压，即需要被稳压的部分)</p>
+</li>
+</ul>
+</li>
+<li><p>集成三端稳压电源</p>
+<p>W78XX（输出固定正电压），W79XX（输出固定负电压），W117&#x2F;217&#x2F;317（输出电压可调）</p>
+<p>有三个引脚，分别是输入端I，输出端O，地段GND</p>
+<p>使用时需要在其输入端，输出端，地段并联一个电容</p>
+<p>几种典型的电路：</p>
+<ol>
+<li>正负电压同时输出的电路</li>
+<li>输出电压可调的电路<ol>
+<li>用集成运放 + W78XX&#x2F;W79XX</li>
+<li>用W117&#x2F;217&#x2F;317</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
 
   </article>
 
@@ -453,7 +512,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%B5%E5%B7%A5%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">电工学</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">绪论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%99%A8%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">第十四章 半导体器件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="toc-number">1.3.1.</span> <span class="toc-text">二极管</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%8E%8B%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">稳压二极管</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">三极管</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="toc-number">1.4.</span> <span class="toc-text">第十五章 基本放大电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E5%8F%91%E5%B0%84%E6%9E%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%EF%BC%88%E5%9B%BA%E5%AE%9A%E5%81%8F%E7%BD%AE%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%EF%BC%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">共发射极放大电路（固定偏置放大电路）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%A4%B1%E7%9C%9F"><span class="toc-number">1.4.2.</span> <span class="toc-text">非线性失真</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9%E7%9A%84%E7%A8%B3%E5%AE%9A"><span class="toc-number">1.4.3.</span> <span class="toc-text">静态工作点的稳定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%8E%8B%E5%BC%8F%E5%81%8F%E7%BD%AE%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">分压式偏置放大电路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%84%E7%BA%A7%E8%BE%93%E5%87%BA%E5%99%A8"><span class="toc-number">1.4.4.</span> <span class="toc-text">射级输出器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E9%9B%86%E6%88%90%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">第十六章 集成运算放大器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E6%83%B3%E8%BF%90%E6%94%BE"><span class="toc-number">1.5.1.</span> <span class="toc-text">理想运放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E8%BF%90%E7%AE%97"><span class="toc-number">1.5.2.</span> <span class="toc-text">信号运算</span></a></li></ol></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%B5%E5%B7%A5%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">电工学</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">绪论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%99%A8%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">第十四章 半导体器件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="toc-number">1.3.1.</span> <span class="toc-text">二极管</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%8E%8B%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">稳压二极管</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">三极管</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="toc-number">1.4.</span> <span class="toc-text">第十五章 基本放大电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E5%8F%91%E5%B0%84%E6%9E%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%EF%BC%88%E5%9B%BA%E5%AE%9A%E5%81%8F%E7%BD%AE%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%EF%BC%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">共发射极放大电路（固定偏置放大电路）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%A4%B1%E7%9C%9F"><span class="toc-number">1.4.2.</span> <span class="toc-text">非线性失真</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9%E7%9A%84%E7%A8%B3%E5%AE%9A"><span class="toc-number">1.4.3.</span> <span class="toc-text">静态工作点的稳定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%8E%8B%E5%BC%8F%E5%81%8F%E7%BD%AE%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">分压式偏置放大电路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%84%E7%BA%A7%E8%BE%93%E5%87%BA%E5%99%A8"><span class="toc-number">1.4.4.</span> <span class="toc-text">射级输出器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E9%9B%86%E6%88%90%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">第十六章 集成运算放大器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E6%83%B3%E8%BF%90%E6%94%BE"><span class="toc-number">1.5.1.</span> <span class="toc-text">理想运放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E8%BF%90%E7%AE%97"><span class="toc-number">1.5.2.</span> <span class="toc-text">信号运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E7%9B%B4%E6%B5%81%E7%A8%B3%E5%8E%8B%E7%94%B5%E6%BA%90"><span class="toc-number">1.6.</span> <span class="toc-text">第十八章 直流稳压电源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%B5%81"><span class="toc-number">1.6.1.</span> <span class="toc-text">整流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A4%E6%B3%A2"><span class="toc-number">1.6.2.</span> <span class="toc-text">滤波</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%B5%81%E7%A8%B3%E5%8E%8B%E7%94%B5%E6%BA%90"><span class="toc-number">1.6.3.</span> <span class="toc-text">直流稳压电源</span></a></li></ol></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -488,10 +547,10 @@
 
  
 
-<script async src="/js/app.js?v=1671286638785"></script>
+<script async src="/js/app.js?v=1671460015619"></script>
 
 
-	<script async src="/js/search.js?v=1671286638785"></script>
+	<script async src="/js/search.js?v=1671460015619"></script>
 
 
 <script>
