@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>placement new - cfla&#39;s blog</title>
+    <title>数字在计算机中的表示 - cfla&#39;s blog</title>
     <meta charset="UTF-8">
     <meta name="keywords" content="Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,17 +12,17 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw();  placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&amp;gt">
+    <meta name="description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$  函数B2Tw (Binary to Two’s-complement)为 $B2T_w &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="placement new">
-<meta property="og:url" content="https://cfla1638.github.io/2022/12/17/placement-new/index.html">
+<meta property="og:title" content="数字在计算机中的表示">
+<meta property="og:url" content="https://cfla1638.github.io/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw();  placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&amp;gt">
+<meta property="og:description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$  函数B2Tw (Binary to Two’s-complement)为 $B2T_w &#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-17T14:11:27.000Z">
-<meta property="article:modified_time" content="2022-12-17T14:17:06.052Z">
+<meta property="article:published_time" content="2023-03-10T01:18:52.000Z">
+<meta property="article:modified_time" content="2023-03-12T02:41:15.876Z">
 <meta property="article:author" content="cfla">
-<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
     
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678588889474">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678588889447">
     
-    <link rel="stylesheet" href="/css/style.css?v=1678588889474">
+    <link rel="stylesheet" href="/css/style.css?v=1678588889447">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -229,34 +229,71 @@
 
   <article>
       
-          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
-              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209061237870.png" alt="placement new" loading="lazy">
-              <h1>placement new</h1>
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="数字在计算机中的表示" loading="lazy">
+              <h1>数字在计算机中的表示</h1>
           </div>
       
       
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2022年12月17日</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月10日</a>
 </div>
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约248字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约730字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要3分钟</a>
     
 </div>
 
-      <h1 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h1><p>最典型的<code>placement new</code> 的签名如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> * <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">(std::<span class="hljs-type">size_t</span>, <span class="hljs-type">void</span> * pMemory)</span> <span class="hljs-title">throw</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
-
-<p><code>placement new</code> 就得名于这个最典型的new。</p>
-<p>下面这个程序将展示这种<code>placement new</code> 的用法：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;new&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">obj</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">obj</span>() &#123;num = <span class="hljs-number">233</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;cout &lt;&lt; num &lt;&lt; endl;&#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> num;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(obj);<br>    obj * p = (obj *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (obj));<br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    obj * t = <span class="hljs-built_in">new</span>(p) <span class="hljs-built_in">obj</span>();       <span class="hljs-comment">// placement new : 在一片已分配但未使用的区域调用构造函数</span><br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    cout &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; t;        <span class="hljs-comment">// p 和 t的值相同，说明placement new 的返回值就是p</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>运行结果如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-number">411689296</span><br><span class="hljs-number">233</span><br><span class="hljs-number">0xb25fb0</span> <span class="hljs-number">0xb25fb0</span><br></code></pre></td></tr></table></figure>
-
-<p>当最初使用malloc时，<code>obj</code>的构造函数并没有被调用，因此<code>num</code>的值是垃圾值，当使用<code>placement new</code>之后，在原位置调用了构造函数，因此<code>num</code>的值变为了233，而这个<code>placement new</code>的返回值也就是我们传入的那个<code>rawMemory</code></p>
+      <h2 id="整数的表示"><a href="#整数的表示" class="headerlink" title="整数的表示"></a>整数的表示</h2><h3 id="无符号数的原码"><a href="#无符号数的原码" class="headerlink" title="无符号数的原码"></a>无符号数的原码</h3><p>即无符号数的二进制表示。</p>
+<p>无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1}</p>
+<h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p><strong>定义</strong></p>
+<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$ </p>
+<p>函数B2T<del>w</del> (Binary to Two’s-complement)为</p>
+<p>$B2T_w &#x3D; -x_{w-1}2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p><strong>补码快速求相反数的方法及证明</strong></p>
+<p>所有位全为1的补码的值为-1</p>
+<blockquote>
+<p>已知 $2^0+2^1+2^2+…+2^n&#x3D;2^{n+1}-1$ </p>
+<p>故$-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i&#x3D;-2^{w-1}+2^{w-1}-1&#x3D;-1$ </p>
+</blockquote>
+<p>推论 快速求一个以补码表示的二进制数的相反数 </p>
+<blockquote>
+<p>$\bar{x}$ 为一个二进制数的反码</p>
+<p>因为 x 与$\bar{x}$ 相加是一个所有位全为1的补码</p>
+<p>故，$x+\bar{x}&#x3D;-1$ </p>
+<p>故，$-x&#x3D;\bar{x}+1$ </p>
+<p>结论：要快速求一个补码二进制数的相反数，只需求这个二进制数的反码（包括符号位，或者说补码并没有符号位一说），再加一</p>
+</blockquote>
+<p><strong>w位补码能表示的范围</strong></p>
+<p>一个w位二进制补码的范围：$[-2^{w-1},2^{w-1}-1]$ </p>
+<p>以一字节为例，最小的数是 1000 0000 &#x3D; -128，最大的数是 0111 1111 &#x3D; 127</p>
+<p>最小的负数的相反数是它本身：</p>
+<p>$-(-128) &#x3D; -(1000 0000)&#x3D;(0111 1111)+1 &#x3D; (1000 0000)&#x3D; -128$ </p>
+<p><strong>符号扩展</strong></p>
+<p>对于一个4位补码， 1001 ，其值为 -7，如果将其扩展到8为，应使用符号扩展：</p>
+<p>即 1111 1001 其值为 -7</p>
+<blockquote>
+<p>符号扩展不改变补码值的证明</p>
+<p>对于正数显然成立，对于负数</p>
+<p>w位补码为其值为$2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p>符号扩展k位后，w+k位补码的值为</p>
+<p>$-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p>$&#x3D;-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
+<p>$&#x3D;2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
+</blockquote>
+<h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
+<p>IEEE 读作 eye-triple-ee</p>
+</blockquote>
+<p>IEEE 754是一种表示浮点数的标准，它以这种格式表示浮点数</p>
+<p>$V&#x3D;(-1)^s\times M\times 2^E$ </p>
+<blockquote>
+<p>规格化数的定义是浮点数的一种表示方式，使得尾数的最高有效位总是1。这样可以省略这一位，增加尾数的精度。规格化数有一个隐含的整数位1，所以尾数的范围是[1, 2)。</p>
+</blockquote>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="C-语言中的右移操作"><a href="#C-语言中的右移操作" class="headerlink" title="C 语言中的右移操作"></a>C 语言中的右移操作</h3><p><code>x &gt;&gt; k</code> 右移，分为逻辑右移和算数右移，</p>
+<p>逻辑右移在高有效位端补k个0，用于无符号数；</p>
+<p>算数右移在最高有效位端补k个最高有效位的值，用于有符号数。</p>
 
   </article>
 
@@ -264,7 +301,7 @@
       
     <div class="nexmoe-post-copyright">
         <strong>本文作者：</strong>cfla<br>
-        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/12/17/placement-new/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;12&#x2F;17&#x2F;placement-new&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;12&#x2F;17&#x2F;placement-new&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2023&#x2F;03&#x2F;10&#x2F;%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2023&#x2F;03&#x2F;10&#x2F;%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -275,10 +312,8 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/CS-APP/">CS:APP</a>
     
-    
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
     
 </div>
 
@@ -310,7 +345,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#placement-new"><span class="toc-number">1.</span> <span class="toc-text">placement new</span></a></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">整数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E5%8E%9F%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">无符号数的原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">补码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">浮点数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE-754"><span class="toc-number">2.1.</span> <span class="toc-text">IEEE 754</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%8F%B3%E7%A7%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">C 语言中的右移操作</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -345,10 +380,10 @@
 
  
 
-<script async src="/js/app.js?v=1678588889476"></script>
+<script async src="/js/app.js?v=1678588889454"></script>
 
 
-	<script async src="/js/search.js?v=1678588889476"></script>
+	<script async src="/js/search.js?v=1678588889454"></script>
 
 
 <script>
