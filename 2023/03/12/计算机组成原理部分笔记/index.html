@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>文章归档：2023 - cfla&#39;s blog</title>
+    <title>计算机组成原理部分笔记 - cfla&#39;s blog</title>
     <meta charset="UTF-8">
     <meta name="keywords" content="Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,11 +12,15 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="cfla&#39;s blog">
-<meta property="og:url" content="https://cfla1638.github.io/archives/2023/index.html">
+    <meta name="description" content="海明校验海明码是什么？  海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。 海明码有以下特点：  海明码使用多重奇偶校验 海明码可以校正一位出错，并且可以指出出错的位置。 即使，校验位出错，对海明码的校验也没有影响。 海明码的校验位长度有规定。   海明码的实现^[1]^：  海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。 k位校验位可以表示 2^k^ 中状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理部分笔记">
+<meta property="og:url" content="https://cfla1638.github.io/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="海明校验海明码是什么？  海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。 海明码有以下特点：  海明码使用多重奇偶校验 海明码可以校正一位出错，并且可以指出出错的位置。 即使，校验位出错，对海明码的校验也没有影响。 海明码的校验位长度有规定。   海明码的实现^[1]^：  海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。 k位校验位可以表示 2^k^ 中状态">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-12T10:03:35.000Z">
+<meta property="article:modified_time" content="2023-03-12T14:59:05.838Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -26,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678635469811">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678635469544">
     
-    <link rel="stylesheet" href="/css/style.css?v=1678635469811">
+    <link rel="stylesheet" href="/css/style.css?v=1678635469544">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -221,162 +225,91 @@
     </div>
     <div id="nexmoe-content">
         <div class="nexmoe-primary">
-            <section class="nexmoe-posts">
-    
-    <div class="nexmoe-post">
-        <a href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="计算机组成原理部分笔记" loading="lazy">
-                    <h1>计算机组成原理部分笔记</h1>
-                </div>
-            
-        </a>
+            <div class="nexmoe-post">
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月12日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">大学课程</a>
-            
-            
-        </div>
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+              <img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="计算机组成原理部分笔记" loading="lazy">
+              <h1>计算机组成原理部分笔记</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月12日</a>
+</div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
         <a><i class="nexmoefont icon-areachart"></i>约312字</a>
         <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
     
 </div>
 
-        <article>
-            
-        </article>
+      <h2 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h2><p>海明码是什么？</p>
+<blockquote>
+<p>海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。</p>
+<p>海明码有以下特点：</p>
+<ul>
+<li>海明码使用多重奇偶校验</li>
+<li>海明码可以校正一位出错，并且可以指出出错的位置。</li>
+<li>即使，校验位出错，对海明码的校验也没有影响。</li>
+<li>海明码的校验位长度有规定。</li>
+</ul>
+</blockquote>
+<p>海明码的实现^[1]^：</p>
+<ul>
+<li><p>海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。</p>
+<p>k位校验位可以表示 2^k^ 中状态，因此若要能指出每一位可能发生错误的地方，2^k^ &gt;&#x3D; n</p>
+<p>又因为，校验位必须还可以表示数据没有出错的情况，因此校验位还要多出一个状态。</p>
+<p>综上，校验位数k和海明码数n需满足 2^k^ &gt;&#x3D; n+1</p>
+</li>
+<li><p>海明码是如何分布的，为什么是这样分布的？</p>
+</li>
+<li><p>海明码如何能指出错误的位置，为什么？</p>
+</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 海明校验码是怎么实现的？: <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/29169628/answer/837787585">https://www.zhihu.com/question/29169628/answer/837787585</a> (这个讲得很好，循序渐进)</p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>cfla<br>
+        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2023&#x2F;03&#x2F;12&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2023&#x2F;03&#x2F;12&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
     </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="数字在计算机中的表示" loading="lazy">
-                    <h1>数字在计算机中的表示</h1>
-                </div>
-            
-        </a>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月10日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/CS-APP/">CS:APP</a>
-            
-            
-        </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a><i class="nexmoefont icon-areachart"></i>约1.4k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">大学课程</a>
+    
     
 </div>
 
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="Visual Studio 用法" loading="lazy">
-                    <h1>Visual Studio 用法</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月09日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C-C/" rel="tag">C/C++</a>
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约565字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要2分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2023/03/06/%E5%85%B3%E4%BA%8E%E8%8B%B1%E6%96%87%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E5%90%8D%E7%A7%B0%E4%B8%AD%E9%80%97%E5%8F%B7%E4%B8%8E%E5%8F%A5%E5%8F%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="关于英文论文作者名称中逗号与句号的使用" loading="lazy">
-                    <h1>关于英文论文作者名称中逗号与句号的使用</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年03月06日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/">琐碎记录</a>
-            
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约1.3k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要4分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png" alt="西方哲学史 希尔贝克" loading="lazy">
-                    <h1>西方哲学史 希尔贝克</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2023年01月22日</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a>
-            
-            
-        </div>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约6.2k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要20分钟</a>
-    
-</div>
-
-        <article>
-            
-        </article>
-    </div>
-    
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
+    })
+</script>
 </section>
-
+      </div>
+  
+</div>
             <div class="nexmoe-post-right">
               <div class="nexmoe-fixed">
                   <div class="nexmoe-tool"> 
@@ -384,6 +317,13 @@
                       
                         
                           
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text">海明校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol>
+                                  </div>
+                              </button>
                           
                           
                       
@@ -416,10 +356,10 @@
 
  
 
-<script async src="/js/app.js?v=1678635469812"></script>
+<script async src="/js/app.js?v=1678635469547"></script>
 
 
-	<script async src="/js/search.js?v=1678635469812"></script>
+	<script async src="/js/search.js?v=1678635469547"></script>
 
 
 <script>

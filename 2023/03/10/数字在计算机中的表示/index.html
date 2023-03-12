@@ -19,20 +19,22 @@
 <meta property="og:site_name" content="cfla&#39;s blog">
 <meta property="og:description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$  函数B2Tw (Binary to Two’s-complement)为 $B2T_w &#x3D;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png">
 <meta property="article:published_time" content="2023-03-10T01:18:52.000Z">
-<meta property="article:modified_time" content="2023-03-12T02:41:15.876Z">
+<meta property="article:modified_time" content="2023-03-12T05:14:48.773Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png">
     
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
 <link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678588889447">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678635469550">
     
-    <link rel="stylesheet" href="/css/style.css?v=1678588889447">
+    <link rel="stylesheet" href="/css/style.css?v=1678635469550">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -57,7 +59,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>26</div>
+        <div><span>文章</span>27</div>
         <div><span>标签</span>6</div>
         <div><span>分类</span>6</div>
     </div>
@@ -138,7 +140,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
-          <span class="category-list-count">3</span>
+          <span class="category-list-count">4</span>
         </li>
 
         
@@ -176,7 +178,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">22</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">22</span></li></ul>
     </div>
   </div>
 
@@ -188,6 +190,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/">计算机组成原理部分笔记</a>
+          </li>
         
           <li>
             <a href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/">数字在计算机中的表示</a>
@@ -203,10 +209,6 @@
         
           <li>
             <a href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/">西方哲学史 希尔贝克</a>
-          </li>
-        
-          <li>
-            <a href="/2022/12/19/%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%AF%E8%92%99%E8%BF%90%E5%8A%A8/">什么是启蒙运动？</a>
           </li>
         
       </ul>
@@ -241,8 +243,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约730字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要3分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约1.4k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
     
 </div>
 
@@ -288,12 +290,84 @@
 </blockquote>
 <p>IEEE 754是一种表示浮点数的标准，它以这种格式表示浮点数</p>
 <p>$V&#x3D;(-1)^s\times M\times 2^E$ </p>
-<blockquote>
+<p>其中s表示符号位</p>
+<p>M，表示尾数；E表示阶码。</p>
+<p>在IEEE 754中，有三种浮点数，分别是32位的单精度浮点数 float，和64位双精度浮点数double，以及80位浮点数，这里只介绍float 和double。</p>
+<p>float 有1位符号位，8位阶码，23位尾数，</p>
+<p>double 有1位符号位，11位阶码，52位尾数。</p>
+<p>IEEE 754 有三种浮点数 它们分别是：规格化数，非规格化数和特殊值。</p>
+<h4 id="规格化数"><a href="#规格化数" class="headerlink" title="规格化数"></a>规格化数</h4><blockquote>
 <p>规格化数的定义是浮点数的一种表示方式，使得尾数的最高有效位总是1。这样可以省略这一位，增加尾数的精度。规格化数有一个隐含的整数位1，所以尾数的范围是[1, 2)。</p>
 </blockquote>
+<p>在规格化数中，阶码不能全为0，也不能全为1。例如，有4位阶码，那么最小的阶码位0001，最大的阶码为1110。</p>
+<p>指数 E的计算方式如下，在规格化数中，E &#x3D; e - Bias，其中 e 是阶码的值，Bias是偏置值，对于一个k位长度的阶码，Bias的大小等于$2^{k-1}-1$。</p>
+<p>M的大小位1 + 尾数表示的值。通过省略前置的1，可以多获得一个位来表示尾数，这个被省略的1也叫做隐含的1。 </p>
+<p>对于一个32位浮点数</p>
+<p>绝对值最小的规格化数</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S</th>
+<th>阶码</th>
+<th>尾数</th>
+<th>val</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>绝对值最小的规格化数</td>
+<td>0</td>
+<td>0000 0001</td>
+<td>0000 0000</td>
+<td>$2^{1-127}\times1.0&#x3D;2^{-126}$</td>
+</tr>
+<tr>
+<td>绝对值最大的规格化数</td>
+<td>0</td>
+<td>1111 1110</td>
+<td>1111 1111 1111 1111 1111 111</td>
+<td>$2^{254-127}\times1.9999 &#x3D; 2^{127}\times 1.9999$</td>
+</tr>
+</tbody></table>
+<h4 id="非规格化数"><a href="#非规格化数" class="headerlink" title="非规格化数"></a>非规格化数</h4><blockquote>
+<p>根据我从网络上找到的信息，非规格化数是一种特殊的浮点数，它的指数位全为0，尾数位前没有隐含的1。非规格化数用于表示0和非常靠近0的数²³。</p>
+</blockquote>
+<p>非规格化数的阶码全为0，此时 E &#x3D; 1 - Bias, M &#x3D; 尾数表示的二进制数</p>
+<p>非规格化数的左右有2：</p>
+<ol>
+<li>表示0，规格化数的M处于 1~2之间，无法表示 0，而非规格化数只要令尾数为0，就可以表示0了。注意，非规格化数有+0.0与-0.0。</li>
+<li>非规格化数可以相对均匀地表示十分接近于0的数。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S</th>
+<th>阶码</th>
+<th>尾数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>绝对值最小的非规格化数</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>0000 0000 0000 0000 0000 000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>绝对值最大的非规格化数</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>1111 1111 1111 1111 1111 111</td>
+<td>$2^{1-127}\times0.9999&#x3D;2^{-126}\times0.9999$</td>
+</tr>
+</tbody></table>
+<h4 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h4><h4 id="关于增长的均匀"><a href="#关于增长的均匀" class="headerlink" title="关于增长的均匀"></a>关于增长的均匀</h4><p>对于规格化数，其尾数每增长1，尾数绝对值增长<code>(0.0000 0000 0000 0000 0000 001)B</code> 而当尾数到达1，则会进位。实际的值的大小 &#x3D; 尾数乘以2^E^ ，随着E的增长，浮点数的值的增长速度也会变快，但E不变时，浮点数的增长就是均匀的。  </p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="C-语言中的右移操作"><a href="#C-语言中的右移操作" class="headerlink" title="C 语言中的右移操作"></a>C 语言中的右移操作</h3><p><code>x &gt;&gt; k</code> 右移，分为逻辑右移和算数右移，</p>
 <p>逻辑右移在高有效位端补k个0，用于无符号数；</p>
 <p>算数右移在最高有效位端补k个最高有效位的值，用于有符号数。</p>
+<h3 id="New-Bing-关于纯小数的补码表示"><a href="#New-Bing-关于纯小数的补码表示" class="headerlink" title="New Bing 关于纯小数的补码表示"></a>New Bing 关于纯小数的补码表示</h3><p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png" alt="image-20230312131442881" data-caption="image-20230312131442881" loading="lazy"> </p>
 
   </article>
 
@@ -345,7 +419,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">整数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E5%8E%9F%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">无符号数的原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">补码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">浮点数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE-754"><span class="toc-number">2.1.</span> <span class="toc-text">IEEE 754</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%8F%B3%E7%A7%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">C 语言中的右移操作</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">整数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E5%8E%9F%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">无符号数的原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">补码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">浮点数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE-754"><span class="toc-number">2.1.</span> <span class="toc-text">IEEE 754</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">规格化数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="toc-number">2.1.2.</span> <span class="toc-text">非规格化数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC"><span class="toc-number">2.1.3.</span> <span class="toc-text">特殊值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%A2%9E%E9%95%BF%E7%9A%84%E5%9D%87%E5%8C%80"><span class="toc-number">2.1.4.</span> <span class="toc-text">关于增长的均匀</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%8F%B3%E7%A7%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">C 语言中的右移操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#New-Bing-%E5%85%B3%E4%BA%8E%E7%BA%AF%E5%B0%8F%E6%95%B0%E7%9A%84%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">New Bing 关于纯小数的补码表示</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -380,10 +454,10 @@
 
  
 
-<script async src="/js/app.js?v=1678588889454"></script>
+<script async src="/js/app.js?v=1678635469553"></script>
 
 
-	<script async src="/js/search.js?v=1678588889454"></script>
+	<script async src="/js/search.js?v=1678635469553"></script>
 
 
 <script>
