@@ -12,15 +12,15 @@
     
 
     <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="海明校验海明码是什么？  海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。 海明码有以下特点：  海明码使用多重奇偶校验 海明码可以校正一位出错，并且可以指出出错的位置。 即使，校验位出错，对海明码的校验也没有影响。 海明码的校验位长度有规定。   海明码的实现^[1]^：  海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。 k位校验位可以表示 2^k^ 中状态">
+    <meta name="description" content="海明校验☆海明码是什么？  海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。 海明码有以下特点：  海明码使用多重奇偶校验 海明码可以校正一位出错，并且可以指出出错的位置。 即使，校验位出错，对海明码的校验也没有影响。 海明码的校验位长度有规定。   海明码有n位数据和k位校验码组成n+k位，即p &#x3D; n + k。海明码可生成k位的指示码$G_kG_{k-1}…G_1$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机组成原理部分笔记">
 <meta property="og:url" content="https://cfla1638.github.io/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="海明校验海明码是什么？  海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。 海明码有以下特点：  海明码使用多重奇偶校验 海明码可以校正一位出错，并且可以指出出错的位置。 即使，校验位出错，对海明码的校验也没有影响。 海明码的校验位长度有规定。   海明码的实现^[1]^：  海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。 k位校验位可以表示 2^k^ 中状态">
+<meta property="og:description" content="海明校验☆海明码是什么？  海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。 海明码有以下特点：  海明码使用多重奇偶校验 海明码可以校正一位出错，并且可以指出出错的位置。 即使，校验位出错，对海明码的校验也没有影响。 海明码的校验位长度有规定。   海明码有n位数据和k位校验码组成n+k位，即p &#x3D; n + k。海明码可生成k位的指示码$G_kG_{k-1}…G_1$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-12T10:03:35.000Z">
-<meta property="article:modified_time" content="2023-03-12T14:59:05.838Z">
+<meta property="article:modified_time" content="2023-03-13T03:41:28.053Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678635469544">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678678927289">
     
-    <link rel="stylesheet" href="/css/style.css?v=1678635469544">
+    <link rel="stylesheet" href="/css/style.css?v=1678678927289">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -241,12 +241,12 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约312字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要1分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约1.2k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
     
 </div>
 
-      <h2 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h2><p>海明码是什么？</p>
+      <h2 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h2><p><strong>☆海明码是什么？</strong></p>
 <blockquote>
 <p>海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。</p>
 <p>海明码有以下特点：</p>
@@ -257,7 +257,132 @@
 <li>海明码的校验位长度有规定。</li>
 </ul>
 </blockquote>
-<p>海明码的实现^[1]^：</p>
+<p>海明码有n位数据和k位校验码组成n+k位，即p &#x3D; n + k。海明码可生成k位的指示码$G_kG_{k-1}…G_1$ </p>
+<p><strong>☆ 海明码的生成：</strong> </p>
+<p>假如有4个要传输的数据位，即n&#x3D;4。</p>
+<p>海明码的校验位数k与数据位数n需满足：$2^k\ge n+1$（稍后解释） ，因此k取3。</p>
+<p>于是我们有4位数据位，3位校验位，共七位。将3位校验位放到第2^i-1^ （i&#x3D;1,2,3,…）位置上，数据位放到校验位的空隙中。如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>索引（从1开始）</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据位&#x2F;校验位(k表示校验位，n表示数据位)</td>
+<td>k1</td>
+<td>k2</td>
+<td>n1</td>
+<td>k3</td>
+<td>n2</td>
+<td>n3</td>
+<td>n4</td>
+</tr>
+<tr>
+<td>实际数据</td>
+<td>待定</td>
+<td>待定</td>
+<td>1</td>
+<td>待定</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>接着计算校验位 k1, k2, k3</p>
+<p>根据使用的校验方式不同，选择不同的校验方式（奇校验 &#x2F; 偶校验），以偶校验为例：</p>
+<p>$k_1&#x3D;p_3\oplus p_5\oplus p_7&#x3D;0$ </p>
+<p>$k_2&#x3D;p_3\oplus p_6\oplus p_7&#x3D;1$</p>
+<p>$k_1&#x3D;p_5\oplus p_6\oplus p_7&#x3D;0$ </p>
+<p>这样我们得到：</p>
+<table>
+<thead>
+<tr>
+<th>索引（从1开始）</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据位&#x2F;校验位(k表示校验位，n表示数据位)</td>
+<td>k1</td>
+<td>k2</td>
+<td>n1</td>
+<td>k3</td>
+<td>n2</td>
+<td>n3</td>
+<td>n4</td>
+</tr>
+<tr>
+<td>实际数据</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>k<del>1</del> (001) 是 3 (011), 5 (101), 7 (111) 的偶校验位</p>
+<p>k<del>2</del> (010)是 3 (011), 6 (110), 7 (111) 的偶校验位</p>
+<p>k<del>3</del> (100) 是 5 (101), 6 (110), 7 (111) 的偶校验位</p>
+<p>每个校验位的生成方法可归纳如下：首先校验位和数据位的索引变化成二进制形式，因为校验位只出现在2^i-1^ （i&#x3D;1,2,3）的位置，因此校验位索引的二进制形式只有一个位置是1。对于其他的数据位，如果其索引的二进制形式的某个位置为1，且这个位置与某个校验位索引为1的位置相同，那么这个数据位就要参与这个校验位的生成。</p>
+<p><strong>☆ 海明码的检验与校正：</strong> </p>
+<p>当我们收到一个带海明校验的数据，我们对所有的校验位进行校验，并将得到的结果作为指示位$G_kG_{k-1…G_1}$。</p>
+<p>对于上面的例子</p>
+<table>
+<thead>
+<tr>
+<th>索引（从1开始）</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据位&#x2F;校验位(k表示校验位，n表示数据位)</td>
+<td>k1</td>
+<td>k2</td>
+<td>n1</td>
+<td>k3</td>
+<td>n2</td>
+<td>n3</td>
+<td>n4</td>
+</tr>
+<tr>
+<td>实际数据</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>$G_1 &#x3D; k_1\oplus p_3\oplus p_5\oplus p_7&#x3D;0$</p>
+<p>$G_2 &#x3D; k_2\oplus p_3\oplus p_6\oplus p_7&#x3D;0$</p>
+<p> $G_3 &#x3D; k_3\oplus p_5\oplus p_6\oplus p_7&#x3D;0$ </p>
+<p>由于$G_3 G_2 G_1&#x3D;000$ ，因此数据无误。</p>
+<p>若第六位出错，$G_3 G_2 G_1&#x3D;110$ 刚好指出了错误的位置，我们只要将第六位取反即可纠正。</p>
+<p><strong>☆ 海明码的原理^[1]^：</strong> </p>
 <ul>
 <li><p>海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。</p>
 <p>k位校验位可以表示 2^k^ 中状态，因此若要能指出每一位可能发生错误的地方，2^k^ &gt;&#x3D; n</p>
@@ -265,8 +390,38 @@
 <p>综上，校验位数k和海明码数n需满足 2^k^ &gt;&#x3D; n+1</p>
 </li>
 <li><p>海明码是如何分布的，为什么是这样分布的？</p>
+<p>海明校验码的k个校验位$k_1,k_2,…k_i,…,k_n$ 的第i位（i &#x3D; 1, 2, …, n）分别分布在第2^i-1^ 位上。</p>
+<p>这是因为，当k &#x3D; 3时，有一位校验位传输出错的话，则校验位与数据为进行奇偶校验的结果有3中，001，010，100，如果想要处理这种情况，只要令校验位位于001，010，100的位置就可以了。</p>
 </li>
 <li><p>海明码如何能指出错误的位置，为什么？</p>
+<p>对于一个三位校验指示码$G_3G_2G_1$ ，</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>k1</td>
+<td>k2</td>
+<td>n1</td>
+<td>k3</td>
+<td>n2</td>
+<td>n3</td>
+<td>n4</td>
+</tr>
+</tbody></table>
+<p>G1等于1意味着001，011，111，101，必然有一个出错，因此$G_1&#x3D;p_1\oplus p_3\oplus p_5\oplus p_7$ 。</p>
+<p>同理，G2等于1意味着010，011，110，111，必有一个出错 ，即$G_2&#x3D;p_2\oplus p_3\oplus p_6\oplus p_7$ </p>
+<p>$G_3&#x3D;p_4\oplus p_5\oplus p_6\oplus p_7$ </p>
+<p>因此当n1出错时，G1&#x3D;1,G2&#x3D;1,G3&#x3D;0，即011B &#x3D; 3D，可以指出错误的位。</p>
+<p>（参考文献 1 解释得更加详细！）</p>
 </li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 海明校验码是怎么实现的？: <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/29169628/answer/837787585">https://www.zhihu.com/question/29169628/answer/837787585</a> (这个讲得很好，循序渐进)</p>
@@ -356,10 +511,10 @@
 
  
 
-<script async src="/js/app.js?v=1678635469547"></script>
+<script async src="/js/app.js?v=1678678927293"></script>
 
 
-	<script async src="/js/search.js?v=1678635469547"></script>
+	<script async src="/js/search.js?v=1678678927293"></script>
 
 
 <script>
