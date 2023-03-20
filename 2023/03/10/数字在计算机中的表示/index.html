@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png">
 <meta property="article:published_time" content="2023-03-10T01:18:52.000Z">
-<meta property="article:modified_time" content="2023-03-12T05:14:48.773Z">
+<meta property="article:modified_time" content="2023-03-20T15:21:33.140Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -32,9 +32,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1678678927280">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679326035704">
     
-    <link rel="stylesheet" href="/css/style.css?v=1678678927280">
+    <link rel="stylesheet" href="/css/style.css?v=1679326035704">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -243,8 +243,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约1.4k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要5分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约2.3k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要9分钟</a>
     
 </div>
 
@@ -285,7 +285,47 @@
 <p>$&#x3D;-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
 <p>$&#x3D;2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
 </blockquote>
-<h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
+<h3 id="原码和补码的相互转换"><a href="#原码和补码的相互转换" class="headerlink" title="原码和补码的相互转换"></a>原码和补码的相互转换</h3><ul>
+<li>原码转换成补码<br>正数原码转补码：正数的补码，与原码相同，例如，10的原码为00001010，补码也是00001010<br>负数原码转补码：负数的补码：符号位不变，其余各位按位取反，取反后整体加1<br>例如：-10的原码为10001010，符号位不变：1  0001010，其余位按位取反：1  1110101，取反后整体加1：11110101 + 1 &#x3D; 11110110</li>
+<li>补码转换成原码<br>正数补码转原码：补码的符号位为0，表示该补码的原码是一个正数，所以补码就是该数的原码，例如：补码为00001010，它的符号位是0，代表它是一个正数的补码，正数的原码就是补码，反正也成立，所以它的原码是00001010<br>负数原码转补码：补码的符号位为1，表示该补码的原码是一个负数，所以可以这样求负数的原码，符号位不变，其余各位按位取反，然后再整体加1，例如：补码：11110110，符号位不变：1 1110110，其余位按位取反：1 0001001，取反后整体加1：10001001 + 1 &#x3D; 10001010</li>
+</ul>
+<h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="浮点数的一般表示"><a href="#浮点数的一般表示" class="headerlink" title="浮点数的一般表示"></a>浮点数的一般表示</h3><blockquote>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%AF%E5%B0%8F%E6%95%B0%E8%A1%A5%E7%A0%81/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习_小数的补码_月老吃面包的博客-CSDN博客</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4f8a1dc94e4f">浮点数的一般表示 - 简书 (jianshu.com)</a> </p>
+<p>一般会用补码表示浮点数的尾数，但网络上关于纯小数补码表示的讲解甚少。上课的时候老师也讲的不是很明白，因此花了好长时间查找资料。（百度还是比Bing能搜出来更有用的东西的！）</p>
+</blockquote>
+<p>浮点数一般表示方法如下</p>
+<table>
+<thead>
+<tr>
+<th>阶符</th>
+<th>阶码</th>
+<th>数符</th>
+<th>尾数</th>
+</tr>
+</thead>
+</table>
+<p>阶码和尾数既可以用原码也可以用补码表示。</p>
+<blockquote>
+<p>补充：有符号定点小数的表示</p>
+<p>有符号定点小数有一个符号位，小数点隐含在符号位之后，小数点之后的数叫做尾数。有符号定点小数既可以用原码表示，也可以用补码表示。原码情况下，通常表示为<code>s.010101...</code> 其中s为符号位，010101…为尾数。</p>
+<p>至于补码，首先要介绍补码的原理与作用，才能更好地理解有符号定点小数的补码表示。</p>
+<p>补码的原理是数学上的同余关系，若 (a - b) &#x2F; m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>，即模m。对于n （以n &#x3D; 4为例）位定点整数，负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （十进制下为13），它们关于 2^4^ 同余。这也是为什么要取一个负数的补码，需要对它除了符号位以外的数按位取反再加1。（对于一个负数原码，所有位全是1<code>1111</code> 的值为 2^n^-1，刚好为模的值减一。而一个数的符号位以外的数按位取反）</p>
+<p>对于n+1位有符号定点小数（n&#x3D;8）</p>
+<p>原码表示的最大和最小定点小数</p>
+<p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
+<p>最小正数<code>0.0000 0000</code> : 0</p>
+<p>最大负数<code>1.0000 0000</code> : 0</p>
+<p>最小负数<code>1.1111 1111</code> ：-(1-2^-n^ ) </p>
+<p>补码表示的最大和最小顶点小数</p>
+<p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
+<p>最小正数<code>0.0000 0000</code> : 0</p>
+<p>最大负数<code>1.1111 1111</code>：-(1-2^-n^)  </p>
+<p>最小负数<code>1.0000 0000</code> ：-1 </p>
+</blockquote>
+<h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
 <p>IEEE 读作 eye-triple-ee</p>
 </blockquote>
 <p>IEEE 754是一种表示浮点数的标准，它以这种格式表示浮点数</p>
@@ -419,7 +459,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">整数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E5%8E%9F%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">无符号数的原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">补码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">浮点数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE-754"><span class="toc-number">2.1.</span> <span class="toc-text">IEEE 754</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">规格化数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="toc-number">2.1.2.</span> <span class="toc-text">非规格化数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC"><span class="toc-number">2.1.3.</span> <span class="toc-text">特殊值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%A2%9E%E9%95%BF%E7%9A%84%E5%9D%87%E5%8C%80"><span class="toc-number">2.1.4.</span> <span class="toc-text">关于增长的均匀</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%8F%B3%E7%A7%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">C 语言中的右移操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#New-Bing-%E5%85%B3%E4%BA%8E%E7%BA%AF%E5%B0%8F%E6%95%B0%E7%9A%84%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">New Bing 关于纯小数的补码表示</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">整数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E5%8E%9F%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">无符号数的原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%A0%81%E5%92%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">原码和补码的相互转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">浮点数的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E8%88%AC%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.1.</span> <span class="toc-text">浮点数的一般表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IEEE-754"><span class="toc-number">2.2.</span> <span class="toc-text">IEEE 754</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">规格化数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">非规格化数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC"><span class="toc-number">2.2.3.</span> <span class="toc-text">特殊值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%A2%9E%E9%95%BF%E7%9A%84%E5%9D%87%E5%8C%80"><span class="toc-number">2.2.4.</span> <span class="toc-text">关于增长的均匀</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%8F%B3%E7%A7%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">C 语言中的右移操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#New-Bing-%E5%85%B3%E4%BA%8E%E7%BA%AF%E5%B0%8F%E6%95%B0%E7%9A%84%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">New Bing 关于纯小数的补码表示</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -454,10 +494,10 @@
 
  
 
-<script async src="/js/app.js?v=1678678927288"></script>
+<script async src="/js/app.js?v=1679326035708"></script>
 
 
-	<script async src="/js/search.js?v=1678678927288"></script>
+	<script async src="/js/search.js?v=1679326035708"></script>
 
 
 <script>
