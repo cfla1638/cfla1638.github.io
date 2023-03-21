@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png">
 <meta property="article:published_time" content="2023-03-10T01:18:52.000Z">
-<meta property="article:modified_time" content="2023-03-20T15:21:33.140Z">
+<meta property="article:modified_time" content="2023-03-21T01:24:57.095Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -32,9 +32,9 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679326035704">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679384673370">
     
-    <link rel="stylesheet" href="/css/style.css?v=1679326035704">
+    <link rel="stylesheet" href="/css/style.css?v=1679384673370">
     
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -243,8 +243,8 @@
 
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     
-        <a><i class="nexmoefont icon-areachart"></i>约2.3k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要9分钟</a>
+        <a><i class="nexmoefont icon-areachart"></i>约3k字</a>
+        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要11分钟</a>
     
 </div>
 
@@ -311,8 +311,18 @@
 <blockquote>
 <p>补充：有符号定点小数的表示</p>
 <p>有符号定点小数有一个符号位，小数点隐含在符号位之后，小数点之后的数叫做尾数。有符号定点小数既可以用原码表示，也可以用补码表示。原码情况下，通常表示为<code>s.010101...</code> 其中s为符号位，010101…为尾数。</p>
-<p>至于补码，首先要介绍补码的原理与作用，才能更好地理解有符号定点小数的补码表示。</p>
-<p>补码的原理是数学上的同余关系，若 (a - b) &#x2F; m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>，即模m。对于n （以n &#x3D; 4为例）位定点整数，负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （十进制下为13），它们关于 2^4^ 同余。这也是为什么要取一个负数的补码，需要对它除了符号位以外的数按位取反再加1。（对于一个负数原码，所有位全是1<code>1111</code> 的值为 2^n^-1，刚好为模的值减一。而一个数的符号位以外的数按位取反）</p>
+<hr>
+<p>至于有符号定点小数的补码表示，首先要介绍补码的原理与作用，才能更好地理解有符号定点小数的补码表示。</p>
+<p>补码的原理是数学上的同余关系，若 (a - b) &#x2F; m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>，即模m。对于n （以n &#x3D; 4为例）位定点整数，负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （十进制下为13），它们关于 2^4^ 同余。这也是为什么要取一个负数的补码，需要对它除了符号位以外的数按位取反再加1。（为什么补码的取法是按位取反再加一，以四位二进制数为例，四位二进制数的模为16，即<code>1111 + 0001</code>，<code>-0011</code> 表示-3。根据同余的定义，<code>(a-b)/m</code> 是一个整数，我们假设它为1，则有<code>a-b=m</code> ，则有<code>xxxx - (-0011)= 1111 + 0001</code>） 即，<code>xxxx = 1111-0011 + 0001</code> 而<code>1111-0011</code>的作用就是按位取反，因此补码的计算方法为对符号位意外的数按位取反再加一。补码的计算方法也可以简述为进制能表示的最大的数减去原码再加一）</p>
+<p>补码的作用是化减法为加法：对于任何一个有mod的计量系统，都可以化减法为加法。例如，将处在6点的钟表时针向后拨2点（减二），也可以将他向前拨10点（加十）。之所以可以这么做，就是因为-2与10关于12同余。对于一个n为二进制的计量系统，它的模为 2^n^ 。</p>
+<hr>
+<p>以上的讨论都是基于定点整数，下面我们来讨论有符号定点小数的补码表示</p>
+<hr>
+<p>定点纯小数计量系统的模为1，因此对于一个负数-x以及它的补码xc，有<code>xc - (-x) = mod, xc = mod - x = 1 - x</code> ，因此要求一个负小数的补码，可以将这个数在十进制下加一，在转换成二进制原码。例如-7&#x2F;8，加一为1&#x2F;8，转换成二进制得到 1001。</p>
+<p>另一种获得负小数补码的方式是，将除符号位以外的位，按位取反，再加上 “1”。这里的“1”，并不是数值上的1，而是在最低为加1。</p>
+<hr>
+<p>对于一个负小数的补码<code>sddddddd 或 s.ddddddd</code>，它的每一个位可以这样解释，符号位解释为 s×-2^0^ ，数值位解释为 di × 2^-i^ (i &#x3D; 1, 2, 3 …)</p>
+<hr>
 <p>对于n+1位有符号定点小数（n&#x3D;8）</p>
 <p>原码表示的最大和最小定点小数</p>
 <p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
@@ -325,6 +335,18 @@
 <p>最大负数<code>1.1111 1111</code>：-(1-2^-n^)  </p>
 <p>最小负数<code>1.0000 0000</code> ：-1 </p>
 </blockquote>
+<p>浮点数的阶码和尾数，既可以使用原码表示，也可以使用补码表示。</p>
+<p>为了提高精度，充分利用尾数的每一位，规格化浮点数应运而生。</p>
+<p>规格化浮点数对浮点数的尾数进行限制，具体规则如下</p>
+<blockquote>
+<p>当尾数为原码时，最高有效位必须为1</p>
+<p>当尾数为补码时，尾数的最高位必须与符号位相反。即对于正数，最高有效位必须为1，对于负数，最高有效位必须为0。因为在负数的补码中，数值位的0相当于原码的1的作用。</p>
+</blockquote>
+<p>获得规格化浮点数的方法：</p>
+<ul>
+<li>左规，尾数左移一位，阶码-1</li>
+<li>右规，尾数右移一位，阶码+1</li>
+</ul>
 <h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
 <p>IEEE 读作 eye-triple-ee</p>
 </blockquote>
@@ -494,10 +516,10 @@
 
  
 
-<script async src="/js/app.js?v=1679326035708"></script>
+<script async src="/js/app.js?v=1679384673377"></script>
 
 
-	<script async src="/js/search.js?v=1679326035708"></script>
+	<script async src="/js/search.js?v=1679384673377"></script>
 
 
 <script>
