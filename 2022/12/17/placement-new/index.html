@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw();  placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&amp;gt">
+  <meta name="description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw(); placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="placement new">
 <meta property="og:url" content="https://cfla1638.github.io/2022/12/17/placement-new/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw();  placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&amp;gt">
+<meta property="og:description" content="placement new最典型的placement new 的签名如下： void * operator new(std::size_t, void * pMemory) throw(); placement new 就得名于这个最典型的new。 下面这个程序将展示这种placement new 的用法： #include &lt;iostream&gt;#include &lt;new&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-17T14:11:27.000Z">
 <meta property="article:modified_time" content="2022-12-17T14:17:06.052Z">
@@ -200,14 +200,11 @@
       
         <h1 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h1><p>最典型的<code>placement new</code> 的签名如下：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> * <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">(std::<span class="hljs-type">size_t</span>, <span class="hljs-type">void</span> * pMemory)</span> <span class="hljs-title">throw</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
-
 <p><code>placement new</code> 就得名于这个最典型的new。</p>
 <p>下面这个程序将展示这种<code>placement new</code> 的用法：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;new&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">obj</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">obj</span>() &#123;num = <span class="hljs-number">233</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;cout &lt;&lt; num &lt;&lt; endl;&#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> num;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(obj);<br>    obj * p = (obj *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (obj));<br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    obj * t = <span class="hljs-built_in">new</span>(p) <span class="hljs-built_in">obj</span>();       <span class="hljs-comment">// placement new : 在一片已分配但未使用的区域调用构造函数</span><br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    cout &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; t;        <span class="hljs-comment">// p 和 t的值相同，说明placement new 的返回值就是p</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>运行结果如下：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-number">411689296</span><br><span class="hljs-number">233</span><br><span class="hljs-number">0xb25fb0</span> <span class="hljs-number">0xb25fb0</span><br></code></pre></td></tr></table></figure>
-
 <p>当最初使用malloc时，<code>obj</code>的构造函数并没有被调用，因此<code>num</code>的值是垃圾值，当使用<code>placement new</code>之后，在原位置调用了构造函数，因此<code>num</code>的值变为了233，而这个<code>placement new</code>的返回值也就是我们传入的那个<code>rawMemory</code></p>
 
     </div>
@@ -399,6 +396,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

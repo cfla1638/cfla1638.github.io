@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="链接本文将介绍：  编译的过程 三种目标文件 三种链接和链接的过程  1 编译的过程 源文件（.c &#x2F;.cpp）经过翻译，形成可重定位目标文件（.o） 具体过程： 预处理 cpp main.c -o main.i 或 gcc -E -o main.c main.c  编译器 ：翻译成汇编语言 cc1 或 cc main.i -o main.s 或 gcc -S -o main.s mai">
+  <meta name="description" content="链接本文将介绍：  编译的过程 三种目标文件 三种链接和链接的过程  1 编译的过程 源文件（.c &#x2F;.cpp）经过翻译，形成可重定位目标文件（.o） 具体过程： 预处理 cpp main.c -o main.i 或 gcc -E -o main.c main.c  编译器 ：翻译成汇编语言 cc1 或 cc main.i -o main.s 或 gcc -S -o main.s main.c 汇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链接 - CS:APP 第七章">
 <meta property="og:url" content="https://cfla1638.github.io/2022/09/07/%E9%93%BE%E6%8E%A5-CS-APP-%E7%AC%AC%E4%B8%83%E7%AB%A0/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="链接本文将介绍：  编译的过程 三种目标文件 三种链接和链接的过程  1 编译的过程 源文件（.c &#x2F;.cpp）经过翻译，形成可重定位目标文件（.o） 具体过程： 预处理 cpp main.c -o main.i 或 gcc -E -o main.c main.c  编译器 ：翻译成汇编语言 cc1 或 cc main.i -o main.s 或 gcc -S -o main.s mai">
+<meta property="og:description" content="链接本文将介绍：  编译的过程 三种目标文件 三种链接和链接的过程  1 编译的过程 源文件（.c &#x2F;.cpp）经过翻译，形成可重定位目标文件（.o） 具体过程： 预处理 cpp main.c -o main.i 或 gcc -E -o main.c main.c  编译器 ：翻译成汇编语言 cc1 或 cc main.i -o main.s 或 gcc -S -o main.s main.c 汇">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209091204533.png">
 <meta property="og:image" content="c:/Users/cfla/AppData/Roaming/Typora/typora-user-images/image-20220910192419982.png">
@@ -217,7 +217,7 @@
 <li>三种链接和链接的过程</li>
 </ul>
 <h2 id="1-编译的过程"><a href="#1-编译的过程" class="headerlink" title="1 编译的过程"></a>1 编译的过程</h2><ol>
-<li><p>源文件（.c &#x2F;.cpp）经过翻译，形成可重定位目标文件（.o）</p>
+<li><p>源文件（.c /.cpp）经过翻译，形成可重定位目标文件（.o）</p>
 <p>具体过程：</p>
 <p>预处理</p>
 <p><code>cpp main.c -o main.i</code> 或 <code>gcc -E -o main.c main.c</code> </p>
@@ -228,7 +228,7 @@
 <p>如果向直接到这一步可以使用 <code>gcc -c -o main.o main.c</code> </p>
 </li>
 <li><p>链接器 链接形成可执行目标文件</p>
-<p><code>ld -o prog main.o other.o</code> 或 <code>gcc -o prog main.o other.o</code></p>
+<p><code>ld -o prog main.o other.o</code> 或 <code>gcc -o prog main.o other.o</code> </p>
 </li>
 </ol>
 <p>如果想要一步一步生成<code>.i</code> <code>.s</code> <code>.o</code> 文件，建议使用gcc 加参数，而不是使用cpp cc1 as ld，这里面水很深，你把握不住。</p>
@@ -249,14 +249,12 @@
 </ol>
 <p>window系统使用<code>PE portable Executable</code> 格式</p>
 <p>Linux使用 <code>Executable and Linkable Format, ELF</code>格式  </p>
-<h3 id="2-1-可重定位目标文件格式"><a href="#2-1-可重定位目标文件格式" class="headerlink" title="2.1 可重定位目标文件格式"></a>2.1 可重定位目标文件格式</h3><p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209091204533.png" alt="image-20220909120357886" data-caption="image-20220909120357886" loading="lazy"> </p>
+<h3 id="2-1-可重定位目标文件格式"><a href="#2-1-可重定位目标文件格式" class="headerlink" title="2.1 可重定位目标文件格式"></a>2.1 可重定位目标文件格式</h3><p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209091204533.png" alt="image-20220909120357886"> </p>
 <p>可重定位目标文件 以ELF头开始，通过<code>readelf -a main.o</code> 我们可以看到ELF头的内容</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">ELF 头：<br>  Magic：   <span class="hljs-number">7f</span> <span class="hljs-number">45</span> <span class="hljs-number">4</span>c <span class="hljs-number">46</span> <span class="hljs-number">02</span> <span class="hljs-number">01</span> <span class="hljs-number">01</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <br>  类别:                              ELF64<br>  数据:                              <span class="hljs-number">2</span> 补码，小端序 (little endian)<br>  Version:                           <span class="hljs-number">1</span> (current)<br>  OS/ABI:                            UNIX - System V<br>  ABI 版本:                          <span class="hljs-number">0</span><br>  类型:                              REL (可重定位文件)<br>  系统架构:                          Advanced Micro Devices X86<span class="hljs-number">-64</span><br>  版本:                              <span class="hljs-number">0x1</span><br>  入口点地址：               <span class="hljs-number">0x0</span><br>  程序头起点：          <span class="hljs-number">0</span> (bytes into file)<br>  Start of section headers:          <span class="hljs-number">1040</span> (bytes into file)<br>  标志：             <span class="hljs-number">0x0</span><br>  Size of this header:               <span class="hljs-number">64</span> (bytes)<br>  Size of program headers:           <span class="hljs-number">0</span> (bytes)<br>  Number of program headers:         <span class="hljs-number">0</span><br>  Size of section headers:           <span class="hljs-number">64</span> (bytes)<br>  Number of section headers:         <span class="hljs-number">13</span><br>  Section header <span class="hljs-built_in">string</span> table index: <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
-
 <p>可重定位目标文件的末尾是节头部表，它描述不同节的位置和大小。</p>
 <p>我倾向于认为这是节头部表的内容：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">节头：<br>  [号] 名称              类型             地址              偏移量<br>       大小              全体大小          旗标   链接   信息   对齐<br>  [ <span class="hljs-number">0</span>]                   <span class="hljs-literal">NULL</span>             <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000000</span><br>       <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">0000000000000000</span>           <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span><br>  [ <span class="hljs-number">1</span>] .text             PROGBITS         <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000040</span><br>       <span class="hljs-number">0000000000000025</span>  <span class="hljs-number">0000000000000000</span>  AX       <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span><br>  [ <span class="hljs-number">2</span>] .rela.text        RELA             <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000358</span><br>       <span class="hljs-number">0000000000000030</span>  <span class="hljs-number">0000000000000018</span>   I      <span class="hljs-number">10</span>     <span class="hljs-number">1</span>     <span class="hljs-number">8</span><br>  [ <span class="hljs-number">3</span>] .data             PROGBITS         <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000068</span><br>       <span class="hljs-number">0000000000000010</span>  <span class="hljs-number">0000000000000000</span>  WA       <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">8</span><br>  [ <span class="hljs-number">4</span>] .bss              NOBITS           <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000078</span><br>       <span class="hljs-number">000000000000000</span>c  <span class="hljs-number">0000000000000000</span>  WA       <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">4</span><br>  [ <span class="hljs-number">5</span>] .comment          PROGBITS         <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000078</span><br>       <span class="hljs-number">000000000000002</span>c  <span class="hljs-number">0000000000000001</span>  MS       <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span><br>  [ <span class="hljs-number">6</span>] .note.GNU-<span class="hljs-built_in">stack</span>   PROGBITS         <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">000000</span>a4<br>       <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">0000000000000000</span>           <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span><br>  [ <span class="hljs-number">7</span>] .note.gnu.propert NOTE             <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">000000</span>a8<br>       <span class="hljs-number">0000000000000020</span>  <span class="hljs-number">0000000000000000</span>   A       <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">8</span><br>  [ <span class="hljs-number">8</span>] .eh_frame         PROGBITS         <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">000000</span>c8<br>       <span class="hljs-number">0000000000000038</span>  <span class="hljs-number">0000000000000000</span>   A       <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">8</span><br>  [ <span class="hljs-number">9</span>] .rela.eh_frame    RELA             <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000388</span><br>       <span class="hljs-number">0000000000000018</span>  <span class="hljs-number">0000000000000018</span>   I      <span class="hljs-number">10</span>     <span class="hljs-number">8</span>     <span class="hljs-number">8</span><br>  [<span class="hljs-number">10</span>] .symtab           SYMTAB           <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">00000100</span><br>       <span class="hljs-number">00000000000001</span>c8  <span class="hljs-number">0000000000000018</span>          <span class="hljs-number">11</span>    <span class="hljs-number">12</span>     <span class="hljs-number">8</span><br>  [<span class="hljs-number">11</span>] .strtab           STRTAB           <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">000002</span>c8<br>       <span class="hljs-number">0000000000000090</span>  <span class="hljs-number">0000000000000000</span>           <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span><br>  [<span class="hljs-number">12</span>] .shstrtab         STRTAB           <span class="hljs-number">0000000000000000</span>  <span class="hljs-number">000003</span>a0<br>       <span class="hljs-number">000000000000006</span>c  <span class="hljs-number">0000000000000000</span>           <span class="hljs-number">0</span>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
 <p>在ELF头和节头部表之间的是节，在上面的节头部表中我们也可以看到那些节。</p>
 <p>一个典型的ELF可重定位目标文件包含下面的节：</p>
 <p><code>.text</code> : 已编译的机器代码</p>
@@ -271,7 +269,6 @@
 <p><code>strtab</code> ：字符串表，包含符号表中的符号，.debug节的符号表以及节头部表中的节的名字</p>
 <h4 id="2-1-1-符号表"><a href="#2-1-1-符号表" class="headerlink" title="2.1.1 符号表"></a>2.1.1 符号表</h4><p>符号表的条目格式是这样的</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">int</span> name;    <span class="hljs-comment">// 字符串表的字节偏移，指向null结尾的字符串，具体的内容就是变量的名字，函数的名词，文件的名字等 main or main.c</span><br>    <span class="hljs-type">char</span> type:<span class="hljs-number">4</span>,  <span class="hljs-comment">// 该符号条目的类型，函数数据或者节 NOTYPE OR OBJECT OR FUNC ...</span><br>       binding:<span class="hljs-number">4</span>;	<span class="hljs-comment">// 全局变量还是本地变量 GLOBAL OR LOCAL</span><br>    <span class="hljs-type">char</span> reserved;  <span class="hljs-comment">// 保留的，未使用</span><br>    <span class="hljs-type">short</span> section;  <span class="hljs-comment">// 在ubuntu 上的名字是Ndx,指明该符号是在那个section的</span><br>    <span class="hljs-type">long</span> value;    <span class="hljs-comment">// 距离节section 起始位置的字节偏移</span><br>    <span class="hljs-type">long</span> size;    <span class="hljs-comment">// 该符号最小的大小</span><br>&#125; Elf64_Symbol;<br></code></pre></td></tr></table></figure>
-
 <p>对于section 字段，在<code>ubuntu</code> 的<code>readelf</code> 命令中，显示为 Ndx。</p>
 <p>该字段有三个伪节，他们分别是 <code>UNDEF</code> <code>COMMON</code> <code>ABS</code> 。</p>
 <p><code>ABS</code> ：代表不改被重定位的符号</p>
@@ -282,33 +279,25 @@
 <p><code>.bss</code> ：未初始化的静态变量，以及初始化为0的全局或静态变量</p>
 <p>下面我们通过一个程序来展示以下ubuntu 中的符号表</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> * a, <span class="hljs-type">int</span> n)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-built_in">array</span>[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>&#125;;<br><br><span class="hljs-type">int</span> global_not_init;<br><span class="hljs-type">int</span> global_init = <span class="hljs-number">1</span>;<br><span class="hljs-type">int</span> global_init_zero = <span class="hljs-number">0</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">static</span> <span class="hljs-type">int</span> stat_not_init;<br>    <span class="hljs-type">static</span> <span class="hljs-type">int</span> stat_init_zero = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">static</span> <span class="hljs-type">int</span> stat_init = <span class="hljs-number">1</span>;<br><br>    <span class="hljs-type">int</span> val = sum(<span class="hljs-built_in">array</span>, <span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">return</span> val;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>下面我们生成可重定位的目标文件<code>gcc -c main.c</code> </p>
 <p>接着使用<code>readelf -a main.o</code> 读取elf，即可查看符号表</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs shel">cfla@cfla-virtual-machine:~/code/CSAPP/ch_7$ gcc -c main.c<br>cfla@cfla-virtual-machine:~/code/CSAPP/ch_7$ readelf -a main.o<br>ELF 头：<br>  Magic：   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 <br>  类别:                              ELF64<br>  数据:                              2 补码，小端序 (little endian)<br>  Version:                           1 (current)<br>  OS/ABI:                            UNIX - System V<br>  ABI 版本:                          0<br>  类型:                              REL (可重定位文件)<br>  系统架构:                          Advanced Micro Devices X86-64<br>  版本:                              0x1<br>  入口点地址：               0x0<br>  程序头起点：          0 (bytes into file)<br>  Start of section headers:          1040 (bytes into file)<br>  标志：             0x0<br>  Size of this header:               64 (bytes)<br>  Size of program headers:           0 (bytes)<br>  Number of program headers:         0<br>  Size of section headers:           64 (bytes)<br>  Number of section headers:         13<br>  Section header string table index: 12<br><br>节头：<br>  [号] 名称              类型             地址              偏移量<br>       大小              全体大小          旗标   链接   信息   对齐<br>  [ 0]                   NULL             0000000000000000  00000000<br>       0000000000000000  0000000000000000           0     0     0<br>  [ 1] .text             PROGBITS         0000000000000000  00000040<br>       0000000000000025  0000000000000000  AX       0     0     1<br>  [ 2] .rela.text        RELA             0000000000000000  00000358<br>       0000000000000030  0000000000000018   I      10     1     8<br>  [ 3] .data             PROGBITS         0000000000000000  00000068<br>       0000000000000010  0000000000000000  WA       0     0     8<br>  [ 4] .bss              NOBITS           0000000000000000  00000078<br>       000000000000000c  0000000000000000  WA       0     0     4<br>  [ 5] .comment          PROGBITS         0000000000000000  00000078<br>       000000000000002c  0000000000000001  MS       0     0     1<br>  [ 6] .note.GNU-stack   PROGBITS         0000000000000000  000000a4<br>       0000000000000000  0000000000000000           0     0     1<br>  [ 7] .note.gnu.propert NOTE             0000000000000000  000000a8<br>       0000000000000020  0000000000000000   A       0     0     8<br>  [ 8] .eh_frame         PROGBITS         0000000000000000  000000c8<br>       0000000000000038  0000000000000000   A       0     0     8<br>  [ 9] .rela.eh_frame    RELA             0000000000000000  00000388<br>       0000000000000018  0000000000000018   I      10     8     8<br>  [10] .symtab           SYMTAB           0000000000000000  00000100<br>       00000000000001c8  0000000000000018          11    12     8<br>  [11] .strtab           STRTAB           0000000000000000  000002c8<br>       0000000000000090  0000000000000000           0     0     1<br>  [12] .shstrtab         STRTAB           0000000000000000  000003a0<br>       000000000000006c  0000000000000000           0     0     1<br>Key to Flags:<br>  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),<br>  L (link order), O (extra OS processing required), G (group), T (TLS),<br>  C (compressed), x (unknown), o (OS specific), E (exclude),<br>  l (large), p (processor specific)<br><br>There are no section groups in this file.<br><br>本文件中没有程序头。<br><br>There is no dynamic section in this file.<br><br>重定位节 &#x27;.rela.text&#x27; at offset 0x358 contains 2 entries:<br>  偏移量          信息           类型           符号值        符号名称 + 加数<br>000000000014  000c00000002 R_X86_64_PC32     0000000000000000 array - 4<br>000000000019  001200000004 R_X86_64_PLT32    0000000000000000 sum - 4<br><br>重定位节 &#x27;.rela.eh_frame&#x27; at offset 0x388 contains 1 entry:<br>  偏移量          信息           类型           符号值        符号名称 + 加数<br>000000000020  000200000002 R_X86_64_PC32     0000000000000000 .text + 0<br><br>The decoding of unwind sections for machine type Advanced Micro Devices X86-64 is not currently supported.<br><br>Symbol table &#x27;.symtab&#x27; contains 19 entries:<br>   Num:    Value          Size Type    Bind   Vis      Ndx Name<br>     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND <br>     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c<br>     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 <br>     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 <br>     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 <br>     5: 000000000000000c     4 OBJECT  LOCAL  DEFAULT    3 stat_init.1921<br>     6: 0000000000000004     4 OBJECT  LOCAL  DEFAULT    4 stat_init_zero.1920<br>     7: 0000000000000008     4 OBJECT  LOCAL  DEFAULT    4 stat_not_init.1919<br>     8: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 <br>     9: 0000000000000000     0 SECTION LOCAL  DEFAULT    7 <br>    10: 0000000000000000     0 SECTION LOCAL  DEFAULT    8 <br>    11: 0000000000000000     0 SECTION LOCAL  DEFAULT    5 <br>    12: 0000000000000000     8 OBJECT  GLOBAL DEFAULT    3 array<br>    13: 0000000000000004     4 OBJECT  GLOBAL DEFAULT  COM global_not_init<br>    14: 0000000000000008     4 OBJECT  GLOBAL DEFAULT    3 global_init<br>    15: 0000000000000000     4 OBJECT  GLOBAL DEFAULT    4 global_init_zero<br>    16: 0000000000000000    37 FUNC    GLOBAL DEFAULT    1 main<br>    17: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND _GLOBAL_OFFSET_TABLE_<br>    18: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND sum<br><br>No version information found in this file.<br><br>Displaying notes found in: .note.gnu.property<br>  所有者            Data size   Description<br>  GNU                  0x00000010       NT_GNU_PROPERTY_TYPE_0<br>      Properties: x86 feature: IBT, SHSTK<br></code></pre></td></tr></table></figure>
-
 <p>符号表中的Ndx代表section字段，我们可以看到，只有未初始化的全局变量<code>global_not_init</code> 在COMMON 伪节，已经初始化了的全局变量<code>global_init</code>和静态变量<code>stat_init</code>都在<code>.data</code> 节，而初始化为0的全局变量<code>global_init_zero</code> 和没有初始化的静态变量<code>stat_not_init</code> 和初始化为0的静态变量<code>stat_init_zero</code> 在<code>.bss</code> 节</p>
 <p>根据这三行的<code>value</code> 字段我们还可以看到这三个变量在<code>.bss</code> 节的存储顺序</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">  15: 0000000000000000     4 OBJECT  GLOBAL DEFAULT    4 global_init_zero<br>6: 0000000000000004     4 OBJECT  LOCAL  DEFAULT    4 stat_init_zero.1920<br>   7: 0000000000000008     4 OBJECT  LOCAL  DEFAULT    4 stat_not_init.1919<br></code></pre></td></tr></table></figure>
-
-
-
 <p>另外我们还看到了一个有趣的现象，对于这个模块，编译器在所有静态变量的名称后面都加上了后辍，而全局变量则没有。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-number">6</span>: <span class="hljs-number">0000000000000004</span>     <span class="hljs-number">4</span> OBJECT  LOCAL  DEFAULT    <span class="hljs-number">4</span> stat_init_zero<span class="hljs-number">.1920</span><br>   <span class="hljs-number">7</span>: <span class="hljs-number">0000000000000008</span>     <span class="hljs-number">4</span> OBJECT  LOCAL  DEFAULT    <span class="hljs-number">4</span> stat_not_init<span class="hljs-number">.1919</span><br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意观察两个静态变量多了两个后辍</p>
 </blockquote>
 <p>这样做其实是为了区分在同一个模块中同名的两个静态变量</p>
 <p>如下面程序的这个例子</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">func_1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>  <span class="hljs-type">static</span> <span class="hljs-type">int</span> x = n + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">func_2</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>    <span class="hljs-type">static</span> <span class="hljs-type">int</span> x = n + <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>这两个静态变量虽然都是x，但显然他们不是同一个变量，因此编译器会在符号表中通过加上一个后辍的形式来区分他们。</p>
 <h3 id="2-2-可执行目标文件格式"><a href="#2-2-可执行目标文件格式" class="headerlink" title="2.2 可执行目标文件格式"></a>2.2 可执行目标文件格式</h3><p>下面是典型的ELF 可执行目标文件</p>
-<p><img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220910192419982.png" alt="image-20220910192419982" data-caption="image-20220910192419982" loading="lazy"></p>
+<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220910192419982.png" alt="image-20220910192419982"></p>
 <p>在ELF 头和节之间，有一个特殊的段头部表，接下来我们通过<code>readelf</code> 来看一下这个段头部表</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">LOAD           <span class="hljs-number">0x0000000000000000</span> <span class="hljs-number">0x0000000000400000</span> <span class="hljs-number">0x0000000000400000</span><br>               <span class="hljs-number">0x0000000000000498</span> <span class="hljs-number">0x0000000000000498</span>  R      <span class="hljs-number">0x1000</span><br>LOAD           <span class="hljs-number">0x0000000000001000</span> <span class="hljs-number">0x0000000000401000</span> <span class="hljs-number">0x0000000000401000</span><br>               <span class="hljs-number">0x0000000000000205</span> <span class="hljs-number">0x0000000000000205</span>  R E    <span class="hljs-number">0x1000</span><br>LOAD           <span class="hljs-number">0x0000000000002000</span> <span class="hljs-number">0x0000000000402000</span> <span class="hljs-number">0x0000000000402000</span><br>               <span class="hljs-number">0x0000000000000120</span> <span class="hljs-number">0x0000000000000120</span>  R      <span class="hljs-number">0x1000</span><br>LOAD           <span class="hljs-number">0x0000000000002e50</span> <span class="hljs-number">0x0000000000403e50</span> <span class="hljs-number">0x0000000000403e50</span><br>               <span class="hljs-number">0x00000000000001e0</span> <span class="hljs-number">0x00000000000001e8</span>  RW     <span class="hljs-number">0x1000</span> <br></code></pre></td></tr></table></figure>
-
 <p> 我们知道，程序的代码从0x0000000000400000开始，从上面这个程序头部表中我们看到它将文件中0x00000000000000000处的内容映射到了虚拟内存0x0000000000400000处，这正是程序开始运行的地方。</p>
 <blockquote>
 <p>ELF可执行文件被设计为很容易加载到存储器，连续的可执行文件的组块(cuks)被映射到连续的存储器段。段头表(segment header table)描述了这种映射关系。</p>
@@ -348,8 +337,6 @@
 </ol>
 <blockquote>
 <p>这三个规则很容易造成一些不易察觉的运行时错误。</p>
-</blockquote>
-<blockquote>
 <p>为什么会有.COMMON伪节？</p>
 <p>如果有一个未初始化的全局变量x，编译器不知道这是一个extern 声明还是一个定义，不知道其他模块是否还有一个x，因此它把这个决定权留给链接器。</p>
 <p>而如果是一个初始化为0的全局变量，根据强符号的规则，它是唯一的，因此编译器可以把他放到.bss节</p>
@@ -364,7 +351,7 @@
 <p>首先编译：<code>gcc -c addvec.c multvec.c</code></p>
 <p>接着生成静态库：<code>ar rcs libvector.a addvec.o multvec.o</code> </p>
 <p>得到静态库 <code>libvector.a</code>，存档文件</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101743742.png" alt="image-20220910174348618" data-caption="image-20220910174348618" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101743742.png" alt="image-20220910174348618"> </p>
 <p>(重要) 链接器如何使用静态库来解析引用：</p>
 <blockquote>
 <p>链接器维持一个可重定位目标文件的集合E,这个集合中的文件会被合并起来形成可执行文件，和一个未解析的符号（也就是，引用了但是尚未定义的符号)集合U,以及一个在前面输入文件中已定义的符号集合D。初始地，E、U和D都是空的。</p>
@@ -379,8 +366,8 @@
 <p>但如果几个存档文件相互依赖，那么他们在命令行中出现的顺序就是需要特别关注的</p>
 <p>如果文件A的符号定义在文件B中，我们就说文件A依赖文件B A→B</p>
 <p>假如有这样的依赖关系：</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101815751.png" alt="image-20220910181532038" data-caption="image-20220910181532038" loading="lazy"></p>
-<p>我们要写成<code> gcc A.o B.a C.a B.a -o prog</code>  因为A.o 是目标文件，它的所有符号都被解析了，所以它只需要出现一次，而B.a则需要出现两次。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209101815751.png" alt="image-20220910181532038"></p>
+<p>我们要写成<code>gcc A.o B.a C.a B.a -o prog</code>  因为A.o 是目标文件，它的所有符号都被解析了，所以它只需要出现一次，而B.a则需要出现两次。</p>
 <h4 id="3-1-2-重定位"><a href="#3-1-2-重定位" class="headerlink" title="3.1.2 重定位"></a>3.1.2 重定位</h4><p>《深入理解计算机系统》原书第三版 P 478 7.7</p>
 <h3 id="3-2-动态链接库"><a href="#3-2-动态链接库" class="headerlink" title="3.2 动态链接库"></a>3.2 动态链接库</h3><p>静态库的代码被嵌入到链接的程序，如果一个静态库被几乎所有的程序使用，就会造成大量的空间浪费，因此出现了动态库。</p>
 <p>所有引用一个动态库的可执行目标文件共享一个动态库，而不是像静态库一样，代码被嵌入进程序中。</p>
@@ -389,23 +376,20 @@
 <p><code>gcc -o prog main.c ./libvector.so</code></p>
 <p>与动态库链接的时候，只会讲重定位和符号表信息复制到可执行文件中，而不会嵌入其他数据。</p>
 <p>下面是动态链接库的过程：</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209112059039.png" alt="image-20220911205952800" data-caption="image-20220911205952800" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209112059039.png" alt="image-20220911205952800"> </p>
 <blockquote>
 <p>一个使用动态库的例子：(详见异常控制流 - CS:APP 第八章)</p>
 <p>我们将<code>csapp.c</code> 库编译成动态库</p>
 <p>使用<code>gcc -shared -fpic csapp.c -o libcsapp.so -lphread</code> </p>
 <p>得到 <code>libcsapp.so</code> 将它移动到<code>/lib</code> </p>
 <p>接着将<code>csapp.h</code> 移动到 <code>/usr/local/include</code> </p>
-<p>编译问使用CSAPP动态库时，只需要使用	<code>gcc main.c -o prog -lcsapp</code> </p>
-<p>其中编译选项<code>-lxxx</code> 代表告诉GCC去&#x2F;lib等文件夹下寻找 libxxx.so 与其链接</p>
+<p>编译问使用CSAPP动态库时，只需要使用    <code>gcc main.c -o prog -lcsapp</code> </p>
+<p>其中编译选项<code>-lxxx</code> 代表告诉GCC去/lib等文件夹下寻找 libxxx.so 与其链接</p>
 <p>我们在编译<code>csapp.c</code>的时候，用的编译选项，<code>-lphread</code> 就是告诉编译器与<code>libphread.so</code>库链接，这个库存放与线程相关的代码</p>
 <p>以后打包静态库时，我们也要记住，动态库的命名规则是<code>libxxx.so</code> </p>
 </blockquote>
 <h3 id="3-3-程序运行时链接共享库"><a href="#3-3-程序运行时链接共享库" class="headerlink" title="3.3 程序运行时链接共享库"></a>3.3 程序运行时链接共享库</h3><p>可以在运行时，从动态库中寻找该符号，动态加载到程序中。示例程序：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 7.11 load and link shared library from an application</span><br><span class="hljs-comment">// to compile this file : &quot;gcc -rdynamic -o prog_runtime_load dll.c -ldl&quot;</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;dlfcn.h&gt;</span></span><br><br><span class="hljs-type">int</span> x[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;;<br><span class="hljs-type">int</span> y[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;;<br><span class="hljs-type">int</span> z[<span class="hljs-number">2</span>];<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">void</span> * handle;  <span class="hljs-comment">// shared lib handle</span><br>    <span class="hljs-type">void</span> (*addvec)(<span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span>);  <span class="hljs-comment">// point to a function</span><br>    <span class="hljs-type">void</span> (*multvec)(<span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span> *, <span class="hljs-type">int</span>);  <span class="hljs-comment">// point to a function</span><br>    <span class="hljs-type">char</span> * error;   <span class="hljs-comment">// point to error massages string</span><br><br>    <span class="hljs-comment">// load shared library</span><br>    handle = dlopen(<span class="hljs-string">&quot;./libvector.so&quot;</span>, RTLD_LAZY);<br>    <span class="hljs-keyword">if</span> (!handle)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;%s\n&quot;</span>, dlerror());<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// search the symbol &quot;multvec&quot; from the shared library</span><br>    multvec = dlsym(handle, <span class="hljs-string">&quot;multvec&quot;</span>);<br>    <span class="hljs-keyword">if</span> ((error = (dlerror())) != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;%s\n&quot;</span>, error);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// execute the function</span><br>    multvec(x, y, z, <span class="hljs-number">2</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;z = [%d %d]\n&quot;</span>, z[<span class="hljs-number">0</span>], z[<span class="hljs-number">1</span>]);<br><br>    <span class="hljs-comment">// unload the shared library</span><br>    <span class="hljs-keyword">if</span> (dlclose(handle) &lt; <span class="hljs-number">0</span>)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;%s\n&quot;</span>, dlerror());<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <h2 id="名词索引"><a href="#名词索引" class="headerlink" title="名词索引"></a>名词索引</h2><p>ELF-64 目标文件格式</p>
 <p>PIC(Position-Independent Code) 位置无关代码</p>
 
@@ -595,6 +579,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

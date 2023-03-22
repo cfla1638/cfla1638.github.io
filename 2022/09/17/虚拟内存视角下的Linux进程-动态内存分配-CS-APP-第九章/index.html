@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="虚拟内存视角下的Linux进程 &amp; 动态内存分配Linux的虚拟内存系统Linux为每个进程提供了一个虚拟地址空间。而这些地址空间被分为两部分：  进程虚拟内存部分 内核虚拟内存部分  进程虚拟内存部分我们已经很熟悉了，按照地址从低到高，他们分别是：     用户栈    %rsp →     共享库的内存映射区域   brk →     运行时的堆（通过malloc分配的）    未初始">
+  <meta name="description" content="虚拟内存视角下的Linux进程 &amp; 动态内存分配Linux的虚拟内存系统Linux为每个进程提供了一个虚拟地址空间。而这些地址空间被分为两部分：  进程虚拟内存部分 内核虚拟内存部分  进程虚拟内存部分我们已经很熟悉了，按照地址从低到高，他们分别是：      用户栈     %rsp →     共享库的内存映射区域   brk →     运行时的堆（通过malloc分配的）    未">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟内存视角下的Linux进程 &amp; 动态内存分配 - CS:APP 第九章">
 <meta property="og:url" content="https://cfla1638.github.io/2022/09/17/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84Linux%E8%BF%9B%E7%A8%8B-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D-CS-APP-%E7%AC%AC%E4%B9%9D%E7%AB%A0/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="虚拟内存视角下的Linux进程 &amp; 动态内存分配Linux的虚拟内存系统Linux为每个进程提供了一个虚拟地址空间。而这些地址空间被分为两部分：  进程虚拟内存部分 内核虚拟内存部分  进程虚拟内存部分我们已经很熟悉了，按照地址从低到高，他们分别是：     用户栈    %rsp →     共享库的内存映射区域   brk →     运行时的堆（通过malloc分配的）    未初始">
+<meta property="og:description" content="虚拟内存视角下的Linux进程 &amp; 动态内存分配Linux的虚拟内存系统Linux为每个进程提供了一个虚拟地址空间。而这些地址空间被分为两部分：  进程虚拟内存部分 内核虚拟内存部分  进程虚拟内存部分我们已经很熟悉了，按照地址从低到高，他们分别是：      用户栈     %rsp →     共享库的内存映射区域   brk →     运行时的堆（通过malloc分配的）    未">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171118039.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171117123.png">
@@ -207,6 +207,7 @@
 <li>内核虚拟内存部分</li>
 </ul>
 <p>进程虚拟内存部分我们已经很熟悉了，按照地址从低到高，他们分别是：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -214,7 +215,8 @@
 <th>用户栈</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>%rsp →</td>
 <td></td>
 </tr>
@@ -242,12 +244,15 @@
 <td>0x400000 →</td>
 <td>代码(.text)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>内核虚拟内存可分为两部分：</p>
 <ul>
 <li>内核中的代码和数据及数据结构</li>
 <li>被映射到此的物理内存（Linux将一组连续的虚拟内存（大小等于系统DRAM总量）映射到物理内存，为内核提供一种便利的方法来访问物理内存中的任何位置）</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -255,7 +260,8 @@
 <th>每个进程都不相同</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>物理内存</td>
 <td>每个进程都相同</td>
 </tr>
@@ -263,17 +269,17 @@
 <td>内核代码和数据</td>
 <td>每个进程都相同</td>
 </tr>
-</tbody></table>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171118039.png" alt="image-20220917111815524" data-caption="image-20220917111815524" loading="lazy"></p>
+</tbody>
+</table>
+</div>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171118039.png" alt="image-20220917111815524"></p>
 <h2 id="Linux如何组织虚拟内存"><a href="#Linux如何组织虚拟内存" class="headerlink" title="Linux如何组织虚拟内存"></a>Linux如何组织虚拟内存</h2><p>Linux将虚拟内存组成成一些区域的集合。一个区域就是已分配的虚拟内存片段</p>
 <p>这些片段通过一个结构链表被组织起来。（task_struct-&gt;mm_struct-&gt;mmap）</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171117123.png" alt="image-20220917111745313" data-caption="image-20220917111745313" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171117123.png" alt="image-20220917111745313"></p>
 <h2 id="用户级内存映射"><a href="#用户级内存映射" class="headerlink" title="用户级内存映射"></a>用户级内存映射</h2><p>Linux 可以使用<code>mmap</code>函数来创建新的虚拟内存，并将对象映射到这些区域中</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/mman.h&gt;</span></span><br><br><span class="hljs-type">void</span> * <span class="hljs-title function_">mmap</span><span class="hljs-params">(<span class="hljs-type">void</span> *start, <span class="hljs-type">size_t</span> length, <span class="hljs-type">int</span> prot, <span class="hljs-type">int</span> flags, <span class="hljs-type">int</span> fd, <span class="hljs-type">off_t</span> offset)</span>;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">将文件描述符fd所表示的文件，从offset处开始的length字节大小的数据，以prot的访问权限和flags的方式，映射到最好再虚拟内存start处开始的区域</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">prot:</span><br><span class="hljs-comment">PROT_EXEC  该页面的区域可以被执行</span><br><span class="hljs-comment">PROT_READ  该页面区域可读</span><br><span class="hljs-comment">PROT_WRITE  ... 可写</span><br><span class="hljs-comment">PROT_NONE  ... 不能被访问</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">flags:</span><br><span class="hljs-comment">MAP_ANON    被映射的对象是一个匿名对象</span><br><span class="hljs-comment">MAP_PRIVATE    是一个私有对象，使用写时复制机制</span><br><span class="hljs-comment">MAP_SHARE    是一个共享对象</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">munmap</span><span class="hljs-params">(<span class="hljs-type">void</span> *start, <span class="hljs-type">size_t</span> length)</span>; <span class="hljs-comment">// 删除从虚拟地址start开始处的length字节，接下来对这些地址的引用将会导致段错误</span><br></code></pre></td></tr></table></figure>
-
 <p>例子：将任意磁盘文件赋值到<code>stdout</code> </p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;csapp.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">mmapcopy</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> size)</span><br>&#123;<br>    <span class="hljs-type">char</span> *bufp;<br><br>    <span class="hljs-comment">// load to virtual memory</span><br>    bufp = mmap(<span class="hljs-literal">NULL</span>, size, PROT_READ, MAP_PRIVATE, fd, <span class="hljs-number">0</span>);<br>    Write(STDOUT_FILENO, bufp, size);   <span class="hljs-comment">// write to stdout</span><br>    <span class="hljs-keyword">return</span> ;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stat</span> <span class="hljs-title">stat</span>;</span><br>    <span class="hljs-type">int</span> fd;<br><br>    <span class="hljs-keyword">if</span> (argc != <span class="hljs-number">2</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;usage: %s &lt;filename&gt;\n&quot;</span>, argv[<span class="hljs-number">0</span>]);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// open file </span><br>    fd = Open(argv[<span class="hljs-number">1</span>], O_RDONLY, <span class="hljs-number">0</span>);<br>    fstat(fd, &amp;stat);   <span class="hljs-comment">// get detailed message of file</span><br>    mmapcopy(fd, stat.st_size);     <span class="hljs-comment">// call mmapcopy</span><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -461,6 +467,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -209,7 +209,7 @@
         <h1 id="BallMove-基于Qt的GUI小项目"><a href="#BallMove-基于Qt的GUI小项目" class="headerlink" title="BallMove:基于Qt的GUI小项目"></a>BallMove:基于Qt的GUI小项目</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在暑假学科目二的时候，看着 <a target="_blank" rel="noopener" href="https://www.devbean.net/2012/08/qt-study-road-2-catelog/">Qt学习之路2</a> 学了Qt的绘制系统，做这个项目的初心就是用来巩固学到的Qt绘制系统。</p>
 <p>今天写下这篇博客，是为了记录下自己在这个项目中学到的东西，方便自己以后使用Qt的时候能够快速上手。</p>
 <p>这个项目基于<code>QGraphicsScene + QGraphicsItem + QGraphicsView</code>， 模拟了一个小球在现实世界中的运动。</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/cfla1638/BallMove">cfla1638&#x2F;BallMove</a> </p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/cfla1638/BallMove">cfla1638/BallMove</a> </p>
 <h2 id="设定"><a href="#设定" class="headerlink" title="设定"></a>设定</h2><p><strong>功能</strong>：实现了实心球的运动。</p>
 <p>考虑的因素有：</p>
 <ol>
@@ -219,11 +219,11 @@
 <li>空气阻力</li>
 </ol>
 <p><strong>细节：</strong></p>
-<p>该项目模拟了一个半径0.04米的实心钢铁球，其密度为 7850 kg &#x2F; m^3^ 。</p>
-<p>重力加速度为 9.8 m&#x2F;s^2^ 。</p>
+<p>该项目模拟了一个半径0.04米的实心钢铁球，其密度为 7850 kg / m^3^ 。</p>
+<p>重力加速度为 9.8 m/s^2^ 。</p>
 <p>静摩擦系数为 0.3。</p>
-<p>空气阻力使用公式：F &#x3D; 1&#x2F;2 * CρSv^2^ ，其中C取0.3，ρ取1.293，S取 3.14 * 0.04^2^ 。</p>
-<p>尺寸换算：1m &#x3D; 250px。</p>
+<p>空气阻力使用公式：F = 1/2 <em> CρSv^2^ ，其中C取0.3，ρ取1.293，S取 3.14 </em> 0.04^2^ 。</p>
+<p>尺寸换算：1m = 250px。</p>
 <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol>
 <li><p>Qt的绘制系统由<code>QGraphicsScene + QGraphicsItem + QGraphicsView</code> 相互配合使用。</p>
 <p><code>QGraphicsScene</code> 提供一个场景(Scene)，所有要显示的实体都可以放到这个场景中。</p>
@@ -234,23 +234,21 @@
 </li>
 <li><p><code>QTimer</code>类提供计时器功能，使用<code>timer.start(sec)</code> 功能开始计时，这里timer是一个<code>QTimer</code>类的一个对象，每经过sec时间后，timer就会发出一个<code>timeout()</code> 信号。</p>
 </li>
-<li><p>想要实现物体的运动，就要让物体的位置在每一帧里进行改变&#x2F;刷新（本程序的帧率是120），而<code>QGraphicsScene</code> 提供一个<code>advance()</code> 函数，该函数会调用所有在场景里的<code>QGraphicsItem</code> 对象的<code>advance()</code> 函数，因此我们只要每经过 1000 &#x2F; 120 毫秒 就调用一次<code>QGraphicsScene::advance()</code> 函数，就可以进行场景刷新，从而实现物体的运动。</p>
+<li><p>想要实现物体的运动，就要让物体的位置在每一帧里进行改变/刷新（本程序的帧率是120），而<code>QGraphicsScene</code> 提供一个<code>advance()</code> 函数，该函数会调用所有在场景里的<code>QGraphicsItem</code> 对象的<code>advance()</code> 函数，因此我们只要每经过 1000 / 120 毫秒 就调用一次<code>QGraphicsScene::advance()</code> 函数，就可以进行场景刷新，从而实现物体的运动。</p>
 </li>
-<li><p>每个<code>QGraphicsItem::advance(int phase)</code> 都会被一个<code>QGraphicsScene::advance()</code> 调用两次。在第一次时，Item已经准备好刷新，此时传入的phase &#x3D; 0。第二次<code>QGraphicsScene::advance()</code> 将phase  &#x3D; 1 传入函数并调用。</p>
-<p>基于此，我们只需要在phase &#x3D; 1是进行处理，phase &#x3D; 0 是我们什么也不做。否则我们程序的帧率会变成原来的二倍。</p>
+<li><p>每个<code>QGraphicsItem::advance(int phase)</code> 都会被一个<code>QGraphicsScene::advance()</code> 调用两次。在第一次时，Item已经准备好刷新，此时传入的phase = 0。第二次<code>QGraphicsScene::advance()</code> 将phase  = 1 传入函数并调用。</p>
+<p>基于此，我们只需要在phase = 1是进行处理，phase = 0 是我们什么也不做。否则我们程序的帧率会变成原来的二倍。</p>
 </li>
 <li><p>Qt 的坐标系统。在本程序中，我们用到了Qt的两套坐标。第一个是在<code>QGraphicsScene</code> 中的全局坐标系，它记录了每个<code>QGraphicsItem</code> 的位置。第二个是每个<code>QGraphicsItem</code> 对象都会有的本地坐标系。在我们绘制每个部件时，我们就会基于本地坐标系绘制。</p>
 </li>
 <li><p>每个继承了<code>QGraphicsItem</code> 的类都要重载以下四个函数。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function">QRectF <span class="hljs-title">boundingRect</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function">QPainterPath <span class="hljs-title">shape</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget = <span class="hljs-literal">nullptr</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">advance</span><span class="hljs-params">(<span class="hljs-type">int</span> phase)</span></span>;<br></code></pre></td></tr></table></figure>
-
 <p><code>boundingRect()</code> 返回一个包裹住<code>QGraphicsItem</code>  对象的矩形（比对象大一点或很多）。这个矩形使用的是全局坐标系，用于碰撞检测等功能。</p>
 <p><code>shape()</code> 返回图型的准确形状。如对于我们的小球来说，这个函数返回一个圆轨迹。</p>
 <p><code>void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr)</code> </p>
 <p>该函数一般由<code>QGraphicsScene</code> 自动调用，绘制该项目。</p>
 <p>这个函数一般这样写</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Ball::paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget)</span></span><br><span class="hljs-function"></span>&#123;<br>    painter-&gt;<span class="hljs-built_in">save</span>();    <span class="hljs-comment">// 保存画笔状态</span><br>  <br>    <span class="hljs-comment">//设置新的画笔状态</span><br>    painter-&gt;<span class="hljs-built_in">setRenderHint</span>(QPainter::Antialiasing);     <span class="hljs-comment">// 设置反走线（抗锯齿）</span><br>    painter-&gt;<span class="hljs-built_in">fillPath</span>(<span class="hljs-built_in">shape</span>(), Qt::blue);  <span class="hljs-comment">// 绘制图型</span><br><br>    painter-&gt;<span class="hljs-built_in">restore</span>();    <span class="hljs-comment">// 还原画笔状态</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>我们要保证该函数调用过之后，画笔的状态不被改变，因此使用save和restore。</p>
 <p><code>painter-&gt;fillPath(shape(), Qt::blue);</code> 这一行绘制我们在<code>shape()</code> 中返回的图型，在此之前我们可以设置画笔的状态。</p>
 </li>
@@ -261,9 +259,8 @@
 </li>
 </ol>
 <h2 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h2><p>首先来看一下运行效果：</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208220742986.png" alt="image-20220822074244433" data-caption="image-20220822074244433" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208220742986.png" alt="image-20220822074244433"></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">在这颗树中，一个类是另一个类的子树，就表示这个类是另一个类的私有对象<br>另外，这棵树也为我们展示了本项目的设计思路。<br>└─MainWindow<br>    ├─Controller<br>    │  ├─Ball<br>    │  ├─Balldata<br>    │  ├─Ground<br>    │  └─QGraphicsScene - Reference<br>    ├─QGraphicsScene<br>    └─QGraphicsView<br></code></pre></td></tr></table></figure>
-
 <p>自下而上，首先来看Controller下的三个类，</p>
 <p>Controller下有三个类，分别是Ball, Balldata, Ground，他们都是<code>QGraphicsItem</code> 的子类，分别对应运行结果中的蓝色小球，上面绿色的信息显示和下面黑色的地面。</p>
 <p>这三个类定义了自身的形状和他们的运动逻辑。以Ball为例，Ball类有四个上述提到的函数，用来绘制他的形状，还有记录它自身加速度和速度的私有类型。</p>
@@ -275,51 +272,41 @@
 <p>当程序开始执行时，首先执行MainWindow类的构造函数，分别构造QGraphicsScene，QGraphicsView和Controller。在Controller类进行构造时，Controller下的物体就被添加到了Scene中，程序也就开始运行了。当MainWindow下的对象都构造完成时。main.cpp 的<code>QMainWindow::show()</code> 和 <code>QApplication :: exec()</code> 函数分别将程序主窗口显示，并且开始程序的事件循环，接受事件，交给Controller进行处理。</p>
 <h2 id="项目实现"><a href="#项目实现" class="headerlink" title="项目实现"></a>项目实现</h2><h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><p>首先看一下我们的文件结构</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">BallMove<br>     - BallMove.pro<br>    Headers<br>     - ball.h<br>     - balldata.h<br>     - constants.h<br>     - controller.h<br>     - ground.h<br>     - mainwindow.h<br>    Sources<br>     - ball.cpp<br>     - balldata.cpp<br>     - controller.cpp<br>     - ground.cpp<br>     - main.cpp<br>     - mainwindow.cpp<br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="Ball类的实现"><a href="#Ball类的实现" class="headerlink" title="Ball类的实现"></a>Ball类的实现</h3><p>首先看一下ball类的实现</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Ball</span> : <span class="hljs-keyword">public</span> QGraphicsItem<br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Ball</span>(qreal x, qreal y);<br><br>    <span class="hljs-function">QRectF <span class="hljs-title">boundingRect</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br>    <span class="hljs-function">QPainterPath <span class="hljs-title">shape</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">advance</span><span class="hljs-params">(<span class="hljs-type">int</span> phase)</span></span>;<br>    <span class="hljs-function">QPointF <span class="hljs-title">getPos</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">pos</span>();&#125;<br><br>    <span class="hljs-type">int</span> forceCount = <span class="hljs-number">4</span>;<br>    qreal a[<span class="hljs-number">2</span>][<span class="hljs-number">4</span>];<br>    qreal vx = <span class="hljs-number">0</span>;<br>    qreal vy = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">protected</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget = <span class="hljs-literal">nullptr</span>)</span></span>;<br><br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <p>首先我们来看Ball类的私有变量：</p>
 <p>由于我们运动的平面是二维的，因此我们使用一个二维数组<code>qreal a[2][4]</code> 来存储加速度。其中qreal就是double类型。如果我们想要访问小球x方向的空气阻力产生的加速度，我们可以使用在constants.h 中定义的枚举类型，即<code>a[xAxis][AirResistance]</code> 。如果想要引用y方向的重力加速度，就使用<code>a[yAxis][Gravity]</code> 。</p>
 <p><code>qreal vx, vy</code> 即小球的x方向速度，和y方向的速度。</p>
 <p><code>int forceCount</code> 即我们考虑的力的数目，这个变量用于将这些力合成的时候进行计数。</p>
 <p>接着我们来看一下Ball类中声明的函数:</p>
 <p>第一个函数<code>getPos()</code>很好理解，即返回小球在全局坐标系中的坐标。</p>
-<p>接着我们仔细考察一下之前我们在基础知识部分介绍的四个函数：<code>paint() shape() advance() </code></p>
+<p>接着我们仔细考察一下之前我们在基础知识部分介绍的四个函数：<code>paint() shape() advance()</code></p>
 <p><code>boundingRect()</code> </p>
 <p><code>boundingRect</code> :</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function">QRectF <span class="hljs-title">Ball::boundingRect</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">QRectF</span>(-BALL_SIZE * <span class="hljs-number">2</span>, -BALL_SIZE * <span class="hljs-number">2</span>, BALL_SIZE * <span class="hljs-number">4</span>, BALL_SIZE * <span class="hljs-number">4</span>); <br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>QRectF类即矩形类，这个函数返回了一个包裹小球矩形。需要注意的是，这个矩形的坐标是在本地坐标系的坐标。</p>
 <p><code>BALL_SIZE</code> 定义在constants.h 代表小球的直径。</p>
 <p><code>shape()</code> :</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function">QPainterPath <span class="hljs-title">Ball::shape</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function"></span>&#123;<br>    QPainterPath path;<br>    path.<span class="hljs-built_in">addEllipse</span>(<span class="hljs-built_in">QPointF</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), BALL_SIZE / <span class="hljs-number">2</span>, BALL_SIZE / <span class="hljs-number">2</span>); <br>    <span class="hljs-keyword">return</span> path;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>这个函数返回了一个绘画轨迹类QPainterPath，并在里面添加了一个圆形轨迹。需要注意的是，这个坐标也是在小球本地坐标系中的。</p>
 <p><code>paint()</code> ：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Ball::paint</span><span class="hljs-params">(QPainter *painter, <span class="hljs-type">const</span> QStyleOptionGraphicsItem *option, QWidget *widget)</span></span><br><span class="hljs-function"></span>&#123;<br>    painter-&gt;<span class="hljs-built_in">save</span>();<br><br>    painter-&gt;<span class="hljs-built_in">setRenderHint</span>(QPainter::Antialiasing);     <span class="hljs-comment">// 设置反走线（抗锯齿）</span><br>    painter-&gt;<span class="hljs-built_in">fillPath</span>(<span class="hljs-built_in">shape</span>(), Qt::blue);<br><br>    painter-&gt;<span class="hljs-built_in">restore</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>在第五行设置了画笔的抗锯齿，紧接着下一行绘制了小球的准确形状。</p>
 <p><code>advance()</code> ：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Ball::advance</span><span class="hljs-params">(<span class="hljs-type">int</span> phase)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 只有phase为1时进行处理</span><br>    <span class="hljs-keyword">if</span> (!phase) <span class="hljs-keyword">return</span> ;<br><br>    <span class="hljs-comment">// 计算合力</span><br>    qreal sumAx = <span class="hljs-number">0</span>, sumAy = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; forceCount; i++)<br>    &#123;<br>        sumAx += a[xAxis][i];<br>        sumAy += a[yAxis][i];<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (sumAx) vx += (sumAx / FRAME_RATE);<br>    <span class="hljs-keyword">if</span> (sumAy) vy += (sumAy / FRAME_RATE);<br><br>    qreal x = <span class="hljs-built_in">fmod</span>(<span class="hljs-built_in">pos</span>().<span class="hljs-built_in">rx</span>() + vx / FRAME_RATE, <span class="hljs-number">1000</span>), y = <span class="hljs-built_in">fmod</span>(<span class="hljs-built_in">pos</span>().<span class="hljs-built_in">ry</span>() + vy / FRAME_RATE, <span class="hljs-number">1000</span>);<br><br>    <span class="hljs-comment">// 处理小球越界</span><br>    <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) x += <span class="hljs-number">1000</span>;<br>    <span class="hljs-keyword">if</span> (y &lt; BALL_SIZE / <span class="hljs-number">2</span>) y = BALL_SIZE / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-comment">// 设置新位置</span><br>    <span class="hljs-built_in">setPos</span>(<span class="hljs-built_in">QPointF</span>(x, y));<br>    <span class="hljs-built_in">update</span>();       <span class="hljs-comment">// 更新显示小球</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>由于我们设置了帧率为120帧，因此这个函数在每秒钟会被调用120次。</p>
 <p>在这个函数里，我们依次计算了小球受到的合力，改变了小球的速度，根据小球的速度对小球进行了移动。</p>
-<p>需要注意，一、因为我们的速度、加速度定义为m&#x2F;s和m&#x2F;s^2^。 因此我们在更新速度和位置时，要将速度和加速度除以帧率，这样经过120次调用，速度和加速度才改变了1s的量。</p>
+<p>需要注意，一、因为我们的速度、加速度定义为m/s和m/s^2^。 因此我们在更新速度和位置时，要将速度和加速度除以帧率，这样经过120次调用，速度和加速度才改变了1s的量。</p>
 <p>二、在设置了小球的位置之后，需要使用<code>update()</code> 函数更新小球的位置。</p>
 <h3 id="constants-h-参数存储文件"><a href="#constants-h-参数存储文件" class="headerlink" title="constants.h 参数存储文件"></a>constants.h 参数存储文件</h3><p>constants.h 文件中存放了项目的各种参数</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> FRAME_RATE = <span class="hljs-number">120</span>;         <span class="hljs-comment">// 帧率：120帧  帧率过低时碰撞会穿透地面</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> BALL_SIZE = <span class="hljs-number">20</span>;           <span class="hljs-comment">// 球的直径：20px</span><br><br><span class="hljs-comment">// 400 对应 112 重力</span><br><span class="hljs-comment">// 3000 对应 2450 重力</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> X_SPEED = <span class="hljs-number">1500</span>;           <span class="hljs-comment">// 左右键给球的加速度</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> Y_SPEED = <span class="hljs-number">3000</span>;           <span class="hljs-comment">// 上下键给球的加速度</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> FRICTION = <span class="hljs-number">735</span>;           <span class="hljs-comment">// 摩擦力大小</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> FRICTION_SENSITIVITY = <span class="hljs-number">2</span>;         <span class="hljs-comment">// 摩擦力敏感度，当速度的值大于此值时，小球受摩擦力</span><br><br><span class="hljs-comment">// 112 对应1.75 米的人</span><br><span class="hljs-comment">// 2450 对应 8cm 的实心球</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> GRAVITY = <span class="hljs-number">2450</span>;           <span class="hljs-comment">// 重力大小</span><br><span class="hljs-type">const</span> <span class="hljs-type">double</span> M = <span class="hljs-number">2.1038</span>;            <span class="hljs-comment">// 小球质量</span><br><br><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Directions</span>&#123;xAxis, yAxis&#125;;      <span class="hljs-comment">// x, y轴方向</span><br><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Force</span>&#123;User, Gravity, Friction, AirResistance&#125;;         <span class="hljs-comment">// 力的四个维度，用户给出的力，重力，摩擦力，空气阻力</span><br></code></pre></td></tr></table></figure>
-
 <p>需要注意是两个枚举类型，通过定义枚举类型，可以使用枚举变量引用数组元素，可读性更好。</p>
 <h3 id="Balldata-amp-ground"><a href="#Balldata-amp-ground" class="headerlink" title="Balldata &amp; ground"></a>Balldata &amp; ground</h3><p>这两个类都继承了<code>QGraphicsItem</code> 和Ball类类似，因此我们不在赘述。</p>
 <h3 id="Controller类"><a href="#Controller类" class="headerlink" title="Controller类"></a>Controller类</h3><p>首先看一下Controller类的定义</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Controller</span> : QObject<br>&#123;<br>    Q_OBJECT<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Controller</span>(QGraphicsScene &amp; scene, QObject * parent = <span class="hljs-number">0</span>);<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">track</span><span class="hljs-params">(<span class="hljs-type">bool</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">gravity</span><span class="hljs-params">()</span></span>;<br><br><span class="hljs-keyword">public</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">drawLineOfTrack</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">resume</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pause</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">advance</span><span class="hljs-params">()</span></span>;<br><br><span class="hljs-keyword">protected</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">eventFilter</span><span class="hljs-params">(QObject *atched, QEvent *event)</span></span>;<br><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleKeyPressed</span><span class="hljs-params">(QKeyEvent * event)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleKeyReleased</span><span class="hljs-params">(QKeyEvent * event)</span></span>;<br><br>    QTimer timer;<br>    Ball * ball;<br>    QGraphicsScene &amp; scene;<br>    Ground * ground;<br>    ballData * data;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <p>Controller类有以下几点功能：</p>
 <ul>
-<li><p>处理键盘事件：如上下左右移动，打开&#x2F;关闭 轨迹显示，清屏。</p>
+<li><p>处理键盘事件：如上下左右移动，打开/关闭 轨迹显示，清屏。</p>
 <p>相关地函数有：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">eventFilter</span><span class="hljs-params">(QObject *atched, QEvent *event)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleKeyPressed</span><span class="hljs-params">(QKeyEvent * event)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleKeyReleased</span><span class="hljs-params">(QKeyEvent * event)</span></span>;<br></code></pre></td></tr></table></figure>
 </li>
@@ -333,21 +320,19 @@
 </li>
 <li><p>其他功能</p>
 <p>相关地函数有：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">track</span><span class="hljs-params">(<span class="hljs-type">bool</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">gravity</span><span class="hljs-params">()</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">drawLineOfTrack</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">track</span><span class="hljs-params">(<span class="hljs-type">bool</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">gravity</span><span class="hljs-params">()</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">drawLineOfTrack</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>在这里我们只介绍<code>advance()</code> 函数</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Controller::advance</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    scene.<span class="hljs-built_in">advance</span>();                        <span class="hljs-comment">// 首先调用场景的advance()</span><br><br>    <span class="hljs-comment">// 获取碰撞信息</span><br>    <span class="hljs-type">static</span> <span class="hljs-type">bool</span> lastStatus = <span class="hljs-literal">false</span>;         <span class="hljs-comment">// 上一帧是否碰撞</span><br>    <span class="hljs-type">static</span> <span class="hljs-type">bool</span> nowStatus = <span class="hljs-literal">false</span>;          <span class="hljs-comment">// 当前是否处于碰撞</span><br>    nowStatus = ball-&gt;<span class="hljs-built_in">collidesWithItem</span>(ground);<br><br>    <span class="hljs-comment">//处理碰撞</span><br>    <span class="hljs-keyword">if</span> (nowStatus == <span class="hljs-literal">true</span> &amp;&amp; lastStatus == <span class="hljs-literal">false</span>)<br>    &#123;<br>        ball-&gt;a[yAxis][Gravity] = <span class="hljs-number">0</span>;        <span class="hljs-comment">// 碰撞时重力与支持力抵消</span><br>        ball-&gt;vy = -(ball-&gt;vy * <span class="hljs-number">0.667</span>);     <span class="hljs-comment">// 回弹 2/3 的速度</span><br>        ball-&gt;a[yAxis][User] = <span class="hljs-number">0</span>;           <span class="hljs-comment">// 竖直方向速度为0</span><br>    &#125;<br><br>    <span class="hljs-comment">// 处理摩擦力</span><br>    <span class="hljs-keyword">if</span> (nowStatus)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (ball-&gt;vx &gt; FRICTION_SENSITIVITY) ball-&gt;a[xAxis][Friction] = -FRICTION;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ball-&gt;vx &lt; -FRICTION_SENSITIVITY) ball-&gt;a[xAxis][Friction] = FRICTION;<br>        <span class="hljs-keyword">else</span> ball-&gt;a[xAxis][Friction] = <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 没有碰撞的时候</span><br>    <span class="hljs-keyword">if</span> (!nowStatus)<br>    &#123;<br>        <span class="hljs-comment">// 摩擦力置零</span><br>        ball-&gt;a[xAxis][Friction] = <span class="hljs-number">0</span>;<br>        ball-&gt;a[yAxis][Gravity] = GRAVITY;<br>    &#125;<br><br>    <span class="hljs-comment">// 处理空气阻力</span><br>    qreal sumV = <span class="hljs-built_in">pow</span>(ball-&gt;vx, <span class="hljs-number">2</span>) + <span class="hljs-built_in">pow</span>(ball-&gt;vy, <span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(sumV) &gt; <span class="hljs-number">10</span>)<br>    &#123;<br>        qreal airSum = <span class="hljs-number">0.0009744</span> * sumV / <span class="hljs-number">250</span>;<br>        <span class="hljs-keyword">if</span> (sumV == <span class="hljs-number">0</span>) sumV = <span class="hljs-number">1</span>;<br>        ball-&gt;a[xAxis][AirResistance] = (<span class="hljs-built_in">fabs</span>(ball-&gt;vx) / (<span class="hljs-built_in">sqrt</span>(sumV))) * airSum;<br>        ball-&gt;a[yAxis][AirResistance] = (<span class="hljs-built_in">fabs</span>(ball-&gt;vy) / (<span class="hljs-built_in">sqrt</span>(sumV))) * airSum;<br><br>        <span class="hljs-comment">// 将力换算成加速度</span><br>        ball-&gt;a[xAxis][AirResistance] /= M;<br>        ball-&gt;a[yAxis][AirResistance] /= M;<br><br>        <span class="hljs-keyword">if</span> (ball-&gt;vx &gt; <span class="hljs-number">5</span>) ball-&gt;a[xAxis][AirResistance] *= <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ball -&gt; vx &lt; <span class="hljs-number">10</span>) ;<br>        <span class="hljs-keyword">else</span> ball-&gt;a[xAxis][AirResistance] = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">if</span> (ball-&gt;vy &gt; <span class="hljs-number">5</span>) ball-&gt;a[yAxis][AirResistance] *= <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ball -&gt; vy &lt; <span class="hljs-number">10</span>) ;<br>        <span class="hljs-keyword">else</span> ball-&gt;a[yAxis][AirResistance] = <span class="hljs-number">0</span>;<br>    &#125;<br><br><br>    lastStatus = nowStatus;<br>    data-&gt;<span class="hljs-built_in">update</span>();                         <span class="hljs-comment">// 更新数据显示</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>由于每次更新，我们都要对碰撞进行检测，因此我们首先调用场景地advance函数。</p>
 <p>等运动结束之后，我们使用Qt地碰撞检测函数<code>collidesWithItem()</code>看小球是否接触地面。</p>
 <p>接着我们根据碰撞检测地结果，依次处理摩擦力和空气阻力。</p>
 <p>其实我们还可以将处理各种力地程序写到小球地advance()中，但为了让我们地程序更符合controller控的概念，我们为controller也添加了advance()函数，由它调用scene的advance()函数。</p>
 <h3 id="MainWindow-类"><a href="#MainWindow-类" class="headerlink" title="MainWindow 类"></a>MainWindow 类</h3><p>MainWindow类的代码如下</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MainWindow</span> : <span class="hljs-keyword">public</span> QMainWindow<br>&#123;<br>    Q_OBJECT<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MainWindow</span>(QWidget *parent = <span class="hljs-literal">nullptr</span>);<br>    ~<span class="hljs-built_in">MainWindow</span>();<br><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">adjustViewSize</span><span class="hljs-params">()</span></span>;<br><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">initScene</span><span class="hljs-params">()</span></span>;<br>    QGraphicsView * view;<br>    QGraphicsScene * scene;<br>    Controller * controller;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <p>唯一需要解释的函数是它的构造函数，其他的函数都会在构造函数里被调用。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">MainWindow::<span class="hljs-built_in">MainWindow</span>(QWidget *parent)<br>    : <span class="hljs-built_in">QMainWindow</span>(parent),<br>      <span class="hljs-built_in">scene</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsScene</span>(<span class="hljs-keyword">this</span>)),<br>      <span class="hljs-built_in">view</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsView</span>(scene, <span class="hljs-keyword">this</span>)),<br>      <span class="hljs-built_in">controller</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Controller</span>(*scene, <span class="hljs-keyword">this</span>))<br>&#123;<br>    <span class="hljs-built_in">setCentralWidget</span>(view);<br>    <span class="hljs-built_in">resize</span>(<span class="hljs-number">750</span>, <span class="hljs-number">750</span>);<br><br>    <span class="hljs-built_in">initScene</span>();<br>    QTimer::<span class="hljs-built_in">singleShot</span>(<span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">adjustViewSize</span>()));<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>在构造函数中，我们首先初始化了scene、view和controller，紧接着我们将view设为了窗口的<code>centralWidget</code> 并调整了窗口大小。</p>
 <p>在倒数第二步，调用<code>initScene</code> 对scene进行调整。</p>
 <p>以上的这些步骤都不会有什么问题，只有最后一步令人困惑：</p>
@@ -556,6 +541,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

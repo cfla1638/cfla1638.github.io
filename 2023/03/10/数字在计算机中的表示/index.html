@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$  函数B2Tw (Binary to Two’s-complement)为 $B2T_w &#x3D;">
+  <meta name="description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x{w-1},x{w-2},…,x_0]$  函数B2T~w~ (Binary to Two’s-complement)为 $B2Tw &#x3D; -x{w-1}2^{w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数字在计算机中的表示">
 <meta property="og:url" content="https://cfla1638.github.io/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$  函数B2Tw (Binary to Two’s-complement)为 $B2T_w &#x3D;">
+<meta property="og:description" content="整数的表示无符号数的原码即无符号数的二进制表示。 无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1} 补码定义 最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x{w-1},x{w-2},…,x_0]$  函数B2T~w~ (Binary to Two’s-complement)为 $B2Tw &#x3D; -x{w-1}2^{w">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png">
 <meta property="article:published_time" content="2023-03-10T01:18:52.000Z">
-<meta property="article:modified_time" content="2023-03-22T14:18:10.552Z">
+<meta property="article:modified_time" content="2023-03-22T14:57:56.146Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-22 22:18:10" itemprop="dateModified" datetime="2023-03-22T22:18:10+08:00">2023-03-22</time>
+                <time title="修改时间：2023-03-22 22:57:56" itemprop="dateModified" datetime="2023-03-22T22:57:56+08:00">2023-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,52 +209,53 @@
         <h2 id="整数的表示"><a href="#整数的表示" class="headerlink" title="整数的表示"></a>整数的表示</h2><h3 id="无符号数的原码"><a href="#无符号数的原码" class="headerlink" title="无符号数的原码"></a>无符号数的原码</h3><p>即无符号数的二进制表示。</p>
 <p>无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1}</p>
 <h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p><strong>定义</strong></p>
-<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$ </p>
-<p>函数B2T<del>w</del> (Binary to Two’s-complement)为</p>
-<p>$B2T_w &#x3D; -x_{w-1}2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}=[x<em>{w-1},x</em>{w-2},…,x_0]$ </p>
+<p>函数B2T~w~ (Binary to Two’s-complement)为</p>
+<p>$B2T<em>w = -x</em>{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
 <p><strong>补码快速求相反数的方法及证明</strong></p>
 <p>所有位全为1的补码的值为-1</p>
 <blockquote>
-<p>已知 $2^0+2^1+2^2+…+2^n&#x3D;2^{n+1}-1$ </p>
-<p>故$-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i&#x3D;-2^{w-1}+2^{w-1}-1&#x3D;-1$ </p>
+<p>已知 $2^0+2^1+2^2+…+2^n=2^{n+1}-1$ </p>
+<p>故$-2^{w-1}+\sum_{i=0}^{w-2}x_i2^i=-2^{w-1}+2^{w-1}-1=-1$ </p>
 </blockquote>
 <p>推论 快速求一个以补码表示的二进制数的相反数 </p>
 <blockquote>
 <p>$\bar{x}$ 为一个二进制数的反码</p>
 <p>因为 x 与$\bar{x}$ 相加是一个所有位全为1的补码</p>
-<p>故，$x+\bar{x}&#x3D;-1$ </p>
-<p>故，$-x&#x3D;\bar{x}+1$ </p>
+<p>故，$x+\bar{x}=-1$ </p>
+<p>故，$-x=\bar{x}+1$ </p>
 <p>结论：要快速求一个补码二进制数的相反数，只需求这个二进制数的反码（包括符号位，或者说补码并没有符号位一说），再加一</p>
 </blockquote>
 <p><strong>w位补码能表示的范围</strong></p>
 <p>一个w位二进制补码的范围：$[-2^{w-1},2^{w-1}-1]$ </p>
-<p>以一字节为例，最小的数是 1000 0000 &#x3D; -128，最大的数是 0111 1111 &#x3D; 127</p>
+<p>以一字节为例，最小的数是 1000 0000 = -128，最大的数是 0111 1111 = 127</p>
 <p>最小的负数的相反数是它本身：</p>
-<p>$-(-128) &#x3D; -(1000 0000)&#x3D;(0111 1111)+1 &#x3D; (1000 0000)&#x3D; -128$ </p>
+<p>$-(-128) = -(1000 0000)=(0111 1111)+1 = (1000 0000)= -128$ </p>
 <p><strong>符号扩展</strong></p>
 <p>对于一个4位补码， 1001 ，其值为 -7，如果将其扩展到8为，应使用符号扩展：</p>
 <p>即 1111 1001 其值为 -7</p>
 <blockquote>
 <p>符号扩展不改变补码值的证明</p>
 <p>对于正数显然成立，对于负数</p>
-<p>w位补码为其值为$2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p>w位补码为其值为$2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
 <p>符号扩展k位后，w+k位补码的值为</p>
-<p>$-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
-<p>$&#x3D;-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
-<p>$&#x3D;2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
+<p>$-2^{w+k-1}+\sum<em>{i=w}^{w+k-2}2^i+2^{w-1}+\sum</em>{i=0}^{w-2}x_i2^i$ </p>
+<p>$=-2^{w+k-1}+\sum<em>{i=w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum</em>{i=0}^{w-2}x_i2^i$</p>
+<p>$=2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$</p>
 </blockquote>
 <h3 id="原码和补码的相互转换"><a href="#原码和补码的相互转换" class="headerlink" title="原码和补码的相互转换"></a>原码和补码的相互转换</h3><ul>
-<li>原码转换成补码<br>正数原码转补码：正数的补码，与原码相同，例如，10的原码为00001010，补码也是00001010<br>负数原码转补码：负数的补码：符号位不变，其余各位按位取反，取反后整体加1<br>例如：-10的原码为10001010，符号位不变：1  0001010，其余位按位取反：1  1110101，取反后整体加1：11110101 + 1 &#x3D; 11110110</li>
-<li>补码转换成原码<br>正数补码转原码：补码的符号位为0，表示该补码的原码是一个正数，所以补码就是该数的原码，例如：补码为00001010，它的符号位是0，代表它是一个正数的补码，正数的原码就是补码，反正也成立，所以它的原码是00001010<br>负数原码转补码：补码的符号位为1，表示该补码的原码是一个负数，所以可以这样求负数的原码，符号位不变，其余各位按位取反，然后再整体加1，例如：补码：11110110，符号位不变：1 1110110，其余位按位取反：1 0001001，取反后整体加1：10001001 + 1 &#x3D; 10001010</li>
+<li>原码转换成补码<br>正数原码转补码：正数的补码，与原码相同，例如，10的原码为00001010，补码也是00001010<br>负数原码转补码：负数的补码：符号位不变，其余各位按位取反，取反后整体加1<br>例如：-10的原码为10001010，符号位不变：1  0001010，其余位按位取反：1  1110101，取反后整体加1：11110101 + 1 = 11110110</li>
+<li>补码转换成原码<br>正数补码转原码：补码的符号位为0，表示该补码的原码是一个正数，所以补码就是该数的原码，例如：补码为00001010，它的符号位是0，代表它是一个正数的补码，正数的原码就是补码，反正也成立，所以它的原码是00001010<br>负数原码转补码：补码的符号位为1，表示该补码的原码是一个负数，所以可以这样求负数的原码，符号位不变，其余各位按位取反，然后再整体加1，例如：补码：11110110，符号位不变：1 1110110，其余位按位取反：1 0001001，取反后整体加1：10001001 + 1 = 10001010</li>
 </ul>
 <h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="浮点数的一般表示"><a href="#浮点数的一般表示" class="headerlink" title="浮点数的一般表示"></a>浮点数的一般表示</h3><blockquote>
 <p>参考：</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%AF%E5%B0%8F%E6%95%B0%E8%A1%A5%E7%A0%81/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习_小数的补码_月老吃面包的博客-CSDN博客</a> </p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/纯小数补码/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习<em>小数的补码</em>月老吃面包的博客-CSDN博客</a> </p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4f8a1dc94e4f">浮点数的一般表示 - 简书 (jianshu.com)</a> </p>
 <p>一般会用补码表示浮点数的尾数，但网络上关于纯小数补码表示的讲解甚少。上课的时候老师也讲的不是很明白，因此花了好长时间查找资料。（百度还是比Bing能搜出来更有用的东西的！）</p>
 </blockquote>
 <p>浮点数一般表示方法如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -264,27 +265,33 @@
 <th>尾数</th>
 </tr>
 </thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
 </table>
+</div>
 <p>阶码和尾数既可以用原码也可以用补码表示。</p>
 <blockquote>
 <p>补充：有符号定点小数的表示</p>
 <p>有符号定点小数有一个符号位，小数点隐含在符号位之后，小数点之后的数叫做尾数。有符号定点小数既可以用原码表示，也可以用补码表示。原码情况下，通常表示为<code>s.010101...</code> 其中s为符号位，010101…为尾数。</p>
 <hr>
 <p>至于有符号定点小数的补码表示，首先要介绍补码的原理与作用，才能更好地理解有符号定点小数的补码表示。下面首先讨论有符号整数的补码表示</p>
-<p>在介绍补码概念之前，先介绍一下“模”的概念：“模”是指一个计量系统的计数范围，如过去计量粮食用的斗、时钟等。计算机也可以看成一个计量机器，因为计算机的字长是定长的，即存储和处理的位数是有限的，因此它也有一个计量范围，即都存在一个“模”。如：时钟的计量范围是0~11，模&#x3D;12。假设当前时针指向8点，而准确时间是6点，调整时间可有以下两种拨法：一种是倒拨2小时，即8-2&#x3D;6；另一种是顺拨10小时，8+10&#x3D;12+6&#x3D;6，即8-2&#x3D;8+10&#x3D;8+12-2(mod 12)．在12为模的系统里，加10和减2效果是一样的，因此凡是减2运算，都可以用加10来代替。若用一般公式可表示为：a-b&#x3D;a-b+mod&#x3D;a+mod-b。对“模”而言，2和10互为补数。实际上，以12为模的系统中，11和1，8和4，9和3，7和5，6和6都有这个特性，共同的特点是两者相加等于模。</p>
+<p>在介绍补码概念之前，先介绍一下“模”的概念：“模”是指一个计量系统的计数范围，如过去计量粮食用的斗、时钟等。计算机也可以看成一个计量机器，因为计算机的字长是定长的，即存储和处理的位数是有限的，因此它也有一个计量范围，即都存在一个“模”。如：时钟的计量范围是0~11，模=12。假设当前时针指向8点，而准确时间是6点，调整时间可有以下两种拨法：一种是倒拨2小时，即8-2=6；另一种是顺拨10小时，8+10=12+6=6，即8-2=8+10=8+12-2(mod 12)．在12为模的系统里，加10和减2效果是一样的，因此凡是减2运算，都可以用加10来代替。若用一般公式可表示为：a-b=a-b+mod=a+mod-b。对“模”而言，2和10互为补数。实际上，以12为模的系统中，11和1，8和4，9和3，7和5，6和6都有这个特性，共同的特点是两者相加等于模。</p>
 <p>补码的作用是化减法为加法：对于任何一个有模（mod）的计量系统，都可以化减法为加法。例如，将处在6点的钟表时针向后拨2点（减二），也可以将它向前拨10点（加十）。之所以可以这么做，就是因为-2与10关于12同余。对于一个n为二进制的计量系统，它的模（mod）为 2^n^ 。</p>
-<p>补码的原理是数学上的同余关系，若 (a - b) &#x2F; m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>。对于n 位定点整数（以n &#x3D; 4为例），负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （按照原码的解释方法，其真值为13），它们关于 2^4^ 同余（<code>13-(-3)=16</code>,16可以被2^4^ 整除）。</p>
+<p>补码的原理是数学上的同余关系，若 (a - b) / m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>。对于n 位定点整数（以n = 4为例），负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （按照原码的解释方法，其真值为13），它们关于 2^4^ 同余（<code>13-(-3)=16</code>,16可以被2^4^ 整除）。</p>
 <p>这也是为什么要取一个负数的补码，需要对它除了符号位以外的数按位取反再加1。（为什么补码的取法是按位取反再加一，以四位二进制数为例，四位二进制数的模为16，即<code>1111 + 0001</code>，<code>-0011</code> 表示-3。根据同余的定义，<code>(a-b)/m</code> 是一个整数，我们假设它为1，则有<code>a-b=m</code> ，则有<code>xxxx - (-0011)= 1111 + 0001</code>） 即，<code>xxxx = 1111-0011 + 0001</code> 而<code>1111-0011</code>的作用就是按位取反，因此补码的计算方法为对符号位意外的数按位取反再加一。补码的计算方法也可以简述为进制能表示的最大的数减去原码再加一）</p>
 <hr>
 <p>以上的讨论都是基于定点整数，下面我们来讨论有符号定点小数的补码表示</p>
 <hr>
-<p>定点纯小数计量系统的模为1，因此对于一个负数-x以及它的补码xc，有<code>xc - (-x) = mod, xc = mod - x = 1 - x</code> ，因此要求一个负小数的补码，可以将这个数在十进制下加一，再转换成二进制原码。例如-7&#x2F;8，加1为1&#x2F;8，1&#x2F;8 转换成二进制得到 1001。</p>
-<p>另一种更直接的获得负小数补码的方式是，将除符号位以外的位，按位取反，再加上 “1”。这里的“1”，并不是数值上的1，而是在最低位加1。例如，要求<code>-7/8</code>的补码，首先将其转化为原码表示，即<code>1111</code> (或写成<code>1.111</code>，有符号定点小数的小数点隐含在符号位之后) 。要求其补码，将处符号位以外的数按位取反，得到<code>1000</code> （或写成<code>1.000</code>）,再在最低为加1，得到<code>1001 </code>(或写成<code>1.001</code>) </p>
+<p>定点纯小数计量系统的模为1，因此对于一个负数-x以及它的补码xc，有<code>xc - (-x) = mod, xc = mod - x = 1 - x</code> ，因此要求一个负小数的补码，可以将这个数在十进制下加一，再转换成二进制原码。例如-7/8，加1为1/8，1/8 转换成二进制得到 1001。</p>
+<p>另一种更直接的获得负小数补码的方式是，将除符号位以外的位，按位取反，再加上 “1”。这里的“1”，并不是数值上的1，而是在最低位加1。例如，要求<code>-7/8</code>的补码，首先将其转化为原码表示，即<code>1111</code> (或写成<code>1.111</code>，有符号定点小数的小数点隐含在符号位之后) 。要求其补码，将处符号位以外的数按位取反，得到<code>1000</code> （或写成<code>1.000</code>）,再在最低为加1，得到<code>1001</code>(或写成<code>1.001</code>) </p>
 <hr>
-<p>对于一个负小数的补码  $sd_1d_2d_3…d_i$  或写成 $s.d_1d_2d_3…d_i$，它的每一个位可以这样解释，符号位解释为 s×-2^0^ （即s×1），数值位解释为 $d_i\times 2^{-i} (i&#x3D;1,2,3,…) $。</p>
-<p>它的真值为  $s\times (-2^0) + \sum_{i&#x3D;1}^{n}d_i\times2^{-i} $ </p>
+<p>对于一个负小数的补码  $sd_1d_2d_3…d_i$  或写成 $s.d_1d_2d_3…d_i$，它的每一个位可以这样解释，符号位解释为 s×-2^0^ （即s×1），数值位解释为 $d_i\times 2^{-i} (i=1,2,3,…) $。</p>
+<p>它的真值为  $s\times (-2^0) + \sum_{i=1}^{n}d_i\times2^{-i} $ </p>
 <hr>
-<p>对于n+1位有符号定点小数（n&#x3D;8）</p>
+<p>对于n+1位有符号定点小数（n=8）</p>
 <p>原码表示的最大和最小定点小数</p>
 <p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
 <p>最小正数<code>0.0000 0000</code> : 0</p>
@@ -297,8 +304,9 @@
 <p>最小负数<code>1.0000 0000</code> ：-1 </p>
 </blockquote>
 <p>浮点数的阶码和尾数，既可以使用原码表示，也可以使用补码表示。</p>
-<p>例如，浮点数 <code>25.125</code>，其原码的二进制表示为$11001.001 &#x3D; 1.1001001 × 2^4$ </p>
+<p>例如，浮点数 <code>25.125</code>，其原码的二进制表示为$11001.001 = 1.1001001 × 2^4$ </p>
 <p>如果用16位来表示这个浮点数，它的存储方式如下（阶码、尾数均为原码表示）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -308,13 +316,16 @@
 <th>尾数(9bit)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>0</td>
 <td>0 0100</td>
 <td>1</td>
 <td>1 0010 0100</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>为了提高精度，充分利用尾数的每一位，规格化浮点数应运而生。规格化浮点数的特点是尾数位最高有效位应为1。这样可以提高数据表示的精度，避免尾数位的浪费。</p>
 <p>例如，对于原码表示的浮点数，<code>1.100</code>为规格化浮点数，因为其尾数位最高位为1。</p>
 <p>对于补码表示的浮点数，<code>0.100</code>，它为规格化浮点数，因为其尾数位最高位为1。</p>
@@ -331,6 +342,7 @@
 </ul>
 <p>例如，浮点数 <code>25.125 = 1.1001001 × 2^4</code> 将其右规后，得到<code>0.11001001 × 2^5</code> </p>
 <p>表示为（阶码、尾数均为原码表示）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -340,18 +352,21 @@
 <th>尾数(9bit)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>0</td>
 <td>0 0101</td>
 <td>0</td>
 <td>1 1001 0010</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
 <p>IEEE 读作 eye-triple-ee</p>
 </blockquote>
 <p>IEEE 754是一种表示浮点数的标准，它以这种格式表示浮点数</p>
-<p>$V&#x3D;(-1)^s\times M\times 2^E$ </p>
+<p>$V=(-1)^s\times M\times 2^E$ </p>
 <p>其中s表示符号位</p>
 <p>M，表示尾数；E表示阶码。</p>
 <p>在IEEE 754中，有三种浮点数，分别是32位的单精度浮点数 float，和64位双精度浮点数double，以及80位浮点数，这里只介绍float 和double。</p>
@@ -362,10 +377,11 @@
 <p>规格化数的定义是浮点数的一种表示方式，使得尾数的最高有效位总是1。这样可以省略这一位，增加尾数的精度。规格化数有一个隐含的整数位1，所以尾数的范围是[1, 2)。</p>
 </blockquote>
 <p>在规格化数中，阶码不能全为0，也不能全为1。例如，有4位阶码，那么最小的阶码位0001，最大的阶码为1110。</p>
-<p>指数 E的计算方式如下，在规格化数中，E &#x3D; e - Bias，其中 e 是阶码的值，Bias是偏置值，对于一个k位长度的阶码，Bias的大小等于$2^{k-1}-1$。</p>
+<p>指数 E的计算方式如下，在规格化数中，E = e - Bias，其中 e 是阶码的值，Bias是偏置值，对于一个k位长度的阶码，Bias的大小等于$2^{k-1}-1$。</p>
 <p>M的大小位1 + 尾数表示的值。通过省略前置的1，可以多获得一个位来表示尾数，这个被省略的1也叫做隐含的1。 </p>
 <p>对于一个32位浮点数</p>
 <p>绝对值最小的规格化数</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -376,30 +392,34 @@
 <th>val</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>绝对值最小的规格化数</td>
 <td>0</td>
 <td>0000 0001</td>
 <td>0000 0000</td>
-<td>$2^{1-127}\times1.0&#x3D;2^{-126}$</td>
+<td>$2^{1-127}\times1.0=2^{-126}$</td>
 </tr>
 <tr>
 <td>绝对值最大的规格化数</td>
 <td>0</td>
 <td>1111 1110</td>
 <td>1111 1111 1111 1111 1111 111</td>
-<td>$2^{254-127}\times1.9999 &#x3D; 2^{127}\times 1.9999$</td>
+<td>$2^{254-127}\times1.9999 = 2^{127}\times 1.9999$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="非规格化数"><a href="#非规格化数" class="headerlink" title="非规格化数"></a>非规格化数</h4><blockquote>
 <p>根据我从网络上找到的信息，非规格化数是一种特殊的浮点数，它的指数位全为0，尾数位前没有隐含的1。非规格化数用于表示0和非常靠近0的数²³。</p>
 </blockquote>
-<p>非规格化数的阶码全为0，此时 E &#x3D; 1 - Bias, M &#x3D; 尾数表示的二进制数</p>
+<p>非规格化数的阶码全为0，此时 E = 1 - Bias, M = 尾数表示的二进制数</p>
 <p>非规格化数的左右有2：</p>
 <ol>
 <li>表示0，规格化数的M处于 1~2之间，无法表示 0，而非规格化数只要令尾数为0，就可以表示0了。注意，非规格化数有+0.0与-0.0。</li>
 <li>非规格化数可以相对均匀地表示十分接近于0的数。</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -410,7 +430,8 @@
 <th>值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>绝对值最小的非规格化数</td>
 <td>0</td>
 <td>0000 0000</td>
@@ -422,10 +443,12 @@
 <td>0</td>
 <td>0000 0000</td>
 <td>1111 1111 1111 1111 1111 111</td>
-<td>$2^{1-127}\times0.9999&#x3D;2^{-126}\times0.9999$</td>
+<td>$2^{1-127}\times0.9999=2^{-126}\times0.9999$</td>
 </tr>
-</tbody></table>
-<h4 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h4><h4 id="关于增长的均匀"><a href="#关于增长的均匀" class="headerlink" title="关于增长的均匀"></a>关于增长的均匀</h4><p>对于规格化数，其尾数每增长1，尾数绝对值增长<code>(0.0000 0000 0000 0000 0000 001)B</code> 而当尾数到达1，则会进位。实际的值的大小 &#x3D; 尾数乘以2^E^ ，随着E的增长，浮点数的值的增长速度也会变快，但E不变时，浮点数的增长就是均匀的。  </p>
+</tbody>
+</table>
+</div>
+<h4 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h4><h4 id="关于增长的均匀"><a href="#关于增长的均匀" class="headerlink" title="关于增长的均匀"></a>关于增长的均匀</h4><p>对于规格化数，其尾数每增长1，尾数绝对值增长<code>(0.0000 0000 0000 0000 0000 001)B</code> 而当尾数到达1，则会进位。实际的值的大小 = 尾数乘以2^E^ ，随着E的增长，浮点数的值的增长速度也会变快，但E不变时，浮点数的增长就是均匀的。  </p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="C-语言中的右移操作"><a href="#C-语言中的右移操作" class="headerlink" title="C 语言中的右移操作"></a>C 语言中的右移操作</h3><p><code>x &gt;&gt; k</code> 右移，分为逻辑右移和算数右移，</p>
 <p>逻辑右移在高有效位端补k个0，用于无符号数；</p>
 <p>算数右移在最高有效位端补k个最高有效位的值，用于有符号数。</p>
@@ -617,6 +640,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

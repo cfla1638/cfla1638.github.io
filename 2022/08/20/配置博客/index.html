@@ -215,13 +215,17 @@
 <li><p>调试：</p>
 <p><code>hexo server --debug</code> 在本地运行服务器程序，并将目录输出在shell中。该命令可用于在本地预览页面</p>
 </li>
-<li><p>修改&#x2F;发布博客 进行更新：</p>
+</ul>
+<ul>
+<li><p>修改/发布博客 进行更新：</p>
 <p><code>hexo clean</code> 清理缓存和public文件夹</p>
 <p><code>hexo g</code> generate，生成静态页面，该操作之后即可在本地预览。</p>
 <p><code>hexo d</code>  deploy，部署，即部署到GitHub上，该操作之后可以使用浏览器访问。</p>
 </li>
+</ul>
+<ul>
 <li><p>发布博客</p>
-<p><code>hexo new [layout] [title]</code> 使用layout，在_post&#x2F;title.md 的文件。使用这个命令而不是直接在文件夹里新建文件，是因为这样新建的文件有初始化的布局。</p>
+<p><code>hexo new [layout] [title]</code> 使用layout，在_post/title.md 的文件。使用这个命令而不是直接在文件夹里新建文件，是因为这样新建的文件有初始化的布局。</p>
 </li>
 </ul>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
@@ -229,9 +233,9 @@
 </ul>
 <p><strong>_config.yml :</strong></p>
 <ol>
-<li><p>配置 网站的标题、副标题、关键词、作者、语言、时区<img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114450.png" alt="image-20220821111147069" data-caption="image-20220821111147069" loading="lazy"> </p>
+<li><p>配置 网站的标题、副标题、关键词、作者、语言、时区<img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114450.png" alt="image-20220821111147069"> </p>
 </li>
-<li><p>部署设置，其中repository可以填ssh的链接（执行<code>git clone </code> 的链接），也可以填https的链接，https的链接在国内特别慢，一定要使用ssh的链接。<img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114595.png" alt="image-20220821111400429" data-caption="image-20220821111400429" loading="lazy"></p>
+<li><p>部署设置，其中repository可以填ssh的链接（执行<code>git clone</code> 的链接），也可以填https的链接，https的链接在国内特别慢，一定要使用ssh的链接。<img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114595.png" alt="image-20220821111400429"> </p>
 </li>
 </ol>
 <p><strong>_config.nexmoe.yml：</strong></p>
@@ -248,8 +252,7 @@
 </li>
 <li><p>配置分类和标签要像这样配置：</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">categories:<br><span class="hljs-bullet">-</span> Diary<br>tags:<br><span class="hljs-bullet">-</span> PS3<br><span class="hljs-bullet">-</span> Games<br></code></pre></td></tr></table></figure>
-
-<p>其中分类categories最好明确且只有一个，而标签tags可以有多个且没有顺序，详情请见<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter#%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE">这里</a></p>
+<p>其中分类categories最好明确且只有一个，而标签tags可以有多个且没有顺序，详情请见<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter#分类和标签">这里</a> </p>
 </li>
 </ol>
 <h2 id="widgets"><a href="#widgets" class="headerlink" title="widgets"></a>widgets</h2><ol>
@@ -447,6 +450,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

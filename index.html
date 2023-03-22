@@ -211,11 +211,12 @@
 <li>海明码的校验位长度有规定。</li>
 </ul>
 </blockquote>
-<p>海明码有n位数据和k位校验码组成n+k位，即p &#x3D; n + k。海明码可生成k位的指示码$G_kG_{k-1}…G_1$ </p>
+<p>海明码有n位数据和k位校验码组成n+k位，即p = n + k。海明码可生成k位的指示码$G<em>kG</em>{k-1}…G_1$ </p>
 <p><strong>☆ 海明码的生成：</strong> </p>
-<p>假如有4个要传输的数据位，即n&#x3D;4。</p>
+<p>假如有4个要传输的数据位，即n=4。</p>
 <p>海明码的校验位数k与数据位数n需满足：$2^k\ge n+1$（稍后解释） ，因此k取3。</p>
-<p>于是我们有4位数据位，3位校验位，共七位。将3位校验位放到第2^i-1^ （i&#x3D;1,2,3,…）位置上，数据位放到校验位的空隙中。如下表所示：</p>
+<p>于是我们有4位数据位，3位校验位，共七位。将3位校验位放到第2^i-1^ （i=1,2,3,…）位置上，数据位放到校验位的空隙中。如下表所示：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -229,8 +230,9 @@
 <th>7</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>数据位&#x2F;校验位(k表示校验位，n表示数据位)</td>
+<tbody>
+<tr>
+<td>数据位/校验位(k表示校验位，n表示数据位)</td>
 <td>k1</td>
 <td>k2</td>
 <td>n1</td>
@@ -249,13 +251,16 @@
 <td>1</td>
 <td>1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>接着计算校验位 k1, k2, k3</p>
-<p>根据使用的校验方式不同，选择不同的校验方式（奇校验 &#x2F; 偶校验），以偶校验为例：</p>
-<p>$k_1&#x3D;p_3\oplus p_5\oplus p_7&#x3D;0$ </p>
-<p>$k_2&#x3D;p_3\oplus p_6\oplus p_7&#x3D;1$</p>
-<p>$k_1&#x3D;p_5\oplus p_6\oplus p_7&#x3D;0$ </p>
+<p>根据使用的校验方式不同，选择不同的校验方式（奇校验 / 偶校验），以偶校验为例：</p>
+<p>$k_1=p_3\oplus p_5\oplus p_7=0$ </p>
+<p>$k_2=p_3\oplus p_6\oplus p_7=1$</p>
+<p>$k_1=p_5\oplus p_6\oplus p_7=0$ </p>
 <p>这样我们得到：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -269,8 +274,9 @@
 <th>7</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>数据位&#x2F;校验位(k表示校验位，n表示数据位)</td>
+<tbody>
+<tr>
+<td>数据位/校验位(k表示校验位，n表示数据位)</td>
 <td>k1</td>
 <td>k2</td>
 <td>n1</td>
@@ -289,14 +295,17 @@
 <td>1</td>
 <td>1</td>
 </tr>
-</tbody></table>
-<p>k<del>1</del> (001) 是 3 (011), 5 (101), 7 (111) 的偶校验位</p>
-<p>k<del>2</del> (010)是 3 (011), 6 (110), 7 (111) 的偶校验位</p>
-<p>k<del>3</del> (100) 是 5 (101), 6 (110), 7 (111) 的偶校验位</p>
-<p>每个校验位的生成方法可归纳如下：首先校验位和数据位的索引变化成二进制形式，因为校验位只出现在2^i-1^ （i&#x3D;1,2,3）的位置，因此校验位索引的二进制形式只有一个位置是1。对于其他的数据位，如果其索引的二进制形式的某个位置为1，且这个位置与某个校验位索引为1的位置相同，那么这个数据位就要参与这个校验位的生成。</p>
+</tbody>
+</table>
+</div>
+<p>k~1~ (001) 是 3 (011), 5 (101), 7 (111) 的偶校验位</p>
+<p>k~2~ (010)是 3 (011), 6 (110), 7 (111) 的偶校验位</p>
+<p>k~3~ (100) 是 5 (101), 6 (110), 7 (111) 的偶校验位</p>
+<p>每个校验位的生成方法可归纳如下：首先校验位和数据位的索引变化成二进制形式，因为校验位只出现在2^i-1^ （i=1,2,3）的位置，因此校验位索引的二进制形式只有一个位置是1。对于其他的数据位，如果其索引的二进制形式的某个位置为1，且这个位置与某个校验位索引为1的位置相同，那么这个数据位就要参与这个校验位的生成。</p>
 <p><strong>☆ 海明码的检验与校正：</strong> </p>
-<p>当我们收到一个带海明校验的数据，我们对所有的校验位进行校验，并将得到的结果作为指示位$G_kG_{k-1…G_1}$。</p>
+<p>当我们收到一个带海明校验的数据，我们对所有的校验位进行校验，并将得到的结果作为指示位$G<em>kG</em>{k-1…G_1}$。</p>
 <p>对于上面的例子</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -310,8 +319,9 @@
 <th>7</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>数据位&#x2F;校验位(k表示校验位，n表示数据位)</td>
+<tbody>
+<tr>
+<td>数据位/校验位(k表示校验位，n表示数据位)</td>
 <td>k1</td>
 <td>k2</td>
 <td>n1</td>
@@ -330,51 +340,32 @@
 <td>1</td>
 <td>1</td>
 </tr>
-</tbody></table>
-<p>$G_1 &#x3D; k_1\oplus p_3\oplus p_5\oplus p_7&#x3D;0$</p>
-<p>$G_2 &#x3D; k_2\oplus p_3\oplus p_6\oplus p_7&#x3D;0$</p>
-<p> $G_3 &#x3D; k_3\oplus p_5\oplus p_6\oplus p_7&#x3D;0$ </p>
-<p>由于$G_3 G_2 G_1&#x3D;000$ ，因此数据无误。</p>
-<p>若第六位出错，$G_3 G_2 G_1&#x3D;110$ 刚好指出了错误的位置，我们只要将第六位取反即可纠正。</p>
+</tbody>
+</table>
+</div>
+<p>$G_1 = k_1\oplus p_3\oplus p_5\oplus p_7=0$</p>
+<p>$G_2 = k_2\oplus p_3\oplus p_6\oplus p_7=0$</p>
+<p> $G_3 = k_3\oplus p_5\oplus p_6\oplus p_7=0$ </p>
+<p>由于$G_3 G_2 G_1=000$ ，因此数据无误。</p>
+<p>若第六位出错，$G_3 G_2 G_1=110$ 刚好指出了错误的位置，我们只要将第六位取反即可纠正。</p>
 <p><strong>☆ 海明码的原理^[1]^：</strong> </p>
 <ul>
 <li><p>海明码由n位数据位和k位校验位组成，校验位可以指出数据出现错误的地方。</p>
-<p>k位校验位可以表示 2^k^ 中状态，因此若要能指出每一位可能发生错误的地方，2^k^ &gt;&#x3D; n</p>
+<p>k位校验位可以表示 2^k^ 中状态，因此若要能指出每一位可能发生错误的地方，2^k^ &gt;= n</p>
 <p>又因为，校验位必须还可以表示数据没有出错的情况，因此校验位还要多出一个状态。</p>
-<p>综上，校验位数k和海明码数n需满足 2^k^ &gt;&#x3D; n+1</p>
+<p>综上，校验位数k和海明码数n需满足 2^k^ &gt;= n+1</p>
 </li>
 <li><p>海明码是如何分布的，为什么是这样分布的？</p>
-<p>海明校验码的k个校验位$k_1,k_2,…k_i,…,k_n$ 的第i位（i &#x3D; 1, 2, …, n）分别分布在第2^i-1^ 位上。</p>
-<p>这是因为，当k &#x3D; 3时，有一位校验位传输出错的话，则校验位与数据为进行奇偶校验的结果有3中，001，010，100，如果想要处理这种情况，只要令校验位位于001，010，100的位置就可以了。</p>
+<p>海明校验码的k个校验位$k_1,k_2,…k_i,…,k_n$ 的第i位（i = 1, 2, …, n）分别分布在第2^i-1^ 位上。</p>
+<p>这是因为，当k = 3时，有一位校验位传输出错的话，则校验位与数据为进行奇偶校验的结果有3中，001，010，100，如果想要处理这种情况，只要令校验位位于001，010，100的位置就可以了。</p>
 </li>
 <li><p>海明码如何能指出错误的位置，为什么？</p>
 <p>对于一个三位校验指示码$G_3G_2G_1$ ，</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>k1</td>
-<td>k2</td>
-<td>n1</td>
-<td>k3</td>
-<td>n2</td>
-<td>n3</td>
-<td>n4</td>
-</tr>
-</tbody></table>
-<p>G1等于1意味着001，011，111，101，必然有一个出错，因此$G_1&#x3D;p_1\oplus p_3\oplus p_5\oplus p_7$ 。</p>
-<p>同理，G2等于1意味着010，011，110，111，必有一个出错 ，即$G_2&#x3D;p_2\oplus p_3\oplus p_6\oplus p_7$ </p>
-<p>$G_3&#x3D;p_4\oplus p_5\oplus p_6\oplus p_7$ </p>
-<p>因此当n1出错时，G1&#x3D;1,G2&#x3D;1,G3&#x3D;0，即011B &#x3D; 3D，可以指出错误的位。</p>
+<p>| 1    | 2    | 3    | 4    | 5    | 6    | 7    |<br>| —— | —— | —— | —— | —— | —— | —— |<br>| k1   | k2   | n1   | k3   | n2   | n3   | n4   |</p>
+<p>G1等于1意味着001，011，111，101，必然有一个出错，因此$G_1=p_1\oplus p_3\oplus p_5\oplus p_7$ 。</p>
+<p>同理，G2等于1意味着010，011，110，111，必有一个出错 ，即$G_2=p_2\oplus p_3\oplus p_6\oplus p_7$ </p>
+<p>$G_3=p_4\oplus p_5\oplus p_6\oplus p_7$ </p>
+<p>因此当n1出错时，G1=1,G2=1,G3=0，即011B = 3D，可以指出错误的位。</p>
 <p>（参考文献 1 解释得更加详细！）</p>
 </li>
 </ul>
@@ -429,7 +420,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-22 22:18:10" itemprop="dateModified" datetime="2023-03-22T22:18:10+08:00">2023-03-22</time>
+                <time title="修改时间：2023-03-22 22:57:56" itemprop="dateModified" datetime="2023-03-22T22:57:56+08:00">2023-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -455,52 +446,53 @@
           <h2 id="整数的表示"><a href="#整数的表示" class="headerlink" title="整数的表示"></a>整数的表示</h2><h3 id="无符号数的原码"><a href="#无符号数的原码" class="headerlink" title="无符号数的原码"></a>无符号数的原码</h3><p>即无符号数的二进制表示。</p>
 <p>无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1}</p>
 <h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p><strong>定义</strong></p>
-<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}&#x3D;[x_{w-1},x_{w-2},…,x_0]$ </p>
-<p>函数B2T<del>w</del> (Binary to Two’s-complement)为</p>
-<p>$B2T_w &#x3D; -x_{w-1}2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}=[x<em>{w-1},x</em>{w-2},…,x_0]$ </p>
+<p>函数B2T~w~ (Binary to Two’s-complement)为</p>
+<p>$B2T<em>w = -x</em>{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
 <p><strong>补码快速求相反数的方法及证明</strong></p>
 <p>所有位全为1的补码的值为-1</p>
 <blockquote>
-<p>已知 $2^0+2^1+2^2+…+2^n&#x3D;2^{n+1}-1$ </p>
-<p>故$-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i&#x3D;-2^{w-1}+2^{w-1}-1&#x3D;-1$ </p>
+<p>已知 $2^0+2^1+2^2+…+2^n=2^{n+1}-1$ </p>
+<p>故$-2^{w-1}+\sum_{i=0}^{w-2}x_i2^i=-2^{w-1}+2^{w-1}-1=-1$ </p>
 </blockquote>
 <p>推论 快速求一个以补码表示的二进制数的相反数 </p>
 <blockquote>
 <p>$\bar{x}$ 为一个二进制数的反码</p>
 <p>因为 x 与$\bar{x}$ 相加是一个所有位全为1的补码</p>
-<p>故，$x+\bar{x}&#x3D;-1$ </p>
-<p>故，$-x&#x3D;\bar{x}+1$ </p>
+<p>故，$x+\bar{x}=-1$ </p>
+<p>故，$-x=\bar{x}+1$ </p>
 <p>结论：要快速求一个补码二进制数的相反数，只需求这个二进制数的反码（包括符号位，或者说补码并没有符号位一说），再加一</p>
 </blockquote>
 <p><strong>w位补码能表示的范围</strong></p>
 <p>一个w位二进制补码的范围：$[-2^{w-1},2^{w-1}-1]$ </p>
-<p>以一字节为例，最小的数是 1000 0000 &#x3D; -128，最大的数是 0111 1111 &#x3D; 127</p>
+<p>以一字节为例，最小的数是 1000 0000 = -128，最大的数是 0111 1111 = 127</p>
 <p>最小的负数的相反数是它本身：</p>
-<p>$-(-128) &#x3D; -(1000 0000)&#x3D;(0111 1111)+1 &#x3D; (1000 0000)&#x3D; -128$ </p>
+<p>$-(-128) = -(1000 0000)=(0111 1111)+1 = (1000 0000)= -128$ </p>
 <p><strong>符号扩展</strong></p>
 <p>对于一个4位补码， 1001 ，其值为 -7，如果将其扩展到8为，应使用符号扩展：</p>
 <p>即 1111 1001 其值为 -7</p>
 <blockquote>
 <p>符号扩展不改变补码值的证明</p>
 <p>对于正数显然成立，对于负数</p>
-<p>w位补码为其值为$2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
+<p>w位补码为其值为$2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
 <p>符号扩展k位后，w+k位补码的值为</p>
-<p>$-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$ </p>
-<p>$&#x3D;-2^{w+k-1}+\sum_{i&#x3D;w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
-<p>$&#x3D;2^{w-1}+\sum_{i&#x3D;0}^{w-2}x_i2^i$</p>
+<p>$-2^{w+k-1}+\sum<em>{i=w}^{w+k-2}2^i+2^{w-1}+\sum</em>{i=0}^{w-2}x_i2^i$ </p>
+<p>$=-2^{w+k-1}+\sum<em>{i=w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum</em>{i=0}^{w-2}x_i2^i$</p>
+<p>$=2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$</p>
 </blockquote>
 <h3 id="原码和补码的相互转换"><a href="#原码和补码的相互转换" class="headerlink" title="原码和补码的相互转换"></a>原码和补码的相互转换</h3><ul>
-<li>原码转换成补码<br>正数原码转补码：正数的补码，与原码相同，例如，10的原码为00001010，补码也是00001010<br>负数原码转补码：负数的补码：符号位不变，其余各位按位取反，取反后整体加1<br>例如：-10的原码为10001010，符号位不变：1  0001010，其余位按位取反：1  1110101，取反后整体加1：11110101 + 1 &#x3D; 11110110</li>
-<li>补码转换成原码<br>正数补码转原码：补码的符号位为0，表示该补码的原码是一个正数，所以补码就是该数的原码，例如：补码为00001010，它的符号位是0，代表它是一个正数的补码，正数的原码就是补码，反正也成立，所以它的原码是00001010<br>负数原码转补码：补码的符号位为1，表示该补码的原码是一个负数，所以可以这样求负数的原码，符号位不变，其余各位按位取反，然后再整体加1，例如：补码：11110110，符号位不变：1 1110110，其余位按位取反：1 0001001，取反后整体加1：10001001 + 1 &#x3D; 10001010</li>
+<li>原码转换成补码<br>正数原码转补码：正数的补码，与原码相同，例如，10的原码为00001010，补码也是00001010<br>负数原码转补码：负数的补码：符号位不变，其余各位按位取反，取反后整体加1<br>例如：-10的原码为10001010，符号位不变：1  0001010，其余位按位取反：1  1110101，取反后整体加1：11110101 + 1 = 11110110</li>
+<li>补码转换成原码<br>正数补码转原码：补码的符号位为0，表示该补码的原码是一个正数，所以补码就是该数的原码，例如：补码为00001010，它的符号位是0，代表它是一个正数的补码，正数的原码就是补码，反正也成立，所以它的原码是00001010<br>负数原码转补码：补码的符号位为1，表示该补码的原码是一个负数，所以可以这样求负数的原码，符号位不变，其余各位按位取反，然后再整体加1，例如：补码：11110110，符号位不变：1 1110110，其余位按位取反：1 0001001，取反后整体加1：10001001 + 1 = 10001010</li>
 </ul>
 <h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="浮点数的一般表示"><a href="#浮点数的一般表示" class="headerlink" title="浮点数的一般表示"></a>浮点数的一般表示</h3><blockquote>
 <p>参考：</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%AF%E5%B0%8F%E6%95%B0%E8%A1%A5%E7%A0%81/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习_小数的补码_月老吃面包的博客-CSDN博客</a> </p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/纯小数补码/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习<em>小数的补码</em>月老吃面包的博客-CSDN博客</a> </p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4f8a1dc94e4f">浮点数的一般表示 - 简书 (jianshu.com)</a> </p>
 <p>一般会用补码表示浮点数的尾数，但网络上关于纯小数补码表示的讲解甚少。上课的时候老师也讲的不是很明白，因此花了好长时间查找资料。（百度还是比Bing能搜出来更有用的东西的！）</p>
 </blockquote>
 <p>浮点数一般表示方法如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -510,27 +502,33 @@
 <th>尾数</th>
 </tr>
 </thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
 </table>
+</div>
 <p>阶码和尾数既可以用原码也可以用补码表示。</p>
 <blockquote>
 <p>补充：有符号定点小数的表示</p>
 <p>有符号定点小数有一个符号位，小数点隐含在符号位之后，小数点之后的数叫做尾数。有符号定点小数既可以用原码表示，也可以用补码表示。原码情况下，通常表示为<code>s.010101...</code> 其中s为符号位，010101…为尾数。</p>
 <hr>
 <p>至于有符号定点小数的补码表示，首先要介绍补码的原理与作用，才能更好地理解有符号定点小数的补码表示。下面首先讨论有符号整数的补码表示</p>
-<p>在介绍补码概念之前，先介绍一下“模”的概念：“模”是指一个计量系统的计数范围，如过去计量粮食用的斗、时钟等。计算机也可以看成一个计量机器，因为计算机的字长是定长的，即存储和处理的位数是有限的，因此它也有一个计量范围，即都存在一个“模”。如：时钟的计量范围是0~11，模&#x3D;12。假设当前时针指向8点，而准确时间是6点，调整时间可有以下两种拨法：一种是倒拨2小时，即8-2&#x3D;6；另一种是顺拨10小时，8+10&#x3D;12+6&#x3D;6，即8-2&#x3D;8+10&#x3D;8+12-2(mod 12)．在12为模的系统里，加10和减2效果是一样的，因此凡是减2运算，都可以用加10来代替。若用一般公式可表示为：a-b&#x3D;a-b+mod&#x3D;a+mod-b。对“模”而言，2和10互为补数。实际上，以12为模的系统中，11和1，8和4，9和3，7和5，6和6都有这个特性，共同的特点是两者相加等于模。</p>
+<p>在介绍补码概念之前，先介绍一下“模”的概念：“模”是指一个计量系统的计数范围，如过去计量粮食用的斗、时钟等。计算机也可以看成一个计量机器，因为计算机的字长是定长的，即存储和处理的位数是有限的，因此它也有一个计量范围，即都存在一个“模”。如：时钟的计量范围是0~11，模=12。假设当前时针指向8点，而准确时间是6点，调整时间可有以下两种拨法：一种是倒拨2小时，即8-2=6；另一种是顺拨10小时，8+10=12+6=6，即8-2=8+10=8+12-2(mod 12)．在12为模的系统里，加10和减2效果是一样的，因此凡是减2运算，都可以用加10来代替。若用一般公式可表示为：a-b=a-b+mod=a+mod-b。对“模”而言，2和10互为补数。实际上，以12为模的系统中，11和1，8和4，9和3，7和5，6和6都有这个特性，共同的特点是两者相加等于模。</p>
 <p>补码的作用是化减法为加法：对于任何一个有模（mod）的计量系统，都可以化减法为加法。例如，将处在6点的钟表时针向后拨2点（减二），也可以将它向前拨10点（加十）。之所以可以这么做，就是因为-2与10关于12同余。对于一个n为二进制的计量系统，它的模（mod）为 2^n^ 。</p>
-<p>补码的原理是数学上的同余关系，若 (a - b) &#x2F; m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>。对于n 位定点整数（以n &#x3D; 4为例），负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （按照原码的解释方法，其真值为13），它们关于 2^4^ 同余（<code>13-(-3)=16</code>,16可以被2^4^ 整除）。</p>
+<p>补码的原理是数学上的同余关系，若 (a - b) / m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>。对于n 位定点整数（以n = 4为例），负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （按照原码的解释方法，其真值为13），它们关于 2^4^ 同余（<code>13-(-3)=16</code>,16可以被2^4^ 整除）。</p>
 <p>这也是为什么要取一个负数的补码，需要对它除了符号位以外的数按位取反再加1。（为什么补码的取法是按位取反再加一，以四位二进制数为例，四位二进制数的模为16，即<code>1111 + 0001</code>，<code>-0011</code> 表示-3。根据同余的定义，<code>(a-b)/m</code> 是一个整数，我们假设它为1，则有<code>a-b=m</code> ，则有<code>xxxx - (-0011)= 1111 + 0001</code>） 即，<code>xxxx = 1111-0011 + 0001</code> 而<code>1111-0011</code>的作用就是按位取反，因此补码的计算方法为对符号位意外的数按位取反再加一。补码的计算方法也可以简述为进制能表示的最大的数减去原码再加一）</p>
 <hr>
 <p>以上的讨论都是基于定点整数，下面我们来讨论有符号定点小数的补码表示</p>
 <hr>
-<p>定点纯小数计量系统的模为1，因此对于一个负数-x以及它的补码xc，有<code>xc - (-x) = mod, xc = mod - x = 1 - x</code> ，因此要求一个负小数的补码，可以将这个数在十进制下加一，再转换成二进制原码。例如-7&#x2F;8，加1为1&#x2F;8，1&#x2F;8 转换成二进制得到 1001。</p>
-<p>另一种更直接的获得负小数补码的方式是，将除符号位以外的位，按位取反，再加上 “1”。这里的“1”，并不是数值上的1，而是在最低位加1。例如，要求<code>-7/8</code>的补码，首先将其转化为原码表示，即<code>1111</code> (或写成<code>1.111</code>，有符号定点小数的小数点隐含在符号位之后) 。要求其补码，将处符号位以外的数按位取反，得到<code>1000</code> （或写成<code>1.000</code>）,再在最低为加1，得到<code>1001 </code>(或写成<code>1.001</code>) </p>
+<p>定点纯小数计量系统的模为1，因此对于一个负数-x以及它的补码xc，有<code>xc - (-x) = mod, xc = mod - x = 1 - x</code> ，因此要求一个负小数的补码，可以将这个数在十进制下加一，再转换成二进制原码。例如-7/8，加1为1/8，1/8 转换成二进制得到 1001。</p>
+<p>另一种更直接的获得负小数补码的方式是，将除符号位以外的位，按位取反，再加上 “1”。这里的“1”，并不是数值上的1，而是在最低位加1。例如，要求<code>-7/8</code>的补码，首先将其转化为原码表示，即<code>1111</code> (或写成<code>1.111</code>，有符号定点小数的小数点隐含在符号位之后) 。要求其补码，将处符号位以外的数按位取反，得到<code>1000</code> （或写成<code>1.000</code>）,再在最低为加1，得到<code>1001</code>(或写成<code>1.001</code>) </p>
 <hr>
-<p>对于一个负小数的补码  $sd_1d_2d_3…d_i$  或写成 $s.d_1d_2d_3…d_i$，它的每一个位可以这样解释，符号位解释为 s×-2^0^ （即s×1），数值位解释为 $d_i\times 2^{-i} (i&#x3D;1,2,3,…) $。</p>
-<p>它的真值为  $s\times (-2^0) + \sum_{i&#x3D;1}^{n}d_i\times2^{-i} $ </p>
+<p>对于一个负小数的补码  $sd_1d_2d_3…d_i$  或写成 $s.d_1d_2d_3…d_i$，它的每一个位可以这样解释，符号位解释为 s×-2^0^ （即s×1），数值位解释为 $d_i\times 2^{-i} (i=1,2,3,…) $。</p>
+<p>它的真值为  $s\times (-2^0) + \sum_{i=1}^{n}d_i\times2^{-i} $ </p>
 <hr>
-<p>对于n+1位有符号定点小数（n&#x3D;8）</p>
+<p>对于n+1位有符号定点小数（n=8）</p>
 <p>原码表示的最大和最小定点小数</p>
 <p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
 <p>最小正数<code>0.0000 0000</code> : 0</p>
@@ -543,8 +541,9 @@
 <p>最小负数<code>1.0000 0000</code> ：-1 </p>
 </blockquote>
 <p>浮点数的阶码和尾数，既可以使用原码表示，也可以使用补码表示。</p>
-<p>例如，浮点数 <code>25.125</code>，其原码的二进制表示为$11001.001 &#x3D; 1.1001001 × 2^4$ </p>
+<p>例如，浮点数 <code>25.125</code>，其原码的二进制表示为$11001.001 = 1.1001001 × 2^4$ </p>
 <p>如果用16位来表示这个浮点数，它的存储方式如下（阶码、尾数均为原码表示）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -554,13 +553,16 @@
 <th>尾数(9bit)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>0</td>
 <td>0 0100</td>
 <td>1</td>
 <td>1 0010 0100</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>为了提高精度，充分利用尾数的每一位，规格化浮点数应运而生。规格化浮点数的特点是尾数位最高有效位应为1。这样可以提高数据表示的精度，避免尾数位的浪费。</p>
 <p>例如，对于原码表示的浮点数，<code>1.100</code>为规格化浮点数，因为其尾数位最高位为1。</p>
 <p>对于补码表示的浮点数，<code>0.100</code>，它为规格化浮点数，因为其尾数位最高位为1。</p>
@@ -577,6 +579,7 @@
 </ul>
 <p>例如，浮点数 <code>25.125 = 1.1001001 × 2^4</code> 将其右规后，得到<code>0.11001001 × 2^5</code> </p>
 <p>表示为（阶码、尾数均为原码表示）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -586,18 +589,21 @@
 <th>尾数(9bit)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>0</td>
 <td>0 0101</td>
 <td>0</td>
 <td>1 1001 0010</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
 <p>IEEE 读作 eye-triple-ee</p>
 </blockquote>
 <p>IEEE 754是一种表示浮点数的标准，它以这种格式表示浮点数</p>
-<p>$V&#x3D;(-1)^s\times M\times 2^E$ </p>
+<p>$V=(-1)^s\times M\times 2^E$ </p>
 <p>其中s表示符号位</p>
 <p>M，表示尾数；E表示阶码。</p>
 <p>在IEEE 754中，有三种浮点数，分别是32位的单精度浮点数 float，和64位双精度浮点数double，以及80位浮点数，这里只介绍float 和double。</p>
@@ -608,10 +614,11 @@
 <p>规格化数的定义是浮点数的一种表示方式，使得尾数的最高有效位总是1。这样可以省略这一位，增加尾数的精度。规格化数有一个隐含的整数位1，所以尾数的范围是[1, 2)。</p>
 </blockquote>
 <p>在规格化数中，阶码不能全为0，也不能全为1。例如，有4位阶码，那么最小的阶码位0001，最大的阶码为1110。</p>
-<p>指数 E的计算方式如下，在规格化数中，E &#x3D; e - Bias，其中 e 是阶码的值，Bias是偏置值，对于一个k位长度的阶码，Bias的大小等于$2^{k-1}-1$。</p>
+<p>指数 E的计算方式如下，在规格化数中，E = e - Bias，其中 e 是阶码的值，Bias是偏置值，对于一个k位长度的阶码，Bias的大小等于$2^{k-1}-1$。</p>
 <p>M的大小位1 + 尾数表示的值。通过省略前置的1，可以多获得一个位来表示尾数，这个被省略的1也叫做隐含的1。 </p>
 <p>对于一个32位浮点数</p>
 <p>绝对值最小的规格化数</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -622,30 +629,34 @@
 <th>val</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>绝对值最小的规格化数</td>
 <td>0</td>
 <td>0000 0001</td>
 <td>0000 0000</td>
-<td>$2^{1-127}\times1.0&#x3D;2^{-126}$</td>
+<td>$2^{1-127}\times1.0=2^{-126}$</td>
 </tr>
 <tr>
 <td>绝对值最大的规格化数</td>
 <td>0</td>
 <td>1111 1110</td>
 <td>1111 1111 1111 1111 1111 111</td>
-<td>$2^{254-127}\times1.9999 &#x3D; 2^{127}\times 1.9999$</td>
+<td>$2^{254-127}\times1.9999 = 2^{127}\times 1.9999$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="非规格化数"><a href="#非规格化数" class="headerlink" title="非规格化数"></a>非规格化数</h4><blockquote>
 <p>根据我从网络上找到的信息，非规格化数是一种特殊的浮点数，它的指数位全为0，尾数位前没有隐含的1。非规格化数用于表示0和非常靠近0的数²³。</p>
 </blockquote>
-<p>非规格化数的阶码全为0，此时 E &#x3D; 1 - Bias, M &#x3D; 尾数表示的二进制数</p>
+<p>非规格化数的阶码全为0，此时 E = 1 - Bias, M = 尾数表示的二进制数</p>
 <p>非规格化数的左右有2：</p>
 <ol>
 <li>表示0，规格化数的M处于 1~2之间，无法表示 0，而非规格化数只要令尾数为0，就可以表示0了。注意，非规格化数有+0.0与-0.0。</li>
 <li>非规格化数可以相对均匀地表示十分接近于0的数。</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -656,7 +667,8 @@
 <th>值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>绝对值最小的非规格化数</td>
 <td>0</td>
 <td>0000 0000</td>
@@ -668,10 +680,12 @@
 <td>0</td>
 <td>0000 0000</td>
 <td>1111 1111 1111 1111 1111 111</td>
-<td>$2^{1-127}\times0.9999&#x3D;2^{-126}\times0.9999$</td>
+<td>$2^{1-127}\times0.9999=2^{-126}\times0.9999$</td>
 </tr>
-</tbody></table>
-<h4 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h4><h4 id="关于增长的均匀"><a href="#关于增长的均匀" class="headerlink" title="关于增长的均匀"></a>关于增长的均匀</h4><p>对于规格化数，其尾数每增长1，尾数绝对值增长<code>(0.0000 0000 0000 0000 0000 001)B</code> 而当尾数到达1，则会进位。实际的值的大小 &#x3D; 尾数乘以2^E^ ，随着E的增长，浮点数的值的增长速度也会变快，但E不变时，浮点数的增长就是均匀的。  </p>
+</tbody>
+</table>
+</div>
+<h4 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h4><h4 id="关于增长的均匀"><a href="#关于增长的均匀" class="headerlink" title="关于增长的均匀"></a>关于增长的均匀</h4><p>对于规格化数，其尾数每增长1，尾数绝对值增长<code>(0.0000 0000 0000 0000 0000 001)B</code> 而当尾数到达1，则会进位。实际的值的大小 = 尾数乘以2^E^ ，随着E的增长，浮点数的值的增长速度也会变快，但E不变时，浮点数的增长就是均匀的。  </p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="C-语言中的右移操作"><a href="#C-语言中的右移操作" class="headerlink" title="C 语言中的右移操作"></a>C 语言中的右移操作</h3><p><code>x &gt;&gt; k</code> 右移，分为逻辑右移和算数右移，</p>
 <p>逻辑右移在高有效位端补k个0，用于无符号数；</p>
 <p>算数右移在最高有效位端补k个最高有效位的值，用于有符号数。</p>
@@ -750,35 +764,35 @@
 
       
           <h3 id="引入第三方库-（以OpenCV为例）"><a href="#引入第三方库-（以OpenCV为例）" class="headerlink" title="引入第三方库 （以OpenCV为例）"></a>引入第三方库 （以OpenCV为例）</h3><p>在右侧导航栏项目名称上右键，点击属性</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931479.png" alt="image-20230309191119122" data-caption="image-20230309191119122" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931479.png" alt="image-20230309191119122"> </p>
 <p>在VC++页面中，找到包含目录和库目录，将要引用的第三方库的<code>include</code>目录和二进制库文件分别添加到里面去。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931480.png" alt="image-20230309191325578" data-caption="image-20230309191325578" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931480.png" alt="image-20230309191325578"> </p>
 <p>具体地，以OpenCV 4.7为例，需要包含的目录有:</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931481.png" alt="image-20230309192108457" data-caption="image-20230309192108457" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931481.png" alt="image-20230309192108457"> </p>
 <p>最后在【链接器 → 输入】里面，指定具体需要用到的库</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931482.png" alt="image-20230309191425790" data-caption="image-20230309191425790" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931482.png" alt="image-20230309191425790"> </p>
 <h3 id="汇编语言环境-（MASM）"><a href="#汇编语言环境-（MASM）" class="headerlink" title="汇编语言环境 （MASM）"></a>汇编语言环境 （MASM）</h3><ul>
 <li><p>配置汇编项目</p>
 <blockquote>
 <p>1.创建一个 <strong>Visual C++</strong> <strong>空工程</strong> (Empty Project), 此时先不要添加汇编源文件。</p>
-<p>2.在 “解决方案浏览器” 视图中, 在项目名称上右击 —&gt; 选择 “<strong>生成自定义</strong>“ —&gt; 在弹出的 “Visual C++ 生成自定义项文件” 窗口中, 勾选 <code>masm(.targets, .props)</code> 项。</p>
-<p>​	<img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212518753.png" alt="image-20230319212518753" data-caption="image-20230319212518753" loading="lazy"> </p>
-<p><img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212601616.png" alt="image-20230319212601616" data-caption="image-20230319212601616" loading="lazy"> </p>
-<p>3.在 “解决方案浏览器” 视图中, 在项目名称上右击 —&gt; 选择 “属性” —&gt; 在左侧 “配置属性” 导航中 —&gt; 选择 “链接器” —&gt; “系统” —&gt; 在 “<strong>子系统</strong>“ 右侧下拉菜单中选择 “控制台(&#x2F;SUBSYSTEM:CONSOLE)” (注：VS2022已自动配置)</p>
+<p>2.在 “解决方案浏览器” 视图中, 在项目名称上右击 —-&gt; 选择 “<strong>生成自定义</strong>“ —-&gt; 在弹出的 “Visual C++ 生成自定义项文件” 窗口中, 勾选 <code>masm(.targets, .props)</code> 项。</p>
+<p>​    <img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212518753.png" alt="image-20230319212518753"> </p>
+<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212601616.png" alt="image-20230319212601616"> </p>
+<p>3.在 “解决方案浏览器” 视图中, 在项目名称上右击 —-&gt; 选择 “属性” —-&gt; 在左侧 “配置属性” 导航中 —-&gt; 选择 “链接器” —-&gt; “系统” —-&gt; 在 “<strong>子系统</strong>“ 右侧下拉菜单中选择 “控制台(/SUBSYSTEM:CONSOLE)” (注：VS2022已自动配置)</p>
 <p>4.添加汇编源代码 file.asm (添加 C++ 文件, 然后将后缀修改为 <code>.asm</code>), (这一步要放在最后, 否则可能会报错) 。</p>
 <p>5.如果是64位则要在项目属性→链接器→高级→程序入口点 里填上程序入口点，一般是main</p>
 </blockquote>
 </li>
 <li><p>引入依赖库</p>
 <blockquote>
-<p>1.链接器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —&gt; “链接器” —&gt; “常规” —&gt; “附加库目录” —&gt; “c:\Irvine”.</p>
-<p>2.链接器中添加 “附加依赖项”. 在 “解决方案资源管理器” 中, 项目名称上右击 —&gt; “链接器” —&gt; “输入” —&gt; “附加依赖项” —&gt; 主要包含库: user32.lib, Irvine32.lib, kernel32.Lib .</p>
-<p>3.汇编器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —&gt; “Microsoft Macro Assembler” —&gt; “General” —&gt; “Include Paths” —&gt; 添加库目录, 如 “c:\Irvine” (注意：此选项在添加 <code>.asm</code> 源文件后才出现).</p>
+<p>1.链接器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “链接器” —-&gt; “常规” —-&gt; “附加库目录” —-&gt; “c:\Irvine”.</p>
+<p>2.链接器中添加 “附加依赖项”. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “链接器” —-&gt; “输入” —-&gt; “附加依赖项” —-&gt; 主要包含库: user32.lib, Irvine32.lib, kernel32.Lib .</p>
+<p>3.汇编器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “Microsoft Macro Assembler” —-&gt; “General” —-&gt; “Include Paths” —-&gt; 添加库目录, 如 “c:\Irvine” (注意：此选项在添加 <code>.asm</code> 源文件后才出现).</p>
 </blockquote>
 </li>
 </ul>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>注意到，参考文献 2 中 还提到了一些其他的引入第三方库的方法。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Visual Studio 下配置第三方C&#x2F;C++库的方法 : <a target="_blank" rel="noopener" href="https://blog.csdn.net/yangfchn/article/details/85162934">https://blog.csdn.net/yangfchn/article/details/85162934</a></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Visual Studio 下配置第三方C/C++库的方法 : <a target="_blank" rel="noopener" href="https://blog.csdn.net/yangfchn/article/details/85162934">https://blog.csdn.net/yangfchn/article/details/85162934</a></p>
 <p>[2] VS配置OpenCV教程（超详细） : <a target="_blank" rel="noopener" href="https://blog.csdn.net/mars_xiaolei/article/details/78759041">https://blog.csdn.net/mars_xiaolei/article/details/78759041</a></p>
 <p>[3] Getting Started with MASM and Visual Studio 2022 : <a target="_blank" rel="noopener" href="http://www.asmirvine.com/gettingStartedVS2022/index.htm">http://www.asmirvine.com/gettingStartedVS2022/index.htm</a></p>
 
@@ -855,7 +869,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/456669273">论文作者名称中句号和逗号的意义可能因不同的引用格式而有所不同。一般来说，句号用于分隔作者的名和姓，逗号用于分隔多个作者</a><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/456669273">1</a>。例如：</p>
 <p>张三.李四,王五.赵六.</p>
 <p>表示有两个作者，分别是张三和王五，他们的名字是李四和赵六。</p>
-<p><a target="_blank" rel="noopener" href="https://www.xiegelunwen.com/article/chachong/05f0411947871274.html">如果你想了解更多关于参考文献著录规则的信息，你可以查看GB&#x2F;T 7714—2015《信息与文献：参考文献著录规则》</a><a target="_blank" rel="noopener" href="https://www.xiegelunwen.com/article/chachong/05f0411947871274.html">2</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.xiegelunwen.com/article/chachong/05f0411947871274.html">如果你想了解更多关于参考文献著录规则的信息，你可以查看GB/T 7714—2015《信息与文献：参考文献著录规则》</a><a target="_blank" rel="noopener" href="https://www.xiegelunwen.com/article/chachong/05f0411947871274.html">2</a>。</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98524815">论文中作者顺序也有一定的含义，通常反映了作者对论文的贡献大小</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98524815">3</a>。例如：</p>
 <p>张三.李四,王五.赵六*,刘七.钱八.</p>
 <p>表示第一个作者是张三，最后一个作者是刘七，通讯作者（负责联系编辑和审稿人）是王五。</p>
@@ -1197,7 +1211,7 @@
 </ul>
 <h2 id="洛克"><a href="#洛克" class="headerlink" title="洛克"></a>洛克</h2><ul>
 <li><p>认识论</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208111207303.png" alt="洛克的经验主义认识论" data-caption="洛克的经验主义认识论" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208111207303.png" alt="洛克的经验主义认识论"></p>
 <ul>
 <li><p>唯理论者认为清晰的概念使我们洞察实在的本质。从洛克到康德，标准的论证是说，对概念的洞见并不必然提供对实在的洞见。</p>
 </li>
@@ -1245,7 +1259,7 @@
 </li>
 </ul>
 <h2 id="休谟"><a href="#休谟" class="headerlink" title="休谟"></a>休谟</h2><ul>
-<li><p>认识论：彻底的&#x2F;激进的经验主义立场</p>
+<li><p>认识论：彻底的/激进的经验主义立场</p>
 <p>关于知识的起源：休谟在印象和观念之间做出了区分，印象包括外在知觉和内在知觉，观念被视作建立在这些印象之上的心灵图像。</p>
 <p>休谟认为存在两种知识：</p>
 <ol>
@@ -1342,15 +1356,15 @@
 <li>任何一个个人要从几乎已经成为自己天性的那种不成熟状态之中奋斗出来，都是很艰难的。他甚至于已经爱好它了，并且确实暂时还不能运用他自己的理智，因为人们从来都不允许他去做这种尝试。条例和公式这类他那天分的合理运用、或者不如说误用的机械产物，就是对终古长存的不成熟状态的一副脚梏。谁要是抛开它，也就不过是在极狭窄的沟渠上做了一次不可靠的跳跃而己，因为他并不习惯于这类自由的运动。因此就只有很少数的人才能通过自己精神的奋斗而摆脱不成熟的状态，并且从而迈出切实的步伐来。</li>
 <li>然而公众要启蒙自己，却是很可能的；只要允许他们自由，这还确实几乎是无可避免的。因为哪怕是在为广大人群所设立的保护者们中间，也总会发见一些有独立思想的人；他们自己在抛却了不成熟状态的羁绊之后，就会传播合理地估计自己的价值以及每个人的本分就在于思想其自身的那种精神。这里面特别值得注意的是：公众本来是被他们套上了这种羁绊的，但当他们的保护者（其本身是不可能有任何启蒙的）中竟有一些人鼓动他们的时候，此后却强迫保护者们自身也处于其中了；种下偏见是那么有害，因为他们终于报复了本来是他们的教唆者或者是他们教唆者的先行者的那些人。因而公众只能是很缓慢地获得启蒙。通过一场革命或许很可以实现推翻个人专制以及贪婪心和权势欲的压迫，但却绝不能实现思想方式的真正改革；而新的偏见也正如旧的一样，将会成为驾驭缺少思想的广大人群的圈套。</li>
 <li>然而，这一启蒙运动除了自由而外并不需要任何别的东西，而且还确乎是一切可以称之为自由的东西之中最无害的东西，那就是在一切事情上都有公开运用自己理性的自由。可是我却听到从四面八方都发出这样的叫喊：不许争辩！军官说：不许争辩，只许操练！税吏说：不许争辩，只许纳税。神甫说：不许争辩，只许信仰。（举世只有一位君主说：可以争辩，随便争多少，随便争什么，但是要听话！君主指普鲁士腓德烈大王）到处都有对自由的限制。</li>
-<li>然则，哪些限制是有碍启蒙的，哪些不是，反而是足以促进它的呢？–我回答说：必须永远有公开运用自己理性的自由，并且唯有它才能带来人类的启蒙。私下运用自己的理性往往会被限制得很狭隘，虽则不致因此而特别妨碍启蒙运动的进步。而我所理解的对自己理性的公开运用，则是指任何人作为学者在全部听众面前所能做的那种运用。一个人在其所受任的一定公职岗位或者职务上所能运用的自己的理性，我就称之为私下的运用。</li>
-<li>就涉及共同体利益的许多事物而言，则我们必须有一定的机器，共同体的一些成员必须靠它来保持纯粹的消极态度，以便他们由于一种人为的一致性而由政府引向公共的目的，或者至少也是防止破坏这一目的。在这上面确实是不容许有争辩的；而是人们必须服从。但是就该机器的这一部分同时也作为整个共同体的，乃至于作为世界公民社会的成员而论，从而也就是以一个学者的资格通过写作面向严格意义上的公众时，则他是绝对可以争辩的，而不致因此就有损于他作为一个消极的成员所从事的那种事业。因此，一个服役的军官在接受他的上级交下某项命令肘，竟抗声争辩这项命令的合目的性或者有用性，那就会非常坏事；他必须服从。但是他作为学者而对军事业务上的错误进行评论并把它提交给公众来作判断时，就不能公开地加以禁止了。公民不能拒绝缴纳规定于他的税额；对所加给他的这类赋税惹事生非地擅行责难，甚至可以当作诽谤（这可能引起普遍的反抗）而加以惩处。然而这同一个人作为一个学者公开发表自己的见解，抗议这种课税的不适宜与不正当不一样，他的行动并没有违背公民的义务。同样地，一个牧师也有义务按照他所服务的那个教会的教义向他的教义问答班上的学生们和他的会众们作报告，因为他是根据这一条件才被批准的。但是作为一个学者，他却有充分自由、甚至于有责任，把他经过深思熟虑有关那种教义的缺点的全部善意的意见以及关于更好地组织宗教团体和教会团体的建议传达给公众。这里面并没有任何可以给他的良心增添负担的东西。因为他把作为一个教会工作者由于自己职务的关系而讲授的东西，当作是某种他自己并没有自由的权力可以按照自己的心意进行讲授的东西；他是受命根据别人的指示并以别人的名义选行讲述的。他将要说：我们的教会教导这些或那些；这里就是他们所引用的论据。于是，他就从他自己不会以完全的信服而赞同、虽则他很可以使自己负责进行宣讲的那些条文中–因为并非是完全不可能其中也隐藏着真理，而且无论如何至少其中不会发见有任何与内心宗教相违背的东西，–为他的听众引绎出全部的实用价值来。因为如果他相信其中可以发见任何与内心宗教相违背的东西，那么他就不能根据良心而尽自己的职务了，他就必须辞职。一个就任的宣教师之向他的会众运用自己的理性，纯粹是一种私下的运用；因为那往往只是一种家庭式的聚会，不管是多大的聚会；而在这方面他作为一个牧师是并不自由的，而且也不能是自由的，因为他是在传达别人的委托。反之，作为一个学者通过自己的著作而向真正的公众亦即向全世界讲话时，则牧师在公开运用他的理性上便享有无限的自由可以使用他自己的理性，并以他自己本人的名义发言。因为人民（在精神事务上）的保护者而其本身居然也不成熟，那便可以归结为一种荒谬性，一种永世长存的荒谬性了。</li>
+<li>然则，哪些限制是有碍启蒙的，哪些不是，反而是足以促进它的呢？—我回答说：必须永远有公开运用自己理性的自由，并且唯有它才能带来人类的启蒙。私下运用自己的理性往往会被限制得很狭隘，虽则不致因此而特别妨碍启蒙运动的进步。而我所理解的对自己理性的公开运用，则是指任何人作为学者在全部听众面前所能做的那种运用。一个人在其所受任的一定公职岗位或者职务上所能运用的自己的理性，我就称之为私下的运用。</li>
+<li>就涉及共同体利益的许多事物而言，则我们必须有一定的机器，共同体的一些成员必须靠它来保持纯粹的消极态度，以便他们由于一种人为的一致性而由政府引向公共的目的，或者至少也是防止破坏这一目的。在这上面确实是不容许有争辩的；而是人们必须服从。但是就该机器的这一部分同时也作为整个共同体的，乃至于作为世界公民社会的成员而论，从而也就是以一个学者的资格通过写作面向严格意义上的公众时，则他是绝对可以争辩的，而不致因此就有损于他作为一个消极的成员所从事的那种事业。因此，一个服役的军官在接受他的上级交下某项命令肘，竟抗声争辩这项命令的合目的性或者有用性，那就会非常坏事；他必须服从。但是他作为学者而对军事业务上的错误进行评论并把它提交给公众来作判断时，就不能公开地加以禁止了。公民不能拒绝缴纳规定于他的税额；对所加给他的这类赋税惹事生非地擅行责难，甚至可以当作诽谤（这可能引起普遍的反抗）而加以惩处。然而这同一个人作为一个学者公开发表自己的见解，抗议这种课税的不适宜与不正当不一样，他的行动并没有违背公民的义务。同样地，一个牧师也有义务按照他所服务的那个教会的教义向他的教义问答班上的学生们和他的会众们作报告，因为他是根据这一条件才被批准的。但是作为一个学者，他却有充分自由、甚至于有责任，把他经过深思熟虑有关那种教义的缺点的全部善意的意见以及关于更好地组织宗教团体和教会团体的建议传达给公众。这里面并没有任何可以给他的良心增添负担的东西。因为他把作为一个教会工作者由于自己职务的关系而讲授的东西，当作是某种他自己并没有自由的权力可以按照自己的心意进行讲授的东西；他是受命根据别人的指示并以别人的名义选行讲述的。他将要说：我们的教会教导这些或那些；这里就是他们所引用的论据。于是，他就从他自己不会以完全的信服而赞同、虽则他很可以使自己负责进行宣讲的那些条文中—因为并非是完全不可能其中也隐藏着真理，而且无论如何至少其中不会发见有任何与内心宗教相违背的东西，—为他的听众引绎出全部的实用价值来。因为如果他相信其中可以发见任何与内心宗教相违背的东西，那么他就不能根据良心而尽自己的职务了，他就必须辞职。一个就任的宣教师之向他的会众运用自己的理性，纯粹是一种私下的运用；因为那往往只是一种家庭式的聚会，不管是多大的聚会；而在这方面他作为一个牧师是并不自由的，而且也不能是自由的，因为他是在传达别人的委托。反之，作为一个学者通过自己的著作而向真正的公众亦即向全世界讲话时，则牧师在公开运用他的理性上便享有无限的自由可以使用他自己的理性，并以他自己本人的名义发言。因为人民（在精神事务上）的保护者而其本身居然也不成熟，那便可以归结为一种荒谬性，一种永世长存的荒谬性了。</li>
 <li>然则一种牧师团体、一种教会会议或者一种可敬的教门法院（就象他们在荷兰人中间所自称的那样），是不是有权宣誓他们自己之间对某种不变的教义负有义务，以便对其每一个成员并且由此也就是对全体人民进行永不中辍的监护，甚至于使之永恒化呢？我要说：这是完全不可能的。这样一项向人类永远封锁住了任何进一步启蒙的契约乃是绝对无效的，哪怕它被最高权力、被国会和最庄严的和平条约所确认。一个时代决不能使自己负有义务并从而发誓，要把后来的时代置于一种决没有可能扩大自己的（尤其是十分迫切的）认识、清除错误以及一般地在启蒙中继续进步的状态之中。这会是一种违反人性的犯罪行为，人性本来的天职恰好就在于这种进步；因此后世就完全有权拒绝这种以毫无根据而且是犯罪的方式所采取的规定。</li>
-<li>凡是一个民族可以总结为法律的任何东西，其试金石都在于这样一个问题：一个民族是不是可以把这样一种法律加之于其自身？它可能在一个有限的短时期之内就好像是在期待着另一种更好的似的，为的是好实行一种制度，使得每一个公民而尤其是牧师都能有自由以学者的身份公开地，也就是通过著作，对现行组织的缺点发表自己的言论。这种新实行的制度将要一直延续下去，直到对这类事情性质的洞见已经是那么公开地到来并且得到了证实，以致于通过他们联合（即使是并不一致）的呼声而可以向王位提出建议，以便对这一依据他们更好的洞见的概念而结合成另一种已经改变了的宗教组织加以保护，而又不致于妨碍那些仍愿保留在旧组织之中的人们。但是统一成一个固定不变的、没有人能够（哪怕在一个人的整个一生中）公开加以怀疑的宗教体制，从而也就犹如消灭了人类朝着改善前进的整整一个时代那样，并由此给后代造成损害，使得他们毫无收获，–这却是绝对不能容许的。一个人确实可以为了他本人并且也只是在一段时间之内，推迟对自己有义务加以认识的事物的启蒙；然而迳行放弃它，那就无论是对他本人，而更其是对于后代，都可以说是违反而且践踏人类的神圣权利了。</li>
+<li>凡是一个民族可以总结为法律的任何东西，其试金石都在于这样一个问题：一个民族是不是可以把这样一种法律加之于其自身？它可能在一个有限的短时期之内就好像是在期待着另一种更好的似的，为的是好实行一种制度，使得每一个公民而尤其是牧师都能有自由以学者的身份公开地，也就是通过著作，对现行组织的缺点发表自己的言论。这种新实行的制度将要一直延续下去，直到对这类事情性质的洞见已经是那么公开地到来并且得到了证实，以致于通过他们联合（即使是并不一致）的呼声而可以向王位提出建议，以便对这一依据他们更好的洞见的概念而结合成另一种已经改变了的宗教组织加以保护，而又不致于妨碍那些仍愿保留在旧组织之中的人们。但是统一成一个固定不变的、没有人能够（哪怕在一个人的整个一生中）公开加以怀疑的宗教体制，从而也就犹如消灭了人类朝着改善前进的整整一个时代那样，并由此给后代造成损害，使得他们毫无收获，—这却是绝对不能容许的。一个人确实可以为了他本人并且也只是在一段时间之内，推迟对自己有义务加以认识的事物的启蒙；然而迳行放弃它，那就无论是对他本人，而更其是对于后代，都可以说是违反而且践踏人类的神圣权利了。</li>
 <li>而人民对于他们本身都不能规定的事，一个君主就更加不可以对他的人民规定了；因为他的立法威望全靠他把全体人民的意志结合为他自己的意志。只要他注意使一切真正的或号称的改善都与公民秩序结合在一起，那么此外他就可以把他的臣民发觉对自己灵魂得教所必须做的事情留给他们自己去做；这与他无关，虽则他必须防范任何人以强力妨碍别人根据自己的全部才能去做出这种决定并促进这种得救。如果他干预这种事，要以政府的监督来评判他的臣民借以亮明他们自己的见识的那些作品；以及如他凭自己的最高观点来这样做，而使自己受到Caesarnon estt supragrammaticos（凯撒并不高于文法学家）的这种责难；那就会有损于他的威严。如果他把自己的最高权力降低到竟至去支持自己国内的一些暴君对他其余的臣民实行精神专制主义的时候，那就更加每况愈下了。</li>
 <li>如果现在有人问：我们目前是不是生活在一个启蒙了的时代？那么回答就是：并不是，但确实是在一个启蒙运动的时代。目前的情形是，要说人类总的说来已经处于，或者是仅仅说已经被置于，一种不需别人引导就能够在宗教的事情上确切地而又很好地使用自己的理智的状态了，则那里面还缺乏许多东西。可是现在领域已经对他们开放了，他们可以自由地在这上面工作了，而且对普遍启蒙的、或者说对摆脱自己所加给自己的不成熟状态的障碍也逐渐地减少了；关于这些我们都有着明确的信号。就这方面考虑，这个时代乃是启蒙的时代，或者说乃是腓德烈的世纪。</li>
 <li>一个不以如下说法为与自己不相称的国君：他认为自己的义务就是要在宗教事务方面决不对人们加以任何规定，而是让他们有充分的自由，但他又甚至谢绝宽容这个高傲的名称；这位国君本人就是启蒙了的，并且配得上被天下后世满怀感激之忱尊之为率先使得人类，至少从政权方面而言，脱离了不成熟状态，并使每个人在任何有关良心的事务上都能自由地运用自身所固有的理性。在他的治下，可敬的牧师们可以以学者的身份自由地并且公开地把自己在这里或那里偏离了既定教义的各种判断和见解都提供给全世界来检验，而又无损于自己的职责：至于另外那些不受任何职责约束的人，那就更加是如此了。这种自由精神也要向外扩展，甚至于扩展到必然会和误解了其自身的那种政权这一外部阻碍发生冲突的地步。因为它对这种政权树立了一个范例，即自由并不是一点也不关怀公共的安宁和共同体的团结一致的。只有当人们不再有意地想方设法要把人类保持在野蛮状态的时候，人类才会由于自己的努力而使自己从其中慢慢地走出来。</li>
 <li>我把启蒙运动的重点，亦即人类摆脱他们所加之于其自身的不成熟状态，主要是放在宗教事务方面，因为我们的统治者在艺术和科学方面并没有向他们的臣民尽监护之责的兴趣；何况这一不成熟状态既是一切之中最有害的而又是最可耻的一种。但是，一个庇护艺术与科学的国家首领，他的思想方式就要更进一步了，他洞察到：即使是在他的立法方面，容许他的臣民公开运用他们自身的理性，公开向世上提出他们对于更好地编篡法律、甚至于是直言无讳地批评现行法律的各种见解，那也不会有危险的。在这方面，我们有着一个光辉的典范，我们所尊敬的这位君主（指普鲁士腓德烈大王）就是没有别的君主能够超越的。</li>
-<li>但是只有那位其本身是启蒙了的、不怕幽灵的而同时手中又掌握着训练精良的大量军队可以保障公共安宁的君主，才能够说出一个自由国家所不敢说的这种话：可以争辩，随便争多少，随便争什么；但是必须听话。这就标志着人间事务的一种可惊异的、不能意料的进程；正犹如当我们对它从整体上加以观察时，其中就几乎一切都是悖论那样。程度更大的公民自由仿佛是有利于人民精神的自由似的，然而它却设下了不可逾越的限度；反之，程度较小的公民自由却为每个人发挥自己的才能开辟了余地。因为当大自然在这种坚硬的外壳之下打开了为她所极为精心照料着的幼芽时，也就是要求思想自由的倾向与任务时，它也就要逐步地反作用于人民的心灵面貌（从而他们慢慢地就能掌握自由）；并且终于还会反作用于政权原则，使之发见按照人的尊严–人并不仅仅是机器而已–去看待人，也是有利于政权本身的。</li>
+<li>但是只有那位其本身是启蒙了的、不怕幽灵的而同时手中又掌握着训练精良的大量军队可以保障公共安宁的君主，才能够说出一个自由国家所不敢说的这种话：可以争辩，随便争多少，随便争什么；但是必须听话。这就标志着人间事务的一种可惊异的、不能意料的进程；正犹如当我们对它从整体上加以观察时，其中就几乎一切都是悖论那样。程度更大的公民自由仿佛是有利于人民精神的自由似的，然而它却设下了不可逾越的限度；反之，程度较小的公民自由却为每个人发挥自己的才能开辟了余地。因为当大自然在这种坚硬的外壳之下打开了为她所极为精心照料着的幼芽时，也就是要求思想自由的倾向与任务时，它也就要逐步地反作用于人民的心灵面貌（从而他们慢慢地就能掌握自由）；并且终于还会反作用于政权原则，使之发见按照人的尊严—人并不仅仅是机器而已—去看待人，也是有利于政权本身的。</li>
 <li>1784年9月30日，于普鲁士哥尼斯堡（刘伟录自《历史理性批判文集》）</li>
 </ul>
 
@@ -1422,14 +1436,11 @@
       
           <h1 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h1><p>最典型的<code>placement new</code> 的签名如下：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> * <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">(std::<span class="hljs-type">size_t</span>, <span class="hljs-type">void</span> * pMemory)</span> <span class="hljs-title">throw</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
-
 <p><code>placement new</code> 就得名于这个最典型的new。</p>
 <p>下面这个程序将展示这种<code>placement new</code> 的用法：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;new&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">obj</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">obj</span>() &#123;num = <span class="hljs-number">233</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> </span>&#123;cout &lt;&lt; num &lt;&lt; endl;&#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> num;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(obj);<br>    obj * p = (obj *)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (obj));<br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    obj * t = <span class="hljs-built_in">new</span>(p) <span class="hljs-built_in">obj</span>();       <span class="hljs-comment">// placement new : 在一片已分配但未使用的区域调用构造函数</span><br>    p-&gt;<span class="hljs-built_in">print</span>();<br>    cout &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; t;        <span class="hljs-comment">// p 和 t的值相同，说明placement new 的返回值就是p</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>运行结果如下：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-number">411689296</span><br><span class="hljs-number">233</span><br><span class="hljs-number">0xb25fb0</span> <span class="hljs-number">0xb25fb0</span><br></code></pre></td></tr></table></figure>
-
 <p>当最初使用malloc时，<code>obj</code>的构造函数并没有被调用，因此<code>num</code>的值是垃圾值，当使用<code>placement new</code>之后，在原位置调用了构造函数，因此<code>num</code>的值变为了233，而这个<code>placement new</code>的返回值也就是我们传入的那个<code>rawMemory</code></p>
 
       
@@ -1491,7 +1502,7 @@
       
           <h1 id="在vscode中配置cmake"><a href="#在vscode中配置cmake" class="headerlink" title="在vscode中配置cmake"></a>在vscode中配置cmake</h1><h2 id="配置includePath"><a href="#配置includePath" class="headerlink" title="配置includePath"></a>配置includePath</h2><p>vscode的静态语法检查是 intellisense 完成的，想要使它能搜寻到指定的includePath需要这要做：</p>
 <ol>
-<li>ctrl p，输入c&#x2F;c++ edit configurations(JSON)，这会在本地的<code>./vscode/</code>下创建<code>c_cpp_properties.json</code> 在includePath里面添加上自己的include path即可</li>
+<li>ctrl p，输入c/c++ edit configurations(JSON)，这会在本地的<code>./vscode/</code>下创建<code>c_cpp_properties.json</code> 在includePath里面添加上自己的include path即可</li>
 </ol>
 <h2 id="配置generator"><a href="#配置generator" class="headerlink" title="配置generator"></a>配置generator</h2><p>首先 ctrl+p，输入settings.json，点击 “首选项：打开工作区设置(JSON)”。</p>
 <p>此操作会创建 <code>./vscode/settings.json</code> 在此文件中加入<code>&quot;cmake.generator&quot; : &quot;MinGW Makefiles&quot;</code> 根据不同的系统，配置不同的generator。</p>
@@ -1572,7 +1583,7 @@
           <h1 id="cmake-学习之路"><a href="#cmake-学习之路" class="headerlink" title="cmake 学习之路"></a>cmake 学习之路</h1><blockquote>
 <p>参考链接</p>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/58949190/answer/999701073">CMake 如何入门？ - 知乎 (zhihu.com)</a> </p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ttroy50/cmake-examples">ttroy50&#x2F;cmake-examples: Useful CMake Examples (github.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ttroy50/cmake-examples">ttroy50/cmake-examples: Useful CMake Examples (github.com)</a> </p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Kprogram/article/details/126010833">超详细的cmake入门教程【转载】_Korpse的博客-CSDN博客_cmake 教程</a> </p>
 </blockquote>
 <h2 id="01-basic"><a href="#01-basic" class="headerlink" title="01-basic"></a>01-basic</h2><h3 id="A-hello-cmake"><a href="#A-hello-cmake" class="headerlink" title="A-hello cmake"></a>A-hello cmake</h3><p>概念：</p>
@@ -1604,61 +1615,63 @@
 <p>将生成的二进制文件单独放在一个文件夹中，这样比较整洁</p>
 <p>具体的方法是（Linux） </p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mkdir build <br>cd build <br>cmake ..<br>make<br></code></pre></td></tr></table></figure>
-
 <p>在 window上的方法是</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mkdir build <br>cd build <br>cmake -G &quot;MinGW Makefiles&quot; ..<br>cmake ..<br>make<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mkdir build <br>cd build <br>cmake -G &quot;MinGW Makefiles&quot; ..<br>cmake ..<br>make<br></code></pre></td></tr></table></figure>
+</li>
 </ol>
 <h3 id="B-hello-headers"><a href="#B-hello-headers" class="headerlink" title="B hello headers"></a>B hello headers</h3><p>将头文件和源文件分离编译</p>
 <p>我们有一个include目录和一个src目录</p>
 <p>CMakeLists.txt ：</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># Set the minimum version of CMake that can be used</span><br><span class="hljs-comment"># To find the cmake version run</span><br><span class="hljs-comment"># $ cmake --version</span><br><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.5</span>)<br><br><span class="hljs-comment"># Set the project name</span><br><span class="hljs-keyword">project</span> (hello_headers)<br><br><span class="hljs-comment"># Create a sources variable with a link to all cpp files to compile</span><br><span class="hljs-keyword">set</span>(SOURCES<br>    src/Hello.cpp<br>    src/main.cpp<br>)<br><br><span class="hljs-comment"># Add an executable with the above sources</span><br><span class="hljs-keyword">add_executable</span>(hello_headers <span class="hljs-variable">$&#123;SOURCES&#125;</span>)<br><br><span class="hljs-comment"># Set the directories that should be included in the build command for this target</span><br><span class="hljs-comment"># when running g++ these will be included as -I/directory/path/</span><br><span class="hljs-keyword">target_include_directories</span>(hello_headers<br>    PRIVATE <br>        <span class="hljs-variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="hljs-keyword">include</span><br>)<br></code></pre></td></tr></table></figure>
-
 <p> 有两个需要注意的点：</p>
 <ol>
 <li><p>首先我们使用了set函数，将源文件甚至为了其内容，<code>add_executable()</code> 函数的第二个参数也使用该变量。</p>
 </li>
-<li><p>使用了<code>target_include_directories</code> 函数，这个函数的文档[在这里](<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/target_include_directories.html">target_include_directories — CMake 3.0.2 Documentation</a>) ，需要注意的是，这个函数必须在我们已经添加了源文件或库之后才能使用。否则会构建失败。</p>
+<li><p>使用了<code>target_include_directories</code> 函数，这个函数的文档<a href="[target_include_directories — CMake 3.0.2 Documentation](https://cmake.org/cmake/help/v3.0/command/target_include_directories.html">在这里</a>) ，需要注意的是，这个函数必须在我们已经添加了源文件或库之后才能使用。否则会构建失败。</p>
 <p>详见文档</p>
 <blockquote>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">target_include_directories</span>(&lt;<span class="hljs-keyword">target</span>&gt; [SYSTEM] [BEFORE]<br>  &lt;INTERFACE|PUBLIC|PRIVATE&gt; [items1...]<br>  [&lt;INTERFACE|PUBLIC|PRIVATE&gt; [items2...] ...])<br></code></pre></td></tr></table></figure>
-
 <p>Specify include directories or targets to use when compiling a given target. The named <code>&lt;target&gt;</code> must have been created by a command such as <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/add_executable.html#command:add_executable"><code>add_executable()</code></a> or <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/command/add_library.html#command:add_library"><code>add_library()</code></a> and must not be an <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.0/prop_tgt/IMPORTED.html#prop_tgt:IMPORTED"><code>IMPORTED</code></a> target.</p>
 </blockquote>
 </li>
 </ol>
 <p>附：cmake 预先定义的一些变量</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">Variable</th>
-<th align="left">Info</th>
+<th style="text-align:left">Variable</th>
+<th style="text-align:left">Info</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">CMAKE_SOURCE_DIR</td>
-<td align="left">The root source directory</td>
+<tbody>
+<tr>
+<td style="text-align:left">CMAKE_SOURCE_DIR</td>
+<td style="text-align:left">The root source directory</td>
 </tr>
 <tr>
-<td align="left">CMAKE_CURRENT_SOURCE_DIR</td>
-<td align="left">The current source directory if using sub-projects and directories.</td>
+<td style="text-align:left">CMAKE_CURRENT_SOURCE_DIR</td>
+<td style="text-align:left">The current source directory if using sub-projects and directories.</td>
 </tr>
 <tr>
-<td align="left">PROJECT_SOURCE_DIR</td>
-<td align="left">The source directory of the current cmake project.</td>
+<td style="text-align:left">PROJECT_SOURCE_DIR</td>
+<td style="text-align:left">The source directory of the current cmake project.</td>
 </tr>
 <tr>
-<td align="left">CMAKE_BINARY_DIR</td>
-<td align="left">The root binary &#x2F; build directory. This is the directory where you ran the cmake command.</td>
+<td style="text-align:left">CMAKE_BINARY_DIR</td>
+<td style="text-align:left">The root binary / build directory. This is the directory where you ran the cmake command.</td>
 </tr>
 <tr>
-<td align="left">CMAKE_CURRENT_BINARY_DIR</td>
-<td align="left">The build directory you are currently in.</td>
+<td style="text-align:left">CMAKE_CURRENT_BINARY_DIR</td>
+<td style="text-align:left">The build directory you are currently in.</td>
 </tr>
 <tr>
-<td align="left">PROJECT_BINARY_DIR</td>
-<td align="left">The build directory for the current project.</td>
+<td style="text-align:left">PROJECT_BINARY_DIR</td>
+<td style="text-align:left">The build directory for the current project.</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -1772,15 +1785,13 @@
 <p><strong>默认模板实参</strong></p>
 <p>可以像函数形参一样，提供一个默认参数。</p>
 <p>对于类模板，就算我们需要使用默认模板实参，我们也不能省略尖括号。</p>
-<p><code>templateType&lt;&gt; foo;		// 使用默认模板实参</code> </p>
+<p><code>templateType&lt;&gt; foo;        // 使用默认模板实参</code> </p>
 <p><strong>成员模板</strong> </p>
 <p>可以将类模板或普通类的成员函数声明称模板</p>
 <p>普通类：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span><br>&#123;<br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mem</span><span class="hljs-params">(<span class="hljs-type">const</span> T &amp;)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>类模板</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span><br>&#123;<br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> It&gt; <span class="hljs-built_in">base</span>(It begin, It end);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="模板作用域"><a href="#模板作用域" class="headerlink" title="模板作用域"></a>模板作用域</h3><p>模板参数遵循普通的作用域规则，一个模板参数的可用范围在其声明之后，至模板声明或定义结束之前。模板参数会隐藏外层作用域中声明相同的名字。</p>
 <blockquote>
 <p>使用类的类型和类的静态成员：</p>
@@ -1793,9 +1804,6 @@
 <p>因此我们需要显式控制模板实例化</p>
 <p>形式</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">template</span> chass&lt;string&gt;;<br></code></pre></td></tr></table></figure>
-
-
-
 <h2 id="模板实参推断"><a href="#模板实参推断" class="headerlink" title="模板实参推断"></a>模板实参推断</h2><p>对于传递给模板类型参数的实参，编译器可以选择对实参进行类型转换，也可以不进行类型转换直接生成新的模板。</p>
 <blockquote>
 <p>对于非类型的参数，会进行</p>
@@ -1807,26 +1815,15 @@
 </ul>
 <p>特殊情况：因为模板不会进行算数转换，如果一个函数的两个参数使用一个模板形参。即使，传递的实参可以转换成一个类型，调用也会报错：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> T &amp;, <span class="hljs-type">const</span> T &amp;)</span></span>;<br><span class="hljs-type">long</span> lint = <span class="hljs-number">456</span>;<br><span class="hljs-built_in">cmp</span>(<span class="hljs-number">123</span>, lint);    <span class="hljs-comment">// 错误，类型不匹配</span><br></code></pre></td></tr></table></figure>
-
 <p>这是我们可以这样处理</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T1, <span class="hljs-keyword">typename</span> T2&gt;<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> T1 &amp;, <span class="hljs-type">const</span> T2 &amp;)</span></span>;<br></code></pre></td></tr></table></figure>
-
 <h3 id="函数模板显式指定模板参数"><a href="#函数模板显式指定模板参数" class="headerlink" title="函数模板显式指定模板参数"></a>函数模板显式指定模板参数</h3><p>放在函数名之后，模板名之前，靠右的模板参数如果可以通过实参推断出来，则可以省略。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T1, <span class="hljs-keyword">typename</span> T2, <span class="hljs-keyword">typename</span> T3&gt;<br><span class="hljs-function">T1 <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> T2 &amp;, <span class="hljs-type">const</span> T3 &amp;)</span></span>;<br><span class="hljs-built_in">cmp</span>&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;(<span class="hljs-number">20</span>, <span class="hljs-number">30</span>);    <span class="hljs-comment">// T1被显式指定，T2、T3自动推断</span><br></code></pre></td></tr></table></figure>
-
-
-
 <p>显式指定参数之后，模板函数即可执行正常的类型转换</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> T &amp;, <span class="hljs-type">const</span> T &amp;)</span></span>;<br><span class="hljs-type">long</span> lint = <span class="hljs-number">456</span>;<br><span class="hljs-built_in">cmp</span>(<span class="hljs-number">123</span>, lint);    <span class="hljs-comment">// 错误，类型不匹配</span><br><span class="hljs-built_in">cmp</span>&lt;<span class="hljs-type">long</span>&gt;(<span class="hljs-number">123</span>, lint);  <span class="hljs-comment">// 正确，显式指定模板类型参数之后就可以执行正常的类型转换了。</span><br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="尾置返回类型"><a href="#尾置返回类型" class="headerlink" title="尾置返回类型"></a>尾置返回类型</h3><p>当返回类型需要传入的实参，经过<code>decltype</code> 推断后得出时，我们遇到了一个问题，在写返回类型时，形参还没有被创建。</p>
 <p>针对这种情况，我们可以使用尾置返回类型，将返回类型放在参数列表后面</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> It&gt;<br><span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">func</span><span class="hljs-params">(It beg, It end)</span> -&gt; <span class="hljs-title">decltype</span><span class="hljs-params">(*beg)</span></span>;<br></code></pre></td></tr></table></figure>
-
-
-
 <p><code>省略608 - 613 关于右值引用 和 转发</code></p>
 <h2 id="模板重载"><a href="#模板重载" class="headerlink" title="模板重载"></a>模板重载</h2><blockquote>
 <p>C++ Primer P614 - P617</p>
@@ -2026,6 +2023,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -407,7 +407,7 @@
 </ul>
 <h2 id="洛克"><a href="#洛克" class="headerlink" title="洛克"></a>洛克</h2><ul>
 <li><p>认识论</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208111207303.png" alt="洛克的经验主义认识论" data-caption="洛克的经验主义认识论" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208111207303.png" alt="洛克的经验主义认识论"></p>
 <ul>
 <li><p>唯理论者认为清晰的概念使我们洞察实在的本质。从洛克到康德，标准的论证是说，对概念的洞见并不必然提供对实在的洞见。</p>
 </li>
@@ -455,7 +455,7 @@
 </li>
 </ul>
 <h2 id="休谟"><a href="#休谟" class="headerlink" title="休谟"></a>休谟</h2><ul>
-<li><p>认识论：彻底的&#x2F;激进的经验主义立场</p>
+<li><p>认识论：彻底的/激进的经验主义立场</p>
 <p>关于知识的起源：休谟在印象和观念之间做出了区分，印象包括外在知觉和内在知觉，观念被视作建立在这些印象之上的心灵图像。</p>
 <p>休谟认为存在两种知识：</p>
 <ol>
@@ -659,6 +659,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

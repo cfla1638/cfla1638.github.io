@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="系统级I&#x2F;O - CS:APP 第十章Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。 在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。 文件描述符 定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符">
+  <meta name="description" content="系统级I&#x2F;O - CS:APP 第十章Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。 在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。 文件描述符 定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符，应用程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统级I&#x2F;O - CS:APP 第十章">
 <meta property="og:url" content="https://cfla1638.github.io/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="系统级I&#x2F;O - CS:APP 第十章Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。 在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。 文件描述符 定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符">
+<meta property="og:description" content="系统级I&#x2F;O - CS:APP 第十章Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。 在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。 文件描述符 定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符，应用程序">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-20T07:18:55.000Z">
 <meta property="article:modified_time" content="2022-09-25T14:15:11.726Z">
@@ -204,7 +204,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="系统级I-x2F-O-CS-APP-第十章"><a href="#系统级I-x2F-O-CS-APP-第十章" class="headerlink" title="系统级I&#x2F;O - CS:APP 第十章"></a>系统级I&#x2F;O - CS:APP 第十章</h1><p>Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。</p>
+        <h1 id="系统级I-O-CS-APP-第十章"><a href="#系统级I-O-CS-APP-第十章" class="headerlink" title="系统级I/O - CS:APP 第十章"></a>系统级I/O - CS:APP 第十章</h1><p>Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。</p>
 <p>在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。</p>
 <h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><ul>
 <li><p>定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符，应用程序要操作文件，只需要知道文件描述符即可。</p>
@@ -214,7 +214,7 @@
 <p>1：标准输出；<code>STDOUT_FILENO</code></p>
 <p>2：标准错误；<code>STDERR_FILENO</code> </p>
 </li>
-<li><p>EOF：如果一个字节数为m的文件，一个读操作，读到k字节处。如果k &gt;&#x3D; m，则触发一个End of file条件，应用程序可以检测这个条件，但文件末尾并不是真的有EOF符号。</p>
+<li><p>EOF：如果一个字节数为m的文件，一个读操作，读到k字节处。如果k &gt;= m，则触发一个End of file条件，应用程序可以检测这个条件，但文件末尾并不是真的有EOF符号。</p>
 </li>
 </ul>
 <h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><ul>
@@ -223,7 +223,6 @@
 <li>套接字 socket ：用来和其他进程进行跨网络通信的文件。</li>
 </ul>
 <h2 id="系统级IO函数"><a href="#系统级IO函数" class="headerlink" title="系统级IO函数"></a>系统级IO函数</h2><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/stat.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fcntl.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-comment">// 打开和关闭文件</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">open</span><span class="hljs-params">(<span class="hljs-type">char</span> * filename, <span class="hljs-type">int</span> flags, <span class="hljs-type">mode_t</span> mode)</span>;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">flags: 文件的打开方式</span><br><span class="hljs-comment">O_RDONLY   只读</span><br><span class="hljs-comment">O_WRONLY  只写</span><br><span class="hljs-comment">O_RDWR    可读可写</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">O_CREAT   如果文件不存在，创建</span><br><span class="hljs-comment">O_TRUNC    如果文件已存在，截断它（即覆盖原文件）</span><br><span class="hljs-comment">O_APPEND  添加到文件末尾</span><br><span class="hljs-comment">不同的flag可以使用管道符| 连接使用 </span><br><span class="hljs-comment"></span><br><span class="hljs-comment">mode:</span><br><span class="hljs-comment">一般为0</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">close</span><span class="hljs-params">(<span class="hljs-type">int</span> fd)</span>;<br><br><span class="hljs-comment">// 读写</span><br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> n)</span>;<br><span class="hljs-comment">// 返回值：若成功返回-1，EOF返回0，出错返回-1</span><br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">write</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> n)</span>;<br><span class="hljs-comment">// 返回值：若成功返回写的字节数，出错返回-1</span><br></code></pre></td></tr></table></figure>
-
 <p><code>ssize_t</code> ：signed size type</p>
 <p>read 函数会返回不足值(short count) ，即返回的数目并不是要求的size_t n</p>
 <p>可能会返回不足值得情况：</p>
@@ -232,9 +231,8 @@
 <li>从终端读文本行。如果打开文件是与终端相关联的（例如，键盘和显示器），那么每个rad函数将一次传送一个文本行，返回的不足值等于文本行的大小。</li>
 <li>读和写网络套接字(socket)。如果打开的文件对应于网络套接字（12.3.3节)，那么内部缓冲约束和较长的网络延迟会引起read和write返回不足值。对Unix管道(pipe)调用read和wte,也有可能出现不足值，这种进程间通信机制不在我们讨论的范围之内。</li>
 </ul>
-<h2 id="RIO包函数"><a href="#RIO包函数" class="headerlink" title="RIO包函数"></a>RIO包函数</h2><p>RIO(Robust I&#x2F;O)：用于网络编程中，会自动处理不足值的情况。</p>
+<h2 id="RIO包函数"><a href="#RIO包函数" class="headerlink" title="RIO包函数"></a>RIO包函数</h2><p>RIO(Robust I/O)：用于网络编程中，会自动处理不足值的情况。</p>
 <h3 id="总览："><a href="#总览：" class="headerlink" title="总览："></a>总览：</h3><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 不带缓冲区的版本</span><br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_readn</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span>;    <span class="hljs-comment">// 代替read</span><br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_writen</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span>;    <span class="hljs-comment">// 代替write</span><br><br><span class="hljs-comment">// 带缓冲区的版本</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">rio_readinitb</span><span class="hljs-params">(<span class="hljs-type">rio_t</span> *rp, <span class="hljs-type">int</span> fd)</span>;<br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_readlineb</span><span class="hljs-params">(<span class="hljs-type">rio_t</span> *rp, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> maxlen)</span>;<br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_readnb</span><span class="hljs-params">(<span class="hljs-type">rio_t</span> *rp, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span>;  <span class="hljs-comment">// 带缓冲区的rio_readn</span><br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>带缓冲区和不带缓冲区的优劣：</p>
 <p>带缓冲区：由于每次调用read都要进入内核模式进行系统调用，会比较浪费时间，因此带缓冲区可以在缓冲区为空的时候填满缓冲区，等下次调用的时候直接在缓冲区中取出数据，这样会节省减少不必要的系统调用。</p>
@@ -242,33 +240,21 @@
 </blockquote>
 <h3 id="不带缓冲区的函数"><a href="#不带缓冲区的函数" class="headerlink" title="不带缓冲区的函数"></a>不带缓冲区的函数</h3><h3 id="rio-readn"><a href="#rio-readn" class="headerlink" title="rio_readn()"></a>rio_readn()</h3><p>用来代替<code>read</code> 的RIO函数，无缓冲区，这个函数只有在遇到EOF时，才会返回不足值，其他情况下，绝不会返回不足值。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_readn</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span><br>&#123;<br>    <span class="hljs-type">size_t</span> nleft = n;   <span class="hljs-comment">// 整个程序中，还没有被读取的字节</span><br>    <span class="hljs-type">ssize_t</span> nread;      <span class="hljs-comment">// 单次调用read 函数所读取的字节</span><br>    <span class="hljs-type">char</span> *bufp = usrbuf;<br><br>    <span class="hljs-comment">// nleft != 0</span><br>    <span class="hljs-keyword">while</span> (nleft &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">if</span> ((nread = read(fd, bufp, nleft)) &lt; <span class="hljs-number">0</span>) &#123;  <span class="hljs-comment">// read 函数发生错误</span><br>            <span class="hljs-keyword">if</span> (errno == EINTR)     <span class="hljs-comment">// interrupted by a sig handler return</span><br>                nread = <span class="hljs-number">0</span>;      <span class="hljs-comment">// call read again</span><br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;      <span class="hljs-comment">// unknown error</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nread == <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">break</span>;              <span class="hljs-comment">// EOF</span><br>        nleft -= nread;<br>        usrbuf += nread;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> n - nleft;      <span class="hljs-comment">// 这个程序读取的所有字节</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="rio-writen"><a href="#rio-writen" class="headerlink" title="rio_writen()"></a>rio_writen()</h3><p>用来代替<code>write</code> 的函数，无缓冲区，绝对不可能返回不足值</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_writen</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span><br>&#123;<br>    <span class="hljs-type">size_t</span> nleft = n;    <span class="hljs-comment">// 整个程序中，还没有被写入的字节</span><br>    <span class="hljs-type">ssize_t</span> nwritten;    <span class="hljs-comment">// 单词write函数写入的字节</span><br>    <span class="hljs-type">char</span> *bufp = usrbuf;  <span class="hljs-comment">// 下一个将被写入的位置</span><br><br>    <span class="hljs-keyword">while</span> (nleft &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">if</span> ((nwritten = write(fd, bufp, nleft)) &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (errno == EINTR)    <span class="hljs-comment">// 被一个信号处理程序返回打断</span><br>                nwritten = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;      <span class="hljs-comment">// 未知错误</span><br>        &#125;<br>        nleft -= nwritten;<br>        bufp += nwritten;<br>    &#125;<br>    <span class="hljs-keyword">return</span> n;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="带缓冲区的函数"><a href="#带缓冲区的函数" class="headerlink" title="带缓冲区的函数"></a>带缓冲区的函数</h3><p>缓冲区的代码</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> RIO_BUFSIZE 8192  <span class="hljs-comment">// 缓冲区的大小</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-type">int</span> rio_fd;        <span class="hljs-comment">// 与缓冲区关联的文件描述符</span><br>    <span class="hljs-type">int</span> rio_cnt;      <span class="hljs-comment">// 缓冲区中的未读字节数</span><br>    <span class="hljs-type">char</span> *rio_bufptr;    <span class="hljs-comment">// 下一个未读字节地址</span><br>    <span class="hljs-type">char</span> rio_buf[RIO_BUFSIZE];    <span class="hljs-comment">// 缓冲区</span><br>&#125;<span class="hljs-type">rio_t</span>;<br></code></pre></td></tr></table></figure>
-
 <p>初始化缓冲区</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> rio_<br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="rio-read"><a href="#rio-read" class="headerlink" title="rio_read()"></a>rio_read()</h3><p>带缓冲区的rio_read() 遇到错误返回-1，遇到EOF返回0，否则返回成功读取的字节数</p>
 <p>该函数会返回不足值，除了上述几种不足值，当缓冲区的字节数小于要求的字节数时，也会返回不足值，我们其他的带缓冲区的rio函数都是基于这个函数。</p>
 <p>该函数会首先调用read填满缓冲区，如果缓冲区内还有字节则会直接读取。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_read</span><span class="hljs-params">(<span class="hljs-type">rio_t</span> *rp, <span class="hljs-type">char</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span><br>&#123;<br>    <span class="hljs-type">int</span> cnt;  <span class="hljs-comment">// 本次调用函数读取的字节数</span><br><br>    <span class="hljs-keyword">while</span> (rp-&gt;rio_cnt &lt;= <span class="hljs-number">0</span>) &#123;  <span class="hljs-comment">// 如果缓冲区为空，重新填满缓冲区</span><br>        rp-&gt;rio_cnt = read(rp-&gt;rio_fd, rp-&gt;rio_buf, <span class="hljs-keyword">sizeof</span>(rp-&gt;rio_buf));<br>        <span class="hljs-keyword">if</span> (rp-&gt;rio_cnt &lt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (errno != EINTR)    <span class="hljs-comment">// 被信号打断，自动重启</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;  <span class="hljs-comment">// 未知错误</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rp-&gt;rio_cnt == <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;       <span class="hljs-comment">// EOF</span><br>        <span class="hljs-keyword">else</span> <br>            rp-&gt;rio_bufptr = rp-&gt;rio_buf; <span class="hljs-comment">// 重置bufptr</span><br>    &#125;<br><br>    cnt = n;<br>    <span class="hljs-keyword">if</span> (rp-&gt;rio_cnt &lt; n)    <span class="hljs-comment">// 缓冲区字节数不够</span><br>        cnt = rp-&gt;rio_cnt;      <span class="hljs-comment">// 返回不足值</span><br>    <span class="hljs-built_in">memcpy</span>(usrbuf, rp-&gt;rio_bufptr, cnt);<br>    rp-&gt;rio_bufptr += cnt;<br>    rp-&gt;rio_cnt -= cnt;<br>    <span class="hljs-keyword">return</span> cnt;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="rio-readlineb"><a href="#rio-readlineb" class="headerlink" title="rio_readlineb()"></a>rio_readlineb()</h3><p>读取一行，最多读取maxlen-1个字节，最后一个字节要填充<code>&#39;\0&#39;</code></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_readlineb</span><span class="hljs-params">(<span class="hljs-type">rio_t</span> *rp, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> maxlen)</span><br>&#123;<br>    <span class="hljs-type">int</span> n, rc;    <span class="hljs-comment">// n 程序读取字节数， rc 单次rio_read 的返回值</span><br>    <span class="hljs-type">char</span> c, *bufp = usrbuf;    <span class="hljs-comment">// c一个临时变量，用于逐个读取，测试是否为换行</span><br><br>    <span class="hljs-keyword">for</span> (n = <span class="hljs-number">1</span>; n &lt; maxlen; n++) &#123;<br>        <span class="hljs-keyword">if</span> ((rc = rio_read(rp, &amp;c, <span class="hljs-number">1</span>)) == <span class="hljs-number">1</span>) &#123;  <span class="hljs-comment">// 正常</span><br>            *bufp++ = c;<br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;\n&#x27;</span>) &#123;<br>                n++;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rc == <span class="hljs-number">0</span>) &#123;  <span class="hljs-comment">// 返回不足值</span><br>            <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) <br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;   <span class="hljs-comment">// EOF，什么字节也没读取，直接返回0</span><br>            <span class="hljs-keyword">else</span> <br>                <span class="hljs-keyword">break</span>;      <span class="hljs-comment">// EOF, 但已经读取了一些字节，需要处理后返回</span><br>        &#125; <span class="hljs-keyword">else</span> <br>            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;      <span class="hljs-comment">// 未知错误</span><br>    &#125;<br><br>    *bufp = <span class="hljs-number">0</span>;      <span class="hljs-comment">// 最后一位用 &#x27;\0&#x27; 填充</span><br>    <span class="hljs-keyword">return</span> n - <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="rio-readnb"><a href="#rio-readnb" class="headerlink" title="rio_readnb()"></a>rio_readnb()</h3><p>rio_readn的带缓冲区版本，代码结构与rio_readn 基本相同</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">rio_readnb</span><span class="hljs-params">(<span class="hljs-type">rio_t</span> *rp, <span class="hljs-type">void</span> *usrbuf, <span class="hljs-type">size_t</span> n)</span><br>&#123;<br>    <span class="hljs-type">size_t</span> nleft = n;   <span class="hljs-comment">// bytes that has not been read</span><br>    <span class="hljs-type">ssize_t</span> nread;      <span class="hljs-comment">// read() func had read nread bytes</span><br>    <span class="hljs-type">char</span> *bufp = usrbuf;<br><br>    <span class="hljs-comment">// nleft != 0</span><br>    <span class="hljs-keyword">while</span> (nleft &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">if</span> ((nread = rio_read(rp, bufp, nleft)) &lt; <span class="hljs-number">0</span>)   <span class="hljs-comment">// someting wrong</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;      <span class="hljs-comment">// unknown error</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nread == <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">break</span>;              <span class="hljs-comment">// EOF</span><br>        nleft -= nread;<br>        usrbuf += nread;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> n - nleft;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h2 id="读取文件元数据"><a href="#读取文件元数据" class="headerlink" title="读取文件元数据"></a>读取文件元数据</h2><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/stat.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">stat</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *filename, <span class="hljs-keyword">struct</span> stat *buf)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">fstat</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-keyword">struct</span> stat *buf)</span>;<br></code></pre></td></tr></table></figure>
-
 <p><code>stat()</code> 函数以文件名作为输入，填写<code>struct stat *buf</code>  </p>
 <p>我们只对<code>struct stat</code> 的一些条目感兴趣：</p>
 <ul>
@@ -281,9 +267,7 @@
 </li>
 </ul>
 <h2 id="读取目录"><a href="#读取目录" class="headerlink" title="读取目录"></a>读取目录</h2><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;dirent.h&gt;</span></span><br><br>DIR *<span class="hljs-title function_">opendir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;dirent.h&gt;</span></span><br><span class="hljs-keyword">struct</span> dirent * <span class="hljs-title function_">readdir</span><span class="hljs-params">(DIR *dirp)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dirent</span> &#123;</span><br>    <span class="hljs-type">ino_t</span> d_ino;      <span class="hljs-comment">// inode number 文件位置</span><br>    <span class="hljs-type">char</span> d_name[<span class="hljs-number">256</span>];    <span class="hljs-comment">// Filename		文件名</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h2 id="IO重定位"><a href="#IO重定位" class="headerlink" title="IO重定位"></a>IO重定位</h2><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">dup2</span><span class="hljs-params">(<span class="hljs-type">int</span> oldfd, <span class="hljs-type">int</span> newfd)</span>;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">复制oldfd 到newfd,如果newfd 已经打开，dup2会在复制之前关闭newfd</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -364,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7I-x2F-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">系统级I&#x2F;O - CS:APP 第十章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7IO%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">系统级IO函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RIO%E5%8C%85%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">RIO包函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E8%A7%88%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">总览：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">不带缓冲区的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readn"><span class="nav-number">1.4.3.</span> <span class="nav-text">rio_readn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-writen"><span class="nav-number">1.4.4.</span> <span class="nav-text">rio_writen()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.5.</span> <span class="nav-text">带缓冲区的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-read"><span class="nav-number">1.4.6.</span> <span class="nav-text">rio_read()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readlineb"><span class="nav-number">1.4.7.</span> <span class="nav-text">rio_readlineb()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readnb"><span class="nav-number">1.4.8.</span> <span class="nav-text">rio_readnb()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.</span> <span class="nav-text">读取文件元数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E7%9B%AE%E5%BD%95"><span class="nav-number">1.6.</span> <span class="nav-text">读取目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.7.</span> <span class="nav-text">IO重定位</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">系统级I&#x2F;O - CS:APP 第十章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7IO%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">系统级IO函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RIO%E5%8C%85%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">RIO包函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E8%A7%88%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">总览：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">不带缓冲区的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readn"><span class="nav-number">1.4.3.</span> <span class="nav-text">rio_readn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-writen"><span class="nav-number">1.4.4.</span> <span class="nav-text">rio_writen()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.5.</span> <span class="nav-text">带缓冲区的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-read"><span class="nav-number">1.4.6.</span> <span class="nav-text">rio_read()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readlineb"><span class="nav-number">1.4.7.</span> <span class="nav-text">rio_readlineb()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readnb"><span class="nav-number">1.4.8.</span> <span class="nav-text">rio_readnb()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.</span> <span class="nav-text">读取文件元数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E7%9B%AE%E5%BD%95"><span class="nav-number">1.6.</span> <span class="nav-text">读取目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.7.</span> <span class="nav-text">IO重定位</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -471,6 +455,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

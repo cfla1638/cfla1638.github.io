@@ -212,35 +212,35 @@
 
       
         <h3 id="引入第三方库-（以OpenCV为例）"><a href="#引入第三方库-（以OpenCV为例）" class="headerlink" title="引入第三方库 （以OpenCV为例）"></a>引入第三方库 （以OpenCV为例）</h3><p>在右侧导航栏项目名称上右键，点击属性</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931479.png" alt="image-20230309191119122" data-caption="image-20230309191119122" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931479.png" alt="image-20230309191119122"> </p>
 <p>在VC++页面中，找到包含目录和库目录，将要引用的第三方库的<code>include</code>目录和二进制库文件分别添加到里面去。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931480.png" alt="image-20230309191325578" data-caption="image-20230309191325578" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931480.png" alt="image-20230309191325578"> </p>
 <p>具体地，以OpenCV 4.7为例，需要包含的目录有:</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931481.png" alt="image-20230309192108457" data-caption="image-20230309192108457" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931481.png" alt="image-20230309192108457"> </p>
 <p>最后在【链接器 → 输入】里面，指定具体需要用到的库</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931482.png" alt="image-20230309191425790" data-caption="image-20230309191425790" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931482.png" alt="image-20230309191425790"> </p>
 <h3 id="汇编语言环境-（MASM）"><a href="#汇编语言环境-（MASM）" class="headerlink" title="汇编语言环境 （MASM）"></a>汇编语言环境 （MASM）</h3><ul>
 <li><p>配置汇编项目</p>
 <blockquote>
 <p>1.创建一个 <strong>Visual C++</strong> <strong>空工程</strong> (Empty Project), 此时先不要添加汇编源文件。</p>
-<p>2.在 “解决方案浏览器” 视图中, 在项目名称上右击 —&gt; 选择 “<strong>生成自定义</strong>“ —&gt; 在弹出的 “Visual C++ 生成自定义项文件” 窗口中, 勾选 <code>masm(.targets, .props)</code> 项。</p>
-<p>​	<img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212518753.png" alt="image-20230319212518753" data-caption="image-20230319212518753" loading="lazy"> </p>
-<p><img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212601616.png" alt="image-20230319212601616" data-caption="image-20230319212601616" loading="lazy"> </p>
-<p>3.在 “解决方案浏览器” 视图中, 在项目名称上右击 —&gt; 选择 “属性” —&gt; 在左侧 “配置属性” 导航中 —&gt; 选择 “链接器” —&gt; “系统” —&gt; 在 “<strong>子系统</strong>“ 右侧下拉菜单中选择 “控制台(&#x2F;SUBSYSTEM:CONSOLE)” (注：VS2022已自动配置)</p>
+<p>2.在 “解决方案浏览器” 视图中, 在项目名称上右击 —-&gt; 选择 “<strong>生成自定义</strong>“ —-&gt; 在弹出的 “Visual C++ 生成自定义项文件” 窗口中, 勾选 <code>masm(.targets, .props)</code> 项。</p>
+<p>​    <img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212518753.png" alt="image-20230319212518753"> </p>
+<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212601616.png" alt="image-20230319212601616"> </p>
+<p>3.在 “解决方案浏览器” 视图中, 在项目名称上右击 —-&gt; 选择 “属性” —-&gt; 在左侧 “配置属性” 导航中 —-&gt; 选择 “链接器” —-&gt; “系统” —-&gt; 在 “<strong>子系统</strong>“ 右侧下拉菜单中选择 “控制台(/SUBSYSTEM:CONSOLE)” (注：VS2022已自动配置)</p>
 <p>4.添加汇编源代码 file.asm (添加 C++ 文件, 然后将后缀修改为 <code>.asm</code>), (这一步要放在最后, 否则可能会报错) 。</p>
 <p>5.如果是64位则要在项目属性→链接器→高级→程序入口点 里填上程序入口点，一般是main</p>
 </blockquote>
 </li>
 <li><p>引入依赖库</p>
 <blockquote>
-<p>1.链接器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —&gt; “链接器” —&gt; “常规” —&gt; “附加库目录” —&gt; “c:\Irvine”.</p>
-<p>2.链接器中添加 “附加依赖项”. 在 “解决方案资源管理器” 中, 项目名称上右击 —&gt; “链接器” —&gt; “输入” —&gt; “附加依赖项” —&gt; 主要包含库: user32.lib, Irvine32.lib, kernel32.Lib .</p>
-<p>3.汇编器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —&gt; “Microsoft Macro Assembler” —&gt; “General” —&gt; “Include Paths” —&gt; 添加库目录, 如 “c:\Irvine” (注意：此选项在添加 <code>.asm</code> 源文件后才出现).</p>
+<p>1.链接器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “链接器” —-&gt; “常规” —-&gt; “附加库目录” —-&gt; “c:\Irvine”.</p>
+<p>2.链接器中添加 “附加依赖项”. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “链接器” —-&gt; “输入” —-&gt; “附加依赖项” —-&gt; 主要包含库: user32.lib, Irvine32.lib, kernel32.Lib .</p>
+<p>3.汇编器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “Microsoft Macro Assembler” —-&gt; “General” —-&gt; “Include Paths” —-&gt; 添加库目录, 如 “c:\Irvine” (注意：此选项在添加 <code>.asm</code> 源文件后才出现).</p>
 </blockquote>
 </li>
 </ul>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>注意到，参考文献 2 中 还提到了一些其他的引入第三方库的方法。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Visual Studio 下配置第三方C&#x2F;C++库的方法 : <a target="_blank" rel="noopener" href="https://blog.csdn.net/yangfchn/article/details/85162934">https://blog.csdn.net/yangfchn/article/details/85162934</a></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Visual Studio 下配置第三方C/C++库的方法 : <a target="_blank" rel="noopener" href="https://blog.csdn.net/yangfchn/article/details/85162934">https://blog.csdn.net/yangfchn/article/details/85162934</a></p>
 <p>[2] VS配置OpenCV教程（超详细） : <a target="_blank" rel="noopener" href="https://blog.csdn.net/mars_xiaolei/article/details/78759041">https://blog.csdn.net/mars_xiaolei/article/details/78759041</a></p>
 <p>[3] Getting Started with MASM and Visual Studio 2022 : <a target="_blank" rel="noopener" href="http://www.asmirvine.com/gettingStartedVS2022/index.htm">http://www.asmirvine.com/gettingStartedVS2022/index.htm</a></p>
 
@@ -433,6 +433,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

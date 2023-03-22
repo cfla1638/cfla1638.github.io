@@ -212,7 +212,6 @@
 <p>为了解决这个问题，我们可以将成员函数声明成<code>const</code> </p>
 <p>例如，像下面这样，在参数列表后添加上<code>const</code> </p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get_a</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;&#125;;<br>    <br>    <span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>此时，这个this指针，既是顶层<code>const</code> (this指针所固有的属性)，又是底层<code>const</code> （我们声明的结果）</p>
 <h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><blockquote>
 <p>P241, P250，P545</p>
@@ -235,14 +234,13 @@
 <p>类内定义的类型也有访问权限的限制</p>
 <p>用来定义类型的成员必须先定义再使用</p>
 <blockquote>
-<p>原因：&#x2F;&#x2F; TODO</p>
+<p>原因：// TODO</p>
 </blockquote>
 <h3 id="类的内联函数"><a href="#类的内联函数" class="headerlink" title="类的内联函数"></a>类的内联函数</h3><blockquote>
 <p>内联函数(inline)：一些小的，简单的函数可以被定义为内联函数，以减少调用函数的开销</p>
 <p>内联函数会在编译时，被编译器展开</p>
 <p>例如</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">const</span> string &amp; <span class="hljs-title">shorterString</span><span class="hljs-params">(<span class="hljs-type">const</span> string &amp;s1, <span class="hljs-type">const</span> string &amp;s2)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> s1.<span class="hljs-built_in">size</span>() &lt;= s2.<span class="hljs-built_in">size</span>() ? s1 : s2;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>max(), min() 之类的函数特别适合被定义为内联函数</p>
 </blockquote>
 <ul>
@@ -255,7 +253,6 @@
 </blockquote>
 <p>如果在定义类的成员时，使用<code>mutable</code> 关键字，那么，即使这个对象被声明成<code>const</code> ，我们依然可以改变这个成员变量的值。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> &#123;</span><br>     public:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">inc</span><span class="hljs-params">()</span> <span class="hljs-type">const</span>;<br>    private:<br>    mutable <span class="hljs-type">size_t</span> cnt;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">A::inc</span><span class="hljs-params">()</span> <span class="hljs-type">const</span><br>&#123;<br>    cnt++;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="返回-this-左值"><a href="#返回-this-左值" class="headerlink" title="返回*this 左值"></a>返回*this 左值</h3><p>当成员函数是const 版本时，this指针具有底层的const， 因此它的返回的左值也是带底层const的左值</p>
 <p>我们可以根据this指针是否具有底层<code>const</code> 来对函数进行重载</p>
 <blockquote>
@@ -264,7 +261,6 @@
 </blockquote>
 <h3 id="类的前向声明"><a href="#类的前向声明" class="headerlink" title="类的前向声明"></a>类的前向声明</h3><p>可以使用类似这种形式声明类</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>;<br></code></pre></td></tr></table></figure>
-
 <p>这是一个不完整类型，我们可以使用这种类型的指针或者引用，但不能创建这种类型的引用。</p>
 <p>前向声明可以放在类的头文件中，从而减少依赖。</p>
 <h3 id="类的名字查找"><a href="#类的名字查找" class="headerlink" title="类的名字查找"></a>类的名字查找</h3><ul>
@@ -344,19 +340,14 @@
 </li>
 </ol>
 <h4 id="构造函数的初始化列表"><a href="#构造函数的初始化列表" class="headerlink" title="构造函数的初始化列表"></a>构造函数的初始化列表</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">Sales_data</span>(<span class="hljs-type">const</span> std::string &amp;s) : <span class="hljs-built_in">BookNo</span>(s) &#123;&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <p>当某个数据成员被构造函数的初始化列表忽略时，它将以合成默认构造函数相同的方式隐式初始化</p>
 <p>（重要）当某个数据成员被构造函数的初始化列表忽略时，他将在执行构造函数函数体之前被默认初始化</p>
 <p>由于有的类没有默认构造函数，因此我们必须使用列表初始化对其进行初始化。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span><br><span class="hljs-class">&#123;</span><br><span class="hljs-comment">// 没有默认构造函数</span><br>public:<br>    A(<span class="hljs-type">int</span> num) : elem(num) &#123;&#125;<br>private:<br>    <span class="hljs-type">int</span> elem = <span class="hljs-number">0</span>;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span><br><span class="hljs-class">&#123;</span><br>public:<br>    B(<span class="hljs-type">int</span> num) : elem_int(num) &#123;&#125;  <span class="hljs-comment">// 错误，因为A没有默认构造函数，所以必须对它进行列表初始化</span><br>private:<br>    A elem_A;<br>    <span class="hljs-type">int</span> elem_int;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <p>因为所有的类成员都会在构造函数体执行前进行初始化（列表初始化或默认初始化）因此使用列表初始化一定会比在构造函数中赋值更加高效。</p>
 <p>（重要）列表初始化的初始化顺序</p>
 <p>列表初始化的顺序与他们在类的定义中出现的顺序一样，而与列表初始化的列表顺序无关，如果初始化变量之间会相互依赖，一定要注意他们初始化的顺序！！</p>
 <h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sales_data</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 非委托构造函数要使用的构造函数</span><br>    <span class="hljs-built_in">Sales_data</span>(std::string s, <span class="hljs-type">unsigned</span> cnt, <span class="hljs-type">double</span> price) : <br>          <span class="hljs-built_in">bookNo</span>(s), <span class="hljs-built_in">units_sold</span>(cnt), <span class="hljs-built_in">revenue</span>(cnt * price) &#123;&#125;<br>    <span class="hljs-comment">// 委托构造函数</span><br>    <span class="hljs-built_in">Sales_data</span>() : <span class="hljs-built_in">Sales_data</span>(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)&#123;&#125;<br>    <span class="hljs-built_in">Sales_data</span>(std::string s) : <span class="hljs-built_in">Sales_data</span>(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) &#123;&#125;<br>    <span class="hljs-built_in">Sales_data</span>(std::istream &amp;is) : <span class="hljs-built_in">Sales_data</span>() &#123;<span class="hljs-built_in">read</span>(is, *<span class="hljs-keyword">this</span>);&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>委托构造函数首先执行列表初始化的被委托构造函数的列表初始化，在执行被委托构造函数的函数体，最后执行委托构造函数的函数体</p>
 <h4 id="默认构造函数被调用的时机"><a href="#默认构造函数被调用的时机" class="headerlink" title="默认构造函数被调用的时机"></a>默认构造函数被调用的时机</h4><blockquote>
 <p>C++ Primer P262</p>
@@ -396,14 +387,13 @@
 <p> 默认初始化：对象可能产生未定义的值，出现场景：</p>
 <ol>
 <li>块作用域内不使用任何初始值定义一个非静态变量；</li>
-<li>类通过默认构造函数来控制默认初始化过程，默认构造函数以如下规则初始化类的数据成员</li>
-</ol>
+<li><p>类通过默认构造函数来控制默认初始化过程，默认构造函数以如下规则初始化类的数据成员</p>
 <ul>
 <li>如果存在类内初始值，用它来初始化成员</li>
 <li>否则，默认初始化该成员</li>
 </ul>
-<p> 值初始化：对象的值是确定（预设）的，出现场景：</p>
-<ol>
+<p>值初始化：对象的值是确定（预设）的，出现场景：</p>
+</li>
 <li><p>数组初始化时，初始值数量小于数组的长度。</p>
 </li>
 <li><p>不使用初始值定义一个静态变量（带有初始值0）</p>
@@ -411,13 +401,13 @@
 <li><p>使用类似<code>classType()</code> 形式表达式显示请求值初始化</p>
 </li>
 <li><p>只提供vector可以容纳的元素数量，不提供初始值，库会自动进行值初始化</p>
+<p><code>vector&lt;int&gt; vec(10);</code> 值初始化为0 </p>
+<p>直接初始化：使用<code>classType()</code> 初始化对象</p>
+<p>拷贝初始化：使用<code>classType foo = classType()</code> 初始化对象</p>
 </li>
 </ol>
-<p>   <code>vector&lt;int&gt; vec(10);</code> 值初始化为0 </p>
-<p> 直接初始化：使用<code>classType()</code> 初始化对象</p>
-<p> 拷贝初始化：使用<code>classType foo = classType()</code> 初始化对象</p>
 <ul>
-<li>不光在使用 &#x3D; 赋值时会发生拷贝初始化，在以下情况时也会发生拷贝初始化<ol>
+<li>不光在使用 = 赋值时会发生拷贝初始化，在以下情况时也会发生拷贝初始化<ol>
 <li>将参数作为实参传递给非引用类型的形参</li>
 <li>从返回类型为非引用的函数返回一个对象</li>
 <li>使用花括号列表初始化数组或聚合类</li>
@@ -434,9 +424,6 @@
 </blockquote>
 <h4 id="继承体系中的拷贝构造函数"><a href="#继承体系中的拷贝构造函数" class="headerlink" title="继承体系中的拷贝构造函数"></a>继承体系中的拷贝构造函数</h4><p>我们需要使用基类的拷贝构造函数显示的初始化基类的成员</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span> &#123;<span class="hljs-comment">/* ... */</span>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">derived</span> : <span class="hljs-keyword">public</span> base<br>&#123;<br>    <span class="hljs-built_in">derived</span>(<span class="hljs-type">const</span> derived &amp;d) : <span class="hljs-built_in">base</span>(d)    <span class="hljs-comment">// 显式的使用基类的拷贝构造函数+</span><br>    &#123;<span class="hljs-comment">/*...*/</span>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="拷贝赋值运算符"><a href="#拷贝赋值运算符" class="headerlink" title="拷贝赋值运算符"></a>拷贝赋值运算符</h3><blockquote>
 <p>可能会误以为拷贝初始化<code>classType obj = ori;</code> 会使用拷贝赋值运算符，事实上，这只调用拷贝构造函数</p>
 <p>当我们定义了拷贝赋值运算符，我们就重载了它的赋值运算符</p>
@@ -451,9 +438,6 @@
 <h4 id="合成的拷贝赋值运算符"><a href="#合成的拷贝赋值运算符" class="headerlink" title="合成的拷贝赋值运算符"></a>合成的拷贝赋值运算符</h4><p>合成的拷贝赋值运算符会将右侧的每个非static成员赋值给左侧成员，对于数组类型，它会逐个拷贝</p>
 <h4 id="继承体系中的拷贝赋值运算符"><a href="#继承体系中的拷贝赋值运算符" class="headerlink" title="继承体系中的拷贝赋值运算符"></a>继承体系中的拷贝赋值运算符</h4><p>派生类的拷贝赋值运算符要显式调用基类的拷贝赋值运算符，之后我们再为派生类的成员完成赋值操作</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">classType &amp; classType::<span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> classType &amp; rhs)<br>&#123;<br>    Base::<span class="hljs-keyword">operator</span>=(rhs);  <span class="hljs-comment">// 调用基类的拷贝赋值运算符，即使他是合成的运算符也可以这样调用</span><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    派生类成员的赋值操作</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>释放对象使用的资源，销毁对象的非static成员</p>
 <p>析构函数的形式是<code>~classType()</code> 没有返回值，不接受参数</p>
 <p>不能被重载，对于任意一个类有且只有一个析构函数</p>
@@ -487,15 +471,18 @@
 <li><p>访问控制：</p>
 <p>如果类的成员能被派生类访问，但不能被其他类访问，它应该被定义为<code>protected</code> </p>
 </li>
+</ul>
+<ul>
 <li><p>派生类的构造函数</p>
 <p>派生类必须使用基类的构造函数初始化其基类的部分</p>
 </li>
 <li><p>防止继承 定义类的时候使用<code>final</code> </p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NoDerived</span> <span class="hljs-keyword">final</span> &#123;<span class="hljs-comment">/* ... */</span>&#125;;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NoDerived</span> <span class="hljs-keyword">final</span> &#123;<span class="hljs-comment">/* ... */</span>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
 <h3 id="纯虚函数和抽象基类"><a href="#纯虚函数和抽象基类" class="headerlink" title="纯虚函数和抽象基类"></a>纯虚函数和抽象基类</h3><ul>
 <li><p>纯虚函数</p>
-<p>通过在函数声明的分号前添加 &#x3D; 0 即可声明这个函数为纯虚函数</p>
+<p>通过在函数声明的分号前添加 = 0 即可声明这个函数为纯虚函数</p>
 <p>纯虚函数只是提供了一个接口，无需定义纯虚函数</p>
 </li>
 <li><p>含有纯虚函数的类是抽象基类， 不能直接创造一个抽象基类对象</p>
@@ -525,6 +512,8 @@
 <li><p>每个类定义自己的作用域，在这个作用域内我们定义自己的成员函数。</p>
 <p>当存在派生关系时，派生类的作用域嵌套在基类的作用域内：当我们遇到一个派生类中的名字，在派生类作用域中找不到这个名字，就会在基类的作用域内继续搜索这个名字。</p>
 </li>
+</ul>
+<ul>
 <li><p>一个对象、引用 或 指针的静态类型，决定了该对象究竟有那些对象是可见的。</p>
 <p>如果我们用基类指针绑定了派生类的成员，我们不能用这个指针去访问派生了特有的成员，因为对于这个成员名字的搜索将从基类的作用域开始，这决定了我们永远不会搜索派生类的作用域。</p>
 <p>与往常一样，内层作用域会隐藏与存在于它内部的名字重名的外层作用域名字。</p>
@@ -544,13 +533,15 @@
 </ol>
 </blockquote>
 </li>
-<li><p>声明在内层作用域中的函数不会重载声明在外层作用域中的函数，即使派生类中的函数的形参列表与基类中的形参列表不一样，也不会重载。</p>
-</li>
+</ul>
+<ul>
+<li>声明在内层作用域中的函数不会重载声明在外层作用域中的函数，即使派生类中的函数的形参列表与基类中的形参列表不一样，也不会重载。</li>
 <li><p>因此虚函数与其在派生类中的覆盖函数，它们的形参列表必须相同，否则就不会导致虚函数机制，而是直接用内层作用域中的函数覆盖外层作用域中的函数。</p>
 </li>
 <li><p>成员函数无论是否是虚函数，都可以重载，因此对于基类的重载函数，派生类如果想要看到基类的全部重载的某个成员函数，它必须全部覆盖基类的重载虚函数 或者 一个重载虚函数也不覆盖。</p>
 <p>如果想要让覆盖重载虚函数的一些函数，但其他函数也不会因为作用域的原因而不可见，可以使用<code>using</code> 声明</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span><br>&#123;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">char</span>, <span class="hljs-type">int</span>)</span></span>;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">derived</span> : <span class="hljs-keyword">public</span> base<br>&#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">using</span> base::func;<br>    <span class="hljs-comment">// 使用using 我们可以只覆盖重载虚函数的一个实例而让其他的虚函数也可见</span><br>    <span class="hljs-built_in">func</span>(<span class="hljs-type">int</span>) <span class="hljs-keyword">override</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span><br>&#123;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">char</span>, <span class="hljs-type">int</span>)</span></span>;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">derived</span> : <span class="hljs-keyword">public</span> base<br>&#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">using</span> base::func;<br>    <span class="hljs-comment">// 使用using 我们可以只覆盖重载虚函数的一个实例而让其他的虚函数也可见</span><br>    <span class="hljs-built_in">func</span>(<span class="hljs-type">int</span>) <span class="hljs-keyword">override</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
@@ -742,6 +733,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

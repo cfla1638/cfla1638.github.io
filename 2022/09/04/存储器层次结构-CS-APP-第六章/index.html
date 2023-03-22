@@ -224,16 +224,13 @@
 <li>使用局部性优化程序的性能</li>
 </ol>
 <p>本文主要介绍前三条内容，第四条内容可以说是优化程序性能的一部分，所以本文暂不深入。另外，本章和第九章虚拟内存密切相关，因此本文也会介绍第九章的虚拟内存，来完整的总结计算机的存储系统。</p>
-<h2 id="1-存储器的层次结构"><a href="#1-存储器的层次结构" class="headerlink" title="1 存储器的层次结构"></a>1 存储器的层次结构</h2><p>根据我们的经验观察，读取速度越快的存储器&#x2F;存储技术，成本越高，容量越小，读取速度越慢的存储器，成本越低，容量越大。</p>
+<h2 id="1-存储器的层次结构"><a href="#1-存储器的层次结构" class="headerlink" title="1 存储器的层次结构"></a>1 存储器的层次结构</h2><p>根据我们的经验观察，读取速度越快的存储器/存储技术，成本越高，容量越小，读取速度越慢的存储器，成本越低，容量越大。</p>
 <p>因此我们可以将大量的数据都存放在成本低，速度慢的存储器上。</p>
 <p>但随着技术的发展，CPU的时钟周期越来越快，如果让CPU直接和这些慢速存储器交互会浪费大量的性能，因此我们可以上速度快的存储器缓存低速存储器的内容，与CPU交互，这就是存储器层次结构的思想。</p>
 <blockquote>
 <p>存储器层次结构的中心思想是，对于每个k，位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的缓存。</p>
 </blockquote>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">L0  寄存器<br>L1  L1高速缓存 SRAM<br>L2  L2高速缓存 SRAM<br>L3  L3高速缓存 SRAM<br>L4  主存 DRAM<br>L5  本地二级存储（本地磁盘）<br>L6  远程二级缓存（分布式文件系统、二级服务器）<br></code></pre></td></tr></table></figure>
-
-
-
 <p>下面我们介绍它们的存在基础，存储技术。</p>
 <h2 id="2-存储技术"><a href="#2-存储技术" class="headerlink" title="2 存储技术"></a>2 存储技术</h2><p>我们要介绍的存储技术如下</p>
 <ul>
@@ -254,21 +251,18 @@
 <h3 id="2-1-随机访问存储器"><a href="#2-1-随机访问存储器" class="headerlink" title="2.1 随机访问存储器"></a>2.1 随机访问存储器</h3><p>随机存储器分为两种材类：SRAM和DRAM</p>
 <p>SRAM 静态随机存储器，通电之后，数据就是稳定的，因此被称为静态随机存储器。速度最快，造价高，一般计算机的高速缓存是SRAM。</p>
 <p>DRAM 动态随机存储器，其原理是电容充电，DRAM上的单元在10 ~ 100ms 内就会放电，所以要定期刷新以保持数据，因此被称为动态随机存储器。速度相对SRAM慢，造价相对低，一般用于计算机的内存 或叫做主存。</p>
-<h4 id="2-1-1-DRAM-x2F-内存的工作原理"><a href="#2-1-1-DRAM-x2F-内存的工作原理" class="headerlink" title="2.1.1 DRAM &#x2F; 内存的工作原理"></a>2.1.1 DRAM &#x2F; 内存的工作原理</h4><p>内存由若干个DRAM芯片构成，被称作内存模块(memory module)</p>
+<h4 id="2-1-1-DRAM-内存的工作原理"><a href="#2-1-1-DRAM-内存的工作原理" class="headerlink" title="2.1.1 DRAM / 内存的工作原理"></a>2.1.1 DRAM / 内存的工作原理</h4><p>内存由若干个DRAM芯片构成，被称作内存模块(memory module)</p>
 <p>每个DRAM芯片由超单元矩阵、内部行缓冲区、内存控制器构成，DRAM芯片上还有由于信息输入输出的脚针。</p>
 <p>每个超单元内存储若干个位，一般是一字节八位。　</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">内存/主存<br>|<br>|- 内存模块<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br>|- 内存模块<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br></code></pre></td></tr></table></figure>
-
-
-
 <p>首先介绍DRAM 芯片：</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041151521.png" alt="image-20220904115118409" data-caption="image-20220904115118409" loading="lazy"> </p>
-<p>DRAM 芯片由超单元矩阵、内部行缓冲区、内存控制器构成。一个DRAM芯片中由d个超单元，这些超单元被组织成 r 行 c 列的长方形矩阵(r * c &#x3D; d)，每个超单元内存储w位，我们称这是一个d×w的DRAM芯片。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041151521.png" alt="image-20220904115118409"> </p>
+<p>DRAM 芯片由超单元矩阵、内部行缓冲区、内存控制器构成。一个DRAM芯片中由d个超单元，这些超单元被组织成 r 行 c 列的长方形矩阵(r * c = d)，每个超单元内存储w位，我们称这是一个d×w的DRAM芯片。</p>
 <p>我们可以看到两个引脚，一个addr引脚向内部输送行列信息，一个data引脚向外输送存储在一个超单元上的位。一个超单元有多少位，data引脚就有多少位。</p>
 <p>接下来看一下工作流程：</p>
 <p>首先内存控制器在addr引脚上发送行地址，DRAM将相应的一行放到内部行缓冲区上作为相应，接着内存控制器在addr引脚上发送列地址，DRAM将内部行缓冲区上的列放到data引脚上传输出去 作为相应。</p>
 <p>接着介绍内存模块：</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041158562.png" alt="image-20220904115757187" data-caption="image-20220904115757187" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041158562.png" alt="image-20220904115757187"> </p>
 <p>一个内存模块由若干个DRAM芯片构成，当内存控制器给内存模块发送一个行列信息(i, j) 时，内存模块会将它所有的DRAM芯片上（i, j）位置的超单元的位 取下来，将所有的这些字节拼成一个字，再传输出去，如上图所示。 </p>
 <h3 id="2-2-磁盘-amp-ROM"><a href="#2-2-磁盘-amp-ROM" class="headerlink" title="2.2 磁盘 &amp; ROM"></a>2.2 磁盘 &amp; ROM</h3><p>ROM可分为</p>
 <ul>
@@ -285,8 +279,7 @@
 </li>
 <li><p>而第k层的存储器被划分为较少的块的集合，每个块的大小与k+1层的块的大小是一样的，在任意时刻，第k层的缓存包含第k+1层块的一个子集的副本。</p>
 </li>
-<li><p>数据总是以块大小为传送单元，在第k层和第k+1层之间来回复制，虽然在层次结构中的任意一对相邻的层次之间块大小是固定的，但是其他层次对之间可以有不同块大小。</p>
-</li>
+<li>数据总是以块大小为传送单元，在第k层和第k+1层之间来回复制，虽然在层次结构中的任意一对相邻的层次之间块大小是固定的，但是其他层次对之间可以有不同块大小。</li>
 </ul>
 </blockquote>
 <p>以上是书上的原话，他们介绍了一个重要的概念——块。你要记住在层次之间传送的是块。</p>
@@ -294,7 +287,7 @@
 <p>这句话暂且悬置。</p>
 <p>当然，硬要解释也是可以的，你可以理解为，相邻块之间总是传输大小相同的单元，但下层块一旦到了上层，就会被划分为更小的块，用于与上层交互。</p>
 <p>但最好还是理解成所有块的大小都是相同的，方便理解下面的内容。</p>
-<h3 id="3-1-高速缓存的结构"><a href="#3-1-高速缓存的结构" class="headerlink" title="3.1 高速缓存的结构"></a>3.1 高速缓存的结构</h3><p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209042138819.png" alt="image-20220904213832532" data-caption="image-20220904213832532" loading="lazy"> </p>
+<h3 id="3-1-高速缓存的结构"><a href="#3-1-高速缓存的结构" class="headerlink" title="3.1 高速缓存的结构"></a>3.1 高速缓存的结构</h3><p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209042138819.png" alt="image-20220904213832532"> </p>
 <p>一个计算机存储器的地址有m位，他被分为三部分：</p>
 <ul>
 <li>高t位是标记位</li>
@@ -307,8 +300,7 @@
 </li>
 <li><p>每个组中最多有2^t^ 个高速缓存行</p>
 </li>
-<li><p>每个高速缓存行也由三部分组成</p>
-<ul>
+<li>每个高速缓存行也由三部分组成<ul>
 <li>一位有效位，标记着这个高速缓存行是否有效</li>
 <li>t个标记位，用于与该组中的其他高速缓存行区分，因此每组只能由2^t^ 个高速缓存行</li>
 <li>2^b^ 大小的数据，存储的是在下一层复制上来的块(block)，一行就存储了一个块的内容，有时候，“行” 和 “块” 这两个术语可以交替使用</li>
@@ -318,41 +310,41 @@
 <h3 id="3-2-高速缓存的工作原理"><a href="#3-2-高速缓存的工作原理" class="headerlink" title="3.2 高速缓存的工作原理"></a>3.2 高速缓存的工作原理</h3><p>当CPU向高速缓存发起读指令时，高速缓存首先确定缓存是否命中，如果命中，直接发送给CPU的寄存器。如果不命中就向主存取，等待数据到达某个高速缓存行，接着发送给CPU的寄存器。</p>
 <p>确定是否命中有三个步骤：</p>
 <ol>
-<li><p>组选择</p>
-</li>
-<li><p>行匹配</p>
-</li>
-<li><p>字抽取</p>
-</li>
+<li>组选择</li>
+<li>行匹配</li>
+<li>字抽取</li>
+</ol>
+<ol>
 <li><p>组选择</p>
 <p>回忆我们的地址的中间s位是组索引，所以我们只要抽取组索引就可以找到对应的组，而且由于一共有2^s^ 个组，所以，组一定会命中。</p>
 </li>
 <li><p>行匹配</p>
 <p>如果一个组里的某一行，改行的有效位被设置，且标记位等于地址的标记位，则行匹配成功。</p>
 <p>如果行不命中，就要牺牲某一行，将它驱逐，相应的块从低层次的存储层次中取上来。</p>
-<p>补充 : </p>
-<p>我们先回忆一下地址的构成</p>
-<p>标记位 t + 索引位 s + 偏移位b</p>
-<p>假设有一个四位的地址，t &#x3D; 1，s &#x3D; 2，b &#x3D; 1</p>
-<p>这四位地址的所有组合如下：</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209042239062.png" alt="image-20220904223950779" data-caption="image-20220904223950779" loading="lazy"> </p>
-<p>我们把目光投向一对缓存层，由于地址的限制，较低层有8块，而较高层有4组（这里的4组是我们规定的）。</p>
-<p>我们的低层有8块，高层有4组，对于低层块如何在高层放置，我们做出如下规定：对于低层的块i，它必须存放在高层的 i mod 4 组上。</p>
-<p>这样我们较低层的 0、4 映射到了较高层的0组，</p>
-<p>1、5映射到了1，</p>
-<p>2、6映射到了2，</p>
-<p>3、7映射到了3</p>
-<p>一个组中可以有最多2^t^ 行，如果我们一组中只有一行。</p>
-<p>如果我们首先引用了块0，那么块0每放在较高层的组0，</p>
-<p>接下来我们再引用块4的时候，由于我们规定一组只有一行，这时就出现了一个冲突，我们必须选择一个牺牲行，来放置块4，在这里毫无疑问我们将选择唯一的一行。我们将块4放到了组0的唯一一行。</p>
-<p>通过上面的例子，我想说明两点</p>
-<p>一、并不是所有组都只有1行，如果一个组有多行，如果出现上述情况，我们只能使用严格复杂的策略去选择牺牲行，或者直接随机选择一个牺牲行。</p>
-<p>二、如果我们获得了一个地址，这个地址的组索引是0组，但该组里并没有一个有效的标记与我们地址的标记匹配，这是我们要怎样在下层存储中找到我们要得到的块呢？</p>
-<p>注意到，将地址的标记位（1位）和组索引位（2位），合起来（3位），刚好是块在较低存储层的编号。这样就可以快速在较低层定位块。</p>
-<p>其实，将地址分成标记位和索引位，并不能扩充地址空间的大小，但可以增快寻址速度，这一点就是利用了这个原理。</p>
 </li>
-<li><p>字抽取</p>
-</li>
+</ol>
+<p>   补充 : </p>
+<p>   我们先回忆一下地址的构成</p>
+<p>   标记位 t + 索引位 s + 偏移位b</p>
+<p>   假设有一个四位的地址，t = 1，s = 2，b = 1</p>
+<p>   这四位地址的所有组合如下：</p>
+<p>   <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209042239062.png" alt="image-20220904223950779"> </p>
+<p>   我们把目光投向一对缓存层，由于地址的限制，较低层有8块，而较高层有4组（这里的4组是我们规定的）。</p>
+<p>   我们的低层有8块，高层有4组，对于低层块如何在高层放置，我们做出如下规定：对于低层的块i，它必须存放在高层的 i mod 4 组上。</p>
+<p>   这样我们较低层的 0、4 映射到了较高层的0组，</p>
+<p>   1、5映射到了1，</p>
+<p>   2、6映射到了2，</p>
+<p>   3、7映射到了3</p>
+<p>   一个组中可以有最多2^t^ 行，如果我们一组中只有一行。</p>
+<p>   如果我们首先引用了块0，那么块0每放在较高层的组0，</p>
+<p>   接下来我们再引用块4的时候，由于我们规定一组只有一行，这时就出现了一个冲突，我们必须选择一个牺牲行，来放置块4，在这里毫无疑问我们将选择唯一的一行。我们将块4放到了组0的唯一一行。</p>
+<p>   通过上面的例子，我想说明两点</p>
+<p>   一、并不是所有组都只有1行，如果一个组有多行，如果出现上述情况，我们只能使用严格复杂的策略去选择牺牲行，或者直接随机选择一个牺牲行。</p>
+<p>   二、如果我们获得了一个地址，这个地址的组索引是0组，但该组里并没有一个有效的标记与我们地址的标记匹配，这是我们要怎样在下层存储中找到我们要得到的块呢？</p>
+<p>   注意到，将地址的标记位（1位）和组索引位（2位），合起来（3位），刚好是块在较低存储层的编号。这样就可以快速在较低层定位块。</p>
+<p>   其实，将地址分成标记位和索引位，并不能扩充地址空间的大小，但可以增快寻址速度，这一点就是利用了这个原理。</p>
+<ol>
+<li>字抽取</li>
 </ol>
 <p>只要根据地址中的块偏移定位到行的某个位置，就可以取出在此之后的任意长度的位。</p>
 <h2 id="4-虚拟内存"><a href="#4-虚拟内存" class="headerlink" title="4 虚拟内存"></a>4 虚拟内存</h2><p>从上面的叙述我们可以看出，计算机的存储系统是复杂的。为了简化内存管理，现代系统提供了一种对主存的抽象概念，叫做虚拟内存。它为每个进程提供一个大的、一致的私有地址空间。</p>
@@ -376,7 +368,7 @@
 <p>我们知道，主存的容量远小于磁盘，而我们的虚拟内存是对磁盘空间的映射，所以，主存有时并不能放下某个进程的全部虚拟内存。而且，计算机要同时运行多个程序，不能只在主存中存放某个进程的虚拟内存。因此我们只能将某个进程暂时用到的虚拟内存的某部分存放到主存中。</p>
 <h3 id="4-2-虚拟内存的结构"><a href="#4-2-虚拟内存的结构" class="headerlink" title="4.2 虚拟内存的结构"></a>4.2 虚拟内存的结构</h3><p>在CPU上有一个名叫内存管理单元(Memory Management Unit)的硬件，利用存放在主存中的页表来动态翻译虚拟地址。</p>
 <p>页表：每个进程都有一个页表，页表将虚拟页映射到物理页。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209051937453.png" alt="image-20220905193713696" data-caption="image-20220905193713696" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209051937453.png" alt="image-20220905193713696"> </p>
 <p>快表 (Translation Lookaside Buffer，TLB)：在MMU中的对页表的缓存，因为页表存储在主存中，所以与同为主存的高速缓存一样，快表的结构也是组加行，寻址时，首先进行组选择，接着进行行匹配，最后字抽取。</p>
 <h3 id="4-3-虚拟内存的地址翻译"><a href="#4-3-虚拟内存的地址翻译" class="headerlink" title="4.3 虚拟内存的地址翻译"></a>4.3 虚拟内存的地址翻译</h3><p>下面简单概括以下虚拟内存的地址翻译：</p>
 <ol>
@@ -385,69 +377,33 @@
 <li>由于快表没有命中PTEA，所以我们在高速缓存的页表中寻找该PTEA，如果命中，那么我们得到页表条目转4，如果高速缓存中的页表没有命中，那么我们要向主存请求页表，再从新的页表中搜寻PTEA，然后得到PTE，转4</li>
 <li>现在我们已经得到了PTE，PTE在MMU中被翻译成物理地址，如果该物理地址在高速缓存中命中，那么我们直接将数据发送给处理器。如果高速缓存没有命中，我们就要在主存中请求该物理地址。</li>
 </ol>
-<p><img data-fancybox="gallery" src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220905200451112.png" alt="image-20220905200451112" data-caption="image-20220905200451112" loading="lazy"> </p>
+<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220905200451112.png" alt="image-20220905200451112"> </p>
 <p>下面我们介绍虚拟地址翻译中的一些细节：</p>
 <ol>
 <li><p>什么是页表条目地址(Page Table Entry Address, PTEA)，它是怎样被生成的？</p>
 <p>要解答这个问题，首先我们要介绍虚拟地址的格式。</p>
-<table>
-<thead>
-<tr>
-<th>虚拟页号 VPN</th>
-<th>虚拟页偏移 VPO</th>
-</tr>
-</thead>
-</table>
+<p>| 虚拟页号 VPN | 虚拟页偏移 VPO |<br>| —————— | ——————— |</p>
 <p>页表条目地址PTEA和虚拟页号VPN其实是同一个东西，两者没有区别。例如，VPN 0 选择PTE 0，VPN 1选择 PTE 1。</p>
 </li>
 <li><p>PTE 是什么，它的结构是什么？</p>
 <p>PTE 是页表条目，他的结构是这样的</p>
-<table>
-<thead>
-<tr>
-<th>SUP 有效位</th>
-<th>READ 有效位</th>
-<th>WRITE 有效位</th>
-<th>PPN 物理页号 (Physical Page Number)</th>
-</tr>
-</thead>
-</table>
+<p>| SUP 有效位 | READ 有效位 | WRITE 有效位 | PPN 物理页号 (Physical Page Number) |<br>| ————— | —————- | —————— | —————————————————- |</p>
 <p>前三段是有效位，如果SUP有效位设置为1表示该页只能在超级用户（内核模式）下才能被访问，READ有效位设置为1表示该页可读，WRITE有效位设置为1，表示该页可写。</p>
 <p>PPN 物理页号是什么呢？</p>
 <p>让我们回忆以下我们在介绍高速缓存时用到的物理地址</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052139387.png" alt="image-20220905213937545" data-caption="image-20220905213937545" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052139387.png" alt="image-20220905213937545"> </p>
 <p>如图所示，物理地址是由高t位的标记位，中间s位的组索引和低b位的快偏移 组成的。</p>
 <p>而标记位和组索引合起来就是PPN。</p>
 <p>而块偏移和虚拟地址的虚拟页偏移VPO是一样的</p>
 <p>因此，地址翻译的时候，只需要将PTE中的PPN取出来，和VPO拼接起来就得到了物理地址。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052144414.png" alt="image-20220905214401855" data-caption="image-20220905214401855" loading="lazy"> </p>
-<ol start="3">
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052144414.png" alt="image-20220905214401855"> </p>
+<ol>
 <li><p>快表TLB的工作原理是什么？</p>
 <p>快表和高速缓存的原理是类似的，我们首先重新审视一下虚拟地址：</p>
 <p>虚拟地址由VPN和VPO组成</p>
-<table>
-<thead>
-<tr>
-<th>虚拟页号 VPN</th>
-<th>虚拟页偏移 VPO</th>
-</tr>
-</thead>
-</table>
+<p>| 虚拟页号 VPN | 虚拟页偏移 VPO |<br>| —————— | ——————— |</p>
 <p>而虚拟页号VPN又可以分为两部分：</p>
-<table>
-<thead>
-<tr>
-<th>VPN</th>
-<th>VPN</th>
-<th>VPO</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>TLB标记(TLBT)</td>
-<td>TLB索引(TLBI)</td>
-<td>VPO</td>
-</tr>
-</tbody></table>
+<p>| VPN           | VPN           | VPO  |<br>| ——————- | ——————- | —— |<br>| TLB标记(TLBT) | TLB索引(TLBI) | VPO  |</p>
 <p>TLB首先进行组选择，即使用TLBI来匹配TLB内的组，这是一定可以命中的，原因详见高速缓存。</p>
 <p>接着进行行匹配，即匹配TLB组内标记和TLBT相同的行。这一步就不一定会命中。如果按照我们之前的模型，由许多个页表条目PTE，只要他们的TLB索引相同（或者说VPN对2^S^ 取模，得到的值相同。PS: 其实这和组索引相同 是同一的，因为对2^s^ 取模就是取TLB索引，在这里，s指TLBI的位数），他们就会被映射到同一个组。如果没有命中，那么我们只能去高速缓存里继续从页表里翻找页表条目PTE了。</p>
 </li>
@@ -466,13 +422,13 @@
 <h2 id="6-技术总结"><a href="#6-技术总结" class="headerlink" title="6 技术总结"></a>6 技术总结</h2><p>在介绍3.2 高速缓存工作原理时，我们看到了索引位和标记位的使用。同样我们在4.3 虚拟地址的翻译中也看到了TLBT和TLBI的使用。在这里我们对这种技术进行抽象和总结。</p>
 <p>有两个存储层次，较下层的存储层次容量大，速度慢，我们称之为B层，较上层的存储层次容量小，速度快，我们称之为A层，我们要使用A层来缓存B层的内容。</p>
 <p>我们将B层想象成一个数组，我们用n位的地址来表示这个数组的每个位。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052218205.png" alt="image-20220905221756883" data-caption="image-20220905221756883" loading="lazy"> </p>
-<p>B层可以容纳 2^n^ 大小的位。我们将B层划分为 2^m^ 块，其中每块的大小为 2^o^ ，这样数组的前2^o^ 位为第一个块，接着2^o^ 位是第二个块，依此类推。而这些块一共有2^m^ 个。我们有n &#x3D; m + o。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052218205.png" alt="image-20220905221756883"> </p>
+<p>B层可以容纳 2^n^ 大小的位。我们将B层划分为 2^m^ 块，其中每块的大小为 2^o^ ，这样数组的前2^o^ 位为第一个块，接着2^o^ 位是第二个块，依此类推。而这些块一共有2^m^ 个。我们有n = m + o。</p>
 <p>现在我们通过巧妙地在地址中间花了一道线，不改变地址本身的结构，将线性的地址划分成了一个又一个的块。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052220108.png" alt="image-20220905222017878" data-caption="image-20220905222017878" loading="lazy"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052220108.png" alt="image-20220905222017878"> </p>
 <p>由于A层的空间有限，我们只能将B层的2^i^ 块映射到A层，我们要怎么去映射呢？</p>
-<p>我们的方法是取出我们地址的前m位，去这m位的低i位，这低i位相同的块映射到同一组，而我们使用这m位的高t &#x3D; m - i 位来作为标记，区分一组中的不同块。</p>
-<p><img data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052224081.png" alt="image-20220905222457743" data-caption="image-20220905222457743" loading="lazy"></p>
+<p>我们的方法是取出我们地址的前m位，去这m位的低i位，这低i位相同的块映射到同一组，而我们使用这m位的高t = m - i 位来作为标记，区分一组中的不同块。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052224081.png" alt="image-20220905222457743"></p>
 <p>通过这种方式，我们就实现了将B层的块映射到A层，通过这种映射，只要我们知道某数据对象位于B层的地址，我们就能很方便的在A层找到它。 </p>
 <p>为什么使用中间位作为索引？</p>
 <p>如果使用高位作为索引，连续的块可能会被映射到同一组，这样不能利用程序的局部性，造成比较大的损失。</p>
@@ -572,7 +528,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">存储器层次结构 - CS:APP 第六章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">1 存储器的层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">1.2.</span> <span class="nav-text">2 存储技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 随机访问存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-DRAM-x2F-%E5%86%85%E5%AD%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">2.1.1 DRAM &#x2F; 内存的工作原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%A3%81%E7%9B%98-amp-ROM"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 磁盘 &amp; ROM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.</span> <span class="nav-text">3 高速缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 高速缓存的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 高速缓存的工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">1.4.</span> <span class="nav-text">4 虚拟内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 虚拟内存原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 虚拟内存的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E5%9C%B0%E5%9D%80%E7%BF%BB%E8%AF%91"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 虚拟内存的地址翻译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.5.</span> <span class="nav-text">5 高速缓存系统和虚拟内存系统的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">6 技术总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%9C%AF%E8%AF%AD%E7%B4%A2%E5%BC%95"><span class="nav-number">1.7.</span> <span class="nav-text">7 术语索引</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">存储器层次结构 - CS:APP 第六章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">1 存储器的层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">1.2.</span> <span class="nav-text">2 存储技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 随机访问存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-DRAM-%E5%86%85%E5%AD%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">2.1.1 DRAM &#x2F; 内存的工作原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%A3%81%E7%9B%98-amp-ROM"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 磁盘 &amp; ROM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.</span> <span class="nav-text">3 高速缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 高速缓存的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 高速缓存的工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">1.4.</span> <span class="nav-text">4 虚拟内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 虚拟内存原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 虚拟内存的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E5%9C%B0%E5%9D%80%E7%BF%BB%E8%AF%91"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 虚拟内存的地址翻译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.5.</span> <span class="nav-text">5 高速缓存系统和虚拟内存系统的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">6 技术总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%9C%AF%E8%AF%AD%E7%B4%A2%E5%BC%95"><span class="nav-number">1.7.</span> <span class="nav-text">7 术语索引</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -679,6 +635,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
