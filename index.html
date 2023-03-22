@@ -211,7 +211,7 @@
 <li>海明码的校验位长度有规定。</li>
 </ul>
 </blockquote>
-<p>海明码有n位数据和k位校验码组成n+k位，即p = n + k。海明码可生成k位的指示码$G<em>kG</em>{k-1}…G_1$ </p>
+<p>海明码有n位数据和k位校验码组成n+k位，即p = n + k。海明码可生成k位的指示码$G_kG_{k-1}…G_1$ </p>
 <p><strong>☆ 海明码的生成：</strong> </p>
 <p>假如有4个要传输的数据位，即n=4。</p>
 <p>海明码的校验位数k与数据位数n需满足：$2^k\ge n+1$（稍后解释） ，因此k取3。</p>
@@ -303,7 +303,7 @@
 <p>k~3~ (100) 是 5 (101), 6 (110), 7 (111) 的偶校验位</p>
 <p>每个校验位的生成方法可归纳如下：首先校验位和数据位的索引变化成二进制形式，因为校验位只出现在2^i-1^ （i=1,2,3）的位置，因此校验位索引的二进制形式只有一个位置是1。对于其他的数据位，如果其索引的二进制形式的某个位置为1，且这个位置与某个校验位索引为1的位置相同，那么这个数据位就要参与这个校验位的生成。</p>
 <p><strong>☆ 海明码的检验与校正：</strong> </p>
-<p>当我们收到一个带海明校验的数据，我们对所有的校验位进行校验，并将得到的结果作为指示位$G<em>kG</em>{k-1…G_1}$。</p>
+<p>当我们收到一个带海明校验的数据，我们对所有的校验位进行校验，并将得到的结果作为指示位$G_kG_{k-1…G_1}$。</p>
 <p>对于上面的例子</p>
 <div class="table-container">
 <table>
@@ -446,9 +446,9 @@
           <h2 id="整数的表示"><a href="#整数的表示" class="headerlink" title="整数的表示"></a>整数的表示</h2><h3 id="无符号数的原码"><a href="#无符号数的原码" class="headerlink" title="无符号数的原码"></a>无符号数的原码</h3><p>即无符号数的二进制表示。</p>
 <p>无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1}</p>
 <h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p><strong>定义</strong></p>
-<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}=[x<em>{w-1},x</em>{w-2},…,x_0]$ </p>
+<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}=[x_{w-1},x_{w-2},…,x_0]$ </p>
 <p>函数B2T~w~ (Binary to Two’s-complement)为</p>
-<p>$B2T<em>w = -x</em>{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
+<p>$B2T_w = -x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
 <p><strong>补码快速求相反数的方法及证明</strong></p>
 <p>所有位全为1的补码的值为-1</p>
 <blockquote>
@@ -476,8 +476,8 @@
 <p>对于正数显然成立，对于负数</p>
 <p>w位补码为其值为$2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
 <p>符号扩展k位后，w+k位补码的值为</p>
-<p>$-2^{w+k-1}+\sum<em>{i=w}^{w+k-2}2^i+2^{w-1}+\sum</em>{i=0}^{w-2}x_i2^i$ </p>
-<p>$=-2^{w+k-1}+\sum<em>{i=w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum</em>{i=0}^{w-2}x_i2^i$</p>
+<p>$-2^{w+k-1}+\sum_{i=w}^{w+k-2}2^i+2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
+<p>$=-2^{w+k-1}+\sum_{i=w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$</p>
 <p>$=2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$</p>
 </blockquote>
 <h3 id="原码和补码的相互转换"><a href="#原码和补码的相互转换" class="headerlink" title="原码和补码的相互转换"></a>原码和补码的相互转换</h3><ul>
@@ -487,7 +487,7 @@
 <h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="浮点数的一般表示"><a href="#浮点数的一般表示" class="headerlink" title="浮点数的一般表示"></a>浮点数的一般表示</h3><blockquote>
 <p>参考：</p>
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/纯小数补码/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习<em>小数的补码</em>月老吃面包的博客-CSDN博客</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习_小数的补码_月老吃面包的博客-CSDN博客</a> </p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4f8a1dc94e4f">浮点数的一般表示 - 简书 (jianshu.com)</a> </p>
 <p>一般会用补码表示浮点数的尾数，但网络上关于纯小数补码表示的讲解甚少。上课的时候老师也讲的不是很明白，因此花了好长时间查找资料。（百度还是比Bing能搜出来更有用的东西的！）</p>
 </blockquote>
