@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
 <head>
-    
-    <title>数字逻辑课程 - cfla&#39;s blog</title>
-    <meta charset="UTF-8">
-    <meta name="keywords" content="Blog">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    
-    
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="数字逻辑第一章 逻辑代数基础1.1 布尔代数也叫逻辑代数，开关代数，以后不作区分。是一种定义在{0，1}上的代数系统，表示为(K, +, ·, -, 0, 1)。 · + - 分别对应 ∧∨ ┐，与或非，合取、析取、非。  虽然课本上这样写，但我觉得根据离散数学里学的代数系统的知识，代数系统是 非空集合 加上定义在集合上的运算，所以应该写成 ({0, 1}, +, ·, -) 。  · 即合取，可">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数字逻辑第一章 逻辑代数基础1.1 布尔代数也叫逻辑代数，开关代数，以后不作区分。是一种定义在{0，1}上的代数系统，表示为(K, +, ·, -, 0, 1)。 · + - 分别对应 ∧∨ ┐，与或非，合取、析取、非。  虽然课本上这样写，但我觉得根据离散数学里学的代数系统的知识，代数系统是 非空集合 加上定义在集合上的运算，所以应该写成 ({0, 1}, +, ·, -) 。  · 即合取，可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数字逻辑课程">
 <meta property="og:url" content="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/index.html">
@@ -46,229 +54,179 @@
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208241752070.png">
-    
-<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
-<link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
-<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+<link rel="canonical" href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679384673632">
-    
-    <link rel="stylesheet" href="/css/style.css?v=1679384673632">
-    
-<meta name="generator" content="Hexo 6.2.0"></head>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<body class="mdui-drawer-body-left">
+  <title>数字逻辑课程 | cfla's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cfla's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
-    <div id="nexmoe-background">
-        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png)"></div>
-        <div class="mdui-appbar mdui-shadow-0">
-            <div class="mdui-toolbar">
-                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
-                <div class="mdui-toolbar-spacer"></div>
-                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-                <a href="/" title="cfla" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla"></a>
-            </div>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数字逻辑课程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-23 11:44:02" itemprop="dateCreated datePublished" datetime="2022-08-23T11:44:02+08:00">2022-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-06 22:09:22" itemprop="dateModified" datetime="2022-12-06T22:09:22+08:00">2022-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-    <div id="nexmoe-header">
-        <div class="nexmoe-drawer mdui-drawer" id="drawer">
-    <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="cfla">
-            <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla" alt="cfla">
-        </a>
-    </div>
-    <div class="nexmoe-count">
-        <div><span>文章</span>27</div>
-        <div><span>标签</span>6</div>
-        <div><span>分类</span>6</div>
-    </div>
-    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
-            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
-            <div class="mdui-list-item-content">
-                回到首页
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/Archives.html" title="文章归档">
-            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
-            <div class="mdui-list-item-content">
-                文章归档
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于博客
-            </div>
-        </a>
-        
-    </div>
-    <aside id="nexmoe-sidebar">
-    
-    <div class="nexmoe-widget-wrap">
-    <div class="nexmoe-widget nexmoe-search">
-        
-            <form id="search_form">
-                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
-                    font-size: 15px !important;
-                    height: 56px !important;
-                    background-image: none;
-                "></label>
-            </form>
-         
-    </div>
-</div>
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章分类</h3>
-    <div class="nexmoe-widget">
-
-      <ul class="category-list">
-
-        
-
-
-        
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/CS-APP/">CS:APP</a>
-          <span class="category-list-count">9</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/使用教程/">使用教程</a>
-          <span class="category-list-count">2</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/哲学/">哲学</a>
-          <span class="category-list-count">2</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
-          <span class="category-list-count">4</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
-          <span class="category-list-count">8</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/项目/">项目</a>
-          <span class="category-list-count">1</span>
-        </li>
-
-        
-      </ul>
-
-    </div>
-  </div>
-
+      </header>
 
     
     
-  <div class="nexmoe-widget-wrap">
-    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/cmake/" style="font-size: 10px;">cmake</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 10px;">转载</a>
-    </div>
     
-  </div>
+    <div class="post-body" itemprop="articleBody">
 
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">22</span></li></ul>
-    </div>
-  </div>
-
-
-
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">最新文章</h3>
-    <div class="nexmoe-widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/">计算机组成原理部分笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/">数字在计算机中的表示</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/">Visual Studio 用法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/06/%E5%85%B3%E4%BA%8E%E8%8B%B1%E6%96%87%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E5%90%8D%E7%A7%B0%E4%B8%AD%E9%80%97%E5%8F%B7%E4%B8%8E%E5%8F%A5%E5%8F%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">关于英文论文作者名称中逗号与句号的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/">西方哲学史 希尔贝克</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-    
-</aside>
-    <div class="nexmoe-copyright">
-        &copy; 2023 cfla
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
-        
-    </div>
-</div><!-- .nexmoe-drawer -->
-    </div>
-    <div id="nexmoe-content">
-        <div class="nexmoe-primary">
-            <div class="nexmoe-post">
-
-  <article>
       
-          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
-              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208231156912.jpg" alt="数字逻辑课程" loading="lazy">
-              <h1>数字逻辑课程</h1>
-          </div>
-      
-      
-      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2022年08月23日</a>
-</div>
-
-      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约6.6k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要24分钟</a>
-    
-</div>
-
-      <h1 id="数字逻辑"><a href="#数字逻辑" class="headerlink" title="数字逻辑"></a>数字逻辑</h1><h2 id="第一章-逻辑代数基础"><a href="#第一章-逻辑代数基础" class="headerlink" title="第一章 逻辑代数基础"></a>第一章 逻辑代数基础</h2><h3 id="1-1-布尔代数"><a href="#1-1-布尔代数" class="headerlink" title="1.1 布尔代数"></a>1.1 布尔代数</h3><p>也叫逻辑代数，开关代数，以后不作区分。是一种定义在{0，1}上的代数系统，表示为(K, +, ·, -, 0, 1)。</p>
+        <h1 id="数字逻辑"><a href="#数字逻辑" class="headerlink" title="数字逻辑"></a>数字逻辑</h1><h2 id="第一章-逻辑代数基础"><a href="#第一章-逻辑代数基础" class="headerlink" title="第一章 逻辑代数基础"></a>第一章 逻辑代数基础</h2><h3 id="1-1-布尔代数"><a href="#1-1-布尔代数" class="headerlink" title="1.1 布尔代数"></a>1.1 布尔代数</h3><p>也叫逻辑代数，开关代数，以后不作区分。是一种定义在{0，1}上的代数系统，表示为(K, +, ·, -, 0, 1)。</p>
 <p>· + - 分别对应 ∧∨ ┐，与或非，合取、析取、非。</p>
 <blockquote>
 <p>虽然课本上这样写，但我觉得根据离散数学里学的代数系统的知识，代数系统是 非空集合 加上定义在集合上的运算，所以应该写成 ({0, 1}, +, ·, -) 。</p>
@@ -1007,111 +965,194 @@
 </ol>
 <p><code>本课程结束</code> </p>
 
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/21/BallMove-%E5%9F%BA%E4%BA%8EQt%E7%9A%84GUI%E5%B0%8F%E9%A1%B9%E7%9B%AE/" rel="prev" title="BallMove:基于Qt的GUI小项目">
+      <i class="fa fa-chevron-left"></i> BallMove:基于Qt的GUI小项目
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/" rel="next" title="数据结构课程">
+      数据结构课程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-  
-      
-    <div class="nexmoe-post-copyright">
-        <strong>本文作者：</strong>cfla<br>
-        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;08&#x2F;23&#x2F;%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;08&#x2F;23&#x2F;%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B&#x2F;</a><br>
-        
-            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-        
-    </div>
-
-
   
   
-  <div class="nexmoe-post-meta nexmoe-rainbow">
-    
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">大学课程</a>
-    
-    
-</div>
-
   
-      <div class="nexmoe-post-footer">
-          <section class="nexmoe-comment">
-    <div class="valine"></div>
-<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+
+
+
+          </div>
+          
+
 <script>
-    // 使用方法 https://valine.js.org/quickstart.html
-    new Valine({
-        el: '.valine',
-        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
-        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
-    })
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
-</section>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="nav-number">1.</span> <span class="nav-text">数字逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 逻辑代数基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 布尔代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 逻辑函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 三种表示法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E4%B8%A4%E7%A7%8D%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 两种标准形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">1.2.3 逻辑函数的三种表示法的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86-amp-%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 主要定理 &amp; 常用公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">1.3.1个主要定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-5%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">1.3.2 5个常用公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-%E5%BC%82%E6%88%96%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">1.3.3 异或的性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4-%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">1.3.4 应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%96%E7%AE%80"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 逻辑函数的化简</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1.4.1 卡诺图法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 组合电路的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%90%84%E7%A7%8D%E9%97%A8%E7%94%B5%E8%B7%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 各种门电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%97%A8%E7%94%B5%E8%B7%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 门电路的主要参数以及组合电路的分析方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 全加器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E8%AF%91%E7%A0%81%E5%99%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 译码器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E6%A0%BC%E9%9B%B7%E7%A0%81%E8%BD%AC8421%E7%A0%81%EF%BC%9A"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5.格雷码转8421码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E5%99%A8"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 奇偶校验器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 组合线路的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 逻辑函数的变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%88%A9%E7%94%A8%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 利用任意项的线路设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%A4%9A%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1%EF%BC%88%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E5%85%B1%E4%BA%AB%E9%A1%B9%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 多输出函数的线路设计（需要考虑共享项）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%BA%94%E7%94%A8MSI%E5%8A%9F%E8%83%BD%E5%9D%97%E7%9A%84%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 应用MSI功能块的组合线路设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 时序电路的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%A4%96%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 触发器的外特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E5%9F%BA%E6%9C%AC%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">4.1.1 基本触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-RS%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">4.1.2 RS触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3-D-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">4.1.3 D 触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-4-JK-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">4.1.4 JK 触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-5-T%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">4.1.5 T触发器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 时序电路的分析方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 同步时序电路的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E5%85%B3%E4%BA%8E%E7%8A%B6%E6%80%81%E7%9A%84%E5%8C%96%E7%AE%80"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">4.3.1 关于状态的化简</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
-  
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cfla</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-            <div class="nexmoe-post-right">
-              <div class="nexmoe-fixed">
-                  <div class="nexmoe-tool"> 
-                    
-                      
-                        
-                          
-                          
-                              <button class="mdui-fab catalog" style="overflow:unset;">
-                                  <i class="nexmoefont icon-i-catalog"></i>
-                                  <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="toc-number">1.</span> <span class="toc-text">数字逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 逻辑代数基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 布尔代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 逻辑函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 三种表示法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E4%B8%A4%E7%A7%8D%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">1.2.2 两种标准形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">1.2.3 逻辑函数的三种表示法的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86-amp-%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 主要定理 &amp; 常用公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%AE%9A%E7%90%86"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1个主要定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-5%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 5个常用公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E5%BC%82%E6%88%96%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">1.3.3 异或的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">1.3.4 应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%96%E7%AE%80"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 逻辑函数的化简</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1 卡诺图法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 组合电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%90%84%E7%A7%8D%E9%97%A8%E7%94%B5%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 各种门电路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%97%A8%E7%94%B5%E8%B7%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E7%BB%84%E5%90%88%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 门电路的主要参数以及组合电路的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A0%BC%E9%9B%B7%E7%A0%81%E8%BD%AC8421%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5.格雷码转8421码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E5%99%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 奇偶校验器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 组合线路的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 逻辑函数的变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%A9%E7%94%A8%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 利用任意项的线路设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%A4%9A%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1%EF%BC%88%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E5%85%B1%E4%BA%AB%E9%A1%B9%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 多输出函数的线路设计（需要考虑共享项）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%BA%94%E7%94%A8MSI%E5%8A%9F%E8%83%BD%E5%9D%97%E7%9A%84%E7%BB%84%E5%90%88%E7%BA%BF%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 应用MSI功能块的组合线路设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 时序电路的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%A4%96%E7%89%B9%E6%80%A7"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 触发器的外特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-%E5%9F%BA%E6%9C%AC%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">4.1.1 基本触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-RS%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">4.1.2 RS触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-D-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">4.1.3 D 触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-JK-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">4.1.4 JK 触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-5-T%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">4.1.5 T触发器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 时序电路的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 同步时序电路的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-%E5%85%B3%E4%BA%8E%E7%8A%B6%E6%80%81%E7%9A%84%E5%8C%96%E7%AE%80"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">4.3.1 关于状态的化简</span></a></li></ol></li></ol></li></ol></li></ol>
-                                  </div>
-                              </button>
-                          
-                          
-                      
-                    
-                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
-                  </div>
-              </div>
-            </div>
-        </div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
     </div>
-     
-    <div id="nexmoe-search-space">
-        <div class="search-container">
-            <div class="search-header">
-                <div class="search-input-container">
-                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
-                </div>
-                <a class="search-close" onclick="sclose();">×</a>
-            </div>
-            <div class="search-body"></div>
-        </div>
-    </div>
-
-    
-<script src="/lib/mdui_043tiny/mdui.js"></script>
-<script src="/lib/jquery.min.js"></script>
-<script src="/lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
-<script src="/lib/fancybox/fancybox.umd.js"></script>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
- 
+      </div>
+    </main>
 
-<script async src="/js/app.js?v=1679384673633"></script>
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
+        
 
-	<script async src="/js/search.js?v=1679384673633"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfla</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
 
-
-<script>
-	$(".justified-gallery").justifiedGallery({
-		rowHeight: 160,
-		margins: 10,
-	});
-</script>
-
-
-    
+        
 
 
 
 
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
-
 </html>

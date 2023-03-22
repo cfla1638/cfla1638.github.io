@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
 <head>
-    
-    <title>数据结构课程 - cfla&#39;s blog</title>
-    <meta charset="UTF-8">
-    <meta name="keywords" content="Blog">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    
-    
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="数据结构1. 线性表1.1 顺序实现#include &lt;cstdlib&gt;using namespace std;typedef int ElemType;typedef int Status;const int OK &#x3D; 0;const int ERROR &#x3D; 1;const int OVERFLOW &#x3D; 2;const int LIST_INIT_SIZE &#x3D; 100;const i">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数据结构1. 线性表1.1 顺序实现#include &lt;cstdlib&gt;using namespace std;typedef int ElemType;typedef int Status;const int OK &#x3D; 0;const int ERROR &#x3D; 1;const int OVERFLOW &#x3D; 2;const int LIST_INIT_SIZE &#x3D; 100;const i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构课程">
 <meta property="og:url" content="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/index.html">
@@ -29,229 +37,179 @@
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/Users/cfla/AppData/Roaming/Typora/typora-user-images/image-20221226123446806.png">
-    
-<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
-<link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
-<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+<link rel="canonical" href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679384673626">
-    
-    <link rel="stylesheet" href="/css/style.css?v=1679384673626">
-    
-<meta name="generator" content="Hexo 6.2.0"></head>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<body class="mdui-drawer-body-left">
+  <title>数据结构课程 | cfla's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cfla's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
-    <div id="nexmoe-background">
-        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png)"></div>
-        <div class="mdui-appbar mdui-shadow-0">
-            <div class="mdui-toolbar">
-                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
-                <div class="mdui-toolbar-spacer"></div>
-                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-                <a href="/" title="cfla" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla"></a>
-            </div>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构课程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-23 11:50:55" itemprop="dateCreated datePublished" datetime="2022-08-23T11:50:55+08:00">2022-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-07 09:04:26" itemprop="dateModified" datetime="2023-01-07T09:04:26+08:00">2023-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-    <div id="nexmoe-header">
-        <div class="nexmoe-drawer mdui-drawer" id="drawer">
-    <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="cfla">
-            <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla" alt="cfla">
-        </a>
-    </div>
-    <div class="nexmoe-count">
-        <div><span>文章</span>27</div>
-        <div><span>标签</span>6</div>
-        <div><span>分类</span>6</div>
-    </div>
-    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
-            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
-            <div class="mdui-list-item-content">
-                回到首页
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/Archives.html" title="文章归档">
-            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
-            <div class="mdui-list-item-content">
-                文章归档
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于博客
-            </div>
-        </a>
-        
-    </div>
-    <aside id="nexmoe-sidebar">
-    
-    <div class="nexmoe-widget-wrap">
-    <div class="nexmoe-widget nexmoe-search">
-        
-            <form id="search_form">
-                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
-                    font-size: 15px !important;
-                    height: 56px !important;
-                    background-image: none;
-                "></label>
-            </form>
-         
-    </div>
-</div>
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章分类</h3>
-    <div class="nexmoe-widget">
-
-      <ul class="category-list">
-
-        
-
-
-        
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/CS-APP/">CS:APP</a>
-          <span class="category-list-count">9</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/使用教程/">使用教程</a>
-          <span class="category-list-count">2</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/哲学/">哲学</a>
-          <span class="category-list-count">2</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
-          <span class="category-list-count">4</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
-          <span class="category-list-count">8</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/项目/">项目</a>
-          <span class="category-list-count">1</span>
-        </li>
-
-        
-      </ul>
-
-    </div>
-  </div>
-
+      </header>
 
     
     
-  <div class="nexmoe-widget-wrap">
-    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/cmake/" style="font-size: 10px;">cmake</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 10px;">转载</a>
-    </div>
     
-  </div>
+    <div class="post-body" itemprop="articleBody">
 
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">22</span></li></ul>
-    </div>
-  </div>
-
-
-
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">最新文章</h3>
-    <div class="nexmoe-widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/">计算机组成原理部分笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/">数字在计算机中的表示</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/">Visual Studio 用法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/06/%E5%85%B3%E4%BA%8E%E8%8B%B1%E6%96%87%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E5%90%8D%E7%A7%B0%E4%B8%AD%E9%80%97%E5%8F%B7%E4%B8%8E%E5%8F%A5%E5%8F%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">关于英文论文作者名称中逗号与句号的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/">西方哲学史 希尔贝克</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-    
-</aside>
-    <div class="nexmoe-copyright">
-        &copy; 2023 cfla
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
-        
-    </div>
-</div><!-- .nexmoe-drawer -->
-    </div>
-    <div id="nexmoe-content">
-        <div class="nexmoe-primary">
-            <div class="nexmoe-post">
-
-  <article>
       
-          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
-              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208231155437.jpg" alt="数据结构课程" loading="lazy">
-              <h1>数据结构课程</h1>
-          </div>
-      
-      
-      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2022年08月23日</a>
-</div>
-
-      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约6.1k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要27分钟</a>
-    
-</div>
-
-      <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-线性表"><a href="#1-线性表" class="headerlink" title="1. 线性表"></a>1. 线性表</h2><h3 id="1-1-顺序实现"><a href="#1-1-顺序实现" class="headerlink" title="1.1 顺序实现"></a>1.1 顺序实现</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ElemType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> Status;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> OK = <span class="hljs-number">0</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> ERROR = <span class="hljs-number">1</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> OVERFLOW = <span class="hljs-number">2</span>;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> LIST_INIT_SIZE = <span class="hljs-number">100</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> LIST_INCREMENT = <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <br>&#123;<br>    ElemType * elem;<br>    <span class="hljs-type">int</span> length;<br>    <span class="hljs-type">int</span> listsize;<br>&#125;SqList;<br><br><span class="hljs-comment">// 初始化</span><br><span class="hljs-function">Status <span class="hljs-title">InitList_Sq</span><span class="hljs-params">(SqList &amp;L)</span></span><br><span class="hljs-function"></span>&#123;<br>    L.elem = (ElemType *)<span class="hljs-built_in">malloc</span>(LIST_INIT_SIZE * <span class="hljs-built_in">sizeof</span>(ElemType));<br>    <span class="hljs-keyword">if</span> (!L.elem)<br>        <span class="hljs-built_in">exit</span>(OVERFLOW);<br>    L.length = <span class="hljs-number">0</span>;<br>    L.listsize = LIST_INIT_SIZE;<br>&#125;<br><br><span class="hljs-comment">// 插入</span><br><span class="hljs-function">Status <span class="hljs-title">insert</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> i, ElemType e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 插入的合法范围为 1 &lt;= i &lt;= length + 1, 插入在length + 1时，需要另外申请空间，等价于append</span><br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length + <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> ERROR;<br><br>    <span class="hljs-comment">// 若已满，重新分配空间</span><br>    <span class="hljs-keyword">if</span> (L.length &gt;= L.listsize) &#123;<br>        ElemType * newbase = (ElemType *)<span class="hljs-built_in">realloc</span>(L.elem, (L.listsize + LIST_INCREMENT) * <span class="hljs-built_in">sizeof</span> (ElemType));<br>        <span class="hljs-keyword">if</span> (!newbase)<br>            <span class="hljs-built_in">exit</span>(OVERFLOW);<br>        L.elem = newbase;<br>        L.listsize += LIST_INCREMENT;<br>    &#125;<br><br>    <span class="hljs-comment">// 位移</span><br>    ElemType * pos = &amp;(L.elem[i - <span class="hljs-number">1</span>]);<br>    <span class="hljs-keyword">for</span> (ElemType * rear = &amp;(L.elem[L.length - <span class="hljs-number">1</span>]); rear &gt;= pos; rear--)<br>        *(rear + <span class="hljs-number">1</span>) = * rear;<br>    * pos = e;<br>    L.length++;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br><span class="hljs-function">Status <span class="hljs-title">ListDelete_Sq</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> i, ElemType &amp;e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length)<br>        <span class="hljs-keyword">return</span> ERROR;<br>    ElemType * pos = &amp;(L.elem[i - <span class="hljs-number">1</span>]);<br>    e = * pos;<br>    ElemType * rear = &amp;(L.elem[L.length - <span class="hljs-number">1</span>]);<br>    <span class="hljs-keyword">for</span> (pos++; pos &lt;= rear; pos++)<br>        * (pos - <span class="hljs-number">1</span>) = * pos;<br>    L.length--;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
+        <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-线性表"><a href="#1-线性表" class="headerlink" title="1. 线性表"></a>1. 线性表</h2><h3 id="1-1-顺序实现"><a href="#1-1-顺序实现" class="headerlink" title="1.1 顺序实现"></a>1.1 顺序实现</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ElemType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> Status;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> OK = <span class="hljs-number">0</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> ERROR = <span class="hljs-number">1</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> OVERFLOW = <span class="hljs-number">2</span>;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> LIST_INIT_SIZE = <span class="hljs-number">100</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> LIST_INCREMENT = <span class="hljs-number">10</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <br>&#123;<br>    ElemType * elem;<br>    <span class="hljs-type">int</span> length;<br>    <span class="hljs-type">int</span> listsize;<br>&#125;SqList;<br><br><span class="hljs-comment">// 初始化</span><br><span class="hljs-function">Status <span class="hljs-title">InitList_Sq</span><span class="hljs-params">(SqList &amp;L)</span></span><br><span class="hljs-function"></span>&#123;<br>    L.elem = (ElemType *)<span class="hljs-built_in">malloc</span>(LIST_INIT_SIZE * <span class="hljs-built_in">sizeof</span>(ElemType));<br>    <span class="hljs-keyword">if</span> (!L.elem)<br>        <span class="hljs-built_in">exit</span>(OVERFLOW);<br>    L.length = <span class="hljs-number">0</span>;<br>    L.listsize = LIST_INIT_SIZE;<br>&#125;<br><br><span class="hljs-comment">// 插入</span><br><span class="hljs-function">Status <span class="hljs-title">insert</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> i, ElemType e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 插入的合法范围为 1 &lt;= i &lt;= length + 1, 插入在length + 1时，需要另外申请空间，等价于append</span><br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length + <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> ERROR;<br><br>    <span class="hljs-comment">// 若已满，重新分配空间</span><br>    <span class="hljs-keyword">if</span> (L.length &gt;= L.listsize) &#123;<br>        ElemType * newbase = (ElemType *)<span class="hljs-built_in">realloc</span>(L.elem, (L.listsize + LIST_INCREMENT) * <span class="hljs-built_in">sizeof</span> (ElemType));<br>        <span class="hljs-keyword">if</span> (!newbase)<br>            <span class="hljs-built_in">exit</span>(OVERFLOW);<br>        L.elem = newbase;<br>        L.listsize += LIST_INCREMENT;<br>    &#125;<br><br>    <span class="hljs-comment">// 位移</span><br>    ElemType * pos = &amp;(L.elem[i - <span class="hljs-number">1</span>]);<br>    <span class="hljs-keyword">for</span> (ElemType * rear = &amp;(L.elem[L.length - <span class="hljs-number">1</span>]); rear &gt;= pos; rear--)<br>        *(rear + <span class="hljs-number">1</span>) = * rear;<br>    * pos = e;<br>    L.length++;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br><span class="hljs-function">Status <span class="hljs-title">ListDelete_Sq</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> i, ElemType &amp;e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length)<br>        <span class="hljs-keyword">return</span> ERROR;<br>    ElemType * pos = &amp;(L.elem[i - <span class="hljs-number">1</span>]);<br>    e = * pos;<br>    ElemType * rear = &amp;(L.elem[L.length - <span class="hljs-number">1</span>]);<br>    <span class="hljs-keyword">for</span> (pos++; pos &lt;= rear; pos++)<br>        * (pos - <span class="hljs-number">1</span>) = * pos;<br>    L.length--;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="1-2-链式实现"><a href="#1-2-链式实现" class="headerlink" title="1.2 链式实现"></a>1.2 链式实现</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">enum</span> &#123;OK, ERROR, OVERFLOW&#125;;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ElemType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> Status;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">LNode</span><br>&#123;<br>    ElemType data;<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">LNode</span> * next;<br>&#125;LNode, * LinkList;<br><br><span class="hljs-function">Status <span class="hljs-title">GetElem_L</span><span class="hljs-params">(LinkList L, <span class="hljs-type">int</span> i, ElemType &amp;e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> p = L-&gt;next;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (p &amp;&amp; j &lt; i) &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!p || j &gt; i)<br>        <span class="hljs-keyword">return</span> ERROR;<br><br>    e = p-&gt;data;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br><span class="hljs-function">Status <span class="hljs-title">ListInsert_L</span><span class="hljs-params">(LinkList &amp;L, <span class="hljs-type">int</span> i, ElemType e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> p = L;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;      <span class="hljs-comment">// 由于头节点的存在，计数器从0开始</span><br><br>    <span class="hljs-comment">// 寻找第i - 1个结点，也就是待插入节点的前驱节点</span><br>    <span class="hljs-keyword">while</span> (p &amp;&amp; j &lt; i - <span class="hljs-number">1</span>) &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!p || j &gt; i - <span class="hljs-number">1</span>)    <span class="hljs-comment">// i超出表长+1(append), 或i为负数</span><br>        <span class="hljs-keyword">return</span> ERROR;<br><br>    <span class="hljs-keyword">auto</span> s = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (LNode));<br>    s-&gt;data = e;<br>    s-&gt;next = p-&gt;next;<br>    p-&gt;next = s;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br><span class="hljs-function">Status <span class="hljs-title">ListDelete_L</span><span class="hljs-params">(LinkList &amp;L, <span class="hljs-type">int</span> i, ElemType &amp;e)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> p = L;     <span class="hljs-comment">// 指向头节点</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;      <span class="hljs-comment">// 计数器</span><br><br>    <span class="hljs-comment">// 找到待删除结点的前驱</span><br>    <span class="hljs-keyword">while</span> (p-&gt;next &amp;&amp; j &lt; i - <span class="hljs-number">1</span>) &#123;  <span class="hljs-comment">// 这里的第一个测试条件是p-&gt;next是因为下面要引用p-&gt;next,如果测试条件是p的话，下面会报段错误</span><br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br><br>    <span class="hljs-comment">// 待删除结点的位置超出表厂或者为负数</span><br>    <span class="hljs-keyword">if</span> (!p-&gt;next || j &gt; i - <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> ERROR;<br>    <br>    <span class="hljs-keyword">auto</span> q = p-&gt;next;<br>    p-&gt;next = q-&gt;next;<br>    e = q-&gt;data;<br>    <span class="hljs-built_in">free</span>(q);<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief 头插法创建单链表</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @param L </span><br><span class="hljs-comment"> * @param n </span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 输入 1 2 3 4 5</span><br><span class="hljs-comment"> * 建好的单链表为 5 -&gt; 4 -&gt; 3 -&gt; 2 -&gt; 1</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CreateList_L</span><span class="hljs-params">(LinkList &amp;L, <span class="hljs-type">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (LNode));   <span class="hljs-comment">// 为头节点分配空间</span><br>    L-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">auto</span> p = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (LNode));  <span class="hljs-comment">// 分配新节点</span><br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;p-&gt;data);<br>        p-&gt;next = L-&gt;next;          <span class="hljs-comment">// 插入</span><br>        L-&gt;next = p;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief 尾插法创建单链表</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @param L </span><br><span class="hljs-comment"> * @param n </span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 输入 1 2 3 4 5</span><br><span class="hljs-comment"> * 建好的单链表为 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CreateList_L_tail</span><span class="hljs-params">(LinkList &amp;L, <span class="hljs-type">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (LNode));<br>    <span class="hljs-keyword">auto</span> r = L;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">auto</span> p = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span> (LNode));<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;p-&gt;data);<br>        p-&gt;next = <span class="hljs-literal">NULL</span>;<br>        r-&gt;next = p;<br>        r = p;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -570,111 +528,194 @@
 </li>
 </ul>
 
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/" rel="prev" title="数字逻辑课程">
+      <i class="fa fa-chevron-left"></i> 数字逻辑课程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/02/ubuntu-%E9%85%8D%E7%BD%AE/" rel="next" title="ubuntu 配置">
+      ubuntu 配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-  
-      
-    <div class="nexmoe-post-copyright">
-        <strong>本文作者：</strong>cfla<br>
-        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;08&#x2F;23&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;08&#x2F;23&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B&#x2F;</a><br>
-        
-            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-        
-    </div>
-
-
   
   
-  <div class="nexmoe-post-meta nexmoe-rainbow">
-    
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">大学课程</a>
-    
-    
-</div>
-
   
-      <div class="nexmoe-post-footer">
-          <section class="nexmoe-comment">
-    <div class="valine"></div>
-<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+
+
+
+          </div>
+          
+
 <script>
-    // 使用方法 https://valine.js.org/quickstart.html
-    new Valine({
-        el: '.valine',
-        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
-        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
-    })
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
-</section>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%A1%BA%E5%BA%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 顺序实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%93%BE%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 链式实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 双向链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97"><span class="nav-number">1.2.</span> <span class="nav-text">2. 栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%A1%BA%E5%BA%8F%E6%A0%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 顺序栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%93%BE%E6%A0%88"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 链栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 栈的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 循环队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E9%93%BE%E9%98%9F%E5%88%97"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 链队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">3. 树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 二叉树的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 二叉树的链式存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 二叉树的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 二叉树遍历的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E7%BA%BF%E7%B4%A2%E5%8C%96%EF%BC%9A"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5 线索化：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1-%E4%B8%AD%E5%BA%8F%E7%BA%BF%E7%B4%A2%E6%A0%91"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">3.5.1 中序线索树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E4%B8%80%E8%88%AC%E7%9A%84%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E8%A1%A8%E7%A4%BA%EF%BC%9A"><span class="nav-number">1.3.6.</span> <span class="nav-text">1.3 一般的树和森林的表示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E4%B8%80%E8%88%AC%E7%9A%84%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="nav-number">1.3.7.</span> <span class="nav-text">1.4 一般的树和森林的遍历：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Huffman%E6%A0%91"><span class="nav-number">1.3.8.</span> <span class="nav-text">1.5 Huffman树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%9B%BE"><span class="nav-number">1.4.</span> <span class="nav-text">4. 图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 图的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 最小生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E9%87%8D%E8%BF%9E%E9%80%9A%E5%9B%BE%E5%92%8C%E5%85%B3%E8%8A%82%E7%82%B9"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 重连通图和关节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5 拓扑排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9F%A5%E6%89%BE"><span class="nav-number">1.5.</span> <span class="nav-text">5. 查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE%E8%A1%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 顺序查找表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 折半查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E5%88%86%E5%9D%97%E7%B4%A2%E5%BC%95"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 分块索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4 二叉排序树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">1.5.5.</span> <span class="nav-text">5.5 哈希表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%8E%92%E5%BA%8F"><span class="nav-number">1.6.</span> <span class="nav-text">6. 排序</span></a></li></ol></li></ol></div>
       </div>
-  
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cfla</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-            <div class="nexmoe-post-right">
-              <div class="nexmoe-fixed">
-                  <div class="nexmoe-tool"> 
-                    
-                      
-                        
-                          
-                          
-                              <button class="mdui-fab catalog" style="overflow:unset;">
-                                  <i class="nexmoefont icon-i-catalog"></i>
-                                  <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1. 线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E9%A1%BA%E5%BA%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 顺序实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%93%BE%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 链式实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 循环链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 双向链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97"><span class="toc-number">1.2.</span> <span class="toc-text">2. 栈和队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%A1%BA%E5%BA%8F%E6%A0%88"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 顺序栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%93%BE%E6%A0%88"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 链栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 栈的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 循环队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E9%93%BE%E9%98%9F%E5%88%97"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 链队列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A0%91"><span class="toc-number">1.3.</span> <span class="toc-text">3. 树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 二叉树的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 二叉树的链式存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 二叉树的遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 二叉树遍历的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E7%BA%BF%E7%B4%A2%E5%8C%96%EF%BC%9A"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.5 线索化：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-%E4%B8%AD%E5%BA%8F%E7%BA%BF%E7%B4%A2%E6%A0%91"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">3.5.1 中序线索树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E4%B8%80%E8%88%AC%E7%9A%84%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E8%A1%A8%E7%A4%BA%EF%BC%9A"><span class="toc-number">1.3.6.</span> <span class="toc-text">1.3 一般的树和森林的表示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%B8%80%E8%88%AC%E7%9A%84%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="toc-number">1.3.7.</span> <span class="toc-text">1.4 一般的树和森林的遍历：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Huffman%E6%A0%91"><span class="toc-number">1.3.8.</span> <span class="toc-text">1.5 Huffman树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9B%BE"><span class="toc-number">1.4.</span> <span class="toc-text">4. 图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 图的遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 最小生成树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E9%87%8D%E8%BF%9E%E9%80%9A%E5%9B%BE%E5%92%8C%E5%85%B3%E8%8A%82%E7%82%B9"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 重连通图和关节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 拓扑排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9F%A5%E6%89%BE"><span class="toc-number">1.5.</span> <span class="toc-text">5. 查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE%E8%A1%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 顺序查找表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 折半查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%88%86%E5%9D%97%E7%B4%A2%E5%BC%95"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3 分块索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4 二叉排序树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.5 哈希表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%8E%92%E5%BA%8F"><span class="toc-number">1.6.</span> <span class="toc-text">6. 排序</span></a></li></ol></li></ol>
-                                  </div>
-                              </button>
-                          
-                          
-                      
-                    
-                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
-                  </div>
-              </div>
-            </div>
-        </div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
     </div>
-     
-    <div id="nexmoe-search-space">
-        <div class="search-container">
-            <div class="search-header">
-                <div class="search-input-container">
-                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
-                </div>
-                <a class="search-close" onclick="sclose();">×</a>
-            </div>
-            <div class="search-body"></div>
-        </div>
-    </div>
-
-    
-<script src="/lib/mdui_043tiny/mdui.js"></script>
-<script src="/lib/jquery.min.js"></script>
-<script src="/lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
-<script src="/lib/fancybox/fancybox.umd.js"></script>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
- 
+      </div>
+    </main>
 
-<script async src="/js/app.js?v=1679384673631"></script>
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
+        
 
-	<script async src="/js/search.js?v=1679384673631"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfla</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
 
-
-<script>
-	$(".justified-gallery").justifiedGallery({
-		rowHeight: 160,
-		margins: 10,
-	});
-</script>
-
-
-    
+        
 
 
 
 
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
-
 </html>

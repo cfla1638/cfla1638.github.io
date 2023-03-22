@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
 <head>
-    
-    <title>系统级I/O - CS:APP 第十章 - cfla&#39;s blog</title>
-    <meta charset="UTF-8">
-    <meta name="keywords" content="Blog">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    
-    
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <link rel="shortcut icon" href="/icon.png" type="image/png" />
-    <meta name="description" content="系统级I&#x2F;O - CS:APP 第十章Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。 在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。 文件描述符 定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="系统级I&#x2F;O - CS:APP 第十章Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。 在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。 文件描述符 定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统级I&#x2F;O - CS:APP 第十章">
 <meta property="og:url" content="https://cfla1638.github.io/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/index.html">
@@ -24,229 +32,179 @@
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
-    
-<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
-<link rel="stylesheet" href="/lib/justifiedGallery/justifiedGallery.min.css">
-<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+<link rel="canonical" href="https://cfla1638.github.io/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1679384673601">
-    
-    <link rel="stylesheet" href="/css/style.css?v=1679384673601">
-    
-<meta name="generator" content="Hexo 6.2.0"></head>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<body class="mdui-drawer-body-left">
+  <title>系统级I/O - CS:APP 第十章 | cfla's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cfla's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
-    <div id="nexmoe-background">
-        <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202227586.png)"></div>
-        <div class="mdui-appbar mdui-shadow-0">
-            <div class="mdui-toolbar">
-                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
-                <div class="mdui-toolbar-spacer"></div>
-                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-                <a href="/" title="cfla" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla"></a>
-            </div>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          系统级I/O - CS:APP 第十章
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-20 15:18:55" itemprop="dateCreated datePublished" datetime="2022-09-20T15:18:55+08:00">2022-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-25 22:15:11" itemprop="dateModified" datetime="2022-09-25T22:15:11+08:00">2022-09-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS-APP/" itemprop="url" rel="index"><span itemprop="name">CS:APP</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-    <div id="nexmoe-header">
-        <div class="nexmoe-drawer mdui-drawer" id="drawer">
-    <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="cfla">
-            <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208202220895.jpg" alt="cfla" alt="cfla">
-        </a>
-    </div>
-    <div class="nexmoe-count">
-        <div><span>文章</span>27</div>
-        <div><span>标签</span>6</div>
-        <div><span>分类</span>6</div>
-    </div>
-    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
-            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
-            <div class="mdui-list-item-content">
-                回到首页
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/Archives.html" title="文章归档">
-            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
-            <div class="mdui-list-item-content">
-                文章归档
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于博客
-            </div>
-        </a>
-        
-    </div>
-    <aside id="nexmoe-sidebar">
-    
-    <div class="nexmoe-widget-wrap">
-    <div class="nexmoe-widget nexmoe-search">
-        
-            <form id="search_form">
-                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
-                    font-size: 15px !important;
-                    height: 56px !important;
-                    background-image: none;
-                "></label>
-            </form>
-         
-    </div>
-</div>
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章分类</h3>
-    <div class="nexmoe-widget">
-
-      <ul class="category-list">
-
-        
-
-
-        
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/CS-APP/">CS:APP</a>
-          <span class="category-list-count">9</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/使用教程/">使用教程</a>
-          <span class="category-list-count">2</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/哲学/">哲学</a>
-          <span class="category-list-count">2</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/大学课程/">大学课程</a>
-          <span class="category-list-count">4</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/琐碎记录/">琐碎记录</a>
-          <span class="category-list-count">8</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/项目/">项目</a>
-          <span class="category-list-count">1</span>
-        </li>
-
-        
-      </ul>
-
-    </div>
-  </div>
-
+      </header>
 
     
     
-  <div class="nexmoe-widget-wrap">
-    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/cmake/" style="font-size: 10px;">cmake</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 10px;">读后感</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 10px;">转载</a>
-    </div>
     
-  </div>
+    <div class="post-body" itemprop="articleBody">
 
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">22</span></li></ul>
-    </div>
-  </div>
-
-
-
-    
-    
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">最新文章</h3>
-    <div class="nexmoe-widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/">计算机组成原理部分笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/">数字在计算机中的表示</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/">Visual Studio 用法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/06/%E5%85%B3%E4%BA%8E%E8%8B%B1%E6%96%87%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E5%90%8D%E7%A7%B0%E4%B8%AD%E9%80%97%E5%8F%B7%E4%B8%8E%E5%8F%A5%E5%8F%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">关于英文论文作者名称中逗号与句号的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/">西方哲学史 希尔贝克</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-    
-</aside>
-    <div class="nexmoe-copyright">
-        &copy; 2023 cfla
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
-        
-    </div>
-</div><!-- .nexmoe-drawer -->
-    </div>
-    <div id="nexmoe-content">
-        <div class="nexmoe-primary">
-            <div class="nexmoe-post">
-
-  <article>
       
-          <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
-              <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209021433975.png" alt="系统级I/O - CS:APP 第十章" loading="lazy">
-              <h1>系统级I/O - CS:APP 第十章</h1>
-          </div>
-      
-      
-      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2022年09月20日</a>
-</div>
-
-      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    
-        <a><i class="nexmoefont icon-areachart"></i>约2.2k字</a>
-        <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要9分钟</a>
-    
-</div>
-
-      <h1 id="系统级I-x2F-O-CS-APP-第十章"><a href="#系统级I-x2F-O-CS-APP-第十章" class="headerlink" title="系统级I&#x2F;O - CS:APP 第十章"></a>系统级I&#x2F;O - CS:APP 第十章</h1><p>Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。</p>
+        <h1 id="系统级I-x2F-O-CS-APP-第十章"><a href="#系统级I-x2F-O-CS-APP-第十章" class="headerlink" title="系统级I&#x2F;O - CS:APP 第十章"></a>系统级I&#x2F;O - CS:APP 第十章</h1><p>Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。</p>
 <p>在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。</p>
 <h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><ul>
 <li><p>定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符，应用程序要操作文件，只需要知道文件描述符即可。</p>
@@ -327,111 +285,194 @@
 <h2 id="IO重定位"><a href="#IO重定位" class="headerlink" title="IO重定位"></a>IO重定位</h2><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">dup2</span><span class="hljs-params">(<span class="hljs-type">int</span> oldfd, <span class="hljs-type">int</span> newfd)</span>;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">复制oldfd 到newfd,如果newfd 已经打开，dup2会在复制之前关闭newfd</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
 
 
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/17/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84Linux%E8%BF%9B%E7%A8%8B-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D-CS-APP-%E7%AC%AC%E4%B9%9D%E7%AB%A0/" rel="prev" title="虚拟内存视角下的Linux进程 & 动态内存分配 - CS:APP 第九章">
+      <i class="fa fa-chevron-left"></i> 虚拟内存视角下的Linux进程 & 动态内存分配 - CS:APP 第九章
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/22/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" rel="next" title="网络编程 - CS:APP 第十一章">
+      网络编程 - CS:APP 第十一章 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-  
-      
-    <div class="nexmoe-post-copyright">
-        <strong>本文作者：</strong>cfla<br>
-        <strong>本文链接：</strong><a href="https://cfla1638.github.io/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/" title="https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;20&#x2F;%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;cfla1638.github.io&#x2F;2022&#x2F;09&#x2F;20&#x2F;%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0&#x2F;</a><br>
-        
-            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-        
-    </div>
-
-
   
   
-  <div class="nexmoe-post-meta nexmoe-rainbow">
-    
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/CS-APP/">CS:APP</a>
-    
-    
-</div>
-
   
-      <div class="nexmoe-post-footer">
-          <section class="nexmoe-comment">
-    <div class="valine"></div>
-<script src='https://cdn.jsdelivr.net/npm/valine'></script>
+
+
+
+          </div>
+          
+
 <script>
-    // 使用方法 https://valine.js.org/quickstart.html
-    new Valine({
-        el: '.valine',
-        appId: '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
-        appKey: 'qp0Ojo0wkFhB7QKVLOS13J5m'
-    })
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
-</section>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7I-x2F-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">系统级I&#x2F;O - CS:APP 第十章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7IO%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">系统级IO函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RIO%E5%8C%85%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">RIO包函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E8%A7%88%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">总览：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">不带缓冲区的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readn"><span class="nav-number">1.4.3.</span> <span class="nav-text">rio_readn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-writen"><span class="nav-number">1.4.4.</span> <span class="nav-text">rio_writen()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.5.</span> <span class="nav-text">带缓冲区的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-read"><span class="nav-number">1.4.6.</span> <span class="nav-text">rio_read()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readlineb"><span class="nav-number">1.4.7.</span> <span class="nav-text">rio_readlineb()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rio-readnb"><span class="nav-number">1.4.8.</span> <span class="nav-text">rio_readnb()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.</span> <span class="nav-text">读取文件元数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E7%9B%AE%E5%BD%95"><span class="nav-number">1.6.</span> <span class="nav-text">读取目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.7.</span> <span class="nav-text">IO重定位</span></a></li></ol></li></ol></div>
       </div>
-  
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cfla</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-            <div class="nexmoe-post-right">
-              <div class="nexmoe-fixed">
-                  <div class="nexmoe-tool"> 
-                    
-                      
-                        
-                          
-                          
-                              <button class="mdui-fab catalog" style="overflow:unset;">
-                                  <i class="nexmoefont icon-i-catalog"></i>
-                                  <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7I-x2F-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">系统级I&#x2F;O - CS:APP 第十章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-number">1.1.</span> <span class="toc-text">文件描述符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">文件类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7IO%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">系统级IO函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RIO%E5%8C%85%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">RIO包函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E8%A7%88%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">总览：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">不带缓冲区的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rio-readn"><span class="toc-number">1.4.3.</span> <span class="toc-text">rio_readn()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rio-writen"><span class="toc-number">1.4.4.</span> <span class="toc-text">rio_writen()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.5.</span> <span class="toc-text">带缓冲区的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rio-read"><span class="toc-number">1.4.6.</span> <span class="toc-text">rio_read()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rio-readlineb"><span class="toc-number">1.4.7.</span> <span class="toc-text">rio_readlineb()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rio-readnb"><span class="toc-number">1.4.8.</span> <span class="toc-text">rio_readnb()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">1.5.</span> <span class="toc-text">读取文件元数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E7%9B%AE%E5%BD%95"><span class="toc-number">1.6.</span> <span class="toc-text">读取目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.7.</span> <span class="toc-text">IO重定位</span></a></li></ol></li></ol>
-                                  </div>
-                              </button>
-                          
-                          
-                      
-                    
-                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
-                  </div>
-              </div>
-            </div>
-        </div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
     </div>
-     
-    <div id="nexmoe-search-space">
-        <div class="search-container">
-            <div class="search-header">
-                <div class="search-input-container">
-                    <input class="search-input" type="text" placeholder="搜索" oninput="sinput();">
-                </div>
-                <a class="search-close" onclick="sclose();">×</a>
-            </div>
-            <div class="search-body"></div>
-        </div>
-    </div>
-
-    
-<script src="/lib/mdui_043tiny/mdui.js"></script>
-<script src="/lib/jquery.min.js"></script>
-<script src="/lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
-<script src="/lib/fancybox/fancybox.umd.js"></script>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
- 
+      </div>
+    </main>
 
-<script async src="/js/app.js?v=1679384673603"></script>
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
+        
 
-	<script async src="/js/search.js?v=1679384673603"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfla</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
 
-
-<script>
-	$(".justified-gallery").justifiedGallery({
-		rowHeight: 160,
-		margins: 10,
-	});
-</script>
-
-
-    
+        
 
 
 
 
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
-
 </html>
