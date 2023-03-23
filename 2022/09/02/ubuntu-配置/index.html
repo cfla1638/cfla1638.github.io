@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="ubuntu 配置2022&#x2F;9&#x2F;1 配置了Ubuntu，用来学习《CSAPP》上面需要实践的代码。这篇博客是为了记住我究竟配置了什么，也为了方便下次在其他设备上配置Ubuntu。 VScode 下载和配置下载的方法见官网，配置C&#x2F;C++的方法网上的博客也很好搜到 Linux系统VsCode 配置C&#x2F;C++环境_ZERO_pan的博客-CSDN博客_linuxvscode配置c++环境   接下来使">
@@ -104,6 +104,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -138,11 +139,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -209,6 +237,27 @@
             </span>
 
           
+            <span id="/2022/09/02/ubuntu-%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu 配置" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/02/ubuntu-%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/02/ubuntu-%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -230,7 +279,7 @@
 </blockquote>
 <p>去<code>$HOME/.local/share/nautilus/script/</code> 目录下新建一个文件，文件名就是显示在右键菜单上的名字。</p>
 <p>接着将以下内容复制到新建的文件中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">#!/bin/bash<br>#<br># This script opens a gnome-terminal in the directory you select.<br>#<br># Distributed under the terms of GNU GPL version 2 or later<br>#<br># Install in ~/.gnome2/nautilus-scripts or ~/Nautilus/scripts<br># You need to be running Nautilus 1.0.3+ to use scripts.<br># When a directory is selected, go there. Otherwise go to current<br># directory. If more than one directory is selected, show error.<br>if [ -n &quot;$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS&quot; ]; then<br>set $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS<br>if [ $# -eq 1 ]; then<br>destination=&quot;$1&quot;<br># Go to file&#x27;s directory if it&#x27;s a file<br>if [ ! -d &quot;$destination&quot; ]; then<br>destination=&quot;`dirname &quot;$destination&quot;`&quot;<br>fi<br>else<br>zenity --error --title=&quot;Error - Open terminal here&quot; /<br>--text=&quot;You can only select one directory.&quot;<br>exit 1<br>fi<br>else<br>destination=&quot;`echo &quot;$NAUTILUS_SCRIPT_CURRENT_URI&quot; | sed &#x27;s/^file://////&#x27;`&quot;<br>fi<br># It&#x27;s only possible to go to local directories<br>if [ -n &quot;`echo &quot;$destination&quot; | grep &#x27;^[a-zA-Z0-9]/+:&#x27;`&quot; ]; then<br>zenity --error --title=&quot;Error - Open terminal here&quot; /<br>--text=&quot;Only local directories can be used.&quot;<br>exit 1<br>fi<br>cd &quot;$destination&quot;<br>exec code &quot;$destination&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This script opens a gnome-terminal in the directory you select.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Distributed under the terms of GNU GPL version 2 or later</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Install in ~/.gnome2/nautilus-scripts or ~/Nautilus/scripts</span></span><br><span class="line"><span class="comment"># You need to be running Nautilus 1.0.3+ to use scripts.</span></span><br><span class="line"><span class="comment"># When a directory is selected, go there. Otherwise go to current</span></span><br><span class="line"><span class="comment"># directory. If more than one directory is selected, show error.</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">set</span> <span class="variable">$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -eq 1 ]; <span class="keyword">then</span></span><br><span class="line">destination=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line"><span class="comment"># Go to file&#x27;s directory if it&#x27;s a file</span></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">&quot;<span class="variable">$destination</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">destination=<span class="string">&quot;`dirname &quot;</span><span class="variable">$destination</span><span class="string">&quot;`&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">zenity --error --title=<span class="string">&quot;Error - Open terminal here&quot;</span> /</span><br><span class="line">--text=<span class="string">&quot;You can only select one directory.&quot;</span></span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">destination=<span class="string">&quot;`echo &quot;</span><span class="variable">$NAUTILUS_SCRIPT_CURRENT_URI</span><span class="string">&quot; | sed &#x27;s/^file://////&#x27;`&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># It&#x27;s only possible to go to local directories</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">&quot;`echo &quot;</span><span class="variable">$destination</span><span class="string">&quot; | grep &#x27;^[a-zA-Z0-9]/+:&#x27;`&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">zenity --error --title=<span class="string">&quot;Error - Open terminal here&quot;</span> /</span><br><span class="line">--text=<span class="string">&quot;Only local directories can be used.&quot;</span></span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$destination</span>&quot;</span></span><br><span class="line"><span class="built_in">exec</span> code <span class="string">&quot;<span class="variable">$destination</span>&quot;</span></span><br></pre></td></tr></table></figure>
 <p>最后运行命令<code>chmod +x  刚才创建的文件名</code> </p>
 <p>对文件或文件夹右键就可以看到刚才添加的右键菜单了。</p>
 <h2 id="下拉式终端Yakuka"><a href="#下拉式终端Yakuka" class="headerlink" title="下拉式终端Yakuka"></a>下拉式终端Yakuka</h2><p>在<a target="_blank" rel="noopener" href="https://snapcraft.io/yakuake">这里</a> 找到 <a target="_blank" rel="noopener" href="https://snapcraft.io/install/yakuake/ubuntu">Ubuntu</a> 根据提示安装。</p>
@@ -252,7 +301,7 @@
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013554213/article/details/124061526">https://blog.csdn.net/u013554213/article/details/124061526</a></p>
 </blockquote>
 <p>依次执行以下命令，最后重启Ubuntu</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 删除原来安装过的文件</span><br>sudo apt autoremove open-vm-tools<br><span class="hljs-comment"># 输入安装命令：</span><br>sudo apt install open-vm-tools<br>sudo apt install open-vm-tools-desktop<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除原来安装过的文件</span></span><br><span class="line">sudo apt autoremove open-vm-tools</span><br><span class="line"><span class="comment"># 输入安装命令：</span></span><br><span class="line">sudo apt install open-vm-tools</span><br><span class="line">sudo apt install open-vm-tools-desktop</span><br></pre></td></tr></table></figure>
 <h2 id="截图软件"><a href="#截图软件" class="headerlink" title="截图软件"></a>截图软件</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/415011610">https://zhuanlan.zhihu.com/p/415011610</a></p>
 </blockquote>
@@ -298,6 +347,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -443,6 +493,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -514,6 +568,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

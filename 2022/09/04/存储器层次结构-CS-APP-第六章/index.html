@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="存储器层次结构 - CS:APP 第六章本章的主要内容有四：  介绍存储技术  介绍存储器的层次结构思想 特别介绍高速缓存的原理和细节 使用局部性优化程序的性能  本文主要介绍前三条内容，第四条内容可以说是优化程序性能的一部分，所以本文暂不深入。另外，本章和第九章虚拟内存密切相关，因此本文也会介绍第九章的虚拟内存，来完整的总结计算机的存储系统。 1 存储器的层次结构根据我们的经验观察，读取速度越快">
@@ -116,6 +116,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -150,11 +151,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -221,6 +249,27 @@
             </span>
 
           
+            <span id="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="post-meta-item leancloud_visitors" data-flag-title="存储器层次结构 - CS:APP 第六章" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -245,7 +294,7 @@
 <blockquote>
 <p>存储器层次结构的中心思想是，对于每个k，位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的缓存。</p>
 </blockquote>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">L0  寄存器<br>L1  L1高速缓存 SRAM<br>L2  L2高速缓存 SRAM<br>L3  L3高速缓存 SRAM<br>L4  主存 DRAM<br>L5  本地二级存储（本地磁盘）<br>L6  远程二级缓存（分布式文件系统、二级服务器）<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">L0  寄存器</span><br><span class="line">L1  L1高速缓存 SRAM</span><br><span class="line">L2  L2高速缓存 SRAM</span><br><span class="line">L3  L3高速缓存 SRAM</span><br><span class="line">L4  主存 DRAM</span><br><span class="line">L5  本地二级存储（本地磁盘）</span><br><span class="line">L6  远程二级缓存（分布式文件系统、二级服务器）</span><br></pre></td></tr></table></figure>
 <p>下面我们介绍它们的存在基础，存储技术。</p>
 <h2 id="2-存储技术"><a href="#2-存储技术" class="headerlink" title="2 存储技术"></a>2 存储技术</h2><p>我们要介绍的存储技术如下</p>
 <ul>
@@ -269,7 +318,7 @@
 <h4 id="2-1-1-DRAM-内存的工作原理"><a href="#2-1-1-DRAM-内存的工作原理" class="headerlink" title="2.1.1 DRAM / 内存的工作原理"></a>2.1.1 DRAM / 内存的工作原理</h4><p>内存由若干个DRAM芯片构成，被称作内存模块(memory module)</p>
 <p>每个DRAM芯片由超单元矩阵、内部行缓冲区、内存控制器构成，DRAM芯片上还有由于信息输入输出的脚针。</p>
 <p>每个超单元内存储若干个位，一般是一字节八位。　</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">内存/主存<br>|<br>|- 内存模块<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br>|- 内存模块<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br>|  |- DRAM 芯片<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">内存/主存</span><br><span class="line">|</span><br><span class="line">|- 内存模块</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|- 内存模块</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br></pre></td></tr></table></figure>
 <p>首先介绍DRAM 芯片：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041151521.png" alt="image-20220904115118409"> </p>
 <p>DRAM 芯片由超单元矩阵、内部行缓冲区、内存控制器构成。一个DRAM芯片中由d个超单元，这些超单元被组织成 r 行 c 列的长方形矩阵(r * c = d)，每个超单元内存储w位，我们称这是一个d×w的DRAM芯片。</p>
@@ -497,6 +546,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -642,6 +692,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -713,6 +767,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

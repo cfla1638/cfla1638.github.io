@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="博客配置 &amp; 使用教程简介该博客使用Hexo框架，部署在GitHub Pages上，使用的主题为nexmoe。 本文章记录了配置博客和使用博客的一些细节，供以后的我参考。 持续更新中 …… 工作原理在本地书写博客，使用hexo生成静态网页，部署到GitHub上，即可使用GitHub访问生成的静态网页。即我们看到的博客。 基本命令 调试： hexo server --debug 在本地运行服">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114450.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208211114595.png">
 <meta property="article:published_time" content="2022-08-20T14:58:00.000Z">
-<meta property="article:modified_time" content="2023-03-22T15:05:55.910Z">
+<meta property="article:modified_time" content="2023-03-23T01:14:49.564Z">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
@@ -107,6 +107,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -141,11 +142,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -199,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-22 23:05:55" itemprop="dateModified" datetime="2023-03-22T23:05:55+08:00">2023-03-22</time>
+                <time title="修改时间：2023-03-23 09:14:49" itemprop="dateModified" datetime="2023-03-23T09:14:49+08:00">2023-03-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,6 +240,27 @@
             </span>
 
           
+            <span id="/2022/08/20/%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/" class="post-meta-item leancloud_visitors" data-flag-title="配置博客" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/08/20/%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/20/%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -263,10 +312,10 @@
 <p>nexmoe 的私有 front-matter 文档：<a target="_blank" rel="noopener" href="https://docs.nexmoe.com/v3.2/article/front-matter.html">Front-matter | Hexo Theme Nexmoe</a> </p>
 <ol>
 <li><p>如果需要配置文章头图，可以在markdown文件开始加上以下代码，图片大小为1600 * 900</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">--<br>title: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span></span><br>others...<br><br><span class="hljs-section">cover: 图片链接</span><br><span class="hljs-section">---</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--</span><br><span class="line">title: <span class="language-xml"><span class="tag">&lt;<span class="name">title</span>&gt;</span></span></span><br><span class="line">others...</span><br><span class="line"></span><br><span class="line"><span class="section">cover: 图片链接</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置分类和标签要像这样配置：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">categories:<br><span class="hljs-bullet">-</span> Diary<br>tags:<br><span class="hljs-bullet">-</span> PS3<br><span class="hljs-bullet">-</span> Games<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> Diary</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> PS3</span><br><span class="line"><span class="bullet">-</span> Games</span><br></pre></td></tr></table></figure>
 <p>其中分类categories最好明确且只有一个，而标签tags可以有多个且没有顺序，详情请见<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter#分类和标签">这里</a> </p>
 </li>
 </ol>
@@ -282,6 +331,7 @@
 <p><a target="_blank" rel="noopener" href="https://docs.nexmoe.com/v3.2/">Nexmoe 参考文档</a> </p>
 <p><a target="_blank" rel="noopener" href="https://github.com/theme-nexmoe/hexo-theme-nexmoe">nexmoe GitHub地址</a> </p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客（超详细） - 知乎 (zhihu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://benn314.github.io/2022/11/22/Hexo-Next主题配置教程/">Hexo-Next主题配置教程 | Ben’s Blog (benn314.github.io)</a> （2023/3/23添加）</p>
 
     </div>
 
@@ -313,6 +363,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -458,6 +509,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -529,6 +584,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="C++ OOPC++ 的类this 指针调用成员函数时，成员函数通过名为this的额外隐式参数访问调用它的那个对象。 在成员函数内部，任何对类成员的直接访问都被看作是对this的隐式使用 this指针总是指向调用成员函数的对象，因此，this指针是一个常量指针，它的const是顶层const，即它永远不会改变它指向的位置。 常量成员函数即使this指针是隐式的，但初始化this指针也要遵循初始化规">
@@ -104,6 +104,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -138,11 +139,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -209,6 +237,27 @@
             </span>
 
           
+            <span id="/2022/09/29/C-OOP/" class="post-meta-item leancloud_visitors" data-flag-title="C++ OOP" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/29/C-OOP/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/29/C-OOP/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -226,7 +275,7 @@
 <p>由于这条规则的存在，我们无法调用一个被声明成const的对象的普通成员函数，因为这个成员函数的this指针不是底层const的指针。</p>
 <p>为了解决这个问题，我们可以将成员函数声明成<code>const</code> </p>
 <p>例如，像下面这样，在参数列表后添加上<code>const</code> </p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get_a</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;&#125;;<br>    <br>    <span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">get_a</span><span class="params">()</span> <span class="type">const</span> </span>&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时，这个this指针，既是顶层<code>const</code> (this指针所固有的属性)，又是底层<code>const</code> （我们声明的结果）</p>
 <h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><blockquote>
 <p>P241, P250，P545</p>
@@ -255,7 +304,7 @@
 <p>内联函数(inline)：一些小的，简单的函数可以被定义为内联函数，以减少调用函数的开销</p>
 <p>内联函数会在编译时，被编译器展开</p>
 <p>例如</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">const</span> string &amp; <span class="hljs-title">shorterString</span><span class="hljs-params">(<span class="hljs-type">const</span> string &amp;s1, <span class="hljs-type">const</span> string &amp;s2)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> s1.<span class="hljs-built_in">size</span>() &lt;= s2.<span class="hljs-built_in">size</span>() ? s1 : s2;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">const</span> string &amp; <span class="title">shorterString</span><span class="params">(<span class="type">const</span> string &amp;s1, <span class="type">const</span> string &amp;s2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.<span class="built_in">size</span>() &lt;= s2.<span class="built_in">size</span>() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>max(), min() 之类的函数特别适合被定义为内联函数</p>
 </blockquote>
 <ul>
@@ -267,7 +316,7 @@
 <p>编译器执行的const检查时定义上的，不是逻辑上的，如果类内有些成员是可变的，但不影响它在逻辑上是const，我们可以把它声明为<code>mutable</code> </p>
 </blockquote>
 <p>如果在定义类的成员时，使用<code>mutable</code> 关键字，那么，即使这个对象被声明成<code>const</code> ，我们依然可以改变这个成员变量的值。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> &#123;</span><br>     public:<br>    <span class="hljs-type">void</span> <span class="hljs-title function_">inc</span><span class="hljs-params">()</span> <span class="hljs-type">const</span>;<br>    private:<br>    mutable <span class="hljs-type">size_t</span> cnt;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">A::inc</span><span class="hljs-params">()</span> <span class="hljs-type">const</span><br>&#123;<br>    cnt++;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">     public:</span><br><span class="line">    <span class="type">void</span> <span class="title function_">inc</span><span class="params">()</span> <span class="type">const</span>;</span><br><span class="line">    private:</span><br><span class="line">    mutable <span class="type">size_t</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">A::inc</span><span class="params">()</span> <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line">    cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="返回-this-左值"><a href="#返回-this-左值" class="headerlink" title="返回*this 左值"></a>返回*this 左值</h3><p>当成员函数是const 版本时，this指针具有底层的const， 因此它的返回的左值也是带底层const的左值</p>
 <p>我们可以根据this指针是否具有底层<code>const</code> 来对函数进行重载</p>
 <blockquote>
@@ -275,7 +324,7 @@
 <p>P247</p>
 </blockquote>
 <h3 id="类的前向声明"><a href="#类的前向声明" class="headerlink" title="类的前向声明"></a>类的前向声明</h3><p>可以使用类似这种形式声明类</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>;</span><br></pre></td></tr></table></figure>
 <p>这是一个不完整类型，我们可以使用这种类型的指针或者引用，但不能创建这种类型的引用。</p>
 <p>前向声明可以放在类的头文件中，从而减少依赖。</p>
 <h3 id="类的名字查找"><a href="#类的名字查找" class="headerlink" title="类的名字查找"></a>类的名字查找</h3><ul>
@@ -293,7 +342,7 @@
 <li><p>在内层作用域中可以重定义名字，但外层作用域中定义的类型（使用<code>typedef</code> 或使用<code>using symbol = type</code>）不能再类中重定义。</p>
 </li>
 <li><p>成员函数的名字查找规则</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 在成员函数内查找名字（成员函数体定义的名字，形参的名字）<br><span class="hljs-bullet">2.</span> 在类作用域内查找名字<br><span class="hljs-bullet">3.</span> 在成员函数定义之前的作用域内继续查找<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 在成员函数内查找名字（成员函数体定义的名字，形参的名字）</span><br><span class="line"><span class="bullet">2.</span> 在类作用域内查找名字</span><br><span class="line"><span class="bullet">3.</span> 在成员函数定义之前的作用域内继续查找</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果想要在成员函数内使用一个类作用域的名字（该名字已经在成员函数的块作用域内被覆盖），可以使用作用域运算符。</p>
 </li>
@@ -354,15 +403,15 @@
 <li><p>类存在一个成员，这个成员没有默认的构造函数</p>
 </li>
 </ol>
-<h4 id="构造函数的初始化列表"><a href="#构造函数的初始化列表" class="headerlink" title="构造函数的初始化列表"></a>构造函数的初始化列表</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">Sales_data</span>(<span class="hljs-type">const</span> std::string &amp;s) : <span class="hljs-built_in">BookNo</span>(s) &#123;&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="构造函数的初始化列表"><a href="#构造函数的初始化列表" class="headerlink" title="构造函数的初始化列表"></a>构造函数的初始化列表</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Sales_data</span>(<span class="type">const</span> std::string &amp;s) : <span class="built_in">BookNo</span>(s) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>当某个数据成员被构造函数的初始化列表忽略时，它将以合成默认构造函数相同的方式隐式初始化</p>
 <p>（重要）当某个数据成员被构造函数的初始化列表忽略时，他将在执行构造函数函数体之前被默认初始化</p>
 <p>由于有的类没有默认构造函数，因此我们必须使用列表初始化对其进行初始化。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span><br><span class="hljs-class">&#123;</span><br><span class="hljs-comment">// 没有默认构造函数</span><br>public:<br>    A(<span class="hljs-type">int</span> num) : elem(num) &#123;&#125;<br>private:<br>    <span class="hljs-type">int</span> elem = <span class="hljs-number">0</span>;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span><br><span class="hljs-class">&#123;</span><br>public:<br>    B(<span class="hljs-type">int</span> num) : elem_int(num) &#123;&#125;  <span class="hljs-comment">// 错误，因为A没有默认构造函数，所以必须对它进行列表初始化</span><br>private:<br>    A elem_A;<br>    <span class="hljs-type">int</span> elem_int;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="comment">// 没有默认构造函数</span></span><br><span class="line">public:</span><br><span class="line">    A(<span class="type">int</span> num) : elem(num) &#123;&#125;</span><br><span class="line">private:</span><br><span class="line">    <span class="type">int</span> elem = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">public:</span><br><span class="line">    B(<span class="type">int</span> num) : elem_int(num) &#123;&#125;  <span class="comment">// 错误，因为A没有默认构造函数，所以必须对它进行列表初始化</span></span><br><span class="line">private:</span><br><span class="line">    A elem_A;</span><br><span class="line">    <span class="type">int</span> elem_int;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>因为所有的类成员都会在构造函数体执行前进行初始化（列表初始化或默认初始化）因此使用列表初始化一定会比在构造函数中赋值更加高效。</p>
 <p>（重要）列表初始化的初始化顺序</p>
 <p>列表初始化的顺序与他们在类的定义中出现的顺序一样，而与列表初始化的列表顺序无关，如果初始化变量之间会相互依赖，一定要注意他们初始化的顺序！！</p>
-<h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sales_data</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 非委托构造函数要使用的构造函数</span><br>    <span class="hljs-built_in">Sales_data</span>(std::string s, <span class="hljs-type">unsigned</span> cnt, <span class="hljs-type">double</span> price) : <br>          <span class="hljs-built_in">bookNo</span>(s), <span class="hljs-built_in">units_sold</span>(cnt), <span class="hljs-built_in">revenue</span>(cnt * price) &#123;&#125;<br>    <span class="hljs-comment">// 委托构造函数</span><br>    <span class="hljs-built_in">Sales_data</span>() : <span class="hljs-built_in">Sales_data</span>(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)&#123;&#125;<br>    <span class="hljs-built_in">Sales_data</span>(std::string s) : <span class="hljs-built_in">Sales_data</span>(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) &#123;&#125;<br>    <span class="hljs-built_in">Sales_data</span>(std::istream &amp;is) : <span class="hljs-built_in">Sales_data</span>() &#123;<span class="hljs-built_in">read</span>(is, *<span class="hljs-keyword">this</span>);&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Sales_data</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 非委托构造函数要使用的构造函数</span></span><br><span class="line">    <span class="built_in">Sales_data</span>(std::string s, <span class="type">unsigned</span> cnt, <span class="type">double</span> price) : </span><br><span class="line">          <span class="built_in">bookNo</span>(s), <span class="built_in">units_sold</span>(cnt), <span class="built_in">revenue</span>(cnt * price) &#123;&#125;</span><br><span class="line">    <span class="comment">// 委托构造函数</span></span><br><span class="line">    <span class="built_in">Sales_data</span>() : <span class="built_in">Sales_data</span>(<span class="string">&quot;&quot;</span>, <span class="number">0</span>, <span class="number">0</span>)&#123;&#125;</span><br><span class="line">    <span class="built_in">Sales_data</span>(std::string s) : <span class="built_in">Sales_data</span>(s, <span class="number">0</span>, <span class="number">0</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">Sales_data</span>(std::istream &amp;is) : <span class="built_in">Sales_data</span>() &#123;<span class="built_in">read</span>(is, *<span class="keyword">this</span>);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>委托构造函数首先执行列表初始化的被委托构造函数的列表初始化，在执行被委托构造函数的函数体，最后执行委托构造函数的函数体</p>
 <h4 id="默认构造函数被调用的时机"><a href="#默认构造函数被调用的时机" class="headerlink" title="默认构造函数被调用的时机"></a>默认构造函数被调用的时机</h4><blockquote>
 <p>C++ Primer P262</p>
@@ -435,10 +484,10 @@
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sksukai/article/details/104741675/">https://blog.csdn.net/sksukai/article/details/104741675/</a></p>
 </blockquote>
 <p> 当定义类时，会有直接初始化和拷贝初始化两种区别</p>
- <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">foo var1;      <span class="hljs-comment">// 直接初始化，使用默认构造函数</span><br><span class="hljs-function">foo <span class="hljs-title">var2</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;    <span class="hljs-comment">// 直接初始化，使用一个参数的构造函数</span><br>foo var3 = <span class="hljs-number">50</span>;    <span class="hljs-comment">// 拷贝初始化，本来是50先使用构造函数构造临时对象，再使用拷贝构造函数初始化var3，但经过实际测试，编译优化了这一部分，直接使用构造函数初始化了var3</span><br>foo var4 = <span class="hljs-built_in">foo</span>(<span class="hljs-number">50</span>); <span class="hljs-comment">// 和var3的情况完全相同，优化后也是只使用了一次接受一个对象的构造函数</span><br>foo var5 = var3;  <span class="hljs-comment">// 拷贝初始化，调用拷贝构造函数</span><br></code></pre></td></tr></table></figure>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo var1;      <span class="comment">// 直接初始化，使用默认构造函数</span></span><br><span class="line"><span class="function">foo <span class="title">var2</span><span class="params">(<span class="number">1</span>)</span></span>;    <span class="comment">// 直接初始化，使用一个参数的构造函数</span></span><br><span class="line">foo var3 = <span class="number">50</span>;    <span class="comment">// 拷贝初始化，本来是50先使用构造函数构造临时对象，再使用拷贝构造函数初始化var3，但经过实际测试，编译优化了这一部分，直接使用构造函数初始化了var3</span></span><br><span class="line">foo var4 = <span class="built_in">foo</span>(<span class="number">50</span>); <span class="comment">// 和var3的情况完全相同，优化后也是只使用了一次接受一个对象的构造函数</span></span><br><span class="line">foo var5 = var3;  <span class="comment">// 拷贝初始化，调用拷贝构造函数</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="继承体系中的拷贝构造函数"><a href="#继承体系中的拷贝构造函数" class="headerlink" title="继承体系中的拷贝构造函数"></a>继承体系中的拷贝构造函数</h4><p>我们需要使用基类的拷贝构造函数显示的初始化基类的成员</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span> &#123;<span class="hljs-comment">/* ... */</span>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">derived</span> : <span class="hljs-keyword">public</span> base<br>&#123;<br>    <span class="hljs-built_in">derived</span>(<span class="hljs-type">const</span> derived &amp;d) : <span class="hljs-built_in">base</span>(d)    <span class="hljs-comment">// 显式的使用基类的拷贝构造函数+</span><br>    &#123;<span class="hljs-comment">/*...*/</span>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span> &#123;<span class="comment">/* ... */</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">derived</span>(<span class="type">const</span> derived &amp;d) : <span class="built_in">base</span>(d)    <span class="comment">// 显式的使用基类的拷贝构造函数+</span></span><br><span class="line">    &#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="拷贝赋值运算符"><a href="#拷贝赋值运算符" class="headerlink" title="拷贝赋值运算符"></a>拷贝赋值运算符</h3><blockquote>
 <p>可能会误以为拷贝初始化<code>classType obj = ori;</code> 会使用拷贝赋值运算符，事实上，这只调用拷贝构造函数</p>
 <p>当我们定义了拷贝赋值运算符，我们就重载了它的赋值运算符</p>
@@ -452,7 +501,7 @@
 <p>拷贝赋值运算符的形式通常是<code>classType operator=(const classType &amp;)</code> 因为他是一个成员函数，因此它的左侧成员自动绑定</p>
 <h4 id="合成的拷贝赋值运算符"><a href="#合成的拷贝赋值运算符" class="headerlink" title="合成的拷贝赋值运算符"></a>合成的拷贝赋值运算符</h4><p>合成的拷贝赋值运算符会将右侧的每个非static成员赋值给左侧成员，对于数组类型，它会逐个拷贝</p>
 <h4 id="继承体系中的拷贝赋值运算符"><a href="#继承体系中的拷贝赋值运算符" class="headerlink" title="继承体系中的拷贝赋值运算符"></a>继承体系中的拷贝赋值运算符</h4><p>派生类的拷贝赋值运算符要显式调用基类的拷贝赋值运算符，之后我们再为派生类的成员完成赋值操作</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">classType &amp; classType::<span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> classType &amp; rhs)<br>&#123;<br>    Base::<span class="hljs-keyword">operator</span>=(rhs);  <span class="hljs-comment">// 调用基类的拷贝赋值运算符，即使他是合成的运算符也可以这样调用</span><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    派生类成员的赋值操作</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">classType &amp; classType::<span class="keyword">operator</span>=(<span class="type">const</span> classType &amp; rhs)</span><br><span class="line">&#123;</span><br><span class="line">    Base::<span class="keyword">operator</span>=(rhs);  <span class="comment">// 调用基类的拷贝赋值运算符，即使他是合成的运算符也可以这样调用</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    派生类成员的赋值操作</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>释放对象使用的资源，销毁对象的非static成员</p>
 <p>析构函数的形式是<code>~classType()</code> 没有返回值，不接受参数</p>
 <p>不能被重载，对于任意一个类有且只有一个析构函数</p>
@@ -492,7 +541,7 @@
 <p>派生类必须使用基类的构造函数初始化其基类的部分</p>
 </li>
 <li><p>防止继承 定义类的时候使用<code>final</code> </p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NoDerived</span> <span class="hljs-keyword">final</span> &#123;<span class="hljs-comment">/* ... */</span>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NoDerived</span> <span class="keyword">final</span> &#123;<span class="comment">/* ... */</span>&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="纯虚函数和抽象基类"><a href="#纯虚函数和抽象基类" class="headerlink" title="纯虚函数和抽象基类"></a>纯虚函数和抽象基类</h3><ul>
@@ -555,7 +604,7 @@
 </li>
 <li><p>成员函数无论是否是虚函数，都可以重载，因此对于基类的重载函数，派生类如果想要看到基类的全部重载的某个成员函数，它必须全部覆盖基类的重载虚函数 或者 一个重载虚函数也不覆盖。</p>
 <p>如果想要让覆盖重载虚函数的一些函数，但其他函数也不会因为作用域的原因而不可见，可以使用<code>using</code> 声明</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">base</span><br>&#123;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">char</span>, <span class="hljs-type">int</span>)</span></span>;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">derived</span> : <span class="hljs-keyword">public</span> base<br>&#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">using</span> base::func;<br>    <span class="hljs-comment">// 使用using 我们可以只覆盖重载虚函数的一个实例而让其他的虚函数也可见</span><br>    <span class="hljs-built_in">func</span>(<span class="hljs-type">int</span>) <span class="hljs-keyword">override</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">char</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> base::func;</span><br><span class="line">    <span class="comment">// 使用using 我们可以只覆盖重载虚函数的一个实例而让其他的虚函数也可见</span></span><br><span class="line">    <span class="built_in">func</span>(<span class="type">int</span>) <span class="keyword">override</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -595,6 +644,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -740,6 +790,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -811,6 +865,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

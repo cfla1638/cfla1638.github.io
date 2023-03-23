@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="虚拟内存视角下的Linux进程 &amp; 动态内存分配Linux的虚拟内存系统Linux为每个进程提供了一个虚拟地址空间。而这些地址空间被分为两部分：  进程虚拟内存部分 内核虚拟内存部分  进程虚拟内存部分我们已经很熟悉了，按照地址从低到高，他们分别是：      用户栈     %rsp →     共享库的内存映射区域   brk →     运行时的堆（通过malloc分配的）    未">
@@ -107,6 +107,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -141,11 +142,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -206,6 +234,27 @@
             </span>
 
           
+            <span id="/2022/09/17/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84Linux%E8%BF%9B%E7%A8%8B-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D-CS-APP-%E7%AC%AC%E4%B9%9D%E7%AB%A0/" class="post-meta-item leancloud_visitors" data-flag-title="虚拟内存视角下的Linux进程 & 动态内存分配 - CS:APP 第九章" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/17/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84Linux%E8%BF%9B%E7%A8%8B-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D-CS-APP-%E7%AC%AC%E4%B9%9D%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/17/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84Linux%E8%BF%9B%E7%A8%8B-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D-CS-APP-%E7%AC%AC%E4%B9%9D%E7%AB%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -292,9 +341,9 @@
 <p>这些片段通过一个结构链表被组织起来。（task_struct-&gt;mm_struct-&gt;mmap）</p>
 <p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209171117123.png" alt="image-20220917111745313"></p>
 <h2 id="用户级内存映射"><a href="#用户级内存映射" class="headerlink" title="用户级内存映射"></a>用户级内存映射</h2><p>Linux 可以使用<code>mmap</code>函数来创建新的虚拟内存，并将对象映射到这些区域中</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/mman.h&gt;</span></span><br><br><span class="hljs-type">void</span> * <span class="hljs-title function_">mmap</span><span class="hljs-params">(<span class="hljs-type">void</span> *start, <span class="hljs-type">size_t</span> length, <span class="hljs-type">int</span> prot, <span class="hljs-type">int</span> flags, <span class="hljs-type">int</span> fd, <span class="hljs-type">off_t</span> offset)</span>;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">将文件描述符fd所表示的文件，从offset处开始的length字节大小的数据，以prot的访问权限和flags的方式，映射到最好再虚拟内存start处开始的区域</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">prot:</span><br><span class="hljs-comment">PROT_EXEC  该页面的区域可以被执行</span><br><span class="hljs-comment">PROT_READ  该页面区域可读</span><br><span class="hljs-comment">PROT_WRITE  ... 可写</span><br><span class="hljs-comment">PROT_NONE  ... 不能被访问</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">flags:</span><br><span class="hljs-comment">MAP_ANON    被映射的对象是一个匿名对象</span><br><span class="hljs-comment">MAP_PRIVATE    是一个私有对象，使用写时复制机制</span><br><span class="hljs-comment">MAP_SHARE    是一个共享对象</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">munmap</span><span class="hljs-params">(<span class="hljs-type">void</span> *start, <span class="hljs-type">size_t</span> length)</span>; <span class="hljs-comment">// 删除从虚拟地址start开始处的length字节，接下来对这些地址的引用将会导致段错误</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> * <span class="title function_">mmap</span><span class="params">(<span class="type">void</span> *start, <span class="type">size_t</span> length, <span class="type">int</span> prot, <span class="type">int</span> flags, <span class="type">int</span> fd, <span class="type">off_t</span> offset)</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">将文件描述符fd所表示的文件，从offset处开始的length字节大小的数据，以prot的访问权限和flags的方式，映射到最好再虚拟内存start处开始的区域</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">prot:</span></span><br><span class="line"><span class="comment">PROT_EXEC  该页面的区域可以被执行</span></span><br><span class="line"><span class="comment">PROT_READ  该页面区域可读</span></span><br><span class="line"><span class="comment">PROT_WRITE  ... 可写</span></span><br><span class="line"><span class="comment">PROT_NONE  ... 不能被访问</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">flags:</span></span><br><span class="line"><span class="comment">MAP_ANON    被映射的对象是一个匿名对象</span></span><br><span class="line"><span class="comment">MAP_PRIVATE    是一个私有对象，使用写时复制机制</span></span><br><span class="line"><span class="comment">MAP_SHARE    是一个共享对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">munmap</span><span class="params">(<span class="type">void</span> *start, <span class="type">size_t</span> length)</span>; <span class="comment">// 删除从虚拟地址start开始处的length字节，接下来对这些地址的引用将会导致段错误</span></span><br></pre></td></tr></table></figure>
 <p>例子：将任意磁盘文件赋值到<code>stdout</code> </p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;csapp.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">mmapcopy</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> size)</span><br>&#123;<br>    <span class="hljs-type">char</span> *bufp;<br><br>    <span class="hljs-comment">// load to virtual memory</span><br>    bufp = mmap(<span class="hljs-literal">NULL</span>, size, PROT_READ, MAP_PRIVATE, fd, <span class="hljs-number">0</span>);<br>    Write(STDOUT_FILENO, bufp, size);   <span class="hljs-comment">// write to stdout</span><br>    <span class="hljs-keyword">return</span> ;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stat</span> <span class="hljs-title">stat</span>;</span><br>    <span class="hljs-type">int</span> fd;<br><br>    <span class="hljs-keyword">if</span> (argc != <span class="hljs-number">2</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;usage: %s &lt;filename&gt;\n&quot;</span>, argv[<span class="hljs-number">0</span>]);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// open file </span><br>    fd = Open(argv[<span class="hljs-number">1</span>], O_RDONLY, <span class="hljs-number">0</span>);<br>    fstat(fd, &amp;stat);   <span class="hljs-comment">// get detailed message of file</span><br>    mmapcopy(fd, stat.st_size);     <span class="hljs-comment">// call mmapcopy</span><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;csapp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">mmapcopy</span><span class="params">(<span class="type">int</span> fd, <span class="type">int</span> size)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *bufp;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// load to virtual memory</span></span><br><span class="line">    bufp = mmap(<span class="literal">NULL</span>, size, PROT_READ, MAP_PRIVATE, fd, <span class="number">0</span>);</span><br><span class="line">    Write(STDOUT_FILENO, bufp, size);   <span class="comment">// write to stdout</span></span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">stat</span>;</span></span><br><span class="line">    <span class="type">int</span> fd;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;usage: %s &lt;filename&gt;\n&quot;</span>, argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// open file </span></span><br><span class="line">    fd = Open(argv[<span class="number">1</span>], O_RDONLY, <span class="number">0</span>);</span><br><span class="line">    fstat(fd, &amp;stat);   <span class="comment">// get detailed message of file</span></span><br><span class="line">    mmapcopy(fd, stat.st_size);     <span class="comment">// call mmapcopy</span></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -329,6 +378,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -474,6 +524,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -545,6 +599,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

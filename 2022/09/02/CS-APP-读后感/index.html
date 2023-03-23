@@ -17,15 +17,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="CS:APP 读后感这本书，给了我 一个在Linux下运行的程序 的直观印象。下面是每一章让我产生 “惊讶” 的内容，这些内容是我在这本书中新接触到的内容。（以下内容是在阅读完第一遍之后，第二遍之前写的） 接下来会陆续更新各章的详细笔记 …  介绍目录： 第1章    计算机系统漫游--- 程序结构和执行第2章    信息的表示和处理第3章    程序的机械级表示第4章    处理器体系结构第5章">
+  <meta name="description" content="CS:APP 读后感这本书，给了我 一个在Linux下运行的程序 的直观印象。下面是每一章让我产生 “惊讶” 的内容，这些内容是我在这本书中新接触到的内容。（以下内容是在阅读完第一遍之后，第二遍之前写的） 接下来会陆续更新各章的详细笔记 …  介绍目录： 123456789101112131415第1章    计算机系统漫游--- 程序结构和执行第2章    信息的表示和处理第3章    程序的机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS:APP 读后感">
 <meta property="og:url" content="https://cfla1638.github.io/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
-<meta property="og:description" content="CS:APP 读后感这本书，给了我 一个在Linux下运行的程序 的直观印象。下面是每一章让我产生 “惊讶” 的内容，这些内容是我在这本书中新接触到的内容。（以下内容是在阅读完第一遍之后，第二遍之前写的） 接下来会陆续更新各章的详细笔记 …  介绍目录： 第1章    计算机系统漫游--- 程序结构和执行第2章    信息的表示和处理第3章    程序的机械级表示第4章    处理器体系结构第5章">
+<meta property="og:description" content="CS:APP 读后感这本书，给了我 一个在Linux下运行的程序 的直观印象。下面是每一章让我产生 “惊讶” 的内容，这些内容是我在这本书中新接触到的内容。（以下内容是在阅读完第一遍之后，第二遍之前写的） 接下来会陆续更新各章的详细笔记 …  介绍目录： 123456789101112131415第1章    计算机系统漫游--- 程序结构和执行第2章    信息的表示和处理第3章    程序的机">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-02T06:23:07.000Z">
 <meta property="article:modified_time" content="2022-09-03T15:05:12.432Z">
@@ -104,6 +104,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -138,11 +139,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -209,6 +237,27 @@
             </span>
 
           
+            <span id="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-meta-item leancloud_visitors" data-flag-title="CS:APP 读后感" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -222,7 +271,7 @@
         <h1 id="CS-APP-读后感"><a href="#CS-APP-读后感" class="headerlink" title="CS:APP 读后感"></a>CS:APP 读后感</h1><p>这本书，给了我 一个在Linux下运行的程序 的直观印象。下面是每一章让我产生 “惊讶” 的内容，这些内容是我在这本书中新接触到的内容。（以下内容是在阅读完第一遍之后，第二遍之前写的）</p>
 <p>接下来会陆续更新各章的详细笔记 … </p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>目录：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">第1章    计算机系统漫游<br>--- 程序结构和执行<br>第2章    信息的表示和处理<br>第3章    程序的机械级表示<br>第4章    处理器体系结构<br>第5章    优化程序性能<br>第6章    存储器的层次结构<br>--- 在系统上运行程序<br>第7章    链接<br>第8章    异常控制流<br>第9章    虚拟内存<br>--- 程序间的交互和通信<br>第10章  系统及I/O<br>第11章  网络编程<br>第12章  并发编程<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">第1章    计算机系统漫游</span><br><span class="line">--- 程序结构和执行</span><br><span class="line">第2章    信息的表示和处理</span><br><span class="line">第3章    程序的机械级表示</span><br><span class="line">第4章    处理器体系结构</span><br><span class="line">第5章    优化程序性能</span><br><span class="line">第6章    存储器的层次结构</span><br><span class="line">--- 在系统上运行程序</span><br><span class="line">第7章    链接</span><br><span class="line">第8章    异常控制流</span><br><span class="line">第9章    虚拟内存</span><br><span class="line">--- 程序间的交互和通信</span><br><span class="line">第10章  系统及I/O</span><br><span class="line">第11章  网络编程</span><br><span class="line">第12章  并发编程</span><br></pre></td></tr></table></figure>
 <p>本书一共分为12章，第一章可以说是对全书的介绍，简单介绍了本书的所有内容。</p>
 <p>剩下的十一章是本书的正式部分，我认为本书的核心在第 7~9 章，2~6章的内容可以说是为读者补充了前置知识，例如，第六章的内容就和第九章密切相关。而 10 ~ 12 章则主要以实践为主，第十章IO和第十一章网络编程，在介绍他们本来内容的同时，也是为在第十二章建立一个并发网络服务器构建基础。</p>
 <h2 id="分章介绍"><a href="#分章介绍" class="headerlink" title="分章介绍"></a>分章介绍</h2><h3 id="第二章-信息的表示和处理"><a href="#第二章-信息的表示和处理" class="headerlink" title="第二章 信息的表示和处理"></a>第二章 信息的表示和处理</h3><blockquote>
@@ -345,6 +394,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -490,6 +540,10 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
+
+
 
 
 
@@ -561,6 +615,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
