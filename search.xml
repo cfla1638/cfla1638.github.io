@@ -4245,4 +4245,54 @@
         <category>CS:APP</category>
       </categories>
   </entry>
+  <entry>
+    <title>傅里叶变换</title>
+    <url>/2023/03/30/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/</url>
+    <content><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://blog.csdn.net/majinlei121/article/details/46745359">(1条消息) 高斯函数的傅里叶变换_残月飞雪的博客-CSDN博客</a></p>
+]]></content>
+      <tags>
+        <tag>数字图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库系统笔记</title>
+    <url>/2023/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="Chapter-3-关系数据库设计理论"><a href="#Chapter-3-关系数据库设计理论" class="headerlink" title="Chapter - 3 关系数据库设计理论"></a>Chapter - 3 关系数据库设计理论</h2><p>关系型数据库的<strong>依赖理论</strong>涉及如何构建良好的关系数据库模式，以及一个模式存在缺陷时应当如何改进。</p>
+<h3 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h3><p>函数依赖（functional dependency，FD）的定义：如果模式R的两个元组在属性$A_1,A_2,…A_n$上的分量值都相等，那么必定其他属性$B_1,B_2,…,B_n$上的分量值也相等，则有函数依赖$A_1A_2…A_n\to B_1B_2…B_n$ </p>
+<p>如果确定关系R的每个实例都能使一个给定的FD为真，那么则称R满足函数依赖f。这是在R上声明了一个约束，而不是仅仅针对R的一些特殊实例。</p>
+<p>也就是说，函数依赖左边的属性能<strong>先天必然地</strong>决定函数依赖右边的属性！</p>
+<h3 id="关系的键和超键"><a href="#关系的键和超键" class="headerlink" title="关系的键和超键"></a>关系的键和超键</h3><p>关系的键是一组满足以下两个条件的属性的集合：$\lbrace A_1,A_2,…,A_n\rbrace$ </p>
+<ol>
+<li>这些属性函数决定其他所有属性</li>
+<li>这些属性的真子集不能函数决定其他属性</li>
+</ol>
+<p>关系的超键即「键的超集」，也就是只需要满足上面第一个条件的属性集合。</p>
+<h3 id="函数依赖的规则"><a href="#函数依赖的规则" class="headerlink" title="函数依赖的规则"></a>函数依赖的规则</h3><p>★ 1 函数依赖的推导规则</p>
+<p>如果关系R(A, B, C)，满足FD：$A\to B, B\to C$ 则，R也满足FD：$A\to C$ </p>
+<blockquote>
+<p>术语说明：</p>
+<p>对于FD集合S, T</p>
+<p>等价：若关系实例集合满足S和T的情况完全一样，就认为S和T是<strong>等价</strong>的。</p>
+<p>推断：若满足T中所有FD的每个关系实例也满足S中的所有FD，则认为S是从T中<strong>推断</strong>而来。</p>
+<p>如果S从T中推断而来，T从S中推断而来，那么S与T是等价的。</p>
+</blockquote>
+<p>★ 2 分解/结合规则</p>
+<p>2.1 分解规则：</p>
+<p>函数依赖$A_1A_2…A_n\to B_1B_2…B_m$ </p>
+<p>等价于一组函数依赖：$A_1A_2…A_n\to B_1, A_1A_2…A_n\to B_2, … , A_1A_2…A_n\to B_n$ </p>
+<p>2.2 组合规则</p>
+<p>组合规则即分解规则的逆运算</p>
+<p>★ 3 平凡函数依赖规则</p>
+<p>平凡函数依赖的定义：两个元组在$A_1A_2…A_n$上的取值相同，则它们在这n个属性的任意一个子集上的取值都相同。</p>
+<p>平凡函数依赖规则：如果函数依赖右边有一些属性在函数依赖左边出现，则这些属性可以在右边去除。</p>
+<blockquote>
+<p>属性在函数依赖集合下的闭包：</p>
+<p>属性集合$\lbrace A_1A_2…A_n \rbrace$在函数依赖集合S下的闭包记为$\lbrace A_1A_2…A_n \rbrace^+$ ，它是能由$ A_1A_2…A_n $在函数依赖集合S下推到出来的属性的集合。它也包含属性集合本身，因为原属性集合可由平凡FD推导出来。</p>
+<p>闭包的作用：计算任一属性的闭包，可以判定任一给定的FD : $A_1A_2…A_n\to B$是否可由FD集合S推断，若B在$\lbrace A_1A_2…A_n \rbrace^+$中，则给定的函数依赖可由函数依赖集合S推断，反之则不能。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>大学课程</category>
+      </categories>
+  </entry>
 </search>
