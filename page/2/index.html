@@ -187,6 +187,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" class="post-title-link" itemprop="url">在vscode配置cmake</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-14 22:48:49 / 修改时间：23:43:11" itemprop="dateCreated datePublished" datetime="2022-11-14T22:48:49+08:00">2022-11-14</time>
+            </span>
+
+          
+            <span id="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" class="post-meta-item leancloud_visitors" data-flag-title="在vscode配置cmake" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="在vscode中配置cmake"><a href="#在vscode中配置cmake" class="headerlink" title="在vscode中配置cmake"></a>在vscode中配置cmake</h1><h2 id="配置includePath"><a href="#配置includePath" class="headerlink" title="配置includePath"></a>配置includePath</h2><p>vscode的静态语法检查是 intellisense 完成的，想要使它能搜寻到指定的includePath需要这要做：</p>
+<ol>
+<li>ctrl p，输入c/c++ edit configurations(JSON)，这会在本地的<code>./vscode/</code>下创建<code>c_cpp_properties.json</code> 在includePath里面添加上自己的include path即可</li>
+</ol>
+<h2 id="配置generator"><a href="#配置generator" class="headerlink" title="配置generator"></a>配置generator</h2><p>首先 ctrl+p，输入settings.json，点击 “首选项：打开工作区设置(JSON)”。</p>
+<p>此操作会创建 <code>./vscode/settings.json</code> 在此文件中加入<code>&quot;cmake.generator&quot; : &quot;MinGW Makefiles&quot;</code> 根据不同的系统，配置不同的generator。</p>
+<h2 id="配置debugger"><a href="#配置debugger" class="headerlink" title="配置debugger"></a>配置debugger</h2><p>在侧边栏 调试 中点击创建 “launch.json” 或直接创建launch.json 只要是带有调试信息的可执行文件，都可以调试</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1957,389 +2043,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cfla">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cfla's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" class="post-title-link" itemprop="url">模电课程 - 大学课程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-10 12:17:18" itemprop="dateCreated datePublished" datetime="2022-09-10T12:17:18+08:00">2022-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-23 18:00:04" itemprop="dateModified" datetime="2023-03-23T18:00:04+08:00">2023-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="模电课程 - 大学课程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="电工学"><a href="#电工学" class="headerlink" title="电工学"></a>电工学</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>基尔霍夫电压定理</p>
-<p>基尔霍夫电流定理</p>
-<p>结点电压法：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/341727367">第1章-直流电路分析理论-1.12结点电压法 - 知乎 (zhihu.com)</a> </p>
-<p>回路电流法：</p>
-<p>叠加定理：<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1662486398509859685&amp;wfr=spider&amp;for=pc">电学基础理论之叠加定理 (baidu.com)</a> </p>
-<p>戴维南等效电路</p>
-<p>二极管：</p>
-<p>正向压降 ： 正向通过后，电压的减小量。</p>
-<p>二极管的功能：</p>
-<ol>
-<li><p>钳位</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/钳位二极管/6307364?fr=aladdin">钳位二极管_百度百科 (baidu.com)</a> </p>
-</li>
-<li><p>隔离</p>
-</li>
-<li><p>稳压 ： 见下面稳压二极管视频</p>
-</li>
-</ol>
-<p>稳压二极管：</p>
-<blockquote>
-<p>详见视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qY4y1t7sc">https://www.bilibili.com/video/BV1qY4y1t7sc</a></p>
-<p>详见P15页笔记</p>
-</blockquote>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><ul>
-<li><p>电压源</p>
-<p>理想的电压源内阻为0，输出电压<code>U = E - IR0</code>, R0 = 0，因此输出电压恒定不变。当内阻远小于外电阻时，可近似看作理想电压源。</p>
-</li>
-<li><p>电流源</p>
-<p>理想电流源的内阻为无穷大，因此输出的电流I = I~S~ - U / R ，恒定不变。</p>
-</li>
-</ul>
-<h2 id="第十四章-半导体器件"><a href="#第十四章-半导体器件" class="headerlink" title="第十四章 半导体器件"></a>第十四章 半导体器件</h2><h3 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h3><ul>
-<li><p>导通电压：</p>
-<p>硅管：0.5V</p>
-<p>锗管：0.1V</p>
-</li>
-<li><p>正向压降</p>
-<p>硅管：0.6 ~ 0.8 V</p>
-<p>锗管：0.2 ~ 0.3 V</p>
-</li>
-<li><p>主要参数</p>
-<p>最大整流电流 I~OM~ : 长时间使用所允许通过的最大正向平均电流</p>
-<p>反向工作峰值电压 U~RWM~ : 保证二极管不被击穿而给出的反向峰值电压，一般是反向击穿电压的1/2或2/3。</p>
-<p>反向峰值电流 I~RM~ ：在U~RWM~ 下的电流</p>
-</li>
-<li><p>作用</p>
-<ol>
-<li>整流</li>
-<li>限伏/钳位</li>
-<li>隔离：两个二极管并联，某个二极管的电压高，则它优先导通。因而电压低的那一个二极管被隔离了。</li>
-</ol>
-</li>
-</ul>
-<h3 id="稳压二极管"><a href="#稳压二极管" class="headerlink" title="稳压二极管"></a>稳压二极管</h3><ol>
-<li>使用稳压二极管时一定要有限流电阻R，不然二极管必定会被烧坏。</li>
-<li>稳压二极管的工作原理：当电源电压升高，使得稳压二极管两侧电压有升高的趋势时，此时稳压二极管的电阻升高，电流增大，引起干路限流电阻的电流增加，限流电阻的电阻不变，因此限流电阻的分压增大，抵消了电源增加的电压。</li>
-<li>在分析使用稳压二极管之前，假设二极管尚未反向导通，先判断二极管两侧的电压，只有二极管反向击穿时，才能有稳压的效果。</li>
-</ol>
-<h3 id="三极管"><a href="#三极管" class="headerlink" title="三极管"></a>三极管</h3><ul>
-<li>放大区，I~E~ = I~C~ + I~B~ , I~C~ = β I~B~ ，发射结正偏，集电结反偏。</li>
-<li>截止区，I~C~ = 0, U~CE~ = U~CC~ ， 约等于断开，此时 I~B~ = 0或以下</li>
-<li>饱和区，此时I~B~ 和I~C~ 关系很小，I~C~ = U~CC~ / R~C~ , U~CE~ = 0, 相当于短路</li>
-<li><p>如何判断三极管的工作状态？</p>
-<ol>
-<li>求出 I~C~ ~Maximun~  = (Vcc - U~CE~)  / R~C~</li>
-<li>求出 I~B~ </li>
-<li>若βI~B~ &gt; I~CMaximun~ 饱和</li>
-<li>否则处于放大区</li>
-</ol>
-</li>
-<li><p>参数</p>
-<p>硅管 U~BE~ = 0.6 ~ 0.7 V    </p>
-<p>β 杠 ： 静态电流放大系数</p>
-<p>β：动态电流放大系数</p>
-<p>I~CBO~ </p>
-<p>I~CEO~ </p>
-<p>I~CM~ 集电极允许的最大电流，超过它放大系数将会下降</p>
-<p>U~（BR）CEO~ </p>
-</li>
-</ul>
-<ul>
-<li>如果U~CE~ 固定，那么随着I~B~ 的增加，三极管的工作状态会慢慢从放大状态转为过饱和状态。</li>
-</ul>
-<h2 id="第十五章-基本放大电路"><a href="#第十五章-基本放大电路" class="headerlink" title="第十五章 基本放大电路"></a>第十五章 基本放大电路</h2><p>放大电路的输入电阻：输入电路的等效负载电阻</p>
-<p>放大电路的输出电阻：输出电路的等效内阻</p>
-<h3 id="共发射极放大电路（固定偏置放大电路）"><a href="#共发射极放大电路（固定偏置放大电路）" class="headerlink" title="共发射极放大电路（固定偏置放大电路）"></a>共发射极放大电路（固定偏置放大电路）</h3><p>(名字来源：因为偏置电路是固定的)</p>
-<p>输入: U~I~或者I~B~ 或U~BE~ </p>
-<p>输出：U~O~ (U~CE~ 的交流分量 阻容耦合)</p>
-<p>静态值是指</p>
-<ul>
-<li>I~B~</li>
-<li>I~C~</li>
-<li>U~BE~ ：一般是 0.6 V(硅管是0.6 ~ 0.7)</li>
-<li>U~CE~</li>
-</ul>
-<p>静态值的直接求解法：</p>
-<ul>
-<li>I~B~ ： (U~CC~ - U~BE~ ) / R~B~ </li>
-<li>I~C~ ： βI~B~ </li>
-<li>U~BE~ ：一般是 0.6 V(硅管是0.6 ~ 0.7)</li>
-<li>U~CE~ : U~CC~ - R~C~ I~C~ </li>
-</ul>
-<p>静态值得图解法：</p>
-<ul>
-<li>三极管的输出特性曲线是I~C~ - U~CE~ (y - x) 因此，只要求出I~C~ = f(U~CE~ ) 即可</li>
-<li>由U~CE~ =  U~CC~ - R~C~ I~C~ 因此只要求出U~CC~ 和 R~C~ 即可</li>
-</ul>
-<p>偏置电路是指产生偏流I~B~ 的电路，偏置电阻是指限流I~B~的电阻 </p>
-<h3 id="非线性失真"><a href="#非线性失真" class="headerlink" title="非线性失真"></a>非线性失真</h3><p>原因：静态工作点不合适 或 信号太大</p>
-<p>分类</p>
-<ul>
-<li>截止失真 : 静态工作点位置太低，输入产生的I~B~ 在负半周截止了，导致输出的IC也截止了（负半周），导致U~CE~ 的正半周截止了</li>
-<li>饱和失真 ： 静态工作点位置太高，输出的I~C~ 在正半周饱和，导致输出的U~CE~ 在负半周失真。</li>
-</ul>
-<p>什么可以影响静态工作点：</p>
-<p>最直接的因素是I~C~，可以影响I~C~的因素都可以影响静态工作点 </p>
-<h3 id="静态工作点的稳定"><a href="#静态工作点的稳定" class="headerlink" title="静态工作点的稳定"></a>静态工作点的稳定</h3><h4 id="分压式偏置放大电路"><a href="#分压式偏置放大电路" class="headerlink" title="分压式偏置放大电路"></a>分压式偏置放大电路</h4><h3 id="射级输出器"><a href="#射级输出器" class="headerlink" title="射级输出器"></a>射级输出器</h3><p>输入电阻大：对内阻高的信号源很有意义</p>
-<p>输出电阻小：具有恒压输出的特性，带负载能力较强</p>
-<p>一般用于多级放大电路的输入级或输出级或者多级之间的缓冲级/隔离级</p>
-<h2 id="第十六章-集成运算放大器"><a href="#第十六章-集成运算放大器" class="headerlink" title="第十六章 集成运算放大器"></a>第十六章 集成运算放大器</h2><h3 id="集成运放的组成"><a href="#集成运放的组成" class="headerlink" title="集成运放的组成"></a>集成运放的组成</h3><ul>
-<li><p>输入极</p>
-<p>输入极要求输入电阻高，静态电流小，差模放大倍数高，抑制零点漂移和共模干扰信号强，输入极都采用差分放大电路。</p>
-</li>
-<li><p>中间级</p>
-<p>进行电压放大，要求电压放大倍数高，一般采用共发射极放大电路</p>
-</li>
-<li><p>输出级</p>
-<p>要求输出电阻低，带负载能力强，一般由互补功率放大电路或射级输出器构成</p>
-</li>
-<li><p>偏置电路</p>
-<p>为上述个电路提供稳定合适的偏置电流，决定各级的静态工作点，一般由各种恒流源电路组成。</p>
-</li>
-</ul>
-<h3 id="理想运放"><a href="#理想运放" class="headerlink" title="理想运放"></a>理想运放</h3><p>开环电压放大倍数 ∞</p>
-<p>差模输入电阻 ∞</p>
-<p>开环输出电阻 0</p>
-<ul>
-<li><p>工作在线性区</p>
-<p>虚断：由于差模输入电阻为∞，可以认为两个输入端的电流 i~+~ = i~-~  = 0</p>
-<p>虚短：由于开环电压放大倍数 ∞，可以认为 u~+~ = u~-~ </p>
-<ul>
-<li>虚地，如果由于虚短，如果两个输入端有一个接地，相当于另一个也接地</li>
-</ul>
-</li>
-<li><p>工作在饱和区</p>
-<p>虚断：仍然存在</p>
-<p><del>虚短</del>：此时工作在饱和区，不能满足在线性区的放大关系，因此，两个输入端的电压不必相等，虚短不存在</p>
-<p>u+ &gt; u- : uo = + Uo(sat)</p>
-<p>u+ &lt; u- : uo = - Uo(sat)</p>
-</li>
-</ul>
-<h3 id="信号运算"><a href="#信号运算" class="headerlink" title="信号运算"></a>信号运算</h3><ul>
-<li><p>反向比例运算</p>
-<p>运放工作在线性区</p>
-<p>只要运放的开环放大倍数很高，比例运算的放大能力就只与外接电阻有关</p>
-<p>这个放大倍数就是闭环放大倍数</p>
-<p>Uo = -(R~F~ / R1) U1</p>
-</li>
-<li><p>正向比例运算</p>
-<p>电压从正向端输入</p>
-<p>放大比例也只与外接电阻有关</p>
-<p>Uo = (1 + R~F~ / R1) U1</p>
-</li>
-<li><p>加法运算</p>
-<p>Uo = -[(R~F~/R~11~)U~11~ + (R~F~/R~12~)U~12~ + (R~F~/R~13~)U~13~]</p>
-<p>Uo = -(R~F~ / R1)(U11 + U12 + U13)</p>
-</li>
-<li><p>减法运算</p>
-<p>Uo = (1 + R~F~ / R~1~ ) (R~3~ / (R1 + R2)) U12 - R~F~ / R~1~ U11</p>
-<p>当R1 = R2, R2 = R~F~ </p>
-<p>Uo = R~F~ / R~1~(U12 - U11)</p>
-<p>当 R1 = R2 = R2 = R~F~ </p>
-<p>Uo = U12 - U11</p>
-</li>
-</ul>
-<h2 id="第十七章-电子电路中的反馈"><a href="#第十七章-电子电路中的反馈" class="headerlink" title="第十七章 电子电路中的反馈"></a>第十七章 电子电路中的反馈</h2><p>反馈的模态判断：</p>
-<p>反馈信号与输入信号在</p>
-<ul>
-<li>相同端子上（并联）<ul>
-<li>极性相同：正反馈</li>
-<li>极性相反：负反馈</li>
-</ul>
-</li>
-<li>相异端子上（串联）<ul>
-<li>极性相同：负反馈</li>
-<li>极性相反：正反馈</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>如何判断反馈是电压反馈还是电流反馈？</p>
-<p>将输出电压U~O~ 置零，看是否还存在反馈？</p>
-<ul>
-<li>存在：电流反馈</li>
-<li>不存在：电压反馈</li>
-</ul>
-</li>
-<li><p>负反馈对输入输出电阻的影响：</p>
-<p>电压负反馈使得输出有电压源的特性，因此电压负反馈可以降低输出电阻ro</p>
-<p>电流负反馈使得输出有电流源的特性，因此电流负反馈可以增高输出电阻ro</p>
-<p>串联反馈可以增大输入电阻ri</p>
-<p>并联反馈可以减小输入电阻ri</p>
-</li>
-<li><p>负反馈可以减小波形失真，但不能完全消除波形失真</p>
-</li>
-<li><p>引入负反馈之后可以降低放大倍数</p>
-</li>
-<li><p>引入负反馈可以提高放大倍数的稳定性</p>
-</li>
-</ul>
-<h2 id="第十八章-直流稳压电源"><a href="#第十八章-直流稳压电源" class="headerlink" title="第十八章 直流稳压电源"></a>第十八章 直流稳压电源</h2><h3 id="整流"><a href="#整流" class="headerlink" title="整流"></a>整流</h3><ul>
-<li><p>单相半波整流</p>
-<p>变压器的输出（整流电路输入的交流电压，变压器的二次电压）为 u = √2Usin wt (U为交流电压的有效值，也叫变压器的二次电压有效值)</p>
-<p>整流电压的平均值 U~O~ = 0.45U</p>
-<p>整流电流（负载电流）的平均值 I~O~ = U~O~ / R~L~ = 0.45U/R~L~ </p>
-<p>整流元件截止时的最高反向电压 U~RM~ = √2U (并不是元件能承受的最大电压，元件能承受的最大反向电压要看元件自己的参数)</p>
-</li>
-<li><p>单相全波整流</p>
-<p>U~O~ = 0.9U</p>
-<p>I~O~ = 0.9U/R~L~ </p>
-<p>I~D~ = (1/2)I~O~ = 0.45U/R~L~ </p>
-<p>U~RM~ = 2√2U</p>
-</li>
-<li><p>三相半波</p>
-<p>U~O~ = 1.17U</p>
-<p>I~O~ =  1.17U/R~L~ </p>
-<p>I~D~ = (1/3)I~O~  </p>
-<p>U~RM~ = 2.45U</p>
-</li>
-<li><p>单向桥式整流</p>
-<p>U~O~ = 0.9U</p>
-<p>I~O~ = 0.9U/R~L~</p>
-<p>每个二极管中流过的平均电流 I~D~ = (1/2)I~O~ = 0.45U/R~L~ </p>
-<p>U~RM~ = √2U</p>
-<blockquote>
-<p>变压器的变比K = 交流电源电压 / 二次电压有效值</p>
-<p>变压器容量 S = UI = 变压器二次电压有效值 * 变压器二次电流有效值</p>
-</blockquote>
-</li>
-<li><p>三相桥式整流</p>
-<p>U~O~ = 2.34U</p>
-<p>I~O~ = 2.34U/R~L~ </p>
-<p>I~D~ = (1/3)I~O~  </p>
-<p>U~RM~ = 2.45 U</p>
-</li>
-</ul>
-<h3 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h3><ul>
-<li><p>电容滤波器</p>
-<p>U~O~ = 1.2U</p>
-<p>对滤波电容，一般要求</p>
-<p>R~L~ C &gt;= (3~5)T/2</p>
-</li>
-<li><p>电感电容滤波（LC滤波）</p>
-<p>适用于电流较大、要求输出电压脉动很小的场合，用于高频时更加合适</p>
-</li>
-</ul>
-<h3 id="直流稳压电源"><a href="#直流稳压电源" class="headerlink" title="直流稳压电源"></a>直流稳压电源</h3><ul>
-<li><p>稳压二极管稳压电路</p>
-<p>一般交流电压经过整流（桥式整流）和滤波之后，得到的直流电仍存在波动，此时需要进行稳压</p>
-<p>引起负载电压变化的原因有二：</p>
-<ol>
-<li>交流电源电压的变化</li>
-<li>负载电流的变化</li>
-</ol>
-<p>可以对负载电阻，先串联一个保护电阻，在并联一个稳压二极管，稳压二极管通过提高或减小电流，是的保护电阻承担增大或减少的电压。</p>
-<p>选取稳压二极管时，一般取：</p>
-<ul>
-<li><p>U~Z~ = U~O~ （U~Z~ 为稳压二极管的稳定电压，Uo为输出的负载电压）</p>
-</li>
-<li><p>I~ZM~ = (1.5~3) I~OM~ （I~ZM~ 为最大稳压电流，I~OM~ 为负载电流的最大值） </p>
-</li>
-<li>U~1~ = (2~3) U~O~ (其中U~1~ 是经过整流 滤波后的输出电压，也就是稳压部分的输入电压，即需要被稳压的部分)</li>
-</ul>
-</li>
-<li><p>集成三端稳压电源</p>
-<p>W78XX（输出固定正电压），W79XX（输出固定负电压），W117/217/317（输出电压可调）</p>
-<p>有三个引脚，分别是输入端I，输出端O，地段GND</p>
-<p>使用时需要在其输入端，输出端，地段并联一个电容</p>
-</li>
-</ul>
-<p>  几种典型的电路：</p>
-<ol>
-<li>正负电压同时输出的电路</li>
-<li>输出电压可调的电路<ol>
-<li>用集成运放 + W78XX/W79XX</li>
-<li>用W117/217/317</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2409,7 +2112,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

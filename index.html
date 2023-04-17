@@ -187,6 +187,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">概率论与数理统计课程笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-04-17 09:47:55 / 修改时间：13:03:46" itemprop="dateCreated datePublished" datetime="2023-04-17T09:47:55+08:00">2023-04-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="post-meta-item leancloud_visitors" data-flag-title="概率论与数理统计课程笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第一章-概率论的基本概念"><a href="#第一章-概率论的基本概念" class="headerlink" title="第一章 概率论的基本概念"></a>第一章 概率论的基本概念</h2><h3 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h3><p><strong>随机试验</strong>的定义：</p>
+<ol>
+<li>可以在相同的条件下重复进行</li>
+<li>每次实验的可能结果不止一个，并且事先明确试验的所有可能结果</li>
+<li>进行一次试验之前不能确定哪一结果出</li>
+</ol>
+<p>假设我们有一个随机试验E，它的所有可能结果组成的集合为E的<strong>样本空间</strong>，样本空间的每个元素，即E的每个结果，称为<strong>样本点</strong>。</p>
+<p><strong>随机事件</strong>：试验E的样本空间S的子集为E的随机事件，简称为<strong>事件</strong>。当这一子集的一个样本点出现时，称<strong>这一事件发生</strong>。</p>
+<p>特别地，由一个样本点组成的单点集称为<strong>基本事件</strong>。如{1}，{2}，{3} …</p>
+<p>样本空间S本身是随机试验的<strong>必然事件</strong>，空集$\emptyset$ 被称为<strong>不可能事件</strong>。 </p>
+<h3 id="事件之间的运算"><a href="#事件之间的运算" class="headerlink" title="事件之间的运算"></a>事件之间的运算</h3><p>事件相等：</p>
+<p>和事件：</p>
+<p>积事件：</p>
+<p>差事件：</p>
+<p>事件互不相容/互斥：$A \cap B=\empty $ </p>
+<p>逆事件/对立事件：$A\cap B=\empty \and A\cup B=S$ </p>
+<h3 id="频率-、-概率的公理化定义"><a href="#频率-、-概率的公理化定义" class="headerlink" title="频率 、 概率的公理化定义"></a>频率 、 概率的公理化定义</h3><p><strong>频率</strong>：在相同的条件下，进行n次试验，在这n次试验中，事件A发生的次数记为$n_A$ 称为事件A发生的<strong>频数</strong>，比值$n_A/n $称为事件A发生的<strong>频率</strong>，并记为$f_n(A)$ </p>
+<p>频率的基本性质：</p>
+<ol>
+<li>$0 \le f_n(A) \le 1 $</li>
+<li>$f_n(S)=1$</li>
+<li>若$A_1,A_2,…A_n$是两两互不相容的事件，则$f_n(A_1\cup A_2\cup …\cup A_k)=f_n(A_1)+f_n(A_2)+…+f_n(A_k)$ </li>
+</ol>
+<p><strong>概率：</strong> 设E是随机试验，S是它的样本空间，对于E的每一事件A赋予一个实数，记为P(A)，称为事件A的<strong>概率</strong>。</p>
+<p>概率的基本性质：</p>
+<ol>
+<li>非负性：对于每一个事件A，有$P(A) \ge 0$</li>
+<li>规范性：对于必然事件S，有P(S) = 1</li>
+<li>可列可加性：设$A_1,A_2,…$是两两不相容的事件，即对于$A_iA_j=\empty,i \ne j,i,j=1,2,…$，有$P(A_1\cup A_2\cup …)=P(A_1)+P(A_2)+…$ </li>
+</ol>
+<blockquote>
+<p>证明，当$n\rarr \infin $时，$f_n(A)$在一定义一下接近于概率P(A)</p>
+<p>TODO：见第五章</p>
+</blockquote>
+<p>由概率的基本性质可推出的概率重要性质：</p>
+<ol>
+<li>$P(\empty)=0$</li>
+<li>有限可加性：设$A_1,A_2,…A_n$是两两不相容的事件，即对于$A_iA_j=\empty,i \ne j,i,j=1,2,…$，有$P(A_1\cup A_2\cup …\cup A_n)=P(A_1)+P(A_2)+…+P(A_n)$ </li>
+<li>设A，B是两个事件，若$A\sub B$则有$P(B-A)=P(B)-P(A)$ 且$P(B)\ge P(A)$ </li>
+<li>对于任意事件A，$P(A) \le 1$ </li>
+<li>逆事件的概率：对于任意事件A，$P(\bar{A})=1-P(A)$ </li>
+<li>加法公式：对于任意两事件A，B，$P(A\cup B) = P(A)+P(B)-P(AB)$ (容斥原理)</li>
+</ol>
+<blockquote>
+<p>常用公式：$B\bar{A}=B-A=B-AB$ </p>
+</blockquote>
+<h3 id="古典概型"><a href="#古典概型" class="headerlink" title="古典概型"></a>古典概型</h3><p><strong>古典概型</strong>：样本空间中只有有限个元素，且基本事件发生的可能性相同的试验。</p>
+<p>古典概型是一类试验。</p>
+<p>P(A) = A包含的基本事件数 / S中的基本事件数</p>
+<h3 id="几何概型"><a href="#几何概型" class="headerlink" title="几何概型"></a>几何概型</h3><p>P(A) = A的长度、面积 …  / S的长度、面积 …</p>
+<h3 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h3><p>条件概率的定义：设A、B是两个事件，且P(A) &gt; 0，称$P(B|A)=\frac{P(AB)}{P(A)}$ 为在事件A发生的条件下事件B发生的条件概率。</p>
+<p><strong>条件概率也是概率，它也满足概率的公理化定义，即非负性、规范性、可列可加性</strong></p>
+<p>乘法定理：设P(A) &gt; 0，则有P(AB) = P(B|A)P(A)</p>
+<p>全概率公式：$P(A)=\sum_{i=1}^{n} P(A|B_i)P(Bi)$ </p>
+<p>贝叶斯公式：$P(B_i|A)=\frac{P(B_iA)}{P(A)}=\frac{P(A|B_i)P(B_i)}{\sum^{n}_{j=1}P(A|B_j)P(B_j)}$ </p>
+<h3 id="独立性"><a href="#独立性" class="headerlink" title="独立性"></a>独立性</h3><p>若事件A的发生对事件B的发生没有影响，即P(B|A)=P(B)，则事件A、B相互独立。此时有P(AB)=P(B|A)P(A) = P(A)P(B)</p>
+<p>定义：设A，B是两事件，如果满足等式P(AB)=P(A)P(B)，则称事件A、B相互独立，简称事件A、B独立。</p>
+<blockquote>
+<p>条件A对样本空间和事件B进行了等比例约束就是独立事件</p>
+</blockquote>
+<p>定理：若事件AB相互独立，则下列事件也相互独立$A\bar{B},\bar{A}B,\bar{A}\bar{B}$  </p>
+<p>三事件相互独立：</p>
+<p>P(AB)=P(A)P(B)</p>
+<p>P(AC)=P(A)P(C)</p>
+<p>P(BC)=P(B)P(C)</p>
+<p>P(ABC)=P(A)P(B)P(C)</p>
+<h2 id="第二章-随机变量及其分布"><a href="#第二章-随机变量及其分布" class="headerlink" title="第二章 随机变量及其分布"></a>第二章 随机变量及其分布</h2><p>随机变量的定义：设随机试验的样本空间S={e}，X=X(e)是定义在样本空间S上的实值单值函数，则称X=X(e)为随机变量。随机变量的本事是一个函数，是从样本空间到实数集的映射。</p>
+<h3 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h3><p>离散型随机变量取X=xk时的概率：$P\lbrace X=x_k\rbrace =p_k,k=1,2,3,…$ </p>
+<ul>
+<li>0-1分布：$P\lbrace X=k\rbrace =p^k(1-p)^{1-k},k=0,1$ </li>
+<li>二项分布：$X \thicksim b(n, p)$ ：$P \lbrace X=k\rbrace =C_n^kp^k(1-p)^{n-k}$ </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1949,92 +2109,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cfla">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cfla's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" class="post-title-link" itemprop="url">在vscode配置cmake</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-14 22:48:49 / 修改时间：23:43:11" itemprop="dateCreated datePublished" datetime="2022-11-14T22:48:49+08:00">2022-11-14</time>
-            </span>
-
-          
-            <span id="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" class="post-meta-item leancloud_visitors" data-flag-title="在vscode配置cmake" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="在vscode中配置cmake"><a href="#在vscode中配置cmake" class="headerlink" title="在vscode中配置cmake"></a>在vscode中配置cmake</h1><h2 id="配置includePath"><a href="#配置includePath" class="headerlink" title="配置includePath"></a>配置includePath</h2><p>vscode的静态语法检查是 intellisense 完成的，想要使它能搜寻到指定的includePath需要这要做：</p>
-<ol>
-<li>ctrl p，输入c/c++ edit configurations(JSON)，这会在本地的<code>./vscode/</code>下创建<code>c_cpp_properties.json</code> 在includePath里面添加上自己的include path即可</li>
-</ol>
-<h2 id="配置generator"><a href="#配置generator" class="headerlink" title="配置generator"></a>配置generator</h2><p>首先 ctrl+p，输入settings.json，点击 “首选项：打开工作区设置(JSON)”。</p>
-<p>此操作会创建 <code>./vscode/settings.json</code> 在此文件中加入<code>&quot;cmake.generator&quot; : &quot;MinGW Makefiles&quot;</code> 根据不同的系统，配置不同的generator。</p>
-<h2 id="配置debugger"><a href="#配置debugger" class="headerlink" title="配置debugger"></a>配置debugger</h2><p>在侧边栏 调试 中点击创建 “launch.json” 或直接创建launch.json 只要是带有调试信息的可执行文件，都可以调试</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2104,7 +2178,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
