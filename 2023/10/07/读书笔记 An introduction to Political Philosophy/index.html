@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|jetbrains mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Ch 2 Justifying the state为什么我们对政府具有道德上的责任？ Consent Theory: 对于洛克(Locke)，他认为人生来自由、平等、独立，任何人都不能生来就能够统治他人。若是，则其他人必须同意(consent)他的统治。因此，对于洛克，政府的合法性问题就转变成了政府的权威如何能与每个每个人自然的自治的生活（the natural autonomy of the i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记：An introduction to Political Philosophy">
+<meta property="og:url" content="https://cfla1638.github.io/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/index.html">
+<meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:description" content="Ch 2 Justifying the state为什么我们对政府具有道德上的责任？ Consent Theory: 对于洛克(Locke)，他认为人生来自由、平等、独立，任何人都不能生来就能够统治他人。若是，则其他人必须同意(consent)他的统治。因此，对于洛克，政府的合法性问题就转变成了政府的权威如何能与每个每个人自然的自治的生活（the natural autonomy of the i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-07T13:27:55.000Z">
+<meta property="article:modified_time" content="2023-10-07T13:29:44.207Z">
+<meta property="article:author" content="cfla">
+<meta property="article:tag" content="政治哲学">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cfla1638.github.io/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>读书笔记：An introduction to Political Philosophy | cfla's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cfla's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          读书笔记：An introduction to Political Philosophy
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-10-07 21:27:55 / 修改时间：21:29:44" itemprop="dateCreated datePublished" datetime="2023-10-07T21:27:55+08:00">2023-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/" class="post-meta-item leancloud_visitors" data-flag-title="读书笔记：An introduction to Political Philosophy" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Ch-2-Justifying-the-state"><a href="#Ch-2-Justifying-the-state" class="headerlink" title="Ch 2 Justifying the state"></a>Ch 2 Justifying the state</h2><p>为什么我们对政府具有道德上的责任？</p>
+<p>Consent Theory: 对于洛克(Locke)，他认为人生来自由、平等、独立，任何人都不能生来就能够统治他人。若是，则其他人必须同意(consent)他的统治。因此，对于洛克，政府的合法性问题就转变成了政府的权威如何能与每个每个人自然的自治的生活（the natural autonomy of the individual）相适应(reconciled)。[p.35]</p>
+<p>Utilitarian Theory: 对于边沁(Bentham)，政府的合法性来源于它能最大化社会的总体幸福(total happiness)，并且只有它比其他的政府更能做好这一点，它才具有合法性，而个人的同意是不相关的。[p.35]</p>
+<hr>
+<p>什么是政府(The State)?</p>
+<p>洛克认为，政府至少拥有政治权力(Political Power)，政治权力即制定法律，惩罚违法者的权力。[p.36]</p>
+<p>马克斯·韦伯(Max Weber)认为，在一个给定的领土上，政府垄断合法的暴力。在它的统治范围内，一切合法的暴力都直接或间接地来源于政府，例如警察，军队，人的自卫。它的反面是，政府有保护其领土上的所有人不受非法的暴力的责任。[p.36]</p>
+<hr>
+<p>什么是 Justifying the State？</p>
+<p>它是说，在原则上，在正常情况下，每个人都有Universal Political Obligation，即每个政府下的公民都有遵守法律的道德责任。[p.38]</p>
+<p>（换句话说，Justifying the State 也可以告诉你一个政府什么时候不具有合法性，什么时候我们不再有道德责任去遵守法律。）</p>
+<hr>
+<p>社会契约：</p>
+<p>Voluntaristic Obligation</p>
+<p> 公民的政治责任来源于他们的自愿同意。</p>
+<p>但是这种自愿同意的问题在于，没有一部确切的契约说明所有公民都同意政府的合法性。即使把参与投票看作对政府的同意（即使投了反对票，也代表他认可这个系统），也存在一些完全不投票的人。[p.41]</p>
+<p>Tacit consent</p>
+<p>政府对于它的公民来说是合法的，因为每个被其统治的人都享受了政府带来的好处，只要公民没有离开这个国家，他们就默默地同意了政府的统治。[p.42]</p>
+<p>反对的意见：没有方法可以表达公民的不同意，除非公民移民到其他国家，但对当代公民来说，这太困难了。[p.43]</p>
+<p>Hypothetical consent</p>
+<p>社会契约是假设的，它告诉我们在自然状态下，我们一定会通过社会契约去缔造一个政府，因此我们就拥有政治责任。换句话说，在经历复杂的思想实验后，我会意识到我一直都同意我对政府负有政治责任。[pp.44-46]</p>
+<p>但问题是，这种同意是脆弱的，且是与道德与传统混在一起的。</p>
+<p>Anarchism</p>
+<p>有些无政府主义者可能会主张，我们要接受部分人在自愿同意的理论下是可以逃脱政治责任的。这样，这些人之所以遵守法律，只是因为它们符合道德。[p.47]</p>
+<p>这种观点的好处在于，它可以用来反对恶法，例如纳粹德国对犹太人的种族灭绝。但这种观点也有另一种风险：如果你只遵守哪些符合你的道德观点的法律，你可能不会尊重他人的权利、财产…，因为不同的人会有不同的道德观点。这样公民们又再次进入了自然状态。[p.48]</p>
+<p>The principle of fairness[pp.55-60]</p>
+<p>Hume认为，人们不能考虑长远利益，因此需要有法律来达到长远利益。</p>
+<p>H.L.A.Hart推广了Hume的论述，我们享受了政府带给我们的利益，因此我们需履行政治责任。</p>
+<p>反对观点：</p>
+<p>政府带给我们的利益并不一定是我们想要的，而且我们也没有办法显式地拒绝这种利益。</p>
+<p>Robert Nozick认为，我们只对我们显式地接受的利益负有政治责任，如果接受Nozick的观点，那么这种论断就退化为了tacit consent。[pp.58-59]</p>
+<hr>
+<p>Utilitarianism</p>
+<p>功利主义的要义：一个行为之所以是道德上合法的，是因为它带给了社会最高的utility(happiness, pleasure, satisfaction of desire)。[p.49]</p>
+<p>功利主义的一个困难：Problem of ‘interpersonal comparsions of utility’，比较每个人之间的utility是困难的。但我们要知道，比较utility是可行的，即使没有一个完备的方法，但我们在讨论功利主义的时候也要假定这个问题是可以解决的。[p.50]</p>
+<p>Justifying the state中的两种功利主义：</p>
+<p>indirect utilitarianism:We need a body of laws that will be respected, even when breaking one of these on a particular occasion would, if it were permitted, lead to an increase in happiness.[p.51]</p>
+<p>direct utilitarianism:I should obey the law if, but only if my obedience will lead to the greater happiness of society than my disobedience.[p.50]</p>
+<p>边沁所选择的必然是indirect utilitarianism，因为即使每个人违反法律不会明显的损害他人的利益，而自己的利益却有很大提升，但如果每个人都这样做，所有人的利益就会受损。(公地问题，囚徒困境)。[p.51]</p>
+<blockquote>
+<p>Fragment on Government中利用功利主义立法的几条Idea：[p.51]</p>
+<ol>
+<li>法律只有当它提升了人们的幸福，并且比其他法律做得更好时，才应该被通过。</li>
+<li>法律之所以要被遵守，仅仅是因为它们是法律，只有需要规避灾难时，才不需要遵守法律。</li>
+<li>当法律不能服务与公民的幸福时，应被废除。</li>
+</ol>
+</blockquote>
+<p>功利主义对政府合法性/公民的政治责任的辩护：</p>
+<p>The state, as provider and enforcer of a body of law, is justified if, and only if, it contributes more to human happiness than any feasible competing arrangement.[p.52]</p>
+<p>对功利主义的反对：</p>
+<p>功利主义对Political Obligation的辩护有大致三个前提[p.52]。最重要的一个是，功利主义假设，道德上最好的社会就是功利/幸福被最大化的社会。</p>
+<p>对此前提的一个反驳是替罪羊问题，一个人被当成冤枉是合理的，因为当公众知道罪犯被绳之以法后，他们的功利提升大于个人的冤屈。[p.53]</p>
+<p>对此反驳的一个反驳是indirect utilitarianism。[p.54]</p>
+<p>但也有人提出，功利主义的思路就是不对的，一个人不应被冤屈，并不是因为功利计算，而是它本身就是有价值的。[p.55]</p>
+<p>综上所述，功利主义的前提——道德上最好的社会就是功利/幸福被最大化的社会，是存在问题的。</p>
+<hr>
+<p>Conclusion:</p>
+<p>即使我们能够接受一些人可以不受政治责任的约束，例如僧人可能不需要交税。但不代表它们可以肆意伤害他人，因为人们不仅仅有政治责任，还有道德责任。</p>
+<blockquote>
+<p>The fact that some people avoid political obligations does not give them the right to harm anyone. These people still have a set of moral obligations. Further, on Locke’s view at least, all individuals have the right to enforce moral law, even in the absence of government.[p.61]</p>
+</blockquote>
+<p>2023/9/12, My Opinions：</p>
+<ol>
+<li><p>与其Justifying the state, 不如Justifying the single term。首先，政府的法律多种多样，有些法律条款是所有人都认同的，而有些条款是大部分人都反对的，例如最近治安管理处罚法的34条，伤害中华民族感情。因此可以单独审视每一个条款，判断它是否是经过公民同意的，或是对社会有益的。</p>
+</li>
+<li><p>从这里就看出民主政体的优点了，在民主政体的立法活动中，至少公民直接或间接地表达了对法律的同意，如果我生活在民主国家，我想我不会对它的法律有太多质疑与不信任。</p>
+</li>
+<li><p>本章的一直是在假设这个国家的政府是一个好的政府，虽然作者没有明确的表达，但我想当人们在面对一个坏的政府时，自然也可以用本章的一些意见来攻击其合法性。如果是面对一个坏的独裁政府，他既没有人们的同意，也没有实现社会效益的最大化，人们自然对他没有什么政治责任。除非你要采用Hart的观点，认为只要你从政府那里收益，你就对他富有政治责任，显然还有更好的政府存在，因此独裁政府是要下台的。</p>
+<p>但如果只要这个政府做的不够好，我们就对他没有政治责任了吗？我想可以从利用民主和独裁政府的区别来划分这道线，因为民主政府至少有来自公民的consent，而独裁国家没有，因此公民仍然对民主政府富有Political Obliging。</p>
+</li>
+</ol>
+<h2 id="Ch-3-Who-should-rule"><a href="#Ch-3-Who-should-rule" class="headerlink" title="Ch 3 Who should rule?"></a>Ch 3 Who should rule?</h2><p>Democracy’s Definition：</p>
+<p>Democracy, we are told, is government ‘of the people, by the people, and for the people’.</p>
+<p>民主的三个特征：</p>
+<ol>
+<li>for the people:Government for the people is the idea that the government exists for the sake of its citizens, not for the benefit of the rulers.</li>
+<li>by the people: 通过公民来进行治理</li>
+<li>of the people: a democracy state has power only over the people who make up the electorate.</li>
+</ol>
+<p>民主通常被当作当代政府合法性的试金石。</p>
+<p>民主本身也有两个tension/debate:</p>
+<ol>
+<li>Major rule VS. individual rights.</li>
+<li>representative  democracy VS. direct democracy.</li>
+</ol>
+<blockquote>
+<p>除此之外，<a target="_blank" rel="noopener" href="https://www.britannica.com/topic/democracy">大英百科全书</a>也有介绍关于讨论民主的全面的范畴：</p>
+<p>If a government of or by the people—a “popular” government—is to be established, at least five fundamental questions must be confronted at the outset, and two more are almost certain to be posed if the <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/democracy">democracy</a> continues to exist for long.</p>
+<p>(1) What is the appropriate unit or association within which a democratic government should be established? A town or city? A country? A business <a target="_blank" rel="noopener" href="https://www.britannica.com/money/topic/corporation">corporation</a>? A university? An <a target="_blank" rel="noopener" href="https://www.britannica.com/topic/international-organization">international organization</a>? All of these?</p>
+<p>(2) Given an appropriate association—a city, for example—who among its members should enjoy full citizenship? Which persons, in other words, should <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/constitute">constitute</a> the <em>dēmos</em>? Is every member of the association entitled to participate in governing it? Assuming that children should not be allowed to participate (as most adults would agree), should the <em>dēmos</em> include all adults? If it includes only a subset of the adult population, how small can the subset be before the association ceases to be a democracy and becomes something else, such as an <a target="_blank" rel="noopener" href="https://www.britannica.com/topic/aristocracy">aristocracy</a> (government by the best, <em>aristos</em>) or an <a target="_blank" rel="noopener" href="https://www.britannica.com/topic/oligarchy">oligarchy</a> (government by the few, <em>oligos</em>)?</p>
+<p>(3) Assuming a proper association and a proper <em>dēmos</em>, how are citizens to govern? What political organizations or institutions will they need? Will these institutions differ between different kinds of associations—for example, a small town and a large country?</p>
+<p>(4) When citizens are divided on an issue, as they often will be, whose views should prevail, and in what circumstances? Should a majority always prevail, or should minorities sometimes be empowered to block or overcome majority rule?</p>
+<p>(5) If a majority is ordinarily to prevail, what is to constitute a proper majority? A majority of all citizens? A majority of voters? Should a proper majority <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/comprise">comprise</a> not individual citizens but certain groups or associations of citizens, such as hereditary groups or territorial associations?</p>
+<p>(6) The preceding questions presuppose an adequate answer to a sixth and even more important question: Why should “the people” rule? Is democracy really better than <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/aristocracy">aristocracy</a> or <a target="_blank" rel="noopener" href="https://www.britannica.com/topic/monarchy">monarchy</a>? Perhaps, as <a target="_blank" rel="noopener" href="https://www.britannica.com/biography/Plato">Plato</a> argues in the <em>Republic</em>, the best government would be led by a <a target="_blank" rel="noopener" href="https://www.britannica.com/topic/minority">minority</a> of the most highly qualified persons—an aristocracy of “<a target="_blank" rel="noopener" href="https://www.britannica.com/topic/philosopher-king">philosopher-kings</a>.” What reasons could be given to show that Plato’s view is wrong?</p>
+<p>(7) No association could maintain a democratic government for very long if a majority of the <em>dēmos</em>—or a majority of the government—believed that some other form of government were better. Thus, a minimum condition for the continued existence of a democracy is that a substantial proportion of both the <em>dēmos</em> and the leadership believes that popular government is better than any <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/feasible">feasible</a> <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/alternative">alternative</a>. What conditions, in addition to this one, favour the continued existence of democracy? What conditions are harmful to it? Why have some <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/democracies">democracies</a> managed to endure, even through periods of severe crisis, while so many others have collapsed?</p>
+<p>简单总结一下就是：</p>
+<ol>
+<li>组建民主政府的合适单元是什么？</li>
+<li>民主国家的公民由谁组成？</li>
+<li>实行民主需要的制度有哪些？这些制度是否会因为其大小而改变？(这里考虑的应该是直接民主和代议制民主)</li>
+<li>当公民的意见产生分歧应该怎么办？什么时候由多数人统治，什么时候由少数人统治？</li>
+<li>如何定义多数？</li>
+<li>为什么需要民主，民主制度真的是优越的吗？</li>
+<li>什么条件使得民主制度存续，为什么有些民主国家很稳定而有些则会崩溃？</li>
+</ol>
+</blockquote>
+<hr>
+<p>Plato:</p>
+<p>柏拉图认为democracy是rule by mob。</p>
+<p>柏拉图用来反对民主的最基本的工具是 craft analogy: 如果你生病了需要一些建议，你应该去找专家。</p>
+<p>craft analogy告诉我们：Buling is a skill. A special training is necessary, and not everyone is naturally capable even of acquiring the skill.</p>
+<p>对柏拉图的反对：</p>
+<p>虽然有些人拥有治理国家的技巧，但如何才能保证它们不滥权腐败呢？与其让小人牟利，不如让庸人少贪一点。</p>
+<p>柏拉图对此的回应是：应该立法最小化哲学王的腐败空间——它们不能拥有私有财产…[p.69]</p>
+<p>但新的问题是，既然这样为什么会有人去想要去当统治者呢？而且又有哪些权利可以制衡哲学王不去改变这些法律呢？</p>
+<p>柏拉图对第一个问题的回答是，哲学王去统治，是为了不让其他庸人统治，这是他们的责任。[p.69]</p>
+<p>柏拉图的另一个问题是，挑选哲学王是困难的。 </p>
+<hr>
+<p>利益问题：</p>
+<p>即使柏拉图反对民主，但柏拉图认为仁慈的独裁者仍然要考虑人民的利益，但柏拉图反对民主制度能够达成这个目标，因此想要反对柏拉图，一个方法就是证明柏拉图的方法是无效的，只有民主制度可以真正为了人们的利益。[p.71]</p>
+<p>其中最重要的问题是如何知道人们的利益诉求，民主制度可以通过投票得到。[p.72]</p>
+<p>柏拉图认为，哲学王们同样是哲学家，它们可以知道人们的诉求，但反对者们又会说，美学伦理学物理学形而上学…的知识不会让他们知道人们的诉求。[p.72]</p>
+<p>但民主制度也有其缺点，民主制度如何在不同的利益间决策？还有一个更严重的问题是，民主制度(不如说是投票制度)可能不能告诉我们任何东西，因为有些人可能会基于所有人的共同利益投票，而一些人仅仅考虑自己的利益，(Mixed-motivation Voting)这样的投票会是一团糟。[p.73]</p>
+<hr>
+<p>Voting and the common good: 在什么条件下民主制度比柏拉图的监护人制度更能达成common good？</p>
+<p>如果每个人都根据他认为的common good去投票，那么有很大概率会达成最好的结果。[pp.74-75]</p>
+<p>民主制度若想很好地发挥作用，并由于柏拉图的监护人制度，需要满足以下两个条件：[p.75]</p>
+<ol>
+<li>每个人的选择在平均上必须是正确的。</li>
+<li>每个人都会以他认为的common good为基础去投票。</li>
+</ol>
+<hr>
+<p>The values of democracy</p>
+<p>很多人认为他们追求民主不仅仅是因为他能更好地达成common good (instrumental justification)，而更是因为他有其内在价值 (intrinsically good)。[p.76]</p>
+<p>Democracy just likes the Hobbies, Hobbies allow people to enrich and test their physical and mental powers, and develop their sense of self-worth.[p.76]</p>
+<p>Democracy is most commonly thought to be expressive of two values we hold dear : freedom and equality. Freedom, as understood here, is a matter of giving people a say in political decision-making, particularly those decisions that affect them. Equality lies in this freedom being given to all.[p.77]</p>
+<blockquote>
+<p>ChatGPT：</p>
+<p>一般意义上，自由是指个人或群体在行动、思想和表达上不受限制的状态。它涉及到个人的权利和能力来做出选择、追求目标，并以自己认为合适的方式生活。自由包括以下几个方面：</p>
+<ol>
+<li><p>个人自由：个人可以自主决定自己的行动和生活方式，不受强制或压迫。这包括言论自由、宗教自由、思想自由、信仰自由等。</p>
+</li>
+<li><p>政治自由：个人有权参与和影响政治过程，包括选举、成立政党、表达政治观点和参与公民运动等。</p>
+</li>
+<li><p>经济自由：个人有权选择职业、参与市场经济和拥有财产，并享有公平竞争和合理收入的权利。</p>
+</li>
+<li><p>社会自由：个人在社会交往中享有平等对待和不受歧视的权利，包括平等的教育机会、平等的婚姻权利、性别平等等。</p>
+</li>
+</ol>
+<p>自由是民主社会的基石，它赋予了人们权利和机会，使其能够自主地决定自己的生活，并与他人和谐共处。然而，自由并不是绝对的，它也要受到法律和公共利益的限制，以保护他人的权利和社会的稳定。</p>
+<p>本文中提到的自由属于政治自由和社会自由的范畴。这包括个人在政治决策中拥有发言权，以及个人在社会交往中享有平等对待和不受歧视的权利。政治自由强调个人在政治过程中的权利和自主参与，而社会自由关注个人在社会环境中的平等和自由。这两个方面的自由共同构成了个人的权利和自主决策的重要基础，使人们能够追求自己的目标和生活方式，并参与社会的发展和进步。</p>
+</blockquote>
+<hr>
+<p>Rousseau</p>
+<p>For Rousseau, the problem of political order is ‘to find a form of association which will defend and protect with the whole common force the person and goods of each associate, and in which each, while uniting himself with all, may still obey himself alone, and remain as free as before’ (Social Contract, bk. I, ch. 6, p. 191).[p.77]</p>
+<blockquote>
+<p>对于卢梭来说，政治秩序的问题是“找到一种联合形式，以全部共同的力量捍卫和保护每个联合体的人身和财产，并且其中每个人在与所有人联合的同时，仍然可以单独服从自己” ，并像以前一样自由’(Social Contract, bk. I, ch. 6, p. 191).[p.77]</p>
+</blockquote>
+<p> It is remarkable that Rousseau thinks he can solve this problem. How can any political system allow ‘each associate [to] obey himself alone’? [p.77]</p>
+<p>Rousseau can defend democracy both on instrumental grounds(as a way of achieving the common good) and in itself(as an expression of freedom and equality).[p.77]</p>
+<p>卢梭的政府：</p>
+<p>卢梭最重要的观念是general will，The general will demands the policy that is equally in everyone’s interests。卢梭认为，general will必须被平等的给予每个人，因此general will必须被立法，然后平等的影响所有人。[p.79]</p>
+<p>卢梭认为，general will的执行必须由 ‘An elected aristocracy’执行，即政府或执行官。卢梭的政府与柏拉图的philosophical king的区别在于，卢梭的政府没有立法权，只有执行法律的权力。[p.80]</p>
+<p>卢梭的系统满足了前面提到的两个条件：[p.75]</p>
+<ol>
+<li>每个人的选择在平均上必须是正确的。</li>
+<li>每个人都会以他认为的common good为基础去投票。</li>
+</ol>
+<p>针对第一个条件，卢梭用教育来解决这个问题：Rousseau denies that training ought to be given only to the few(As Plato). Far better, Rousseau believes that individuals need to be educated in to citizenship.[p.78, p.81]</p>
+<p>针对第二个条件，卢梭提出了三种解决方法：1. 教育，education for civic virtue.[p.83] 2. Censorship.[pp.83-84] 3.Civil religion.</p>
+<p>Censor is charged with the duty of upholding, and clarifying where necessary, public morality.</p>
+<blockquote>
+<p>卢梭的Civil religion：</p>
+<p>卢梭对宗教的论述包含三个方面。首先，他要求每个公民都应该信仰某种宗教，因为这会“让他爱他的责任”。其次，应该容忍多元宗教存在，但只有那些本身包含宽容原则的宗教才应该被容忍。否则，一些公民将被迫成为敌人，这与社会和平的理念相违背。最后，最独特的是，除了私人道德之外，每个人都应该信奉公民宗教。这个宗教应该包含“不完全是宗教教条，而是社会观念，缺少这些观念，一个人无法成为好公民或忠实的臣民”</p>
+<p>First, he requires that every citizen  should subscribe to some religion or other, for this will ‘make him love his duty’.  Second, a diversity of religions should be tolerated, but only those which  themselves include a principle of toleration. Otherwise some citizens will be  compelled to become enemies, which is contrary to the idea of social peace.  Finally, and most distinctively, in addition to private morality, each person  should subscribe to the civil religion. This should have articles which are ‘not  exactly… religious dogmas, but… social sentiments without which a man cannot  be a good citizen or a faithful subject’ (Social Contract, bk. IV, ch. 8, p. 307).</p>
+</blockquote>
+<p>针对第二个条件，卢梭认为，当公民中出现阶级分化或出现小团体时，它们也会倾向于自身阶级的利益或小团体的利益。因此，<strong>卢梭认为要消除过大的不平等以减少阶级分化 (可以作为支持社会平等的一个理由)</strong>，其次卢梭认为公民中的小团体要么没有要么就有很多。</p>
+<p>针对卢梭的解决方案，有人认为它有点法西斯主义和极权主义。[p.83]</p>
+<p>如何评价卢梭的系统，它真的保证了自由与平等吗？</p>
+<p>卢梭的体系的确保证了平等，但很难说它保证了人们的自由，卢梭的体系拒绝了人们的思想自由，而且由于存在“多数人的暴政”，一些人可能被强制自由，但至少可以说卢梭的体系保证了“积极自由”——theorists of positive freedom define freedom in terms of ‘living the life that the rational preson would choose to live’。[pp.86-87]</p>
+<p>对卢梭的批评：</p>
+<ol>
+<li><p>在一个复杂的社会中，General will 可能并不存在。[p.88]</p>
+</li>
+<li><p>许多人不认同卢梭对持有少数观点人的做法：Those who first affirm the principles of the civil religion and then disobey them are put to death. Dissent is a crime, and crime is treason.[p.88]</p>
+</li>
+<li><p>虽然卢梭支持公民定期去投票，但他似乎并不支持公民太过于积极地参与政治，他认为嘈杂的讨论会阻碍对General will的感知。</p>
+<p>但卢梭的看法是不对的，因为他一直假定General will的存在，但如果并没有General will，那么每个人的声音都需要被兼顾。</p>
+<p>因此：Thus Rousseau’s critics have argued that extensive political debate is not a  sign of decay, but vital to the functioning of democratic politics. <strong>Furthermore,  outvoted minorities have no duty to change their mind about what is correct. In  general we would expect them to obey the law, but they can continue to speak  up, and, if they feel strongly enough, to agitate for change.（少数人应当这样做）</strong>[p.89]</p>
+</li>
+</ol>
+<p>卢梭为了使他的体系在工具理性上被辩护——即更能达成General Will，他必须把社会团结的纽带拉得很紧。</p>
+<p>In order for Rousseau to be  able to argue that democracy is instrumentally justified—that it is a highly  reliable way of achieving morally correct outcomes—he has to draw the bonds of social unity very tight. So tight, in fact, that the system  becomes unacceptably repressive. [p.89]</p>
+<p>因此对卢梭非常中肯的评价是：</p>
+<p><strong>So the same measures which, in Rousseau’s  model, make democracy defensible in instrumental terms also make it  intrinsically undesirable.</strong> [p.89]</p>
+<hr>
+<p>Participatory Democracy:</p>
+<p>All citizens should be involved in deciding the most important particular acts of administration.</p>
+<p>这是一个非常理想的政体，在这个政体中，不光法律是由人们集会投票得到的，只要会影响到公民们生活的决定都需要民主程序。</p>
+<p>优点：</p>
+<ol>
+<li><p>Theorists of participatory politics claim that only active, democratic  involvement in all matters of concern can achieve real freedom and equality for  all. Only when we are involved in making the decisions which structure our  lives in all spheres are we really free, they argue. [p.91]</p>
+</li>
+<li><p>And, to put this in the context  of the discussion of political obligation from the last chapter, only in a  participatory democracy are the voluntaristic assumptions of social contract  theory satisfied. In such a society we can genuinely be thought of as voluntarily  contributing members of society. And so, on this view, it is only under these  conditions that we even acquire an obligation to obey the state.[p.91]</p>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>可能无法得出好的结果。[p.92]</li>
+<li>投票的议程难以决定，且政策很难具有连续性。[p.92]</li>
+<li>人们花费太多的时间在政治上。[p.93]</li>
+</ol>
+<hr>
+<p>Representative Democracy</p>
+<blockquote>
+<p>补充：根据管理者被给予了不同程度的权力，可以划分出不同的政体：[p.94]</p>
+<ol>
+<li>柏拉图式的政府：公民们几乎没有任何权利，而政府——The Guradians几乎垄断了所有权力</li>
+<li>密尔式的政府(Representative)：人们选举代表来制定法律和执行法律</li>
+<li>卢梭式的政府：人们直接制定法律，并选举代表来执行法律</li>
+<li>直接民主(Participatory Democracy)：几乎所有的事项都需要公民决定，仅有的管理者只是用来决定今天的投票议题。</li>
+</ol>
+</blockquote>
+<p>Representative Democracy, Mill式的政府是什么样的？</p>
+<ol>
+<li><p>The people elect representatives who then both make laws and put them into practice.[p.94]</p>
+</li>
+<li><p>There are many branches of government.[p.94]</p>
+</li>
+<li>立法权，行政权，司法权独立，每个政府的部门都要接受其他两个部门的监督。[p.97]</li>
+<li>拥有选票转移机制，保护人权，以防止多数人的保证。[pp.100-101]</li>
+</ol>
+<p>为什么需要代议制政府？</p>
+<ol>
+<li><p>对于Mill来说，代议制民主是现代社会民主唯一能够存续下去的形式。[p.94]</p>
+</li>
+<li><p>对于Mill来说，评判政府的标准有两个：1. to ‘improve’ the citizens 2. to manage their public affairs.[p.94]</p>
+<p>专制政府使人走向消极，公民没有被教育的必要。而人只有在独立的条件下才能在各个方面繁荣，因此人们必须参与国家的治理。而直接民主是最能让人在道德和智力上改善的，但它的效率太低下了。因此代议制政府即保证了民主的内在价值(intrinsically good: improve the citizens)，又兼顾了民主的工具价值(instrumental good: manage the public affairs)。[p.95]</p>
+</li>
+</ol>
+<p>Mill的担心：</p>
+<ol>
+<li><p>在民主制度下，那些偷奸耍滑的人可能更容易上位，即How to protect ourselves from unsavoury leaders who may attempt to  obtain power?[p.96]</p>
+<p>James Madison在<em>The Federalist Paters(联邦党人文集)</em>中给出了解决方案，即’Separation of powers’，分权制衡(洛克、孟德斯鸠)。立法权，行政权，司法权独立，每个政府的部门都要接受其他两个部门的监督。[p.97]</p>
+<p>Mill对Madison的补充：1. 对候选人的投资应该受到限制。2. members of the government should not be paid.</p>
+</li>
+<li><p>Mill最担心的问题：人们肯能不会vote in accordance with their ideas of the general intersets.[p.97]</p>
+<p>(1) 密尔提出可以用公开的投票替代秘密投票，这样它们必须解释自己投票的理由，在自由辩论下可能会达到general interests。但很多人反对，因为公开投票可能会受到其他人的影响，例如雇主强制雇员投票。[p.98]</p>
+<p>(2) Mill 认为部分人不应该有选举权，例如那些不会识字，不会算数的人。而那些更有资格的人应该被给予多余一张选票。[p.99]</p>
+<p>然而一些人提议应该使得人们首先投票选择代表它们投票的人，然后这些人再去投票选举议员。因为那些无知的人就算直接选举议员，也会去参考那些代表们的意见，与其采用多重选票(Plural voting)，不如采用这样的制度。[p.100]</p>
+</li>
+<li><p>多数人的暴政</p>
+<p>(1) Mill approve a very complicated and elaborate system of proportional representation, involving the possibility of transferring your vote to a candidate in another constituency, should your favoured candidate fail. By such, or simiar, means we ought to  be able to ensure the representation of many minorities in parliament.[p.100]</p>
+<p>(2) 人权: In fact Mill’s solution is to restrict the legitimate sphere of government activity. Some things are just not the bussiness of the government or of the majority. The government cannot legitimately interfere in particular areas of people’s lives and everyone has rights and liberties with which the government may not interfere.[p.101]</p>
+</li>
+</ol>
+<p>对于Mill制度的评价：密尔面临和卢梭同样的问题，If democracy is to be instrumentally justified, it cannot achieve the twin virtues of freedom and equality.卢梭牺牲了人们的自由，而密尔牺牲了人们的公平。[p.101]</p>
+<blockquote>
+<p>freedom and equality. Freedom, as understood here, is a matter of giving people a say in political decision-making, particularly those decisions that affect them. Equality lies in this freedom being given to all.[p.77]</p>
+<p>在这个意义上，自由是指人们在政治决策中有发言权，特别是那些影响他们的决策。自由意味着个人有权自由表达意见、参与公共事务，并且不受不合理的限制或压迫。</p>
+</blockquote>
+<hr>
+<p>My Opinions:</p>
+<p>独裁政府的好处是，良好的独裁者能够敏锐的发现社会中存在的问题，而且可能会有高的效率，但独裁政府的权利不受约束，很容易滑向坏的独裁政府。</p>
+<p>而且，独裁政府下的官员需要向上负责，因此不会考虑公民们的切身利益。它们与其说是一个独立的人，不如说是独裁者的触手，没有独立思考的能力，缺乏灵活性，容易造成“上面的本意是好的，但下面执行坏了”。</p>
+<p>独裁统治下的公民没有政治自由，没有权利参与、影响政治。加上独裁政府不需要公民们参与政治，所以公民们至少在政治层面的受教育程度低。因此，当自己的权利受到侵害时没有办法维护，甚至他们更加基本的人权也会受到政府的侵害。可以说，公民们在独裁统治下既没有参与政治的内在好处，甚至有时候连instrumental good也难以达成。</p>
+<p>最后，独裁政府好像都以达成某个目标为口号，去统治他的公民，反而忽略了政府最初的目的是改善其公民的生活质量。或许这正是独裁政府借以欺骗其公民的手段。</p>
+<p>看了很多资料之后，每当我问自己，什么是民主，我都还是会懵掉，因为民主的内涵太多了，甚至找不到一个出发点去解释他。今天我想从一个起点出发，尽量在脑中串起对民主是什么的回答。</p>
+<blockquote>
+<p>民主是Democracy，如果把Demo 和cracy翻译成英语就是people rule。推广一下，民主的定义就是：The government ‘of the people, by the people, and for the people’. 民主最主要的目标就是关注其公民的利益，不论是intrinsical good，还是instrumental good。但这两个价值往往是相冲突的，因此需要在他们之间进行权衡。根据政府统治的不同，政府的权力也不同，根据政府权力的多寡可以对民主政府进行分类，有代议制民主(密尔式的民主)，霍布斯式的民主，和直接民主。更复杂的，民主制度会因为其对民主的七个基本问题(大英百科全书)的回答而更加多种多样。</p>
+</blockquote>
+<p>本人认为民主制度面临最重要的问题是防止多数人的暴政，在本章中最让我满意的回答是密尔的回答。密尔从自由主义的角度出发，宣称政府不能随意侵犯他人的自由，而这些自由被统一归于人权之下(Principle of Liberty:<strong>the only purpose for which power can be rightfully exercised over any member of a civilized community against his will, is to prevent harm to others</strong>，而harm to others的界定标准就是法律规定的权利，而那些最基本的、放之四海而皆准的权利就是人权)。因此，无论如何，公民们都有一些基本不可侵犯的权利，因此多数人的暴政就有了一个上限。而其他的制度设计则会进一步防止多数人的暴政，补偿少数人。</p>
+<h2 id="Ch-4-The-Place-of-Liberty"><a href="#Ch-4-The-Place-of-Liberty" class="headerlink" title="Ch 4 The Place of Liberty"></a>Ch 4 The Place of Liberty</h2><blockquote>
+<p>Principle of Liberty</p>
+<p>The only purpose for which power can be rightfully exercised over any member of a civilized community, against his will, is to prevent harm to others. His own good, either physical or moral, is a sufficient warrant.(Mill, <em>On Liberty</em>)</p>
+</blockquote>
+<p>自由问题来源于民主制度中的“the tyranny of the majority”，“The nature and limits of power which can be legitimately exercised by society over the individual”, 即政府对个人的干预，公众意见对个人信仰和行为的塑造必须受到限制。[pp.104-105]</p>
+<p>Mill想要寻找一个适用于每件事的评判标准，而不是随意的传统和大众的道德，密尔的就是Principle of Liberty——you may justifiably limit a person’s freedom of action only if they threaten harm to another.[p.106]</p>
+<p>但密尔不认为这个原则适用于所有人，他明确地表示该原则只适用于那些成熟的，能够在自由辩论中得到提升的人，孩子和那些退化为孩子的人不适用自由原则。[p.106]</p>
+<hr>
+<p>Freedom of thought</p>
+<p>关于思想自由这里有三种情况：</p>
+<ol>
+<li>如果一种思想是正确的，某些社会可能会因为这种思想破坏了社会稳定，伤害了民族感情，破坏了人们虚假的幸福而将其禁止[p.109]。这种禁止是荒谬的(我的观点)。</li>
+<li>如果一种思想是错误的，也不应该将其禁止，因为即使我们知道他是错误的，如果我们不考虑他对真理的挑战，那么真理就会变成教条。</li>
+<li>而更多的情况是，真理往往混合在各个观点中，那么思想自由就更重要了。在这种情况下，真理最终出现的可能就是允许各种思想的公开辩论。</li>
+</ol>
+<hr>
+<p>继续回到Principle of Liberty（基于权利的自由原则）</p>
+<p>自由原则中，定义“Harm to others”是困难的，例如，一个人穿的衣服是另一个人不喜欢的颜色，这是对他人的伤害吗？一个人的姑姑放弃了他的继承权，因此他蒙受了巨大的损失，尽管他从未实际拥有这笔财产。</p>
+<p>Mill更多的时候使用属于interest来表述他的自由原则，因此，这个版本的自由原则听起来像：Act as you like, so long as you do not harm the interest of another person.[p.113]</p>
+<p>密尔对interest的两点限定：[pp.113-114]</p>
+<ul>
+<li>At least, an interest in their personal safety and security.</li>
+<li>Mill intends that none of these forms of competition will be ruled out by the Liberty Principle. 即因为市场竞争而遭受的损失不再自由原则的范畴内。</li>
+</ul>
+<p>更进一步：</p>
+<ul>
+<li>In the passage just quoted Mill appeals to a new idea: interests which ought to be considered as rights, or ‘rights-based interests’.[p.114]</li>
+<li>Indeed there are many interests which do not normally seem to give rise to claims of right. When my rich aunt strikes me out of her will, my interests may suffer, but he does not infringe my rights.[p.114]</li>
+</ul>
+<p>因此，密尔的Interest可以被视为古代斯多葛学派“自然权利”理论的延申，在当代，这些权利都被归到“人权”之下。</p>
+<p>Within liberal circles it is often taken as a fundamental axiom that people  have certain basic rights. <strong>Normally included are the right to life, free speech,  free assembly, and freedom of movement, together with rights to vote and stand  for office. Some theorists, although not all, add rights to a decent standard of  living (shelter, food, and health-care). Most often these rights would now be  collected together under the name of ‘human rights’ or ‘universal human rights’.</strong>  In the past they would have been called ‘the rights of man’ or ‘natural rights’.[p.115]</p>
+<p>对基于自然权利的人权/权利理论的批评：</p>
+<ol>
+<li>But the disadvantage is that we are left with nothing more  fundamental to say in defence of these rights. 这种自然权利好像没有什么能为其辩护的，因为这是一种宣称，宣称每个人都有自然权利/人权。就像康德对的宗教看法一样，不能说其对也不能说其不对，只能是一种信仰。[p.115]</li>
+<li>我们或许不知道我们究竟拥有那些自然权利/人权，不同的理论家有不同的说法，倒不如说，自然权利只是不同的的私人意见(补充：其实有很多国际公约都有对人权的规定，如世界人权宣言)。</li>
+<li>边沁对基于自然权利的人权/权利理论的批评：权利这个词一般是由法律派生而来的，但实际上自然权利没有任何法律规定它。[p.116]</li>
+</ol>
+<hr>
+<p>基于以上理由，密尔也不认同基于自然权利的人权/权利理论，但它仍然坚信基于权力理论的自由原则，但这个原则不是基于自然权利的，而是基于功利的。</p>
+<p><strong>功利主义</strong></p>
+<p>这种功利主义继承了indrect utilitariansim，简单点说就是: The greatest happiness will be achieved by giving people a private sphere of rights-based interests where no intervention is permitted.[p.119]，通过基于人们不可侵犯的权利，可以保证社会最大的利益。</p>
+<p>特别地，Henry Sidgwick主张功利主义的原则仅仅需要让那些立法者知道，而普通人只需要知道应该做什么，不能做什么就可以。因为普通人知道太多，他们就可能从direct utilitarianism的角度出发去思考问题。[p.118]</p>
+<p>Mill也有类似的观点：Indeed, it may well be that Bentham  and Mill thought of themselves as primarily addressing law-makers, rather than  the public.[p.119]</p>
+<p>功利主义的意义：This utilitarian defence of the Liberty Principle seems very plausible. The utilitarian theory of rights supplies exactly what is missing: a doctrine of rights which does not rest on the false foundation of natural rights theory, nor on the shifting sands of convention.</p>
+<p>对功利主义的批评： In other words, utilitarianism would seem to encourage exactly the type of paternalistic intervention that the Liberty Principle expressly rules out: remember that the Liberty Principle does not permit anyone to interfere with another even for their own good. [p.120]</p>
+<p>但比起纯粹的自由，密尔更多地效忠于功利，因此密尔的功利主义与其说是一种自由理论，不如说是一种基于功利主义的权利理论。This objection brings out that even if it is possible to construct a utilitarian theory of rights, it does not yet follow that the utilitarian theory would be a liberal theory.[p.120]</p>
+<p>基于个人自由将导致更多的general happiness的原因：</p>
+<ol>
+<li>虽然人们时长犯错，但个人仍然能够做出更加正确的选择，因为他们更加关注他们自己。[p.121]</li>
+<li>The exercise of freedom of choice is itself vital to the full development of human nature. Those who are slaves to cunstom will never develop into rounded, flourishing individuals, because thay will fail to develop one of their most distinctively human capacities, the capacity for choice[p.122]</li>
+<li>首先，人们是progressive的，他们拥有学习能力。更多的自由意味着人们可以开展很多 “experiments of living”，其他人将从这些实验的结果中学习，最终找到最适合的生存方式。[p.123]</li>
+<li>反对: 人们可能根本不是progressive的，他们不会从历史中学到任何东西。</li>
+</ol>
+<p>有人说自由本身就像happiness一样，是一种intrinsic good，但Mill其实并不是这样认为的，Mill is clear that liberty is good primarily as a means to improvement, and where it fails to have that effect——in the case of children and barbarians ——there is no case for liberty. Liberty is good only when it adds to our happiness.[p.124]</p>
+<p>对自由主义/mill的反对：</p>
+<ol>
+<li><p>对密尔的反对，Mill在论自由的最后一张为自由原则添加了许多限制，如禁毒，禁止暴力倾向的人喝酒……，就好像在他们的世界上不知有自由原则，还有道德原则，当有人触犯了道德，就是伤害了所有人，这种行为与他们那样的自由主义者所声称的观点不一致。[pp.125-127]</p>
+</li>
+<li><p>Marx对自由主义的批评，Marx认为自由主义——相对于奴隶制/君主制一种政治上的解放，还不能说是人类的解放，因为自由主义鼓励人们将其他人视为它自由之路上的障碍，它理想中的解放是Individual see themselves, and act, as fully co-operating members of a community of equals.[pp.128-129]</p>
+</li>
+<li><p>社群主义对自由主义的批评与Marx的观点基本相同，社群主义提倡用一种改良版的传统道德来达到积极自由。</p>
+<blockquote>
+<p>You do not make people free by leaving them alone. On the contrary, it is necessary to bring people to  a position where they can make the right choices about how to live: the choices that the rational person would make.</p>
+<p>On that account negative liberty is “freedom from” constraint, and positive liberty is “freedom to” act.</p>
+<p>If Mill’s negative definition leads to isolation and alienation, then the communitarian’s positive definition leads to repression in the name of freedom.</p>
+</blockquote>
+<p>一定要强调的一点是，密尔的消极自由一直假定人们是progressive的，这是Mill的信仰；但如果这是错的，那么社群主义的积极自由在功能主义的立场上可能是更好的。</p>
+</li>
+</ol>
+<h2 id="Ch-5-The-Distribution-of-Property"><a href="#Ch-5-The-Distribution-of-Property" class="headerlink" title="Ch 5 The Distribution of Property"></a>Ch 5 The Distribution of Property</h2><p>本章的主要问题：How should a liberal socirty distribute property?</p>
+<p>Mill: 从功利主义的角度出发，政府要保护私有财产，但不能干预时长竞争，个人有义务交税以为此政府的运行。[p.134]</p>
+<p>Locke &amp; Nozick: 从自然权利理论的角度出发，主张只要财产来源合法，那么政府没有任何权力干涉，公民们只需交纳最少的税去维持政府的运作，通过税收进行再分配是不合法的。[p.135]</p>
+<p>Rawls: welfare liberalism：政府处于保护自由和公正(liberty and justice)，可以对财产进行再分配。[p.136]</p>
+<blockquote>
+<p>本章讨论的问题包括，或者说The Distribution of Property的范畴包括：存在洛克式的自然财产权利吗？如何看待自由市场？我们应该接受财富的不平等吗？政府的角色应该是怎么样的？</p>
+</blockquote>
+<p>Locke and Nozick:</p>
+<p>他们认为社会正义不需要通过不平等来体现，而只需要保证财富的来源是正当的即可。</p>
+<p>Nozick的三条财富合法的原则：</p>
+<ol>
+<li>justice in initial acquisition</li>
+<li>justice in transfer</li>
+<li>justice in rectification</li>
+</ol>
+<p>Locke主要关注初始财产(土地，来自自然的材料)的合法性，并提出了四条论断：</p>
+<ol>
+<li><p>初始的财富是合法的，是因为我们必须要存活下去，我们需要自然的财产。但只有我们能够很好地使用这些财产（不造成浪费），而且留有足够的财产给他人，初始的财产才是合法的。</p>
+</li>
+<li><p>混合理论，我们之所以拥有这些初始财产，是因为它们身上混合了我们的劳动。</p>
+</li>
+<li><p>价值增加，…，是因为我们增加了他们的价值。</p>
+</li>
+<li><p>…</p>
+<p>2，3都可以很容易地被反驳，我们只应该得到我们创造的价值，而不是初始财产。</p>
+</li>
+</ol>
+<p>当代的看法：关注获取初始财产的正当性是没有意义的，我们可以接受一个有私有财产权的社会，并通过其他各种正当的理论为这些私有财产权辩护，而不是去关注初始财产的正当性。</p>
+<p>自由市场可以为财产权辩护，从功利主义的立场出发，因为自由市场保证了社会生产的效率，因此它是好的，连通他的基础，财产权也得到了辩护，而由于存在市场失灵的情况，某些情况下的外部性需要政府来处理。</p>
+<p>Rawls</p>
+<ol>
+<li><p>无知之幕</p>
+</li>
+<li><p>罗尔斯的不同正义原则：</p>
+<blockquote>
+<p>Principle 1 is the Liberty Principle, 2 (a) the Difference Principle, and 2(b)the Fair Opportunity Principle. According to Rawls the Liberty Principle has’lexical priority’ over the other two, as does the Fair Opportunity Principle over the Difference Principle. What this means, for Rawls, is that, once we have reached a certain level of well-being, considerations of liberty should have absolute priority over matters of economic wellbeing or equality of opportunity. On this account, for example, it is no defence of slavery that it makes the slavesbetter off than they would be with their freedom.</p>
+<p>自由原则是：每个人都应享有平等的权利，享受与所有人的类似自由制度相兼容的最广泛的平等基本自由的总体制度。</p>
+<p>差别原则：Rawls accepts the conditional statement that if an inequality is necessary to make everyone better off, and, in particular, to make the worst off better offthan they would otherwise be, then it should be permitted. This idea yields theDifference Principle. (差别原则的产生对那种认为无差别导致低效率的赞同和回应)</p>
+<p>the Difference Principle. This, of course,  is the principle which says that the distribution of wealth and income in society  should be equal, unless an inequality will be to everyone’s advantage. </p>
+<p>机会平等原则：它要求社会制度必须为每个人提供公平的机会，无论个人的出生、社会背景、种族、性别或其他不可控因素如何。机会平等原则强调每个人有平等的权利去竞争和追求自己的目标，而不会因为不公正的条件而受到限制。这意味着社会应该制定政策和制度来消除社会中存在的不公平机会，并提供平等的资源和教育等基础条件。</p>
+<p>罗尔斯认为自由原则高于机会平等原则高于差别原则，当社会足够富足时，应该追求自由原则。</p>
+</blockquote>
+</li>
+<li><p>差别原则主张在一个资源没有很稀缺，也不是非常富裕的社会下，财富平等与社会效率之间的均衡。那么应该选择什么样的原则来实现这种均衡呢？</p>
+<p>一般有两种值得探讨的主张：</p>
+<ol>
+<li>Maximization of expectation : 最大化社会可以产生的财富期望</li>
+<li>Maximin： 最大化社会的底线</li>
+</ol>
+<p>如果在“无知之幕”下，应该选择Maximin而不是Maximization of expectation，因为最大化期望的原则应该是在一个人有多次选择的时候被使用，而这种在无知之幕下的选择只有一次，而且这个选择和每个人的之后的每次选择都相关，可以说是一步错，步步错，因此应该选择Maximin。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%94%BF%E6%B2%BB%E5%93%B2%E5%AD%A6/" rel="tag"># 政治哲学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" rel="prev" title="概率论与数理统计课程笔记">
+      <i class="fa fa-chevron-left"></i> 概率论与数理统计课程笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch-2-Justifying-the-state"><span class="nav-number">1.</span> <span class="nav-text">Ch 2 Justifying the state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch-3-Who-should-rule"><span class="nav-number">2.</span> <span class="nav-text">Ch 3 Who should rule?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch-4-The-Place-of-Liberty"><span class="nav-number">3.</span> <span class="nav-text">Ch 4 The Place of Liberty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch-5-The-Distribution-of-Property"><span class="nav-number">4.</span> <span class="nav-text">Ch 5 The Distribution of Property</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cfla</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfla</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
