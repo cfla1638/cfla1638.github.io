@@ -187,6 +187,164 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/" class="post-title-link" itemprop="url">系统级I/O - CS:APP 第十章</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-20 15:18:55" itemprop="dateCreated datePublished" datetime="2022-09-20T15:18:55+08:00">2022-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-25 22:15:11" itemprop="dateModified" datetime="2022-09-25T22:15:11+08:00">2022-09-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS-APP/" itemprop="url" rel="index"><span itemprop="name">CS:APP</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/" class="post-meta-item leancloud_visitors" data-flag-title="系统级I/O - CS:APP 第十章" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/20/%E7%B3%BB%E7%BB%9F%E7%BA%A7I-O-CS-APP-%E7%AC%AC%E5%8D%81%E7%AB%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="系统级I-O-CS-APP-第十章"><a href="#系统级I-O-CS-APP-第十章" class="headerlink" title="系统级I/O - CS:APP 第十章"></a>系统级I/O - CS:APP 第十章</h1><p>Linux 所有的IO设备都被模型化为文件，所有的输入输出都被抽象成文件的读写。这种将设备映射成文件的方式，允许内核提供一些低级的函数接口还读写，被称为Unix IO。</p>
+<p>在Linux中，较高级的IO函数（C标准库IO）是由内核提供的系统级Unix IO来实现的。</p>
+<h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><ul>
+<li><p>定义：一个应用程序要通过内核打开文件，内核返回一个非负小整数，叫做文件描述符，应用程序要操作文件，只需要知道文件描述符即可。</p>
+</li>
+<li><p>Linux Shell 创建的进程会打开三个文件：</p>
+<p>0：标准输入；也可以使用定义在<code>unistd.h</code> 中的<code>STDIN_FILENO</code> 来显示表述</p>
+<p>1：标准输出；<code>STDOUT_FILENO</code></p>
+<p>2：标准错误；<code>STDERR_FILENO</code> </p>
+</li>
+<li><p>EOF：如果一个字节数为m的文件，一个读操作，读到k字节处。如果k &gt;= m，则触发一个End of file条件，应用程序可以检测这个条件，但文件末尾并不是真的有EOF符号。</p>
+</li>
+</ul>
+<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><ul>
+<li>普通文件 regular file ： 包含任意数据，系统并不会区分二进制文件或者文本文件，那时应用程序需要区分的。</li>
+<li>目录 directory ：是一个包含一组连接的文件，每个链接都映射到一个文件。有两个特殊的链接，每个目录文件一定会有，他们是<code>.</code> 和<code>..</code> 分别代表自己和上层目录。</li>
+<li>套接字 socket ：用来和其他进程进行跨网络通信的文件。</li>
+</ul>
+<h2 id="系统级IO函数"><a href="#系统级IO函数" class="headerlink" title="系统级IO函数"></a>系统级IO函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开和关闭文件</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">open</span><span class="params">(<span class="type">char</span> * filename, <span class="type">int</span> flags, <span class="type">mode_t</span> mode)</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">flags: 文件的打开方式</span></span><br><span class="line"><span class="comment">O_RDONLY   只读</span></span><br><span class="line"><span class="comment">O_WRONLY  只写</span></span><br><span class="line"><span class="comment">O_RDWR    可读可写</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">O_CREAT   如果文件不存在，创建</span></span><br><span class="line"><span class="comment">O_TRUNC    如果文件已存在，截断它（即覆盖原文件）</span></span><br><span class="line"><span class="comment">O_APPEND  添加到文件末尾</span></span><br><span class="line"><span class="comment">不同的flag可以使用管道符| 连接使用 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">mode:</span></span><br><span class="line"><span class="comment">一般为0</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读写</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">read</span><span class="params">(<span class="type">int</span> fd, <span class="type">void</span> *buf, <span class="type">size_t</span> n)</span>;</span><br><span class="line"><span class="comment">// 返回值：若成功返回-1，EOF返回0，出错返回-1</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">write</span><span class="params">(<span class="type">int</span> fd, <span class="type">const</span> <span class="type">void</span> *buf, <span class="type">size_t</span> n)</span>;</span><br><span class="line"><span class="comment">// 返回值：若成功返回写的字节数，出错返回-1</span></span><br></pre></td></tr></table></figure>
+<p><code>ssize_t</code> ：signed size type</p>
+<p>read 函数会返回不足值(short count) ，即返回的数目并不是要求的size_t n</p>
+<p>可能会返回不足值得情况：</p>
+<ul>
+<li>读时遇到EOF。假设我们准备读一个文件，该文件从当前文件位置开始只含有20多个字节，而我们以50个字节的组块(chunk)进行读取。这样一来，下一个read返回的不足值为20，此后的read将通过返回O发出EOF信号。</li>
+<li>从终端读文本行。如果打开文件是与终端相关联的（例如，键盘和显示器），那么每个rad函数将一次传送一个文本行，返回的不足值等于文本行的大小。</li>
+<li>读和写网络套接字(socket)。如果打开的文件对应于网络套接字（12.3.3节)，那么内部缓冲约束和较长的网络延迟会引起read和write返回不足值。对Unix管道(pipe)调用read和wte,也有可能出现不足值，这种进程间通信机制不在我们讨论的范围之内。</li>
+</ul>
+<h2 id="RIO包函数"><a href="#RIO包函数" class="headerlink" title="RIO包函数"></a>RIO包函数</h2><p>RIO(Robust I/O)：用于网络编程中，会自动处理不足值的情况。</p>
+<h3 id="总览："><a href="#总览：" class="headerlink" title="总览："></a>总览：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不带缓冲区的版本</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_readn</span><span class="params">(<span class="type">int</span> fd, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> n)</span>;    <span class="comment">// 代替read</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_writen</span><span class="params">(<span class="type">int</span> fd, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> n)</span>;    <span class="comment">// 代替write</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 带缓冲区的版本</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">rio_readinitb</span><span class="params">(<span class="type">rio_t</span> *rp, <span class="type">int</span> fd)</span>;</span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_readlineb</span><span class="params">(<span class="type">rio_t</span> *rp, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> maxlen)</span>;</span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_readnb</span><span class="params">(<span class="type">rio_t</span> *rp, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> n)</span>;  <span class="comment">// 带缓冲区的rio_readn</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>带缓冲区和不带缓冲区的优劣：</p>
+<p>带缓冲区：由于每次调用read都要进入内核模式进行系统调用，会比较浪费时间，因此带缓冲区可以在缓冲区为空的时候填满缓冲区，等下次调用的时候直接在缓冲区中取出数据，这样会节省减少不必要的系统调用。</p>
+<p>不带缓冲区：比较快速，方便在网络上进行数据传输（臆断）</p>
+</blockquote>
+<h3 id="不带缓冲区的函数"><a href="#不带缓冲区的函数" class="headerlink" title="不带缓冲区的函数"></a>不带缓冲区的函数</h3><h3 id="rio-readn"><a href="#rio-readn" class="headerlink" title="rio_readn()"></a>rio_readn()</h3><p>用来代替<code>read</code> 的RIO函数，无缓冲区，这个函数只有在遇到EOF时，才会返回不足值，其他情况下，绝不会返回不足值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_readn</span><span class="params">(<span class="type">int</span> fd, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">size_t</span> nleft = n;   <span class="comment">// 整个程序中，还没有被读取的字节</span></span><br><span class="line">    <span class="type">ssize_t</span> nread;      <span class="comment">// 单次调用read 函数所读取的字节</span></span><br><span class="line">    <span class="type">char</span> *bufp = usrbuf;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// nleft != 0</span></span><br><span class="line">    <span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((nread = read(fd, bufp, nleft)) &lt; <span class="number">0</span>) &#123;  <span class="comment">// read 函数发生错误</span></span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)     <span class="comment">// interrupted by a sig handler return</span></span><br><span class="line">                nread = <span class="number">0</span>;      <span class="comment">// call read again</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;      <span class="comment">// unknown error</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nread == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;              <span class="comment">// EOF</span></span><br><span class="line">        nleft -= nread;</span><br><span class="line">        usrbuf += nread;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n - nleft;      <span class="comment">// 这个程序读取的所有字节</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="rio-writen"><a href="#rio-writen" class="headerlink" title="rio_writen()"></a>rio_writen()</h3><p>用来代替<code>write</code> 的函数，无缓冲区，绝对不可能返回不足值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_writen</span><span class="params">(<span class="type">int</span> fd, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">size_t</span> nleft = n;    <span class="comment">// 整个程序中，还没有被写入的字节</span></span><br><span class="line">    <span class="type">ssize_t</span> nwritten;    <span class="comment">// 单词write函数写入的字节</span></span><br><span class="line">    <span class="type">char</span> *bufp = usrbuf;  <span class="comment">// 下一个将被写入的位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((nwritten = write(fd, bufp, nleft)) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)    <span class="comment">// 被一个信号处理程序返回打断</span></span><br><span class="line">                nwritten = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;      <span class="comment">// 未知错误</span></span><br><span class="line">        &#125;</span><br><span class="line">        nleft -= nwritten;</span><br><span class="line">        bufp += nwritten;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="带缓冲区的函数"><a href="#带缓冲区的函数" class="headerlink" title="带缓冲区的函数"></a>带缓冲区的函数</h3><p>缓冲区的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> RIO_BUFSIZE 8192  <span class="comment">// 缓冲区的大小</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> rio_fd;        <span class="comment">// 与缓冲区关联的文件描述符</span></span><br><span class="line">    <span class="type">int</span> rio_cnt;      <span class="comment">// 缓冲区中的未读字节数</span></span><br><span class="line">    <span class="type">char</span> *rio_bufptr;    <span class="comment">// 下一个未读字节地址</span></span><br><span class="line">    <span class="type">char</span> rio_buf[RIO_BUFSIZE];    <span class="comment">// 缓冲区</span></span><br><span class="line">&#125;<span class="type">rio_t</span>;</span><br></pre></td></tr></table></figure>
+<p>初始化缓冲区</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> rio_</span><br></pre></td></tr></table></figure>
+<h3 id="rio-read"><a href="#rio-read" class="headerlink" title="rio_read()"></a>rio_read()</h3><p>带缓冲区的rio_read() 遇到错误返回-1，遇到EOF返回0，否则返回成功读取的字节数</p>
+<p>该函数会返回不足值，除了上述几种不足值，当缓冲区的字节数小于要求的字节数时，也会返回不足值，我们其他的带缓冲区的rio函数都是基于这个函数。</p>
+<p>该函数会首先调用read填满缓冲区，如果缓冲区内还有字节则会直接读取。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">ssize_t</span> <span class="title function_">rio_read</span><span class="params">(<span class="type">rio_t</span> *rp, <span class="type">char</span> *usrbuf, <span class="type">size_t</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> cnt;  <span class="comment">// 本次调用函数读取的字节数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (rp-&gt;rio_cnt &lt;= <span class="number">0</span>) &#123;  <span class="comment">// 如果缓冲区为空，重新填满缓冲区</span></span><br><span class="line">        rp-&gt;rio_cnt = read(rp-&gt;rio_fd, rp-&gt;rio_buf, <span class="keyword">sizeof</span>(rp-&gt;rio_buf));</span><br><span class="line">        <span class="keyword">if</span> (rp-&gt;rio_cnt &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (errno != EINTR)    <span class="comment">// 被信号打断，自动重启</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 未知错误</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (rp-&gt;rio_cnt == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;       <span class="comment">// EOF</span></span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            rp-&gt;rio_bufptr = rp-&gt;rio_buf; <span class="comment">// 重置bufptr</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cnt = n;</span><br><span class="line">    <span class="keyword">if</span> (rp-&gt;rio_cnt &lt; n)    <span class="comment">// 缓冲区字节数不够</span></span><br><span class="line">        cnt = rp-&gt;rio_cnt;      <span class="comment">// 返回不足值</span></span><br><span class="line">    <span class="built_in">memcpy</span>(usrbuf, rp-&gt;rio_bufptr, cnt);</span><br><span class="line">    rp-&gt;rio_bufptr += cnt;</span><br><span class="line">    rp-&gt;rio_cnt -= cnt;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="rio-readlineb"><a href="#rio-readlineb" class="headerlink" title="rio_readlineb()"></a>rio_readlineb()</h3><p>读取一行，最多读取maxlen-1个字节，最后一个字节要填充<code>&#39;\0&#39;</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_readlineb</span><span class="params">(<span class="type">rio_t</span> *rp, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> maxlen)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n, rc;    <span class="comment">// n 程序读取字节数， rc 单次rio_read 的返回值</span></span><br><span class="line">    <span class="type">char</span> c, *bufp = usrbuf;    <span class="comment">// c一个临时变量，用于逐个读取，测试是否为换行</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (n = <span class="number">1</span>; n &lt; maxlen; n++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((rc = rio_read(rp, &amp;c, <span class="number">1</span>)) == <span class="number">1</span>) &#123;  <span class="comment">// 正常</span></span><br><span class="line">            *bufp++ = c;</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">&#x27;\n&#x27;</span>) &#123;</span><br><span class="line">                n++;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rc == <span class="number">0</span>) &#123;  <span class="comment">// 返回不足值</span></span><br><span class="line">            <span class="keyword">if</span> (n == <span class="number">1</span>) </span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">// EOF，什么字节也没读取，直接返回0</span></span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                <span class="keyword">break</span>;      <span class="comment">// EOF, 但已经读取了一些字节，需要处理后返回</span></span><br><span class="line">        &#125; <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;      <span class="comment">// 未知错误</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    *bufp = <span class="number">0</span>;      <span class="comment">// 最后一位用 &#x27;\0&#x27; 填充</span></span><br><span class="line">    <span class="keyword">return</span> n - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="rio-readnb"><a href="#rio-readnb" class="headerlink" title="rio_readnb()"></a>rio_readnb()</h3><p>rio_readn的带缓冲区版本，代码结构与rio_readn 基本相同</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ssize_t</span> <span class="title function_">rio_readnb</span><span class="params">(<span class="type">rio_t</span> *rp, <span class="type">void</span> *usrbuf, <span class="type">size_t</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">size_t</span> nleft = n;   <span class="comment">// bytes that has not been read</span></span><br><span class="line">    <span class="type">ssize_t</span> nread;      <span class="comment">// read() func had read nread bytes</span></span><br><span class="line">    <span class="type">char</span> *bufp = usrbuf;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// nleft != 0</span></span><br><span class="line">    <span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((nread = rio_read(rp, bufp, nleft)) &lt; <span class="number">0</span>)   <span class="comment">// someting wrong</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;      <span class="comment">// unknown error</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nread == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;              <span class="comment">// EOF</span></span><br><span class="line">        nleft -= nread;</span><br><span class="line">        usrbuf += nread;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n - nleft;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="读取文件元数据"><a href="#读取文件元数据" class="headerlink" title="读取文件元数据"></a>读取文件元数据</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">stat</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="keyword">struct</span> stat *buf)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">fstat</span><span class="params">(<span class="type">int</span> fd, <span class="keyword">struct</span> stat *buf)</span>;</span><br></pre></td></tr></table></figure>
+<p><code>stat()</code> 函数以文件名作为输入，填写<code>struct stat *buf</code>  </p>
+<p>我们只对<code>struct stat</code> 的一些条目感兴趣：</p>
+<ul>
+<li><p><code>buf-&gt;st_size</code> 文件的大小</p>
+</li>
+<li><p><code>buf-&gt;st_mode</code> 使用在<code>sys/stat.h</code> 的三个宏可以判断文件类型：</p>
+<p><code>S_ISREG(mode)</code> 这是一个普通文件吗？</p>
+<p><code>S_ISDIR(mode)</code> 这是一个目录文件吗？</p>
+<p><code>S_ISSOCK(mode)</code> 这是一个网络套接字吗？</p>
+</li>
+</ul>
+<h2 id="读取目录"><a href="#读取目录" class="headerlink" title="读取目录"></a>读取目录</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;dirent.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">DIR *<span class="title function_">opendir</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="keyword">struct</span> dirent * <span class="title function_">readdir</span><span class="params">(DIR *dirp)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> &#123;</span></span><br><span class="line">    <span class="type">ino_t</span> d_ino;      <span class="comment">// inode number 文件位置</span></span><br><span class="line">    <span class="type">char</span> d_name[<span class="number">256</span>];    <span class="comment">// Filename		文件名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="IO重定位"><a href="#IO重定位" class="headerlink" title="IO重定位"></a>IO重定位</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dup2</span><span class="params">(<span class="type">int</span> oldfd, <span class="type">int</span> newfd)</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">复制oldfd 到newfd,如果newfd 已经打开，dup2会在复制之前关闭newfd</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/17/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84Linux%E8%BF%9B%E7%A8%8B-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D-CS-APP-%E7%AC%AC%E4%B9%9D%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2485,847 +2643,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cfla">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cfla's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/" class="post-title-link" itemprop="url">数字逻辑课程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-23 11:44:02" itemprop="dateCreated datePublished" datetime="2022-08-23T11:44:02+08:00">2022-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-23 18:00:11" itemprop="dateModified" datetime="2023-03-23T18:00:11+08:00">2023-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="数字逻辑课程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/23/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AF%BE%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数字逻辑"><a href="#数字逻辑" class="headerlink" title="数字逻辑"></a>数字逻辑</h1><h2 id="第一章-逻辑代数基础"><a href="#第一章-逻辑代数基础" class="headerlink" title="第一章 逻辑代数基础"></a>第一章 逻辑代数基础</h2><h3 id="1-1-布尔代数"><a href="#1-1-布尔代数" class="headerlink" title="1.1 布尔代数"></a>1.1 布尔代数</h3><p>也叫逻辑代数，开关代数，以后不作区分。是一种定义在{0，1}上的代数系统，表示为(K, +, ·, -, 0, 1)。</p>
-<p>· + - 分别对应 ∧∨ ┐，与或非，合取、析取、非。</p>
-<blockquote>
-<p>虽然课本上这样写，但我觉得根据离散数学里学的代数系统的知识，代数系统是 非空集合 加上定义在集合上的运算，所以应该写成 ({0, 1}, +, ·, -) 。</p>
-</blockquote>
-<p>· 即合取，可以像乘号一样省略。</p>
-<p>逻辑代数公理：</p>
-<ol>
-<li><p>0 - 1 律</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A + 0 = A</span><br><span class="line">A + 1 = 1</span><br><span class="line">A · 0 = 0</span><br><span class="line">A · 1 = A</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重叠律</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A + A = A</span><br><span class="line">A · A = A</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>互补律</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A + ┐A = 1</span><br><span class="line">A · ┐A = 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对合律</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">┐┐A = A</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>交换律</p>
-</li>
-<li><p>结合律</p>
-</li>
-<li><p>分配律</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A · (B + C) = AB + AC  与对或的分配</span><br><span class="line">A + BC = (A + B)(A + C) 或对与的分配</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="1-2-逻辑函数"><a href="#1-2-逻辑函数" class="headerlink" title="1.2 逻辑函数"></a>1.2 逻辑函数</h3><p><strong>定义:</strong> 从n个逻辑变量到01的映射。记为F = f(A1, A2, A3 … )</p>
-<p>逻辑函数有三种表示法和两种标准形式（最小项表达式和最大项表达式）</p>
-<h4 id="1-2-1-三种表示法："><a href="#1-2-1-三种表示法：" class="headerlink" title="1.2.1 三种表示法："></a>1.2.1 三种表示法：</h4><ol>
-<li><p>逻辑表达式：类似数学表达式，由逻辑变量和运算符按一定规律组合而成</p>
-</li>
-<li><p>真值表</p>
-</li>
-<li><p>卡诺图</p>
-<p>用图形表示逻辑函数的方法，在使函数值为1的变量组合所对应的小方格上标记1。</p>
-<blockquote>
-<p>挖坑 卡诺图应该和最小项表达式有关，等学了再填坑。</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="1-2-2-两种标准形式"><a href="#1-2-2-两种标准形式" class="headerlink" title="1.2.2 两种标准形式"></a>1.2.2 两种标准形式</h4><p><strong>最小项表达式：</strong>也叫积之和范式 或 主析取范式</p>
-<p>最小项的定义：由若干项乘积之和组成，其中每个乘积项包含该函数的全部逻辑变量，或以原变量的形式出现，或以反变量的形式出现，且每个变量在一个乘积项中只出现一次。</p>
-<p>最小项的表示：</p>
-<p>对于n个变量而言，可以构成2的n次方个最小项。这个性质类似与n位二进制数有2的n次方种组合，因此我们可以对最小项表达式作出规定，以便方便的表示他们。</p>
-<blockquote>
-<p>对于一个n变量的最小项表达式，当各个变量按一定次序排好后，用1代表原变量，用0代表反变量，这样一个最小项表达式可以被转化为2进制数，我们用 m~i~ 来表示这个最小项表达式。</p>
-<p>Q：为什么要使用1代表原变量，用0代表反变量？</p>
-<p>A：如果有一个最小项mi，如果令原变量为1，反变量为0，一定能使mi = 1，而且这是唯一的。</p>
-<p>例如m6 = AB┐C，其顺序为110B = 6D，令对应的逻辑变量为1或0，则m6 = 1 · 1 · (┐0) = 1</p>
-</blockquote>
-<p>例如，最小项表达式 AB, 转换成二进制即11，表示为m3。</p>
-<p>最小项表达式A┐B，转换成二进制即10，表示为m2。</p>
-<p>最小项的性质：</p>
-<ul>
-<li>对于任意一个最小项，只有一组变量取值可以使其值为1</li>
-<li>任意两个最小项之积为0</li>
-<li>n个变量的所有2^n^ 个最小项之和为1</li>
-</ul>
-<p>将任意表达式转换为最小项表达式：</p>
-<p>利用公式<code>A = A(B + ┐B)</code> </p>
-<p>最小项表达式的性质：</p>
-<ul>
-<li>性质1：若m~i~是逻辑函数 F(A1 ,A2 ,…,An ) 的一个最小项，则使mi=1的一组变量取值 (a1 ,a2 ,…,an ) 必定使 F 值为 l 。</li>
-<li>性质2：若 F1 和 F2 都是 A1 ,A2 ,…,An 的函数，则 F=F1+F2 将包括 F1 和 F2 中的所有最小项， G=F1·F2 将包括 F1 和 F2 中的公有最小项。 </li>
-<li>性质3：若 F 是 ┐F 的反函数，则F必定由F所包含 的最小项之外的全部最小项所组成</li>
-</ul>
-<blockquote>
-<p>思考题：任何n变量的逻辑函数都有且仅有一个最小项表达式</p>
-<p>使用归谬法证明</p>
-</blockquote>
-<p><code>第一次课到此结束</code> </p>
-<p><strong>最大项表达式：</strong> 也叫和之积范式或主合取范式</p>
-<p>定义：设n个逻辑变量，他们所组成的和项（“或”项）中，每个变量或以原变量或以反变量形式出现，且仅出现一次，这个和项称为n变量的最大项。</p>
-<p>举例：</p>
-<p>二变量最大项表达式：（A + B），（A + ┐B）, (┐A + B), (┐A + ┐B)</p>
-<p>三变量最大项表达式：</p>
-<p>最大项表达式的三条性质类似最小项表达式的三条性质：</p>
-<ol>
-<li>对于任意一个最大项，只有一组变量取值可使其值为0。</li>
-<li>任意两个最大项 Mi 和 Mj 之和必为1。</li>
-<li>n 变量的所有2^n^ 个最大项之积必为0。</li>
-</ol>
-<p>最大项表达式以 + 连接，因此绝大多数的最大想表达式的值为1，但是对于任意一个最大项，只有一组变量取值可使其值为0。</p>
-<p>任意逻辑表达式转换成最大项表达式：</p>
-<p>先用“或对与的分配”（就是普通加减乘除代数没有的那种分配律），将给定逻辑表达式展开为 “或 - 与” 表达式，然后对每一个或项“或”上 （加上） 所缺变量x的 x┐x。</p>
-<blockquote>
-<p>类似(A + B)(A + ┐B) ，先在括号里进行或运算，再在括号外进行与运算的表达式，被称为“或 - 与” 表达式。</p>
-<p>AB + A┐B, 而这种表达式被称为 “与 - 或”表达式</p>
-</blockquote>
-<p>最大项表达式的性质也与最小项表达式类似：</p>
-<ul>
-<li>性质1：若Mi是逻辑函数F(A1 ,A2 ,…,An )的一个 最大项，则使Mi=0的一组变量取值(a1 ,a2 ,…,an ) 必定使F值为0。 </li>
-<li>性质2：若F1和F2都是A1 , A2 , …, An的函数，则 F=F1+F2将包括F1和F2中的公有最大项， G=F1·F2将包括F1和F2中的所有最大项。 </li>
-<li>性质3：若F是F的反函数，则F必定由F所包含的最大项之外的全部最大项所组成。</li>
-</ul>
-<h4 id="1-2-3-逻辑函数的三种表示法的关系"><a href="#1-2-3-逻辑函数的三种表示法的关系" class="headerlink" title="1.2.3 逻辑函数的三种表示法的关系"></a>1.2.3 逻辑函数的三种表示法的关系</h4><p>用最小项表达式表示的逻辑函数，我们将原变量用1表示，反变量用0表示。这样我们把每个最小项都放进一个集合A里。那么，逻辑函数可以说是这个集合的特征函数。</p>
-<p>同样的，用最大项表达式表示的逻辑函数，我们将原变量用0表示，反变量用1表示。这样我们把每个最大项都放进一个集合B里。那么，逻辑函数可以说是这个集合的特征函数。</p>
-<p>从上一节的学习，我们知道逻辑函数有三种表示法：</p>
-<blockquote>
-<ol>
-<li><p>逻辑表达式</p>
-</li>
-<li><p>真值表</p>
-</li>
-<li><p>卡诺图</p>
-</li>
-</ol>
-</blockquote>
-<p>首先，逻辑表达式形式都可以化成标准形式。</p>
-<p>接着我们来看真值表与逻辑表达式的关系（最大/小项表达式也是逻辑表达式）：</p>
-<p>还记得我们说最小项表达式可以看成是集合A的特征函数。而只要是在这个集合里的逻辑变量值的组合，其在真是表中的值都是1，不在这个集合里的逻辑变量值的组合都是0。</p>
-<p>最大项表达式与最小项表达式恰恰相反：</p>
-<p>最大项表达式可以看成是集合B的特征函数。而只要是在这个集合里的逻辑变量值的组合，其在真是表中的值都是0，不在这个集合里的逻辑变量值的组合都是1。</p>
-<p>最后我们来看一下卡诺图与真值表的关系：</p>
-<p>卡诺图其实是真值表的变形，真值表按照二进制顺序来排放逻辑变量值得组合：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">——————————————</span><br><span class="line">A  B	|	F</span><br><span class="line">——————————————</span><br><span class="line">0  0	|	0</span><br><span class="line">0  1	|	1</span><br><span class="line">1  0	|	1</span><br><span class="line">1  1	|	0</span><br><span class="line">——————————————</span><br></pre></td></tr></table></figure>
-<p>它是一维的 线性的。</p>
-<p>而卡诺图则二维的：</p>
-<p>将逻辑变量值得组合放在二维表格得行或列，每个行或列 填上不同的组合，这样每个格子就可以表示由这些变量所组成的所有最小项。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208241752070.png" alt="image-20220824175139560"> </p>
-<p>将项的组合换成数字的组合，我们得到卡诺图的简化形式</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208241752221.png" alt="image-20220824175241939"> </p>
-<p>需要注意的是，如上图所示：边框外的二进制数的排列数序并不是随意的，而是必须按照格雷码的顺序排列。</p>
-<p>下面给出一个逻辑函数的卡诺图表示的例子：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208241754925.png" alt="image-20220824175443316"> </p>
-<blockquote>
-<p>补充：格雷码</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A0%BC%E9%9B%B7%E7%A0%81/6510858">https://baike.baidu.com/item/%E6%A0%BC%E9%9B%B7%E7%A0%81/6510858</a></p>
-<p>在一组数的编码中，若任意两个相邻的代码只有一位二进制数不同，则称这种编码为格雷码（Gray Code），另外由于最大数与最小数之间也仅一位数不同，即“首尾相连”，因此又称循环码或反射码。</p>
-<p><strong>递归生成码表</strong></p>
-<p>这种方法基于格雷码是反射码的事实，利用递归的如下规则来构造：</p>
-<ol>
-<li>1位格雷码有两个码字</li>
-<li>(n+1)位格雷码中的前2n个码字等于n位格雷码的码字，按顺序书写，加前缀0</li>
-<li>(n+1)位格雷码中的后2n个码字等于n位格雷码的码字，按逆序书写，加前缀1 [4] </li>
-<li>n+1位格雷码的集合 = n位格雷码集合(顺序)加前缀0 + n位格雷码集合(逆序)加前缀1</li>
-</ol>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>2位格雷码</th>
-<th>3位格雷码</th>
-<th>4位格雷码</th>
-<th>4位自然二进制码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>00</td>
-<td>000</td>
-<td>0000</td>
-<td>0000</td>
-</tr>
-<tr>
-<td>01</td>
-<td>001</td>
-<td>0001</td>
-<td>0001</td>
-</tr>
-<tr>
-<td>11</td>
-<td>011</td>
-<td>0011</td>
-<td>0010</td>
-</tr>
-<tr>
-<td>10</td>
-<td>010</td>
-<td>0010</td>
-<td>0011</td>
-</tr>
-<tr>
-<td></td>
-<td>110</td>
-<td>0110</td>
-<td>0100</td>
-</tr>
-<tr>
-<td></td>
-<td>111</td>
-<td>0111</td>
-<td>0101</td>
-</tr>
-<tr>
-<td></td>
-<td>101</td>
-<td>0101</td>
-<td>0110</td>
-</tr>
-<tr>
-<td></td>
-<td>100</td>
-<td>0100</td>
-<td>0111</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1100</td>
-<td>1000</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1101</td>
-<td>1001</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1111</td>
-<td>1010</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1110</td>
-<td>1011</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1010</td>
-<td>1100</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1011</td>
-<td>1101</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1001</td>
-<td>1110</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>1000</td>
-<td>1111</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-</blockquote>
-<p><code>第二次课结束</code> </p>
-<h3 id="1-3-主要定理-amp-常用公式"><a href="#1-3-主要定理-amp-常用公式" class="headerlink" title="1.3 主要定理 &amp; 常用公式"></a>1.3 主要定理 &amp; 常用公式</h3><h4 id="1-3-1个主要定理"><a href="#1-3-1个主要定理" class="headerlink" title="1.3.1个主要定理"></a>1.3.1个主要定理</h4><p><strong>德摩根律：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208282109984.png" alt="image-20220828210855685"> </p>
-<ul>
-<li>当变量个数较少的时候，可以使用真值表法证明。</li>
-<li>当变量较多的时候，使用数学归纳法证明。</li>
-</ul>
-<p><strong>香农定理：</strong> 任何函数的反函数，可通过对该函数的所有变量取反，并将1换成0，0换成1，· 换成 + ，+换成 · 运算得到。</p>
-<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220828211532973.png" alt="image-20220828211532973"> </p>
-<p>注意：我们使用香农定理是不能改变运算的顺序，而+ 和 ·的优先级不一样，因此如有必要需要加括号。</p>
-<p><strong>对偶定理:</strong> </p>
-<p>对偶函数的定义：</p>
-<blockquote>
-<p>将逻辑函数中的 · +互换 ，01互换，但变量不变，则函数变为原来的对偶函数</p>
-<p>设原函数表示为 f (x1, x2, … , xn, 0, 1, +, · ) </p>
-<p>则其对偶函数为 f ‘ (x1, x2, … , xn, 0, 1, +, · ) = f (x1, x2, … , xn, 1, 0, ·, 1) </p>
-</blockquote>
-<p>对偶定理表述为：对于任何函数的对偶函数，可以通过原函数的所有变量取反，并再对整个函数求反函数得到。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208282126050.png" alt="image-20220828212559479"> </p>
-<p>两个推论：</p>
-<ol>
-<li>原函数与其对偶函数互为对偶函数。</li>
-<li>两个相等的函数（f = g）的对偶函数必定相等（f ‘ = g ‘）</li>
-</ol>
-<p>自对偶函数：一个函数的对偶函数等于它自己。</p>
-<p><strong>展开定理：</strong> </p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208282130528.png" alt="image-20220828213000128"></p>
-<p>两个推理：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208282130610.png" alt="image-20220828213053195"> </p>
-<p>展开定理可以用于将逻辑函数展开成 与或式 or 或与式。详见 P16</p>
-<h4 id="1-3-2-5个常用公式"><a href="#1-3-2-5个常用公式" class="headerlink" title="1.3.2 5个常用公式"></a>1.3.2 5个常用公式</h4><ol>
-<li><p>AB + A┐B = A</p>
-<p>在一个积之和表达式中，若有一个变量，他在一个乘积项中为原变量，在另一个乘积项中为反变量，且这两个乘积项的其余因子相同，则此变量是多余的。</p>
-</li>
-<li><p>A + AB = A</p>
-<p>在一个积之和表达式中，若有一个乘积项是另一个乘积项的因子，则包含这个乘积项的乘积项是多余的。</p>
-<p>还可以写成ABC + ABCDE = ABC</p>
-</li>
-<li><p>A + ┐AB = A + B</p>
-<p>在一个积之和表达式中，若有一个乘积项的“非”是另一个乘积项的因子，则在该乘积项中，这个因子是多余的。</p>
-<p>┐C + CE = ┐C + E</p>
-</li>
-<li><p>AB + ┐AC + BC = AB + ┐AC</p>
-<p>包含律</p>
-<p>在一个积之和表达式中，若有两个乘积项，其中一个包含原变量x另一个包含反变量┐x 且这两个乘积项的其余因子都是另一个乘积项的因子，则另一个乘积项是多余的。</p>
-<p>AB + ┐AC + BCDE = AB + ┐AC</p>
-</li>
-<li><p>┐(A┐B + ┐AB) = ┐A┐B + AB</p>
-<p>两个变量的异或的反   是  两个变量的同或</p>
-</li>
-</ol>
-<p>上面5个公式的对偶形式也是成立的</p>
-<h4 id="1-3-3-异或的性质"><a href="#1-3-3-异或的性质" class="headerlink" title="1.3.3 异或的性质"></a>1.3.3 异或的性质</h4><p>A ⊕A = 0</p>
-<p>A⊕┐A = 1</p>
-<p>A⊕0 = A</p>
-<p>A⊕1 = ┐ A   重要</p>
-<p>A⊕┐ B = A ⊙ B = A⊕B⊕1</p>
-<p>A⊕B = B⊕A 交换律</p>
-<p>A⊕(B⊕C) = （A⊕B) ⊕C 结合律</p>
-<p>A(B⊕C) = AB⊕AC  分配律</p>
-<p><code>第三次课到此结束</code></p>
-<h4 id="1-3-4-应用"><a href="#1-3-4-应用" class="headerlink" title="1.3.4 应用"></a>1.3.4 应用</h4><p>一、转化称其他形式（详见P20）</p>
-<ol>
-<li><p>“与或” 表达式转 “或与”表达式</p>
-<p>法一：分配律</p>
-<p>法二：展开定理</p>
-</li>
-<li><p>“与或” 表达式 转 “与非 - 与非” 表达式</p>
-<blockquote>
-<p>“与非 - 与非” 表达式 ：若干个“与非”项进行“与非”得到的逻辑表达式</p>
-</blockquote>
-<p>或与表达式是中间由 + 即或连接的，我们只要利用德摩根律将这个或变为与即可</p>
-<p>因此我们的步骤是：两次取反，内层非用德摩根律断开</p>
-</li>
-<li><p>“与或” 表达式 转 “或非 - 或非” 表达式</p>
-<blockquote>
-<p> “或非 - 或非” 表达式: 若干个“或非”项进行“或非”得到的逻辑表达式</p>
-</blockquote>
-<p>首先将 “与或” 转换为 “或与”，再两次取反，内层非用德摩根律断开</p>
-</li>
-</ol>
-<p>二、最大项表达式和最小项表达式的关系</p>
-<p>┐mi = Mi 或 mi = ┐Mi</p>
-<p>mi’ = Mj，且i + j = 2 ** n - 1</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208292300304.png" alt="image-20220829230044488"> </p>
-<p>原函数</p>
-<p>​    — 变换 —&gt;</p>
-<p>最小项表达式</p>
-<p>​    — 一次取反 —&gt;</p>
-<p>符号错开，但保持最小项表达式，反函数的最小项表达式</p>
-<p>或</p>
-<p>或符号不错开，变成最大项表达式形式，得到反函数的最大项表达式形式</p>
-<p>​    — 二次取反 —&gt;</p>
-<p>原函数的最大项表达式（和原函数最小项表达式符号错开）</p>
-<p>将最大项表达式或最小项表达式变成对偶函数：</p>
-<p>首先将最大项变成最小项，或最小项变成最大项</p>
-<p>其次将序号变成互补的序号</p>
-<h3 id="1-4-逻辑函数的化简"><a href="#1-4-逻辑函数的化简" class="headerlink" title="1.4 逻辑函数的化简"></a>1.4 逻辑函数的化简</h3><blockquote>
-<p>逻辑函数最简式的定义：</p>
-<ol>
-<li>该式中乘积项最少</li>
-<li>该式中的乘积项不能再用变量更少的乘积项代替</li>
-</ol>
-</blockquote>
-<p>化简方法:</p>
-<ol>
-<li>代数方法</li>
-<li>卡诺图法</li>
-<li>列表化简法</li>
-</ol>
-<h4 id="1-4-1-卡诺图法"><a href="#1-4-1-卡诺图法" class="headerlink" title="1.4.1 卡诺图法"></a>1.4.1 卡诺图法</h4><p><code>第四次课到此结束</code> </p>
-<p>基本原理：ABC + ┐ABC = (A + ┐A)BC = BC</p>
-<p>反映在卡诺图上，就是相邻的两个格可以构成一个圈。</p>
-<blockquote>
-<p>n变量的卡诺图，任何2^m^ 个标1的相邻单元可以形成一个圈，改圈所代表的乘积项由n-m个变量组成，可以消去m个变量。</p>
-</blockquote>
-<p>名词解释：</p>
-<p>蕴含项：最小项，以及2^m^ 个相邻单元所形成的圈组成的项。</p>
-<p>素项：不是其他蕴含项子集的蕴含项。</p>
-<p>实质素项：包含某一最小项，该最小项只被该素项包含。</p>
-<p>化简方法：</p>
-<ol>
-<li><p>作出卡诺图，找出全部素项</p>
-</li>
-<li><p>找出全部实质素项</p>
-</li>
-<li><p>若有未被覆盖的最小项，找出一个可以包含该最小项的蕴含项，将其添加到实质素项集合中。</p>
-<p>得到的集合，写成代数形式，即是化简结果。</p>
-</li>
-</ol>
-<h2 id="第二章-组合电路的分析"><a href="#第二章-组合电路的分析" class="headerlink" title="第二章 组合电路的分析"></a>第二章 组合电路的分析</h2><h3 id="2-1-各种门电路"><a href="#2-1-各种门电路" class="headerlink" title="2.1 各种门电路"></a>2.1 各种门电路</h3><p>或门</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201250943.png" alt="image-20220920125054365"> </p>
-<p>与门<img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201251279.png" alt="image-20220920125108982"></p>
-<p>非门<img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201251712.png" alt="image-20220920125121515"></p>
-<p>与非门</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201251840.png" alt="image-20220920125145303"></p>
-<p>或非门</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201252721.png" alt="image-20220920125247085"></p>
-<p>与或非门</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201252761.png" alt="image-20220920125206325"></p>
-<p>异或门</p>
-<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220920125225775.png" alt="image-20220920125225775"></p>
-<p>三态门</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201254104.png" alt="image-20220920125344236"></p>
-<p>三态门真值表：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>E</th>
-<th>A</th>
-<th>F</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>任意</td>
-<td>高阻抗</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><code>第五次课结束</code></p>
-<h3 id="2-2-门电路的主要参数以及组合电路的分析方法"><a href="#2-2-门电路的主要参数以及组合电路的分析方法" class="headerlink" title="2.2 门电路的主要参数以及组合电路的分析方法"></a>2.2 门电路的主要参数以及组合电路的分析方法</h3><p>门电路的主要参数：</p>
-<ul>
-<li><p>标称逻辑电平：表示逻辑值01的理想电平</p>
-</li>
-<li><p>扇入系数：门电路允许的输入端数目</p>
-<p>若使用的输入端数目比扇入系数小，则多余的输入端再不改变电路逻辑功能的情况下接高电平或低电平</p>
-</li>
-<li><p>扇出系数：一个门电路输出端所连接的下一级输入端的个数</p>
-</li>
-<li><p>平均时延</p>
-</li>
-</ul>
-<p>组合电路的分析方法：</p>
-<ol>
-<li>给定组合线路</li>
-<li>列写逻辑表达式</li>
-<li>列真值表</li>
-<li>指出线路的逻辑功能</li>
-<li>对线路进行评价和改进</li>
-</ol>
-<h3 id="2-3-全加器"><a href="#2-3-全加器" class="headerlink" title="2.3 全加器"></a>2.3 全加器</h3><p>符号表示：</p>
-<ul>
-<li>A 被加数</li>
-<li>B 加数</li>
-<li>C~i-1~ 低位向高位的进位</li>
-<li>S 和</li>
-</ul>
-<p>全加器的逻辑符号：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201303019.png" alt="image-20220920130348535"> </p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209201304218.png" alt="image-20220920130415100"></p>
-<p>S = A⊕B⊕C~i-1~</p>
-<p>​    = ∑(1, 2, 4, 7)</p>
-<p>C = AB+(A⊕B)C~i-1~<br>    = AB+(A+B)C~i-1~ </p>
-<p>​    = ∑(3, 5, 6, 7)</p>
-<h3 id="2-4-译码器"><a href="#2-4-译码器" class="headerlink" title="2.4 译码器"></a>2.4 译码器</h3><p>几种常见的十进制数在二进制下的编码：</p>
-<ul>
-<li><p>8421码：顾名思义，就是十进制数转直接转换成二进制数（范围是0000-1001）</p>
-</li>
-<li><p>格雷码：相邻的格雷码只有一个位不同</p>
-<p>8421转格雷码：G~i~=B⊕B~i+1~ (i &lt;= n-1);  G~i~ = B~i~ (i = n)</p>
-</li>
-<li><p>余三码：8421码+3得到余三码（范围是0011-1100）</p>
-</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>十进制数</th>
-<th>8421</th>
-<th>格雷码</th>
-<th>余三码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0000</td>
-<td>0000</td>
-<td>0011</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0001</td>
-<td>0001</td>
-<td>0100</td>
-</tr>
-<tr>
-<td>2</td>
-<td>0010</td>
-<td>0011</td>
-<td>0101</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0011</td>
-<td>0010</td>
-<td>0110</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0100</td>
-<td>0110</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0101</td>
-<td>0111</td>
-<td>1000</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0110</td>
-<td>0101</td>
-<td>1001</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0111</td>
-<td>0100</td>
-<td>1010</td>
-</tr>
-<tr>
-<td>8</td>
-<td>1000</td>
-<td>1100</td>
-<td>1011</td>
-</tr>
-<tr>
-<td>9</td>
-<td>1001</td>
-<td>1101</td>
-<td>1100</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><code>第五次课结束</code> </p>
-<p>不同的译码器：</p>
-<p>三位译八位译码器（多一译码）：从三位二进制数中，翻译出他们的最小项表达式。</p>
-<blockquote>
-<p>高电平译重：翻译出来的那个最小项的电平是高电平</p>
-<p>低电平译重：翻译出来的最小项的电平是低电平</p>
-<p>如果使用与非门实现译码器，使用低电平译重可以节省非门</p>
-</blockquote>
-<h3 id="2-5-格雷码转8421码："><a href="#2-5-格雷码转8421码：" class="headerlink" title="2.5.格雷码转8421码："></a>2.5.格雷码转8421码：</h3><p>利用异或的性质，一个逻辑表达式异或同一个逻辑表达式两次，等于原逻辑表达式</p>
-<p>已知从8421码到格雷码的转换有：</p>
-<p>G0 = B0 ⊕ B1</p>
-<p>G1 = B1 ⊕ B2</p>
-<p>G2 = B2 ⊕ B3</p>
-<p>G3 = B3</p>
-<p>则根据异或的性质</p>
-<blockquote>
-<ol>
-<li><p>B3 = G3                    已知</p>
-</li>
-<li><p>G2 = B2 ⊕ B3         已知</p>
-</li>
-<li><p>G2 = B2 ⊕ G3        （2）</p>
-</li>
-<li>G3 ⊕ G2 = B2 ⊕ G3 ⊕ G3    两边同时异或G3</li>
-<li>B2 = G2 ⊕ G3        异或的性质，消去两个G3</li>
-</ol>
-</blockquote>
-<p>于是我们有：</p>
-<p>从格雷码到8421码：</p>
-<p>B3 = G3    </p>
-<p>B2 = G2 ⊕ G3 </p>
-<p>B1 = G1 ⊕ G2 ⊕ G3 </p>
-<p>B0 = G0 ⊕ G1 ⊕ G2 ⊕ G3 </p>
-<h3 id="2-6-奇偶校验器"><a href="#2-6-奇偶校验器" class="headerlink" title="2.6 奇偶校验器"></a>2.6 奇偶校验器</h3><p>分为奇校验和偶校验：</p>
-<p>我们有一个n位二进制数和一个校验位p</p>
-<p>奇校验：n位二进制数和p中，1的个数是奇数</p>
-<p>偶校验：n位二进制数和p中，1的个数是偶数</p>
-<p>奇偶校验的原理：</p>
-<p>n个二进制数异或，如果他们中1的数目是奇数，则结果为1</p>
-<blockquote>
-<p>这个原理可以使用数学归纳法证明</p>
-</blockquote>
-<p>一个逻辑变量异或1等于它的非</p>
-<p>一个逻辑变量异或0等于它本身</p>
-<p>下面以奇校验为例：</p>
-<p>生成校验位:</p>
-<p>p = B8 ⊕ B4 ⊕ B2 ⊕ B1 ⊕ 1</p>
-<p>校验</p>
-<p>is_valid = B8 ⊕ B4 ⊕ B2 ⊕ B1 ⊕ P</p>
-<p>偶校验</p>
-<p>p = B8 ⊕B4 ⊕B2 ⊕B1</p>
-<p>校验</p>
-<p>is_valid = B8 ⊕B4 ⊕B2 ⊕B1⊕p⊕1</p>
-<h2 id="第三章-组合线路的设计"><a href="#第三章-组合线路的设计" class="headerlink" title="第三章 组合线路的设计"></a>第三章 组合线路的设计</h2><p>设计流程：</p>
-<ol>
-<li>确定逻辑功能</li>
-<li>列真值表（也就得到了最小项表达式）</li>
-<li>根据卡诺图化简逻辑表达式</li>
-<li>按照设计要求变换逻辑表达式</li>
-<li>考虑工程问题</li>
-</ol>
-<h3 id="3-1-逻辑函数的变换"><a href="#3-1-逻辑函数的变换" class="headerlink" title="3.1 逻辑函数的变换"></a>3.1 逻辑函数的变换</h3><p>与或变与非：</p>
-<ol>
-<li>两次取反，中间DM断开</li>
-<li>对F的反函数，三次取反（可以理解为四次取反，怎样好用用那个）</li>
-</ol>
-<p>与或非：</p>
-<ol>
-<li>两次取反，不断开</li>
-<li>对反函数一次取反</li>
-</ol>
-<p>或非</p>
-<ol>
-<li><p>首先将 “与或” 转换为 “或与”，再两次取反，内层非用德摩根律断开</p>
-</li>
-<li><p>首先将原函数转换成其对偶函数，再将对偶函数化成最小项表达式，两次取反转换成与非形式</p>
-<p>在进行一次对偶，变回原函数，得到或非形式</p>
-</li>
-</ol>
-<p><code>第六次课结束</code> </p>
-<h3 id="3-2-利用任意项的线路设计"><a href="#3-2-利用任意项的线路设计" class="headerlink" title="3.2 利用任意项的线路设计"></a>3.2 利用任意项的线路设计</h3><p>任意项定义：是的约束方程推的逻辑值为0的最小项，也称无关项。</p>
-<blockquote>
-<p>任意项再当前约束条件下的逻辑值必定为0，因此我们将任意项和原函数进行或运算，不影响原函数的取值。</p>
-</blockquote>
-<p>任意项在卡诺图或真值表中，用φ表示，将它在卡诺图中画出来可以方便形成更大的圈，从而简化得到的逻辑表达式。但我们使用真值表化简带有任意项的逻辑函数时，不必考虑任意项是否被圈全部包含，只需要考虑逻辑函数的最小项。</p>
-<h3 id="3-3-多输出函数的线路设计（需要考虑共享项）"><a href="#3-3-多输出函数的线路设计（需要考虑共享项）" class="headerlink" title="3.3 多输出函数的线路设计（需要考虑共享项）"></a>3.3 多输出函数的线路设计（需要考虑共享项）</h3><p>当我们有多个逻辑函数，共享输入时，我们需要从全局出发考虑，看是否有可以共享的项目，从而减少要使用的逻辑器件。</p>
-<p>考虑共享项的最小覆盖修改原则：</p>
-<ol>
-<li><p>若F~i~的一个素项B~k~也是F~j~的一个素项，则B~k~不作修改，除非修改后能减少总圈数。</p>
-</li>
-<li><p>若B~i~、B~j~分别是F~i~、F~j~的素项，且B~i~、B~j~都包含一个蕴涵项B~k~,在选取B~k~后，B~i~、B~j~中余下的最小项均分别包含在F~i~、F~j~其它素项中，则在F~i~、F~j~中改选B~k~ </p>
-<p>示例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202210031001060.png" alt="image-20221003100116410"> </p>
-</li>
-<li><p>F~i~的一个素项B~i~，中的一些最小项分别被F~j~, F~j+1~, … , F~j+m~中的素项B~j~, B~j+1~ , … , B~j+m~覆盖，且B~j~, B~j+1~, … , B~j+m~  ⊆ B, 若在F~i~中选取B~j~,B~j+1~, …, B~j+m~ 后，B~i~中余下的最小项均包含在的其它素项中，则将B~i~改选为B~j~, B~j+1~, …, B~j+m~ </p>
-<p>示例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202210031008326.png" alt="image-20221003100828764"></p>
-</li>
-</ol>
-<p><code>第七次课到此结束</code> </p>
-<h3 id="3-4-应用MSI功能块的组合线路设计"><a href="#3-4-应用MSI功能块的组合线路设计" class="headerlink" title="3.4 应用MSI功能块的组合线路设计"></a>3.4 应用MSI功能块的组合线路设计</h3><p>SSI：小规模集成电路</p>
-<p>MSI：中规模集成电路</p>
-<ul>
-<li><p>利用数据多路选择器进行设计</p>
-<p>首先要知道数据多路选择器的原理</p>
-<p>f = a~0~┐x~0~┐x~1~ +  a~1~┐x~0~x~1~ + a~2~x~0~┐x~1~ + a~3~x~0~x~1~ </p>
-<p>设计步骤：</p>
-<ol>
-<li><p>首先，对于给定n变量的逻辑函数，我们选择N = 2^n-1^ 路数据选择器</p>
-</li>
-<li><p>选定n-1个变量作为地址输入，作为数据选择器的控制端，根据选择的地址输入，确定数据选择器输入端的各表达式输入</p>
-<p>对于如何确定数据选择器输入端的各表达式，我们可以使用代数方法得到，也可以使用卡诺图方法得到。</p>
-</li>
-</ol>
-</li>
-<li><p>利用译码器进行线路设计</p>
-<p>将对应逻辑表达式转换为最小项表达式，直接将译码出来的最小项用或门连接（高电平译中）或用与非门连接（低电平译中），输出即可。</p>
-</li>
-</ul>
-<p><code>第八次课到此结束</code> </p>
-<h2 id="第四章-时序电路的分析"><a href="#第四章-时序电路的分析" class="headerlink" title="第四章 时序电路的分析"></a>第四章 时序电路的分析</h2><h3 id="4-1-触发器的外特性"><a href="#4-1-触发器的外特性" class="headerlink" title="4.1 触发器的外特性"></a>4.1 触发器的外特性</h3><h4 id="4-1-1-基本触发器"><a href="#4-1-1-基本触发器" class="headerlink" title="4.1.1 基本触发器"></a>4.1.1 基本触发器</h4><p>基本触发器通过其电路的设计，可以具有存储二进制位的功能，其电路就是存储器，而不是有单独的存储器。</p>
-<p>基本触发器有两个稳态，分别表示0和1。当基本触发器（R~D~ ，S~D~）输入 1，1时，基本触发器里存储的位被保持输出，当输入0，1时，基本触发器被置零，当输入1，0时，基本触发器被置一，当输入0，0时不能确定输出的是当前存储的状态，还是其他状态。因此不能输入0。</p>
-<p>基本触发器的R~D~ 和S~D~ 端都是低电平有效，R端是Reset重置，置零端，S端是Set，置一端。</p>
-<p>基本触发器的特征表达式</p>
-<p>┐R~D~┐ S~D~ = 0 (R~D~ 和S~D~ 不能同时为0)</p>
-<p>Q^n+1^  = ┐S~D~ + R~D~ Q</p>
-<h4 id="4-1-2-RS触发器"><a href="#4-1-2-RS触发器" class="headerlink" title="4.1.2 RS触发器"></a>4.1.2 RS触发器</h4><blockquote>
-<p>电位触发，高电位时触发</p>
-</blockquote>
-<p>五个输入端，R~D~ , S~D~ ，R, S, CP</p>
-<p>CP只有在为1时才有效，CP为0时保持。</p>
-<p>特征方程：</p>
-<p>Q^n+1^ = S + ┐RQ</p>
-<h4 id="4-1-3-D-触发器"><a href="#4-1-3-D-触发器" class="headerlink" title="4.1.3 D 触发器"></a>4.1.3 D 触发器</h4><blockquote>
-<p>边缘触发器，正跳变触发</p>
-<p>关于电位触发和边缘触发：</p>
-<p>边缘触发：输出不能迟于触发信号到达，但触发信号已到达，输入信号就可以撤下来</p>
-<p>电位触发：输入信号可以迟于触发电位到达，但在触发电位变回非触发电位前，输入信号不能改变</p>
-</blockquote>
-<p>Q^n+1^ = D</p>
-<h4 id="4-1-4-JK-触发器"><a href="#4-1-4-JK-触发器" class="headerlink" title="4.1.4 JK 触发器"></a>4.1.4 JK 触发器</h4><blockquote>
-<p>边缘触发器，负跳变触发</p>
-</blockquote>
-<p>Q^n+1^ = J ┐Q^n^  + ┐K Q^n^ </p>
-<p>当J，K同为0时，输出Q</p>
-<p>当J，K同为1时，输出┐Q</p>
-<p>当J，K相异时，输出 J</p>
-<h4 id="4-1-5-T触发器"><a href="#4-1-5-T触发器" class="headerlink" title="4.1.5 T触发器"></a>4.1.5 T触发器</h4><blockquote>
-<p>边缘触发器，负跳变触发</p>
-</blockquote>
-<p>Q^n+1^ = T┐Q^n^ + ┐TQ^n^ </p>
-<p>当T为0时，输出Q</p>
-<p>当T为1时，输出┐Q</p>
-<p><code>第九次课到此结束</code></p>
-<h3 id="4-2-时序电路的分析方法"><a href="#4-2-时序电路的分析方法" class="headerlink" title="4.2 时序电路的分析方法"></a>4.2 时序电路的分析方法</h3><ol>
-<li><p>列些输出函数和控制函数表达式</p>
-<blockquote>
-<p>输出函数：线路的外输出函数（z）</p>
-<p>控制函数：向存储元件的输入</p>
-</blockquote>
-</li>
-<li><p>建立次态表达式及状态转移表</p>
-</li>
-<li><p>建立状态表及状态图</p>
-</li>
-<li><p>画波形图（optional）</p>
-</li>
-<li><p>说明时序线路的功能</p>
-</li>
-</ol>
-<p>异步电路分析：</p>
-<ol>
-<li>写出输出函数和控制函数和每个触发器的CP端</li>
-<li>建立次态表达式，次态表达式要将CP写进去，注意，不同触发器CP为一的条件不同</li>
-<li>建立状态转移，如果输入信号是脉冲信号，那么输入信号为一代表打一个脉冲，而非输入信号恒唯一。</li>
-<li>建立状态表和状态图</li>
-<li>画波形图</li>
-<li>说明时序电路功能</li>
-</ol>
-<p><code>第十&amp;十一次课到此结束</code></p>
-<h3 id="4-3-同步时序电路的设计"><a href="#4-3-同步时序电路的设计" class="headerlink" title="4.3 同步时序电路的设计"></a>4.3 同步时序电路的设计</h3><p>同步时序电路设计的一般步骤：</p>
-<ol>
-<li>根据问题的描述，建立原始的状态表</li>
-<li>使用隐含表法（下三角矩阵）化简原始状态表</li>
-<li>对最简状态表进行编码，建立编码状态表</li>
-<li>画出真值表（包括外部输入，现态，次态，控制函数，输出）</li>
-<li>根据真值表写出触发器的控制函数</li>
-<li>设计组合线路，考虑工程问题</li>
-</ol>
-<h4 id="4-3-1-关于状态的化简"><a href="#4-3-1-关于状态的化简" class="headerlink" title="4.3.1 关于状态的化简"></a>4.3.1 关于状态的化简</h4><p>两个状态可以合并的条件：</p>
-<ol>
-<li>在所有不同的输入下，输出均相同且满足以下条件<ol>
-<li>两个次态完全相同</li>
-<li>两个次态为其现态的交错</li>
-<li>两个次态的某一后续状态对可以合并</li>
-<li>两个次态为状态对封闭链中的一个状态对。</li>
-</ol>
-</li>
-</ol>
-<p><code>本课程结束</code> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3395,7 +2712,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3408,7 +2725,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
