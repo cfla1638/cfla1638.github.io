@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|jetbrains mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cfla1638.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="cfla&#39;s blog">
+<meta property="og:url" content="https://cfla1638.github.io/index.html">
+<meta property="og:site_name" content="cfla&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="cfla">
+<meta property="article:tag" content="Blog">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cfla1638.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>cfla's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cfla's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-title-link" itemprop="url">弗洛姆：《爱的艺术》读后感</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-11-21 15:23:56 / 修改时间：16:21:50" itemprop="dateCreated datePublished" datetime="2024-11-21T15:23:56+08:00">2024-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-meta-item leancloud_visitors" data-flag-title="弗洛姆：《爱的艺术》读后感" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天上午读完了弗洛姆的《爱的艺术》，这是一本小册子，大概花了我三天时间吧。书的绝大多数内容，在《为自己的人》中就已经讲过了，这本书只是强调了一下动机。即人之所以需要爱情，是因为人是孤独的，人有一种和其他事物结合、融为一体的倾向，以此来抵消这种孤独感。</p>
+<p>人与他创造出来的物体结合，那么它是一个沉浸在自己世界中的工程师；与国家集体融合，那么它是一个狂热的民族主义者；与某个特定的人纠缠在一起（爱情的消极形式，例如施虐受虐的共生关系），是消极的爱情；人与每个人以成熟的形式结合在一起，是博爱；与他的爱人以成熟的形式结合在一起，就是两个人之间的爱情。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2024/02/18/%E4%B8%8E%E6%B3%95%E5%BE%8B%E6%9C%89%E5%85%B3%E7%9A%84%E5%90%8D%E8%AF%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/02/18/%E4%B8%8E%E6%B3%95%E5%BE%8B%E6%9C%89%E5%85%B3%E7%9A%84%E5%90%8D%E8%AF%8D/" class="post-title-link" itemprop="url">Act, bill, statute等名词的区别</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-18 15:19:13 / 修改时间：21:56:41" itemprop="dateCreated datePublished" datetime="2024-02-18T15:19:13+08:00">2024-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">琐碎记录</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2024/02/18/%E4%B8%8E%E6%B3%95%E5%BE%8B%E6%9C%89%E5%85%B3%E7%9A%84%E5%90%8D%E8%AF%8D/" class="post-meta-item leancloud_visitors" data-flag-title="Act, bill, statute等名词的区别" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2024/02/18/%E4%B8%8E%E6%B3%95%E5%BE%8B%E6%9C%89%E5%85%B3%E7%9A%84%E5%90%8D%E8%AF%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/02/18/%E4%B8%8E%E6%B3%95%E5%BE%8B%E6%9C%89%E5%85%B3%E7%9A%84%E5%90%8D%E8%AF%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近在读Andrew Altman的<em>Arguing About Law: An Introduction to Legal Philosophy</em>，发现了许多意思相近但又彼此区别的法律名词，这里简单地总结一下。需要说明的是，笔者没有英语或法律方面的专业背景，本文的解释或许存在问题，但笔者尽力列出了每条解释的来源，供读者参考。</p>
+<hr>
+<p>act</p>
+<blockquote>
+<p>Merriam-Webster词典的解释[1]是：the formal product of a legislative body.</p>
+<p>即立法机关的正式结果，也就是我们所谓的法律。</p>
+<p>WordPress的解释[2]则更为详细：</p>
+<p>An Act is a piece of legislation that is more specific and applies to particular circumstances and specific people. For example, there are laws against drunk driving and people are aware of them while DUI is the specific.</p>
+</blockquote>
+<p>statute</p>
+<blockquote>
+<p>Merriam-Webster词典的解释是：a law enacted by the legislative branch of a government </p>
+</blockquote>
+<p>act和statute的区别：</p>
+<blockquote>
+<p>英国议会的解释[3]是：An Act of Parliament (also called a statute) is a law made by the UK Parliament. </p>
+<p>另一个来源[4]从美国的角度解释了这两个单词：<strong>Statutes</strong> are federal or state written laws (or “acts”) enacted by the Congress or state legislatures. </p>
+<p>因此act和statute应该是同义词。</p>
+<p>此外，GPT-4指出，statute是法律的一般术语，指通过立法机构制定的法律文件。法规可以涵盖广泛的法律主题，并在法律体系中具有法律效力。</p>
+</blockquote>
+<p>code</p>
+<blockquote>
+<p>Merriam-Webster的解释[5]:</p>
+<p>1: a systematic statement of a body of law</p>
+<p>2: a system of principles or rules</p>
+<p>印度Legaldiaries的解释[6]</p>
+<p>A code is collection of existing laws.</p>
+<p>when there are laws existing in the state through means of customs or statute , combining all laws and then formed into new laws. it is called as Code. the process of combining is known as codification.</p>
+<p>example: when the British came to India they saw the different laws are prevailing for different religion in India. Therefore first commission of law was formed under the chairmanship of Lord Thomas Babington Macaulay in 1854. then he collected all laws and ten codified all existing laws and formed a code, which is now called it as IPC ( Indian penal code, 1860).</p>
+</blockquote>
+<p>act与code的区别：</p>
+<blockquote>
+<p>act与code相比，act的涉及范围更小，而code的涉及范围更大。立法机关通过的act会经由编纂机构进入code。</p>
+<p>ChatGPT: 美国的法典（code）是经过codification（编纂）过程来形成的。Codification是指将散乱的法律规定整理、编排和组织成一部有组织结构的法典。美国联邦法典（United States Code）就是通过对美国联邦法律进行编纂和整理而形成的。</p>
+<p>在美国，立法机构（国会）通过的法律会被分配给相应的法典章节和条款，然后由专门的编纂机构（如美国法典编纂办公室）负责将这些法律规定整理、编排和组织成美国法典的形式。这个过程称为codification。通过codification，法典中的法律规定按照主题和领域进行组织，使其更便于查阅和理解。</p>
+</blockquote>
+<p>bill</p>
+<blockquote>
+<p>英国议会的解释[7]：A bill is a proposal for a new law, or a proposal to significantly change an existing law. </p>
+<p>另一个来源[4]从美国的角度解释了这个单词：A <strong>bill</strong> is a legislative proposal for enactment of a law. A bill becomes a law (statute) <em>after</em> it is passed and signed. </p>
+<p>因此，bill指在法律的草案，但尚未被立法机构认可成为法律。</p>
+</blockquote>
+<p>regulations</p>
+<blockquote>
+<p><strong>Regulations</strong> are rules and administrative codes issued by governmental agencies at all levels, municipal, county, state and federal. Regulations have the force of law because they are adopted under authority granted by statutes and often include penalties for violations. Most often, regulations are not included in volumes containing state statutes or federal laws; instead, they must be obtained from government agencies or located in publications not widely distributed. [4]</p>
+<p>法规是由各级政府机构（市级、县级、州级和联邦级）颁布的规章和行政法规。法规具有法律效力，因为它们是在法律赋予的权限下制定的，并且通常包括违规行为的处罚。通常，法规不包含在包含州法规或联邦法律的卷册中；相反，它们必须从政府机构获取或在不广泛分发的出版物中找到。[4]</p>
+</blockquote>
+<p>ordinance</p>
+<blockquote>
+<p>Ordinance is mostly referred to as local level laws that are introduced by municipalities. Ordinances too have the same power and effect as that of acts but only within city limits. However, in some circumstances, ordinances have the ability to supersede federal laws. [8]</p>
+<p>Ordinance主要指的是由市政府制定的地方法律。 Ordinance也具有与act相同的权力和效果，但仅限于地方范围内。 然而，在某些情况下，Ordinance可以取代联邦法律。[8]</p>
+</blockquote>
+<p>edict</p>
+<blockquote>
+<p>a proclamation having the force of law [9]</p>
+<p>与act的不同：</p>
+<p>As nouns the difference between edict and act is that edict is a proclamation of law or other authoritative command while ACT is a certain standardized [10]</p>
+</blockquote>
+<p>decree</p>
+<blockquote>
+<p>Merriam-Webster:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202402182136232.png" alt="image-20240218213633141"></p>
+<p> 从Merriam-Webster的解释可以看出，A ‘decree’ implies an order or regulation unilaterally issued or declared by someone in authority, without benefit of legislative review or action. 与act相比，decree更加强调它是被某个权威颁布的，有一丝专断随意的色彩。</p>
+</blockquote>
+<p>clauses：条款</p>
+<p>sections</p>
+<p>clauses 和 sections 的区别：</p>
+<blockquote>
+<p> The parts of a bill are known as <em>clauses</em>, until it has become an act of parliament, from which time the parts of the law are known as <em>sections</em>. [11]</p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/act">Act Definition &amp; Meaning - Merriam-Webster</a> </p>
+<p>[2] <a target="_blank" rel="noopener" href="https://accountantexplains.wordpress.com/2017/01/08/difference-between-act-and-ordinance/">Difference between Act and Ordinance – The Online Accountant (wordpress.com)</a> </p>
+<p>[3] <a target="_blank" rel="noopener" href="https://www.parliament.uk/site-information/glossary/statutes/">Statute - UK Parliament</a>  </p>
+<p>[4] <a target="_blank" rel="noopener" href="https://middlebury.libguides.com/legal/laws">U. S. Laws, Bills, Regulations - Legal Information - Guides at Middlebury College (libguides.com)</a>  </p>
+<p>[5] <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/code">Code Definition &amp; Meaning - Merriam-Webster</a> </p>
+<p>[6] <a target="_blank" rel="noopener" href="https://legaldiaries.in/index.php/2021/08/14/difference-between-act-and-code/">Difference between Act and Code - (legaldiaries.in)</a> </p>
+<p>[7] <a target="_blank" rel="noopener" href="https://www.parliament.uk/site-information/glossary/bills/?id=32625">Bills - UK Parliament</a>  </p>
+<p>[8] <a target="_blank" rel="noopener" href="https://accountantexplains.wordpress.com/2017/01/08/difference-between-act-and-ordinance/">Difference between Act and Ordinance – The Online Accountant (wordpress.com)</a>  </p>
+<p>[9] <a target="_blank" rel="noopener" href="https://www.merriam-webster.com/dictionary/edict">Edict Definition &amp; Meaning - Merriam-Webster</a> </p>
+<p>[10] <a target="_blank" rel="noopener" href="https://wikidiff.com/act/edict">Edict vs Act - What’s the difference? | WikiDiff</a> </p>
+<p>[11] <a target="_blank" rel="noopener" href="https://www.parliament.uk/site-information/glossary/clause/">Clauses - UK Parliament</a> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A5%BF%E6%96%B9%E7%BE%8E%E5%AD%A6%E7%AE%80%E5%8F%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A5%BF%E6%96%B9%E7%BE%8E%E5%AD%A6%E7%AE%80%E5%8F%B2/" class="post-title-link" itemprop="url">读书笔记:西方美学简史</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-16 20:00:01" itemprop="dateCreated datePublished" datetime="2023-10-16T20:00:01+08:00">2023-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-21 16:22:10" itemprop="dateModified" datetime="2024-11-21T16:22:10+08:00">2024-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A5%BF%E6%96%B9%E7%BE%8E%E5%AD%A6%E7%AE%80%E5%8F%B2/" class="post-meta-item leancloud_visitors" data-flag-title="读书笔记:西方美学简史" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A5%BF%E6%96%B9%E7%BE%8E%E5%AD%A6%E7%AE%80%E5%8F%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A5%BF%E6%96%B9%E7%BE%8E%E5%AD%A6%E7%AE%80%E5%8F%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Aesthetics from Classical Greece to the Present</p>
+<p>Monroe C Beardsley </p>
+<p>[美] 门罗 · C.比厄斯利 高建平译本</p>
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>美学(aesthetics)与艺术哲学(philosophy of art)，虽然他们的内容很相似，但也存在一些区别。作者和很多通行的做法都使用美学来概括那些属于艺术哲学范畴的东西。</p>
+<blockquote>
+<p>“美学”一词（Aesthetics）源自希腊语“αἰσθητικός”，意为美学的、敏感的、感性的，是一个用于修饰感觉、知觉的形容词。</p>
+<p>——维基百科：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/美学">美学</a> </p>
+<p>直到十八世纪的启蒙运动，哲学的转向渐渐开始更多地探讨知识论的问题，「美」的概念在这时开始转化成「感性」或「美感」等主题，「美学」的发展方向在此也有了一个清晰的定义，德国哲学家鲍姆加登（Alexander Baumgarten）首次提出以「感性之学」（aesthetics）赋予了「感性」和「美感」等这些哲学命题一个独立的地位， 在鲍姆加登看来，人的感性认识能力所能达到的完善境界就是「美」。 自此开始，美学开始独立成科，虽然在此之后，美学的研究方向又因为哲学史的变迁而慢慢转移到「艺术」、「心理判断」和「符号」之上，但美学的基本定义仍旧还沿用着鲍姆加登所留下来的「感性」一词。</p>
+<p>原文網址: 甚麼是：美學 - EP04 | 香港01 <a target="_blank" rel="noopener" href="https://www.hk01.com/article/40737?utm_source=01articlecopy&amp;utm_medium=referral">https://www.hk01.com/article/40737?utm_source=01articlecopy&amp;utm_medium=referral</a> </p>
+</blockquote>
+<p>可见，美学的研究范畴更加经验性。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A5%BF%E6%96%B9%E7%BE%8E%E5%AD%A6%E7%AE%80%E5%8F%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/" class="post-title-link" itemprop="url">读书笔记：An introduction to Political Philosophy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-07 21:27:55" itemprop="dateCreated datePublished" datetime="2023-10-07T21:27:55+08:00">2023-10-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-21 16:22:35" itemprop="dateModified" datetime="2024-11-21T16:22:35+08:00">2024-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/" class="post-meta-item leancloud_visitors" data-flag-title="读书笔记：An introduction to Political Philosophy" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Ch-2-Justifying-the-state"><a href="#Ch-2-Justifying-the-state" class="headerlink" title="Ch 2 Justifying the state"></a>Ch 2 Justifying the state</h2><p>为什么我们对政府具有道德上的责任？</p>
+<p>Consent Theory: 对于洛克(Locke)，他认为人生来自由、平等、独立，任何人都不能生来就能够统治他人。若是，则其他人必须同意(consent)他的统治。因此，对于洛克，政府的合法性问题就转变成了政府的权威如何能与每个每个人自然的自治的生活（the natural autonomy of the individual）相适应(reconciled)。[p.35]</p>
+<p>Utilitarian Theory: 对于边沁(Bentham)，政府的合法性来源于它能最大化社会的总体幸福(total happiness)，并且只有它比其他的政府更能做好这一点，它才具有合法性，而个人的同意是不相关的。[p.35]</p>
+<hr>
+<p>什么是政府(The State)?</p>
+<p>洛克认为，政府至少拥有政治权力(Political Power)，政治权力即制定法律，惩罚违法者的权力。[p.36]</p>
+<p>马克斯·韦伯(Max Weber)认为，在一个给定的领土上，政府垄断合法的暴力。在它的统治范围内，一切合法的暴力都直接或间接地来源于政府，例如警察，军队，人的自卫。它的反面是，政府有保护其领土上的所有人不受非法的暴力的责任。[p.36]</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20An%20introduction%20to%20Political%20Philosophy/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">计算机组成原理部分笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-12 18:03:35" itemprop="dateCreated datePublished" datetime="2023-03-12T18:03:35+08:00">2023-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-21 16:21:30" itemprop="dateModified" datetime="2024-11-21T16:21:30+08:00">2024-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/" class="post-meta-item leancloud_visitors" data-flag-title="计算机组成原理部分笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h2><p><strong>☆海明码是什么？</strong></p>
+<blockquote>
+<p>海明码是一种可以对数据校验，并至多可以校正一位出错的校验方法。</p>
+<p>海明码有以下特点：</p>
+<ul>
+<li>海明码使用多重奇偶校验</li>
+<li>海明码可以校正一位出错，并且可以指出出错的位置。</li>
+<li>即使，校验位出错，对海明码的校验也没有影响。</li>
+<li>海明码的校验位长度有规定。</li>
+</ul>
+</blockquote>
+<p>海明码有n位数据和k位校验码组成n+k位，即p = n + k。海明码可生成k位的指示码$G_kG_{k-1}…G_1$ </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E9%83%A8%E5%88%86%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/" class="post-title-link" itemprop="url">数字在计算机中的表示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-10 09:18:52" itemprop="dateCreated datePublished" datetime="2023-03-10T09:18:52+08:00">2023-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-22 22:57:56" itemprop="dateModified" datetime="2023-03-22T22:57:56+08:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS-APP/" itemprop="url" rel="index"><span itemprop="name">CS:APP</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/" class="post-meta-item leancloud_visitors" data-flag-title="数字在计算机中的表示" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/10/%E6%95%B0%E5%AD%97%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="整数的表示"><a href="#整数的表示" class="headerlink" title="整数的表示"></a>整数的表示</h2><h3 id="无符号数的原码"><a href="#无符号数的原码" class="headerlink" title="无符号数的原码"></a>无符号数的原码</h3><p>即无符号数的二进制表示。</p>
+<p>无符号数原码表示的范围从0到2^n^ -1，即{0，1}^w^ → {0，1，…，2^w^ -1}</p>
+<h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p><strong>定义</strong></p>
+<p>最高有效位权重被解释为负权，其他有效位权重为正权，对于向量$\vec{x}=[x_{w-1},x_{w-2},…,x_0]$ </p>
+<p>函数B2T~w~ (Binary to Two’s-complement)为</p>
+<p>$B2T_w = -x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
+<p><strong>补码快速求相反数的方法及证明</strong></p>
+<p>所有位全为1的补码的值为-1</p>
+<blockquote>
+<p>已知 $2^0+2^1+2^2+…+2^n=2^{n+1}-1$ </p>
+<p>故$-2^{w-1}+\sum_{i=0}^{w-2}x_i2^i=-2^{w-1}+2^{w-1}-1=-1$ </p>
+</blockquote>
+<p>推论 快速求一个以补码表示的二进制数的相反数 </p>
+<blockquote>
+<p>$\bar{x}$ 为一个二进制数的反码</p>
+<p>因为 x 与$\bar{x}$ 相加是一个所有位全为1的补码</p>
+<p>故，$x+\bar{x}=-1$ </p>
+<p>故，$-x=\bar{x}+1$ </p>
+<p>结论：要快速求一个补码二进制数的相反数，只需求这个二进制数的反码（包括符号位，或者说补码并没有符号位一说），再加一</p>
+</blockquote>
+<p><strong>w位补码能表示的范围</strong></p>
+<p>一个w位二进制补码的范围：$[-2^{w-1},2^{w-1}-1]$ </p>
+<p>以一字节为例，最小的数是 1000 0000 = -128，最大的数是 0111 1111 = 127</p>
+<p>最小的负数的相反数是它本身：</p>
+<p>$-(-128) = -(1000 0000)=(0111 1111)+1 = (1000 0000)= -128$ </p>
+<p><strong>符号扩展</strong></p>
+<p>对于一个4位补码， 1001 ，其值为 -7，如果将其扩展到8为，应使用符号扩展：</p>
+<p>即 1111 1001 其值为 -7</p>
+<blockquote>
+<p>符号扩展不改变补码值的证明</p>
+<p>对于正数显然成立，对于负数</p>
+<p>w位补码为其值为$2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
+<p>符号扩展k位后，w+k位补码的值为</p>
+<p>$-2^{w+k-1}+\sum_{i=w}^{w+k-2}2^i+2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$ </p>
+<p>$=-2^{w+k-1}+\sum_{i=w}^{w+k-2}2^i+2\times 2^{w-1}-2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$</p>
+<p>$=2^{w-1}+\sum_{i=0}^{w-2}x_i2^i$</p>
+</blockquote>
+<h3 id="原码和补码的相互转换"><a href="#原码和补码的相互转换" class="headerlink" title="原码和补码的相互转换"></a>原码和补码的相互转换</h3><ul>
+<li>原码转换成补码<br>正数原码转补码：正数的补码，与原码相同，例如，10的原码为00001010，补码也是00001010<br>负数原码转补码：负数的补码：符号位不变，其余各位按位取反，取反后整体加1<br>例如：-10的原码为10001010，符号位不变：1  0001010，其余位按位取反：1  1110101，取反后整体加1：11110101 + 1 = 11110110</li>
+<li>补码转换成原码<br>正数补码转原码：补码的符号位为0，表示该补码的原码是一个正数，所以补码就是该数的原码，例如：补码为00001010，它的符号位是0，代表它是一个正数的补码，正数的原码就是补码，反正也成立，所以它的原码是00001010<br>负数原码转补码：补码的符号位为1，表示该补码的原码是一个负数，所以可以这样求负数的原码，符号位不变，其余各位按位取反，然后再整体加1，例如：补码：11110110，符号位不变：1 1110110，其余位按位取反：1 0001001，取反后整体加1：10001001 + 1 = 10001010</li>
+</ul>
+<h2 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h2><h3 id="浮点数的一般表示"><a href="#浮点数的一般表示" class="headerlink" title="浮点数的一般表示"></a>浮点数的一般表示</h3><blockquote>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/纯小数补码/6480944">纯小数补码_百度百科 (baidu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44069475/article/details/122560674">纯小数补码学习_小数的补码_月老吃面包的博客-CSDN博客</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4f8a1dc94e4f">浮点数的一般表示 - 简书 (jianshu.com)</a> </p>
+<p>一般会用补码表示浮点数的尾数，但网络上关于纯小数补码表示的讲解甚少。上课的时候老师也讲的不是很明白，因此花了好长时间查找资料。（百度还是比Bing能搜出来更有用的东西的！）</p>
+</blockquote>
+<p>浮点数一般表示方法如下</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶符</th>
+<th>阶码</th>
+<th>数符</th>
+<th>尾数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>阶码和尾数既可以用原码也可以用补码表示。</p>
+<blockquote>
+<p>补充：有符号定点小数的表示</p>
+<p>有符号定点小数有一个符号位，小数点隐含在符号位之后，小数点之后的数叫做尾数。有符号定点小数既可以用原码表示，也可以用补码表示。原码情况下，通常表示为<code>s.010101...</code> 其中s为符号位，010101…为尾数。</p>
+<hr>
+<p>至于有符号定点小数的补码表示，首先要介绍补码的原理与作用，才能更好地理解有符号定点小数的补码表示。下面首先讨论有符号整数的补码表示</p>
+<p>在介绍补码概念之前，先介绍一下“模”的概念：“模”是指一个计量系统的计数范围，如过去计量粮食用的斗、时钟等。计算机也可以看成一个计量机器，因为计算机的字长是定长的，即存储和处理的位数是有限的，因此它也有一个计量范围，即都存在一个“模”。如：时钟的计量范围是0~11，模=12。假设当前时针指向8点，而准确时间是6点，调整时间可有以下两种拨法：一种是倒拨2小时，即8-2=6；另一种是顺拨10小时，8+10=12+6=6，即8-2=8+10=8+12-2(mod 12)．在12为模的系统里，加10和减2效果是一样的，因此凡是减2运算，都可以用加10来代替。若用一般公式可表示为：a-b=a-b+mod=a+mod-b。对“模”而言，2和10互为补数。实际上，以12为模的系统中，11和1，8和4，9和3，7和5，6和6都有这个特性，共同的特点是两者相加等于模。</p>
+<p>补码的作用是化减法为加法：对于任何一个有模（mod）的计量系统，都可以化减法为加法。例如，将处在6点的钟表时针向后拨2点（减二），也可以将它向前拨10点（加十）。之所以可以这么做，就是因为-2与10关于12同余。对于一个n为二进制的计量系统，它的模（mod）为 2^n^ 。</p>
+<p>补码的原理是数学上的同余关系，若 (a - b) / m能够得到一个整数，或者说 (a - b) 能够被 m 整除，就说 a 与 b关于m同余，记作<code>a≡b(mod m)</code>。对于n 位定点整数（以n = 4为例），负数的原码关于其补码关于2^n^ 同余，例如原码<code>1011</code> (十进制下为-3)，其补码<code>1101</code> （按照原码的解释方法，其真值为13），它们关于 2^4^ 同余（<code>13-(-3)=16</code>,16可以被2^4^ 整除）。</p>
+<p>这也是为什么要取一个负数的补码，需要对它除了符号位以外的数按位取反再加1。（为什么补码的取法是按位取反再加一，以四位二进制数为例，四位二进制数的模为16，即<code>1111 + 0001</code>，<code>-0011</code> 表示-3。根据同余的定义，<code>(a-b)/m</code> 是一个整数，我们假设它为1，则有<code>a-b=m</code> ，则有<code>xxxx - (-0011)= 1111 + 0001</code>） 即，<code>xxxx = 1111-0011 + 0001</code> 而<code>1111-0011</code>的作用就是按位取反，因此补码的计算方法为对符号位意外的数按位取反再加一。补码的计算方法也可以简述为进制能表示的最大的数减去原码再加一）</p>
+<hr>
+<p>以上的讨论都是基于定点整数，下面我们来讨论有符号定点小数的补码表示</p>
+<hr>
+<p>定点纯小数计量系统的模为1，因此对于一个负数-x以及它的补码xc，有<code>xc - (-x) = mod, xc = mod - x = 1 - x</code> ，因此要求一个负小数的补码，可以将这个数在十进制下加一，再转换成二进制原码。例如-7/8，加1为1/8，1/8 转换成二进制得到 1001。</p>
+<p>另一种更直接的获得负小数补码的方式是，将除符号位以外的位，按位取反，再加上 “1”。这里的“1”，并不是数值上的1，而是在最低位加1。例如，要求<code>-7/8</code>的补码，首先将其转化为原码表示，即<code>1111</code> (或写成<code>1.111</code>，有符号定点小数的小数点隐含在符号位之后) 。要求其补码，将处符号位以外的数按位取反，得到<code>1000</code> （或写成<code>1.000</code>）,再在最低为加1，得到<code>1001</code>(或写成<code>1.001</code>) </p>
+<hr>
+<p>对于一个负小数的补码  $sd_1d_2d_3…d_i$  或写成 $s.d_1d_2d_3…d_i$，它的每一个位可以这样解释，符号位解释为 s×-2^0^ （即s×1），数值位解释为 $d_i\times 2^{-i} (i=1,2,3,…) $。</p>
+<p>它的真值为  $s\times (-2^0) + \sum_{i=1}^{n}d_i\times2^{-i} $ </p>
+<hr>
+<p>对于n+1位有符号定点小数（n=8）</p>
+<p>原码表示的最大和最小定点小数</p>
+<p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
+<p>最小正数<code>0.0000 0000</code> : 0</p>
+<p>最大负数<code>1.0000 0000</code> : 0</p>
+<p>最小负数<code>1.1111 1111</code> ：-(1-2^-n^ ) </p>
+<p>补码表示的最大和最小顶点小数</p>
+<p>最大正数<code>0.1111 1111</code> ：1-2^-n^ </p>
+<p>最小正数<code>0.0000 0000</code> : 0</p>
+<p>最大负数<code>1.1111 1111</code>：-(1-2^-n^)  </p>
+<p>最小负数<code>1.0000 0000</code> ：-1 </p>
+</blockquote>
+<p>浮点数的阶码和尾数，既可以使用原码表示，也可以使用补码表示。</p>
+<p>例如，浮点数 <code>25.125</code>，其原码的二进制表示为$11001.001 = 1.1001001 × 2^4$ </p>
+<p>如果用16位来表示这个浮点数，它的存储方式如下（阶码、尾数均为原码表示）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶符（1bit）</th>
+<th>阶码 (5bit)</th>
+<th>数符(1bit)</th>
+<th>尾数(9bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 0100</td>
+<td>1</td>
+<td>1 0010 0100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>为了提高精度，充分利用尾数的每一位，规格化浮点数应运而生。规格化浮点数的特点是尾数位最高有效位应为1。这样可以提高数据表示的精度，避免尾数位的浪费。</p>
+<p>例如，对于原码表示的浮点数，<code>1.100</code>为规格化浮点数，因为其尾数位最高位为1。</p>
+<p>对于补码表示的浮点数，<code>0.100</code>，它为规格化浮点数，因为其尾数位最高位为1。</p>
+<p>但对于用补码表示的负小数，情况则不同。例如<code>1.110</code>它就不是规格化浮点数，其最高位虽然是1，但负数从原码转换成补码中，有一个按位取反的操作，在按位取反时，0变成了1。因此，对于补码<code>1.110</code>其转换成原码为<code>1.010</code> 显然它不是规格化浮点数。综上，对于用补码表示的负小数，其尾数为的最高有效位应该为0。</p>
+<p>对上面的规则进行归纳，可得到对于规格化浮点数的如下规则：</p>
+<blockquote>
+<p>当尾数为原码时，最高有效位必须为1</p>
+<p>当尾数为补码时，尾数的最高位必须与符号位相反。即对于正数，最高有效位必须为1，对于负数，最高有效位必须为0。因为在负数的补码中，数值位的0相当于原码的1的作用。</p>
+</blockquote>
+<p>获得规格化浮点数的方法：</p>
+<ul>
+<li>左规，尾数左移一位，阶码-1</li>
+<li>右规，尾数右移一位，阶码+1</li>
+</ul>
+<p>例如，浮点数 <code>25.125 = 1.1001001 × 2^4</code> 将其右规后，得到<code>0.11001001 × 2^5</code> </p>
+<p>表示为（阶码、尾数均为原码表示）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶符（1bit）</th>
+<th>阶码 (5bit)</th>
+<th>数符(1bit)</th>
+<th>尾数(9bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 0101</td>
+<td>0</td>
+<td>1 1001 0010</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="IEEE-754"><a href="#IEEE-754" class="headerlink" title="IEEE 754"></a>IEEE 754</h3><blockquote>
+<p>IEEE 读作 eye-triple-ee</p>
+</blockquote>
+<p>IEEE 754是一种表示浮点数的标准，它以这种格式表示浮点数</p>
+<p>$V=(-1)^s\times M\times 2^E$ </p>
+<p>其中s表示符号位</p>
+<p>M，表示尾数；E表示阶码。</p>
+<p>在IEEE 754中，有三种浮点数，分别是32位的单精度浮点数 float，和64位双精度浮点数double，以及80位浮点数，这里只介绍float 和double。</p>
+<p>float 有1位符号位，8位阶码，23位尾数，</p>
+<p>double 有1位符号位，11位阶码，52位尾数。</p>
+<p>IEEE 754 有三种浮点数 它们分别是：规格化数，非规格化数和特殊值。</p>
+<h4 id="规格化数"><a href="#规格化数" class="headerlink" title="规格化数"></a>规格化数</h4><blockquote>
+<p>规格化数的定义是浮点数的一种表示方式，使得尾数的最高有效位总是1。这样可以省略这一位，增加尾数的精度。规格化数有一个隐含的整数位1，所以尾数的范围是[1, 2)。</p>
+</blockquote>
+<p>在规格化数中，阶码不能全为0，也不能全为1。例如，有4位阶码，那么最小的阶码位0001，最大的阶码为1110。</p>
+<p>指数 E的计算方式如下，在规格化数中，E = e - Bias，其中 e 是阶码的值，Bias是偏置值，对于一个k位长度的阶码，Bias的大小等于$2^{k-1}-1$。</p>
+<p>M的大小位1 + 尾数表示的值。通过省略前置的1，可以多获得一个位来表示尾数，这个被省略的1也叫做隐含的1。 </p>
+<p>对于一个32位浮点数</p>
+<p>绝对值最小的规格化数</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S</th>
+<th>阶码</th>
+<th>尾数</th>
+<th>val</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>绝对值最小的规格化数</td>
+<td>0</td>
+<td>0000 0001</td>
+<td>0000 0000</td>
+<td>$2^{1-127}\times1.0=2^{-126}$</td>
+</tr>
+<tr>
+<td>绝对值最大的规格化数</td>
+<td>0</td>
+<td>1111 1110</td>
+<td>1111 1111 1111 1111 1111 111</td>
+<td>$2^{254-127}\times1.9999 = 2^{127}\times 1.9999$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="非规格化数"><a href="#非规格化数" class="headerlink" title="非规格化数"></a>非规格化数</h4><blockquote>
+<p>根据我从网络上找到的信息，非规格化数是一种特殊的浮点数，它的指数位全为0，尾数位前没有隐含的1。非规格化数用于表示0和非常靠近0的数²³。</p>
+</blockquote>
+<p>非规格化数的阶码全为0，此时 E = 1 - Bias, M = 尾数表示的二进制数</p>
+<p>非规格化数的左右有2：</p>
+<ol>
+<li>表示0，规格化数的M处于 1~2之间，无法表示 0，而非规格化数只要令尾数为0，就可以表示0了。注意，非规格化数有+0.0与-0.0。</li>
+<li>非规格化数可以相对均匀地表示十分接近于0的数。</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S</th>
+<th>阶码</th>
+<th>尾数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>绝对值最小的非规格化数</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>0000 0000 0000 0000 0000 000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>绝对值最大的非规格化数</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>1111 1111 1111 1111 1111 111</td>
+<td>$2^{1-127}\times0.9999=2^{-126}\times0.9999$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h4><h4 id="关于增长的均匀"><a href="#关于增长的均匀" class="headerlink" title="关于增长的均匀"></a>关于增长的均匀</h4><p>对于规格化数，其尾数每增长1，尾数绝对值增长<code>(0.0000 0000 0000 0000 0000 001)B</code> 而当尾数到达1，则会进位。实际的值的大小 = 尾数乘以2^E^ ，随着E的增长，浮点数的值的增长速度也会变快，但E不变时，浮点数的增长就是均匀的。  </p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="C-语言中的右移操作"><a href="#C-语言中的右移操作" class="headerlink" title="C 语言中的右移操作"></a>C 语言中的右移操作</h3><p><code>x &gt;&gt; k</code> 右移，分为逻辑右移和算数右移，</p>
+<p>逻辑右移在高有效位端补k个0，用于无符号数；</p>
+<p>算数右移在最高有效位端补k个最高有效位的值，用于有符号数。</p>
+<h3 id="New-Bing-关于纯小数的补码表示"><a href="#New-Bing-关于纯小数的补码表示" class="headerlink" title="New Bing 关于纯小数的补码表示"></a>New Bing 关于纯小数的补码表示</h3><p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303121314551.png" alt="image-20230312131442881"> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">Visual Studio 用法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-09 19:09:01" itemprop="dateCreated datePublished" datetime="2023-03-09T19:09:01+08:00">2023-03-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-19 21:26:18" itemprop="dateModified" datetime="2023-03-19T21:26:18+08:00">2023-03-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">琐碎记录</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="Visual Studio 用法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="引入第三方库-（以OpenCV为例）"><a href="#引入第三方库-（以OpenCV为例）" class="headerlink" title="引入第三方库 （以OpenCV为例）"></a>引入第三方库 （以OpenCV为例）</h3><p>在右侧导航栏项目名称上右键，点击属性</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931479.png" alt="image-20230309191119122"> </p>
+<p>在VC++页面中，找到包含目录和库目录，将要引用的第三方库的<code>include</code>目录和二进制库文件分别添加到里面去。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931480.png" alt="image-20230309191325578"> </p>
+<p>具体地，以OpenCV 4.7为例，需要包含的目录有:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931481.png" alt="image-20230309192108457"> </p>
+<p>最后在【链接器 → 输入】里面，指定具体需要用到的库</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931482.png" alt="image-20230309191425790"> </p>
+<h3 id="汇编语言环境-（MASM）"><a href="#汇编语言环境-（MASM）" class="headerlink" title="汇编语言环境 （MASM）"></a>汇编语言环境 （MASM）</h3><ul>
+<li><p>配置汇编项目</p>
+<blockquote>
+<p>1.创建一个 <strong>Visual C++</strong> <strong>空工程</strong> (Empty Project), 此时先不要添加汇编源文件。</p>
+<p>2.在 “解决方案浏览器” 视图中, 在项目名称上右击 —-&gt; 选择 “<strong>生成自定义</strong>“ —-&gt; 在弹出的 “Visual C++ 生成自定义项文件” 窗口中, 勾选 <code>masm(.targets, .props)</code> 项。</p>
+<p>​    <img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212518753.png" alt="image-20230319212518753"> </p>
+<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20230319212601616.png" alt="image-20230319212601616"> </p>
+<p>3.在 “解决方案浏览器” 视图中, 在项目名称上右击 —-&gt; 选择 “属性” —-&gt; 在左侧 “配置属性” 导航中 —-&gt; 选择 “链接器” —-&gt; “系统” —-&gt; 在 “<strong>子系统</strong>“ 右侧下拉菜单中选择 “控制台(/SUBSYSTEM:CONSOLE)” (注：VS2022已自动配置)</p>
+<p>4.添加汇编源代码 file.asm (添加 C++ 文件, 然后将后缀修改为 <code>.asm</code>), (这一步要放在最后, 否则可能会报错) 。</p>
+<p>5.如果是64位则要在项目属性→链接器→高级→程序入口点 里填上程序入口点，一般是main</p>
+</blockquote>
+</li>
+<li><p>引入依赖库</p>
+<blockquote>
+<p>1.链接器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “链接器” —-&gt; “常规” —-&gt; “附加库目录” —-&gt; “c:\Irvine”.</p>
+<p>2.链接器中添加 “附加依赖项”. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “链接器” —-&gt; “输入” —-&gt; “附加依赖项” —-&gt; 主要包含库: user32.lib, Irvine32.lib, kernel32.Lib .</p>
+<p>3.汇编器中添加包含路径. 在 “解决方案资源管理器” 中, 项目名称上右击 —-&gt; “Microsoft Macro Assembler” —-&gt; “General” —-&gt; “Include Paths” —-&gt; 添加库目录, 如 “c:\Irvine” (注意：此选项在添加 <code>.asm</code> 源文件后才出现).</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>注意到，参考文献 2 中 还提到了一些其他的引入第三方库的方法。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1] Visual Studio 下配置第三方C/C++库的方法 : <a target="_blank" rel="noopener" href="https://blog.csdn.net/yangfchn/article/details/85162934">https://blog.csdn.net/yangfchn/article/details/85162934</a></p>
+<p>[2] VS配置OpenCV教程（超详细） : <a target="_blank" rel="noopener" href="https://blog.csdn.net/mars_xiaolei/article/details/78759041">https://blog.csdn.net/mars_xiaolei/article/details/78759041</a></p>
+<p>[3] Getting Started with MASM and Visual Studio 2022 : <a target="_blank" rel="noopener" href="http://www.asmirvine.com/gettingStartedVS2022/index.htm">http://www.asmirvine.com/gettingStartedVS2022/index.htm</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/" class="post-title-link" itemprop="url">西方哲学史 希尔贝克</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-22 11:50:55" itemprop="dateCreated datePublished" datetime="2023-01-22T11:50:55+08:00">2023-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-28 10:16:29" itemprop="dateModified" datetime="2023-01-28T10:16:29+08:00">2023-01-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%93%B2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">哲学</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/" class="post-meta-item leancloud_visitors" data-flag-title="西方哲学史 希尔贝克" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/01/22/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%20%E5%B8%8C%E5%B0%94%E8%B4%9D%E5%85%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="《西方哲学史》希尔贝克-读书笔记"><a href="#《西方哲学史》希尔贝克-读书笔记" class="headerlink" title="《西方哲学史》希尔贝克 读书笔记"></a>《西方哲学史》希尔贝克 读书笔记</h1><h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>在这里记录一下自己感兴趣的问题：</p>
+<ol>
+<li><p>是否存在普遍的善和正当的价值规范存在</p>
+<p>智者派的相对主义</p>
+<p>苏格拉底的驳斥</p>
+<p>柏拉图的理念论</p>
+</li>
+</ol>
+<p>从这里记录一下自己的想法：</p>
+<ol>
+<li><p>很多哲学家都强调过一些东西：</p>
+<p>比如苏格拉底强调要通过开放性的对话获得对真正自我的洞见</p>
+<p>康德说要运用理性是自己摆脱不成熟状态</p>
+<p>罗素说要告诉自己事实是什么</p>
+<p>他们的意思都大体相同，都是在强调通过理性形成自己的观点。</p>
+</li>
+</ol>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="苏格拉底"><a href="#苏格拉底" class="headerlink" title="苏格拉底"></a>苏格拉底</h2><ul>
+<li><p>苏格拉底感兴趣的是 认识论 和 伦理-政治问题</p>
+</li>
+<li><p>在<strong>认识论</strong>上，苏格拉底认为的知识可由粗略的三分法来表述</p>
+<blockquote>
+<ol>
+<li>有关是什么的知识</li>
+<li>对于应当是什么的知识</li>
+<li>对真正自我的洞见（即通过理性的信服而不是通过修辞术的说服）</li>
+</ol>
+</blockquote>
+<p>要如何获得第三种知识，苏格拉底赞同一种开放性的对话方法，在公开讨论中，让讨论的各方充分地了解论题，得到自己信服的观点。</p>
+</li>
+<li><p>在<strong>伦理政治问题</strong>上，驳斥怀疑论，承认有普遍的善和正当的价值规范存在</p>
+<p>知识即美德，拥有知识就回去行善，就会导向幸福。</p>
+<blockquote>
+<p>即使苏格拉底得不出一个确定的哲学答案，但他仍在努力寻求答案，仍在赋予道德一个特定的认识论基础</p>
+</blockquote>
+<p>我的理解是，苏格拉底想要在认识论上为道德奠定一个基础，即一个拥有“对真正自我的洞见”的人不去行善，是不可思议的。</p>
+</li>
+</ul>
+<h2 id="柏拉图"><a href="#柏拉图" class="headerlink" title="柏拉图"></a>柏拉图</h2><ul>
+<li><p>本体论，理念论，认为理念是客观存在的第一实体</p>
+</li>
+<li><p>认识论，回忆说，灵魂通过可感现象的刺激回忆起前世对理念的知识。但柏拉图认为对理念的洞见只有少数人才能达到。</p>
+</li>
+<li><p>在伦理学上，由于理念论的存在，存在客观存在的善的理念，因此道德具有稳固的基础，即存在普遍的善和正当的价值规范。</p>
+<p>一个行为之所以是善的，是因为它分有了善的理念，而善的理念还与智慧、勇敢和节制有关，理念和理念之间交织在一起。</p>
+</li>
+<li><p>政治上，柏拉图怀疑人们的知善能力，认为必须由「专家」们执政，因此有了三种社会层次——生产者、管理者和统治者。（理想国）</p>
+</li>
+<li><p>艺术上，柏拉图认为艺术作品不能「为艺术而艺术」，理念之间是相互联系的，善、美的理念交织在一起，艺术不能脱离道德，艺术不是道德中立的。</p>
+<p>柏拉图认为艺术的本质是复制和摹仿，理念是可感事物的原型，它是复制可感事物的艺术品的原型，因此艺术家应该努力复制理念。艺术家可以不只受可感事物的激发，而直接被理念激发，这样艺术家就成了传递理念的媒介。</p>
+</li>
+</ul>
+<h2 id="亚里士多德"><a href="#亚里士多德" class="headerlink" title="亚里士多德"></a>亚里士多德</h2><ul>
+<li><p>本体论（形而上学），</p>
+<p>实体与属性论，亚里士多德认为只有个别的事物是存在的，即「实体」。颜色，形状等都是作为实体的属性，离开了实体，属性无法独立存在。属性分为本质属性和非本质属性，根据这两种属性之间的划分，形成了「种的概念」，属性和种是相对存在的。</p>
+<p>四因说，亚里士多德将世界上事物变化与运动背后的原因归纳为四大类，即质料因、形式因、动力因、目的因。</p>
+<p>潜能 - 现实，变化是潜能的现实化</p>
+<p>分级的有机世界观，从纯质料到达纯现实，从无机物到人。在亚里士多德的世界观中，每一种事物都倾向于以最好的方式去实现自己的潜能，万事万物都有一种「向上」的渴望。但是每一个种在宇宙中都有既定的位置。</p>
+</li>
+<li><p>认识论</p>
+<p>获取知识的第一步是用我们的感官来经验个别事物，第二步是从偶然性中抽象出本质和共相。</p>
+<p>亚里士多德把知识的获取过程看成一个从感觉经验到本质洞见的过程。</p>
+<p>亚里士多德区分了三种学科：</p>
+<p>理论科学：目的是确定真理。如自然哲学、数学、形而上学。</p>
+<p>实践科学：通过获得性的伦理能力导向明智的行动。如政治学。</p>
+<p>创制科学：生产某物，具有创造性。如诗学和修辞学。</p>
+</li>
+<li><p>伦理学，亚里士多德认为人如同一粒种子，具有可实现的潜力（理性），人要经历社会化的三个阶段（家庭、村落、城邦），在共同体中找到自己的位置。</p>
+</li>
+<li><p>政治上，支持平等原则。收集了158中城邦材料，讨论其中最好的形式：必须要听取民众的意见，必须要依法治国。</p>
+<p>结论是：有限民主是最好的国家政体。这一国家由法律治理，而且是「混合政体」：在量上实行民主制原则，质上实行贵族制原则。</p>
+</li>
+<li><p>艺术上，亚里士多德认为，艺术是自身产生愉悦的模仿。艺术同样具有道德上的功能，具有净化或纯化的作用。</p>
+<p>关于艺术在道德上的功能的两种解释：</p>
+<blockquote>
+<ol>
+<li>艺术的净化作用在于它能使我们「释放情绪」。通过体验戏剧中的英雄、恶棍和崇高的感情，我们释放出被压抑和控制不住的情感，这样就恢复和谐，并重新开始过依照「中道」理想的生活。</li>
+<li>艺术的净化作用在于，我们人可以通过艺术来得到教化，使精神升华。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id="希腊化-罗马时期"><a href="#希腊化-罗马时期" class="headerlink" title="希腊化 - 罗马时期"></a>希腊化 - 罗马时期</h2><ul>
+<li>希腊化时期人民对政治感到无能为力，这种无能为力在思想上表现在：回避对社会进行哲学思辨，而关注如何确保个人的幸福。希腊化时期有一种从关心共同体中的人向关心孤立的、私人的个体的普遍转向。</li>
+<li>对于希腊人，法律仅仅适用于地方共同体中的人。到了希腊化时期，出现了一种把法律当作不分国家，不分地位人人适用的普遍法则的观点。（自然法）</li>
+<li>「政治」词义的转变，在古希腊，政治指调节一个城邦的地方共同体中的公共活动的理性讨论，在希腊化时期，它主要指统治一个帝国的一般的法律原则。</li>
+</ul>
+<h3 id="伊壁鸠鲁主义"><a href="#伊壁鸠鲁主义" class="headerlink" title="伊壁鸠鲁主义"></a>伊壁鸠鲁主义</h3><ul>
+<li><p>伊壁鸠鲁主义是一种受谨慎和深思熟虑影响的快乐哲学，它可以被概括如下</p>
+<blockquote>
+<ol>
+<li>存在着唯一的善是快乐</li>
+<li>要确保最大的快乐，我们必须只享受我们能支配的快乐。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>伊壁鸠鲁主义的快乐不是一时的感性欲望，伊壁鸠鲁主义者强调那些更精致、更稳定的快乐形式，如友谊、文采。</p>
+</li>
+</ul>
+<h3 id="犬儒学派"><a href="#犬儒学派" class="headerlink" title="犬儒学派"></a>犬儒学派</h3><ul>
+<li>犬儒们从社会中抽身，过着一种简单地、半原始的生活</li>
+<li>犬儒主义教导境遇不利者要满足于他们所拥有的东西，即使他们一无所有。</li>
+</ul>
+<h3 id="希腊斯多葛学派"><a href="#希腊斯多葛学派" class="headerlink" title="希腊斯多葛学派"></a>希腊斯多葛学派</h3><ul>
+<li><p>幸福观（同苏格拉底和柏拉图）：一个人幸福的唯一条件是他或她过有德性的生活，而美德是以知识为基础的。</p>
+<blockquote>
+<p>补充：美德 arete，与英语中的virtue一词相似</p>
+<p>arete，美德意味着一个人在社会中实现他的真正潜能，因此是积极美德。（消极美德：不去作恶）</p>
+<p>这种美德是道德上的优秀也是指一个人尽可能好地履行被赋予地职能或角色的优秀。教师的优秀体现在教的好，铁匠的优秀体现在能制作出好的工具，人的美德在于尽其所能，实现人之为人的真正潜能。</p>
+</blockquote>
+</li>
+<li><p>宿命论，万物都受逻各斯或神的引导，人的任务是去学会对发生的一切事情都愉快地接受，在命运的判决面前，一个人应该显示出斯多葛式的平静。 或者说 人应该去支配自己能够支配的东西，如自己的内心。</p>
+</li>
+<li></li>
+</ul>
+<h3 id="希腊-希腊化时期的斯多葛学派"><a href="#希腊-希腊化时期的斯多葛学派" class="headerlink" title="希腊 - 希腊化时期的斯多葛学派"></a>希腊 - 希腊化时期的斯多葛学派</h3><ul>
+<li>成为了中产阶级的意识形态，强调责任与品格，重视一种适用于所有人的自然法。</li>
+</ul>
+<h3 id="罗马的斯多葛学派"><a href="#罗马的斯多葛学派" class="headerlink" title="罗马的斯多葛学派"></a>罗马的斯多葛学派</h3><ul>
+<li><p>历史观，对世界历史持有一种循环的观点（宿命论的），任何事物都会像四季那样重复自身，万物都重复自己，那么我们就无法改善这个世界，我们只能尽可能地忍受。</p>
+</li>
+<li><p>个人，个人不再是群体的有机部分，而是普遍法典和政府体制下的一个人。</p>
+</li>
+<li><p>法律的来源，对斯多葛学派来说，每个人心中都存在一团「圣火」，他们从普遍理性中引出自然法。（即自然法基于普遍理性）</p>
+<blockquote>
+<p>「完善的法律要到智者的灵魂之中去找」 西塞罗</p>
+</blockquote>
+</li>
+<li><p>自然法，法律的-政治的法则的基础在于一个普遍的自然法则（自然法），自然法适用于所有人。</p>
+</li>
+</ul>
+<h2 id="霍布斯"><a href="#霍布斯" class="headerlink" title="霍布斯"></a>霍布斯</h2><ul>
+<li><p>自然哲学：彻底机械唯物主义</p>
+</li>
+<li><p>政治哲学：</p>
+<p>观点：</p>
+<p>建立一个可以确保和平与秩序的政府，权力必须集于一身，不论是国王的政府还是议会的政府，都要确保和平与秩序。</p>
+<p>研究方法：功能主义的分析与综合</p>
+<p>霍布斯用一种功能主义的方法去理解社会，他考察社会各部分的功能，然后将他们组合到一起。霍布斯的方法，不是一种还原论，他不认为整体的功能是部分的组合。</p>
+<p>研究历程：</p>
+<p>首先考虑政府的作用，用一个思想实验来说明政府的功能，如果没有政府，人们将生活在一种一切人反对一切人的战争的自然状态。由于个人自我保存的需要，一个建立在一种受理性承认的社会契约的基础上的国家出现了。这个国家的政府通过确保和平与秩序而获得合法性，它拥有所有的权力，当政府不能确保和平与秩序时，它也就失去了合法性。</p>
+<p><strong>（个人感想）</strong>霍布斯的说明是功能主义的，他说社会契约创造的国家政府使人们远离自然状态，并不是说真的存在自然状态，只是在功能主义的思想实验中，如果没有政府，可能会存在一切人对一切人的战争。</p>
+<p>正如作者在洛克一节中补充道：</p>
+<blockquote>
+<p>自然状态学说并不是一种关于国家起源的学说，并不是关于国家实际上如何产生的学说，而是一种说明国家是什么，并为国家提供合法性的学说。</p>
+</blockquote>
+</li>
+<li><p>资本主义的发展与意识形态之间的联系：</p>
+<p>早期的资本主义：生存斗争非常艰苦，需要一个专制君主（霍布斯的观点）</p>
+<p>比较成形的资本主义：市民阶级有必要关注专制君主和相对不可侵犯的权利。</p>
+<p>完全形成的私人资本主义和自由放任的自由主义：出现了关注快乐的功利主义。</p>
+</li>
+<li><p>关于自由和自由主义</p>
+<p>自由主义（liberalism）和自由主义者（liberalist）:其基本概念是个人、契约和国家</p>
+<p>自由气度（liberality）和自由派人士（liberal）：倾向于宽容和司法自由的正面的道德的态度。</p>
+<p>洛克既是自由主义者又是自由派人士，霍布斯可有说是自由主义者但不是自由派人士。</p>
+<blockquote>
+<p><strong>自由并不是一个独立成立的概念，一种关于自由的哲学必须预设了一个讨论有关什么是自由的、以什么方式它是自由的学说。</strong></p>
+<p>对于自由主义者来说，自由地主体是被理解为自我满足的、理性的、自私自利地行动着地个人，因此我们把自由主义定义为一种形式地个人主义的时候，并不是随心所欲的。</p>
+<p>理解自由主义，是离不开它所预设的社会哲学或存在论的——同样，理解任何其他有关自由的学说，也离不开与之伴随的有关什么是自由的、相对于什么而自由的学说。</p>
+</blockquote>
+<p>通常人们用<strong>自由主义</strong>这个术语来表示这样一些政治-经济理论，他们把自由看作一个基本价值，把个人的开明的自利看作是基础的驱动力，而把国家的任务看作是为独立的行动者确保和平与秩序。</p>
+</li>
+</ul>
+<h2 id="笛卡尔"><a href="#笛卡尔" class="headerlink" title="笛卡尔"></a>笛卡尔</h2><p>唯理论 </p>
+<ul>
+<li>有条理的怀疑，确定什么是逻辑上可怀疑的。</li>
+<li>我思故我在，是笛卡尔的出发点，他认为自己拥有一个关于完美存在的观念，而关于完美存在的观念不能是由不完美的存在（自己）引起的，因此只能是由上帝引起的。</li>
+<li>这样笛卡尔为之前那些原则上可错的知识进行了平反，他们有了一个牢固的基础。</li>
+</ul>
+<p>心物二元论：物质实体和精神实体都是存在的，他们相互影响，在松果体交互。</p>
+<h2 id="斯宾诺莎"><a href="#斯宾诺莎" class="headerlink" title="斯宾诺莎"></a>斯宾诺莎</h2><ul>
+<li><p>斯宾诺莎在认识论上是一个唯理论者，在道德理论上与斯多葛学派相近，在自然理论上与泛神论有联系。</p>
+</li>
+<li><p>在认识论上，斯宾诺莎预设了我们拥有清晰的直觉（清晰而确定的知识）。有三种认识的道路，其中借助逻辑推理的方式获得知识是可靠的。</p>
+</li>
+<li><p>在本体论上（斯宾诺莎在他的《伦理学》中阐述），斯宾诺莎以一种几何学、唯理论的方式进行思考，它首先设定了一些公理，然后从这些公理出发去演绎。</p>
+<p>斯宾诺莎对实体的定义（公理）是：「实体，我理解为在自身内并通过自身而被认识的东西。」，即实体是独立的，不依赖他物而存在的。</p>
+<p>根据这个定义，如果存在两个以上的实体，那么第一个实体和第二个实体之间的关系就会被包括到我们对实体的理解中，这样实体就不是独立存在的了，这与我们所定义的实体的概念相悖，因此只有一个实体，实体是一，也是无限。</p>
+<p>如果存在一个神的话，神不可能是有别于实体的东西，因此实体就是神。（我的理解是，如果一个人信仰存在神的话，它可以把实体理解为神）</p>
+</li>
+<li><p>实体，属性和样式</p>
+<p>实体可以有无限多的显现方式，它向我们现行的方式就是两种属性——思维的属性和广延的属性，而一本书可以是广延属性之下的样式，一个人的思想可以是思想属性下的样式。（关于样式，我认为可以这样理解，想象实体是一个巨大的球体，而上边有很多纹路，即样式，我们用不同的属性去观察实体上的样式，用广延的属性去观察，我们看到了人的形体，用思维的属性去观察，我们看到了人的思想）</p>
+</li>
+<li><p>关于自由</p>
+<p>斯宾诺莎认为，一个人根本上是与实体统一的，因此说一个人相对于实体而自由或者受实体强制是毫无意义的。</p>
+</li>
+</ul>
+<h2 id="莱布尼茨"><a href="#莱布尼茨" class="headerlink" title="莱布尼茨"></a>莱布尼茨</h2><blockquote>
+<p>莱布尼茨说表面上给人印象是物质的、被动的那些东西，本质上确实能动的力量。我们简短地看看莱布尼茨是如何设法在机械论的，唯理论的宇宙地下建立一个非唯物主义的，目的论的「底层」的。</p>
+</blockquote>
+<ul>
+<li><p>单子论</p>
+<p>单子是宇宙建立于其上的基本元素，单子是存在等级的，每个单子都不受其他单子影响。</p>
+<p>前定和谐：上帝确保了单子的和谐运行（一种目的论的解释）</p>
+</li>
+<li><p>「所有可能世界中最好的世界」</p>
+</li>
+</ul>
+<h2 id="洛克"><a href="#洛克" class="headerlink" title="洛克"></a>洛克</h2><ul>
+<li><p>认识论</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202208111207303.png" alt="洛克的经验主义认识论"></p>
+<ul>
+<li><p>唯理论者认为清晰的概念使我们洞察实在的本质。从洛克到康德，标准的论证是说，对概念的洞见并不必然提供对实在的洞见。</p>
+</li>
+<li><p>洛克在进行思考前的预设：要做一个理性的人，就意味着去追求真理的意思，追求真理就预设了某种思想自由和宽容，即别人也可能是正确的，我们也能从他们那里学到什么。这样讨论就预设了一种非独断的、开放的态度。</p>
+</li>
+<li><p>洛克面临着一个关于还原的问题：知识是经验的总和呢，还是不仅仅是这种总和呢？ </p>
+<p>如果我们回答说知识可以还原到经验的部分，我们会得到一种彻底的经验论立场，即知识可以被完全地、充分地分析为简单地直觉观念。</p>
+<p>如果我们回答说知识的构成开始于简单的直觉观念，那我们的意思是说知识仍然包含着某种与这些观念之和有质的区别的东西。</p>
+<p>洛克很有可能是第二种立场。</p>
+</li>
+</ul>
+</li>
+<li><p>政治理论</p>
+<p><strong>概括：</strong> 洛克的政治理论延续了霍布斯的传统，从自然状态开始，通过社会契约来维护政府的合法性。</p>
+<p><strong>背景</strong></p>
+<p>洛克是资本主义这样一个时期中的自由主义的思想代表，在这个时期，市民阶级不需要一个绝对君主（霍布斯）来约束贵族，统一民族国家，而希望废除绝对君主制、直接支配政府。</p>
+<p>洛克思想的前提：1. 资源足够每个人所用，私人财产是个人劳动的结果。2. 当人们在谈论人民，<strong>谈论个人的时候，他们所指的一般是中产阶级或贵族。</strong> </p>
+<p><strong>内容</strong></p>
+<p>洛克的自然状态：洛克的自然状态不同于霍布斯的自然状态（比霍布斯的自然状态要发达），在这里每个人都是平等与自由的，这意味着我们自由地支配着我们自己的身体和我们用我们身体所取得地任何东西。洛克区分了社会和国家，社会是一种自发地有规律地运作，国家则是一种政治安排。在洛克的自然状态中，人们已经订立了一种引进货币的「默许和自愿的同一」，已经产生了土地的不公平分配，人们可以用货币，正当的取得东西，不再有自然的限度。</p>
+<p>有两个理由让我们离开这种自然状态：1.每个人都确保对声明感兴趣。2.拥有财产的人确保对这种财产感兴趣，因此每个人都对这样一种社会契约感兴趣。</p>
+<p>由此，在人们签订的社会契约下，产生了国家。对洛克来说，</p>
+<blockquote>
+<ol>
+<li>国家首先确保私有财产。</li>
+<li>洛克支持这样一种经济制度，国家保护私有财产，对其他国家实行贸易保护主义政策，但不对贸易和产业实行监督和控制。</li>
+<li>洛克反对专制主义，认为主权在共同体的公民那里，既然公民们已经批准了社会契约，他们就必须接受多数人的意志。</li>
+<li>洛克关心限制统治者的权利，支持政府中的权力分立原则。</li>
+</ol>
+</blockquote>
+<p><strong>关于经济不平等</strong></p>
+<p>洛克认为，在人们签订社会契约之前，人们已经订立了一种引进货币的「默许和自愿的同意」，经济不平等就已经出现了，这时候政治意义上的社会还没有建立，人们仍处在自然状态。没有理由因为随着货币的引入而产生的物质不平等去责怪政治意义上的社会。即，对于经济不平等，洛克归结为由于大众自由地达成的一个自愿的同意。</p>
+</li>
+</ul>
+<h2 id="贝克莱"><a href="#贝克莱" class="headerlink" title="贝克莱"></a>贝克莱</h2><ul>
+<li><p>贝克莱从经验主义的认识论出发，拒绝了物质是某种不同于性质的东西的观点，即洛克的第一性质和第二性质都是依赖感知他们的主体，这样贝克莱把通常的物质观诠释为诸多感觉印象的一种集合，当我们谈论实在时，我们谈论的是不依赖我们意志出现的感觉印象。</p>
+</li>
+<li><p>「存在」就是「被感知」：不可能被感知的就不存在，某物存在就是某物可能被感知。</p>
+</li>
+<li><p>引入上帝，到达有神论：贝克莱不认为存在依赖于我们的感觉印象，他认为存在就是被感知这个原则，预设了有某人在感知着，这个某人就是上帝。上帝确保了经验的规则性、有序性，事件之间的必然联系的根源在于上帝。</p>
+<p>上帝在贝克莱这里起的作用，大致相当于物质在洛克那里起的作用，以及物自体在康德那里起的作用。</p>
+</li>
+<li><p>评价（希尔贝克）：贝克莱从经验主义的认识论出发，达到了一种关于存在之形式的二元论，意识和印象，理解者和被理解者。</p>
+<p>贝克莱从概念唯名论出发拒绝了哲学的物质观念，像马和人类这样的词是作为简略语，但不意味着像马和房子这样的普遍概念存在着。</p>
+<p>（所以什么是「存在着」呢？）</p>
+</li>
+</ul>
+<h2 id="休谟"><a href="#休谟" class="headerlink" title="休谟"></a>休谟</h2><ul>
+<li><p>认识论：彻底的/激进的经验主义立场</p>
+<p>关于知识的起源：休谟在印象和观念之间做出了区分，印象包括外在知觉和内在知觉，观念被视作建立在这些印象之上的心灵图像。</p>
+<p>休谟认为存在两种知识：</p>
+<ol>
+<li>逻辑知识，它涉及的是概念之间的关系，它们是「分析的」</li>
+<li>经验知识，它的基础是简单地感觉印象。它们是「综合的」</li>
+</ol>
+<p>休谟认为关键的是，观念有没有正当的「谱系」，即有没有可能把观念回溯到印象</p>
+</li>
+<li><p>对物质实体、精神实体、因果性的批判</p>
+<p>对于物质实体，我们把稳定的印象群成为实体，我们对这些性质群「背后」所存在的任何基础性的物质实体是没有经验的，因此，休谟认为物质实体的观念是一种站不住脚的形而上学的观念。</p>
+<p>对于精神实体，我们能把握的仅仅是内部印象，这些印象常常以确定的、比较稳定的方式成群出现。因此我们谈论一个处在「背后」，并将这些内在印象连接在一起的自我，实际上只是一种形而上学的幻觉。</p>
+<p>对于因果性，休谟认为，原因的概念具有以下特征1. 相继性2. 接触性 3.必然性，我们能经验到原因的相继性和接触性，但我们通过经验无法保证原因的必然性。</p>
+</li>
+<li><p>休谟并没有说在原因和结果之间没有必然联系，他只是说我们不可能知道这样一种必然性。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" class="post-title-link" itemprop="url">在vscode配置cmake</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-14 22:48:49 / 修改时间：23:43:11" itemprop="dateCreated datePublished" datetime="2022-11-14T22:48:49+08:00">2022-11-14</time>
+            </span>
+
+          
+            <span id="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" class="post-meta-item leancloud_visitors" data-flag-title="在vscode配置cmake" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/11/14/%E5%9C%A8vscode%E9%85%8D%E7%BD%AEcmake/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="在vscode中配置cmake"><a href="#在vscode中配置cmake" class="headerlink" title="在vscode中配置cmake"></a>在vscode中配置cmake</h1><h2 id="配置includePath"><a href="#配置includePath" class="headerlink" title="配置includePath"></a>配置includePath</h2><p>vscode的静态语法检查是 intellisense 完成的，想要使它能搜寻到指定的includePath需要这要做：</p>
+<ol>
+<li>ctrl p，输入c/c++ edit configurations(JSON)，这会在本地的<code>./vscode/</code>下创建<code>c_cpp_properties.json</code> 在includePath里面添加上自己的include path即可</li>
+</ol>
+<h2 id="配置generator"><a href="#配置generator" class="headerlink" title="配置generator"></a>配置generator</h2><p>首先 ctrl+p，输入settings.json，点击 “首选项：打开工作区设置(JSON)”。</p>
+<p>此操作会创建 <code>./vscode/settings.json</code> 在此文件中加入<code>&quot;cmake.generator&quot; : &quot;MinGW Makefiles&quot;</code> 根据不同的系统，配置不同的generator。</p>
+<h2 id="配置debugger"><a href="#配置debugger" class="headerlink" title="配置debugger"></a>配置debugger</h2><p>在侧边栏 调试 中点击创建 “launch.json” 或直接创建launch.json 只要是带有调试信息的可执行文件，都可以调试</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/29/C-OOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/29/C-OOP/" class="post-title-link" itemprop="url">C++ 面向对象编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-29 15:48:03" itemprop="dateCreated datePublished" datetime="2022-09-29T15:48:03+08:00">2022-09-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-21 16:03:42" itemprop="dateModified" datetime="2024-11-21T16:03:42+08:00">2024-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">琐碎记录</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/09/29/C-OOP/" class="post-meta-item leancloud_visitors" data-flag-title="C++ 面向对象编程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/29/C-OOP/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/29/C-OOP/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="C-面向对象编程"><a href="#C-面向对象编程" class="headerlink" title="C++ 面向对象编程"></a>C++ 面向对象编程</h1><h2 id="C-的类"><a href="#C-的类" class="headerlink" title="C++ 的类"></a>C++ 的类</h2><h3 id="this-指针"><a href="#this-指针" class="headerlink" title="this 指针"></a>this 指针</h3><p>调用成员函数时，成员函数通过名为this的额外隐式参数访问调用它的那个对象。</p>
+<p>在成员函数内部，任何对类成员的直接访问都被看作是对this的隐式使用</p>
+<p><strong>this指针总是指向调用成员函数的对象，因此，this指针是一个常量指针，它的const是顶层const，即它永远不会改变它指向的位置。</strong></p>
+<h3 id="常量成员函数"><a href="#常量成员函数" class="headerlink" title="常量成员函数"></a>常量成员函数</h3><p>即使this指针是隐式的，但初始化this指针也要遵循初始化规则，即不能用一个常量去初始化非底层<code>const</code>的的this指针。</p>
+<p>由于这条规则的存在，我们无法调用一个被声明成const的对象的普通成员函数，因为这个成员函数的this指针不是底层const的指针。</p>
+<p>为了解决这个问题，我们可以将成员函数声明成<code>const</code> </p>
+<p>例如，像下面这样，在参数列表后添加上<code>const</code> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">get_a</span><span class="params">()</span> <span class="type">const</span> </span>&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，这个this指针，既是顶层<code>const</code> (this指针所固有的属性)，又是底层<code>const</code> （我们声明的结果）</p>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><blockquote>
+<p>P241, P250，P545</p>
+</blockquote>
+<p>想让其他类或其他函数访问类的私有成员，需要在一条友元声明，友元声明必须出现在类的内部</p>
+<p>由于友元声明并不是类的成员，因此他和访问说明符（public:, private:） 无关，可以出现在类的任意位置</p>
+<p>可以将一个类声明成另一个类的友元</p>
+<blockquote>
+<p> 如果一个类是另一个类的友元，那么友元类的成员函数可以访问类的所有成员</p>
+</blockquote>
+<p>可以将一个类的成员函数声明成另一个类的友元函数</p>
+<p>友元声明是单向的，友元声明不具有传递性</p>
+<p>关于友元的作用域：P252</p>
+<p>友元关系是不能继承的</p>
+<ul>
+<li>基类的友元在访问派生类时没有特殊性。</li>
+<li>派生类的友元也不能访问基类的私有成员</li>
+</ul>
+<h3 id="类的类型成员"><a href="#类的类型成员" class="headerlink" title="类的类型成员"></a>类的类型成员</h3><p>类的成员不只可以有变量和函数，还可以有类型</p>
+<p>类内定义的类型也有访问权限的限制</p>
+<p>用来定义类型的成员必须先定义再使用</p>
+<blockquote>
+<p>原因：// TODO</p>
+</blockquote>
+<h3 id="类的内联函数"><a href="#类的内联函数" class="headerlink" title="类的内联函数"></a>类的内联函数</h3><blockquote>
+<p>内联函数(inline)：一些小的，简单的函数可以被定义为内联函数，以减少调用函数的开销</p>
+<p>内联函数会在编译时，被编译器展开</p>
+<p>例如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">const</span> string &amp; <span class="title">shorterString</span><span class="params">(<span class="type">const</span> string &amp;s1, <span class="type">const</span> string &amp;s2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.<span class="built_in">size</span>() &lt;= s2.<span class="built_in">size</span>() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>max(), min() 之类的函数特别适合被定义为内联函数</p>
+</blockquote>
+<ul>
+<li>定义在类内部的成员函数，它们默认是内联函数</li>
+<li>可以在类内声明时使用<code>inline</code>，同时在类外定义函数时也同时使用<code>inline</code> ，但最好是只在类外部定义函数时使用<code>inline</code> 声明。</li>
+</ul>
+<h3 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h3><blockquote>
+<p>from effective c++</p>
+<p>编译器执行的const检查时定义上的，不是逻辑上的，如果类内有些成员是可变的，但不影响它在逻辑上是const，我们可以把它声明为<code>mutable</code> </p>
+</blockquote>
+<p>如果在定义类的成员时，使用<code>mutable</code> 关键字，那么，即使这个对象被声明成<code>const</code> ，我们依然可以改变这个成员变量的值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">     public:</span><br><span class="line">    <span class="type">void</span> <span class="title function_">inc</span><span class="params">()</span> <span class="type">const</span>;</span><br><span class="line">    private:</span><br><span class="line">    mutable <span class="type">size_t</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">A::inc</span><span class="params">()</span> <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line">    cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="返回-this-左值"><a href="#返回-this-左值" class="headerlink" title="返回*this 左值"></a>返回*this 左值</h3><p>当成员函数是const 版本时，this指针具有底层的const， 因此它的返回的左值也是带底层const的左值</p>
+<p>我们可以根据this指针是否具有底层<code>const</code> 来对函数进行重载</p>
+<blockquote>
+<p>底层const的重载见：P206</p>
+<p>P247</p>
+</blockquote>
+<h3 id="类的前向声明"><a href="#类的前向声明" class="headerlink" title="类的前向声明"></a>类的前向声明</h3><p>可以使用类似这种形式声明类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>;</span><br></pre></td></tr></table></figure>
+<p>这是一个不完整类型，我们可以使用这种类型的指针或者引用，但不能创建这种类型的引用。</p>
+<p>前向声明可以放在类的头文件中，从而减少依赖。</p>
+<h3 id="类的名字查找"><a href="#类的名字查找" class="headerlink" title="类的名字查找"></a>类的名字查找</h3><ul>
+<li><p>我们可以在成员函数的任意地方使用类的成员</p>
+<blockquote>
+<p>原因在于编译器如何处理类：</p>
+<ol>
+<li>编译所有的成员声明</li>
+<li>编译函数体</li>
+</ol>
+</blockquote>
+</li>
+<li><p>如果编译器无法在类内找到一个符号，编译器会在类的外层作用域继续寻找该名字，但只会考虑该语句之前出现过的外层作用域里的符号。</p>
+</li>
+<li><p>在内层作用域中可以重定义名字，但外层作用域中定义的类型（使用<code>typedef</code> 或使用<code>using symbol = type</code>）不能再类中重定义。</p>
+</li>
+<li><p>成员函数的名字查找规则</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 在成员函数内查找名字（成员函数体定义的名字，形参的名字）</span><br><span class="line"><span class="bullet">2.</span> 在类作用域内查找名字</span><br><span class="line"><span class="bullet">3.</span> 在成员函数定义之前的作用域内继续查找</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要在成员函数内使用一个类作用域的名字（该名字已经在成员函数的块作用域内被覆盖），可以使用作用域运算符。</p>
+</li>
+</ul>
+<h3 id="类的隐式类型转换"><a href="#类的隐式类型转换" class="headerlink" title="类的隐式类型转换"></a>类的隐式类型转换</h3><blockquote>
+<p>P263 隐式的类类型转换 P514 重载类型转换运算符</p>
+</blockquote>
+<ul>
+<li><p>如果类的某个构造函数只接受一个参数，它就是一个转换构造函数，定义了一个由其他类型到这个类的隐式类型转换</p>
+<p>这种类型转换只允许一步类型转换</p>
+</li>
+<li><p>一直类的隐式类型转换：</p>
+<p>使用关键字<code>explicit</code> </p>
+<p>该关键字只能在类内声明中使用，不能在类外重复</p>
+<p>该关键字只能用于接受一个值的构造函数前面</p>
+</li>
+</ul>
+<h3 id="类的静态成员"><a href="#类的静态成员" class="headerlink" title="类的静态成员"></a>类的静态成员</h3><p>类的静态成员存在于任何对象之外，对象中不包括任何于静态成员有关的数据，相当于一个全局变量。合成的默认构造函数也不会初始化它，他被初始化为0</p>
+<p>类的静态成员函数不与任何成员绑定，没有this指针，因此也不能是const的</p>
+<p>由于静态成员和全局变量一样，都需要链接器来处理，因此，两者的性质十分相似</p>
+<ul>
+<li>在<code>.h</code> 文件的类的定义中，静态成员可以是不完整类型，因为它需要链接器处理</li>
+<li>我们可以使用类的静态成员作为成员函数的默认实参</li>
+</ul>
+<h2 id="拷贝控制"><a href="#拷贝控制" class="headerlink" title="拷贝控制"></a>拷贝控制</h2><blockquote>
+<p>类的初始化、对象拷贝、移动、销毁</p>
+<p>由以下六个函数决定：</p>
+<ul>
+<li>构造函数</li>
+<li>拷贝构造函数</li>
+<li>拷贝赋值运算符</li>
+<li>移动构造函数</li>
+<li>移动赋值运算符</li>
+<li>析构函数</li>
+</ul>
+<p>后五个称为类的拷贝控制操作</p>
+</blockquote>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><blockquote>
+<p>C++ Primer P235、P257、P551、P689</p>
+</blockquote>
+<ul>
+<li>构造函数没有返回值</li>
+<li>构造函数可以重载</li>
+<li>构造函数不能被声明称const，在构造const对象时，构造函数可以改变它，只有构造函数完成初始化之后，该对象才具有const的属性。</li>
+</ul>
+<h4 id="合成的默认构造函数"><a href="#合成的默认构造函数" class="headerlink" title="合成的默认构造函数"></a>合成的默认构造函数</h4><p>如果没有定义构造函数，编译器会为类定义默认的构造函数，规则如下</p>
+<ol>
+<li>如果存在类内的初始值，用它来初始化成员</li>
+<li>否则，默认初始化。（内置类型垃圾值，其他类调用默认构造函数）</li>
+</ol>
+<p>如果出现以下情况，编译器无法为类构造合成的默认构造函数</p>
+<ol>
+<li><p>类有定义一个构造函数</p>
+<blockquote>
+<p>遇到这种情况，可以使用 <code>类名() = defalut</code> 来给予类一个默认的构造函数</p>
+</blockquote>
+</li>
+<li><p>类存在一个成员，这个成员没有默认的构造函数</p>
+</li>
+</ol>
+<h4 id="构造函数的初始化列表"><a href="#构造函数的初始化列表" class="headerlink" title="构造函数的初始化列表"></a>构造函数的初始化列表</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Sales_data</span>(<span class="type">const</span> std::string &amp;s) : <span class="built_in">BookNo</span>(s) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>当某个数据成员被构造函数的初始化列表忽略时，它将以合成默认构造函数相同的方式隐式初始化</p>
+<p>（重要）当某个数据成员被构造函数的初始化列表忽略时，他将在执行构造函数函数体之前被默认初始化</p>
+<p>由于有的类没有默认构造函数，因此我们必须使用列表初始化对其进行初始化。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="comment">// 没有默认构造函数</span></span><br><span class="line">public:</span><br><span class="line">    A(<span class="type">int</span> num) : elem(num) &#123;&#125;</span><br><span class="line">private:</span><br><span class="line">    <span class="type">int</span> elem = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">public:</span><br><span class="line">    B(<span class="type">int</span> num) : elem_int(num) &#123;&#125;  <span class="comment">// 错误，因为A没有默认构造函数，所以必须对它进行列表初始化</span></span><br><span class="line">private:</span><br><span class="line">    A elem_A;</span><br><span class="line">    <span class="type">int</span> elem_int;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>因为所有的类成员都会在构造函数体执行前进行初始化（列表初始化或默认初始化）因此使用列表初始化一定会比在构造函数中赋值更加高效。</p>
+<p>（重要）列表初始化的初始化顺序</p>
+<p>列表初始化的顺序与他们在类的定义中出现的顺序一样，而与列表初始化的列表顺序无关，如果初始化变量之间会相互依赖，一定要注意他们初始化的顺序！！</p>
+<h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Sales_data</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 非委托构造函数要使用的构造函数</span></span><br><span class="line">    <span class="built_in">Sales_data</span>(std::string s, <span class="type">unsigned</span> cnt, <span class="type">double</span> price) : </span><br><span class="line">          <span class="built_in">bookNo</span>(s), <span class="built_in">units_sold</span>(cnt), <span class="built_in">revenue</span>(cnt * price) &#123;&#125;</span><br><span class="line">    <span class="comment">// 委托构造函数</span></span><br><span class="line">    <span class="built_in">Sales_data</span>() : <span class="built_in">Sales_data</span>(<span class="string">&quot;&quot;</span>, <span class="number">0</span>, <span class="number">0</span>)&#123;&#125;</span><br><span class="line">    <span class="built_in">Sales_data</span>(std::string s) : <span class="built_in">Sales_data</span>(s, <span class="number">0</span>, <span class="number">0</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">Sales_data</span>(std::istream &amp;is) : <span class="built_in">Sales_data</span>() &#123;<span class="built_in">read</span>(is, *<span class="keyword">this</span>);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>委托构造函数首先执行列表初始化的被委托构造函数的列表初始化，在执行被委托构造函数的函数体，最后执行委托构造函数的函数体</p>
+<h4 id="默认构造函数被调用的时机"><a href="#默认构造函数被调用的时机" class="headerlink" title="默认构造函数被调用的时机"></a>默认构造函数被调用的时机</h4><blockquote>
+<p>C++ Primer P262</p>
+</blockquote>
+<p>默认初始化</p>
+<ol>
+<li>在块作用域内不适用任何初始值定义一个非静态变量</li>
+<li>一个类类型本身含有类成员，并且使用合成的默认构造函数时</li>
+<li>没有在列表初始化中被显示初始化时</li>
+</ol>
+<p>值初始化</p>
+<ol>
+<li>数组初始化时，提供的值小于数组的大小</li>
+<li>不适用初始值定义一个局部静态变量</li>
+<li>使用<code>T()</code> 这种表达式来显示请求值初始化</li>
+</ol>
+<h4 id="继承体系中的合成的默认构造函数"><a href="#继承体系中的合成的默认构造函数" class="headerlink" title="继承体系中的合成的默认构造函数"></a>继承体系中的合成的默认构造函数</h4><ul>
+<li><p>派生类的合成的默认构造函数，首先会调用其基类的构造函数，其基类的构造函数也会调用其基类的构造函数，直到继承链的顶端，接着继承链顶端的基类开始初始化其成员，再执行其构造函数体，接着向下，最后执行派生类的构造函数。</p>
+</li>
+<li><p>继承直接基类的构造函数，使用<code>using</code> 语句 P557 一种语法糖，可以让编译器根据直接基类的构造函数为派生类生成构造函数</p>
+</li>
+</ul>
+<h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p>定义：如果一个构造函数的第一个参数是自身类型的引用，且其他任何的额外参数都有默认值，则此构造函数是一个拷贝构造函数。</p>
+<blockquote>
+<p>拷贝构造函数的形式通常是 <code>ClassType(const ClassType &amp;)</code> </p>
+<p>拷贝构造函数通常不应该是explicit的</p>
+</blockquote>
+<h4 id="合成的拷贝构造函数"><a href="#合成的拷贝构造函数" class="headerlink" title="合成的拷贝构造函数"></a>合成的拷贝构造函数</h4><p>如果我们没有定义类的拷贝构造函数，编译器会为我们合成一个默认的拷贝构造函数</p>
+<p>对于内置类型，合成的拷贝构造函数会直接拷贝</p>
+<p>对于类类型，合成的拷贝构造函数会调用它的拷贝构造函数</p>
+<p>对于数组，合成的拷贝构造函数会逐个拷贝它的元素</p>
+<blockquote>
+<p> <strong>一、默认初始化、值初始化、直接初始化和拷贝初始化 几个术语的含义及其区别：</strong></p>
+<blockquote>
+<p>几种初始化的区别：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38231713/article/details/106291397">https://blog.csdn.net/qq_38231713/article/details/106291397</a></p>
+</blockquote>
+<p> 默认初始化：对象可能产生未定义的值，出现场景：</p>
+<ol>
+<li>块作用域内不使用任何初始值定义一个非静态变量；</li>
+<li><p>类通过默认构造函数来控制默认初始化过程，默认构造函数以如下规则初始化类的数据成员</p>
+<ul>
+<li>如果存在类内初始值，用它来初始化成员</li>
+<li>否则，默认初始化该成员</li>
+</ul>
+<p>值初始化：对象的值是确定（预设）的，出现场景：</p>
+</li>
+<li><p>数组初始化时，初始值数量小于数组的长度。</p>
+</li>
+<li><p>不使用初始值定义一个静态变量（带有初始值0）</p>
+</li>
+<li><p>使用类似<code>classType()</code> 形式表达式显示请求值初始化</p>
+</li>
+<li><p>只提供vector可以容纳的元素数量，不提供初始值，库会自动进行值初始化</p>
+<p><code>vector&lt;int&gt; vec(10);</code> 值初始化为0 </p>
+<p>直接初始化：使用<code>classType()</code> 初始化对象</p>
+<p>拷贝初始化：使用<code>classType foo = classType()</code> 初始化对象</p>
+</li>
+</ol>
+<ul>
+<li>不光在使用 = 赋值时会发生拷贝初始化，在以下情况时也会发生拷贝初始化<ol>
+<li>将参数作为实参传递给非引用类型的形参</li>
+<li>从返回类型为非引用的函数返回一个对象</li>
+<li>使用花括号列表初始化数组或聚合类</li>
+<li>初始化标准库容器或者使用insert或push（顺带一提使用emplace会直接初始化，不会调用拷贝构造函数）</li>
+</ol>
+</li>
+</ul>
+<p> <strong>二、不同的初始化方式会调用那种构造函数</strong></p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sksukai/article/details/104741675/">https://blog.csdn.net/sksukai/article/details/104741675/</a></p>
+</blockquote>
+<p> 当定义类时，会有直接初始化和拷贝初始化两种区别</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo var1;      <span class="comment">// 直接初始化，使用默认构造函数</span></span><br><span class="line"><span class="function">foo <span class="title">var2</span><span class="params">(<span class="number">1</span>)</span></span>;    <span class="comment">// 直接初始化，使用一个参数的构造函数</span></span><br><span class="line">foo var3 = <span class="number">50</span>;    <span class="comment">// 拷贝初始化，本来是50先使用构造函数构造临时对象，再使用拷贝构造函数初始化var3，但经过实际测试，编译优化了这一部分，直接使用构造函数初始化了var3</span></span><br><span class="line">foo var4 = <span class="built_in">foo</span>(<span class="number">50</span>); <span class="comment">// 和var3的情况完全相同，优化后也是只使用了一次接受一个对象的构造函数</span></span><br><span class="line">foo var5 = var3;  <span class="comment">// 拷贝初始化，调用拷贝构造函数</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="继承体系中的拷贝构造函数"><a href="#继承体系中的拷贝构造函数" class="headerlink" title="继承体系中的拷贝构造函数"></a>继承体系中的拷贝构造函数</h4><p>我们需要使用基类的拷贝构造函数显示的初始化基类的成员</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span> &#123;<span class="comment">/* ... */</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">derived</span>(<span class="type">const</span> derived &amp;d) : <span class="built_in">base</span>(d)    <span class="comment">// 显式的使用基类的拷贝构造函数+</span></span><br><span class="line">    &#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="拷贝赋值运算符"><a href="#拷贝赋值运算符" class="headerlink" title="拷贝赋值运算符"></a>拷贝赋值运算符</h3><blockquote>
+<p>可能会误以为拷贝初始化<code>classType obj = ori;</code> 会使用拷贝赋值运算符，事实上，这只调用拷贝构造函数</p>
+<p>当我们定义了拷贝赋值运算符，我们就重载了它的赋值运算符</p>
+<p>此外我们还可以定义两种赋值运算符</p>
+<ol>
+<li>移动赋值运算符</li>
+<li>其他类型到此类型的赋值运算符</li>
+</ol>
+<p>但这个运算符是最常用的运算符</p>
+</blockquote>
+<p>拷贝赋值运算符的形式通常是<code>classType operator=(const classType &amp;)</code> 因为他是一个成员函数，因此它的左侧成员自动绑定</p>
+<h4 id="合成的拷贝赋值运算符"><a href="#合成的拷贝赋值运算符" class="headerlink" title="合成的拷贝赋值运算符"></a>合成的拷贝赋值运算符</h4><p>合成的拷贝赋值运算符会将右侧的每个非static成员赋值给左侧成员，对于数组类型，它会逐个拷贝</p>
+<h4 id="继承体系中的拷贝赋值运算符"><a href="#继承体系中的拷贝赋值运算符" class="headerlink" title="继承体系中的拷贝赋值运算符"></a>继承体系中的拷贝赋值运算符</h4><p>派生类的拷贝赋值运算符要显式调用基类的拷贝赋值运算符，之后我们再为派生类的成员完成赋值操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">classType &amp; classType::<span class="keyword">operator</span>=(<span class="type">const</span> classType &amp; rhs)</span><br><span class="line">&#123;</span><br><span class="line">    Base::<span class="keyword">operator</span>=(rhs);  <span class="comment">// 调用基类的拷贝赋值运算符，即使他是合成的运算符也可以这样调用</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    派生类成员的赋值操作</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>释放对象使用的资源，销毁对象的非static成员</p>
+<p>析构函数的形式是<code>~classType()</code> 没有返回值，不接受参数</p>
+<p>不能被重载，对于任意一个类有且只有一个析构函数</p>
+<blockquote>
+<p>析构函数不能是删除的</p>
+</blockquote>
+<p>析构函数首先执行析构函数体，接着按初始化顺序逆序销毁成员</p>
+<ul>
+<li><p>继承体系中的析构函数</p>
+<p>派生类的析构函数只需要处理它自己的成员，不需要在析构函数体里显示调用基类的析构函数。它们所占用的资源（除了申请的堆资源），都会隐式的销毁。</p>
+<p>对象销毁的顺序：先销毁派生类的资源，再销毁基类的成员直到继承体系顶端。</p>
+</li>
+</ul>
+<h3 id="移动构造函数"><a href="#移动构造函数" class="headerlink" title="移动构造函数"></a>移动构造函数</h3><h3 id="类的拷贝控制成员被默认定义为删除的"><a href="#类的拷贝控制成员被默认定义为删除的" class="headerlink" title="类的拷贝控制成员被默认定义为删除的"></a>类的拷贝控制成员被默认定义为删除的</h3><blockquote>
+<p>P450、P476、P553、P751</p>
+</blockquote>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><ul>
+<li><p>类派生列表：首先是一个类名之后的冒号，接着是基类名，基类名之间以逗号隔开，每个基类名之前有访问说明符，</p>
+<blockquote>
+<p>派生类列表的访问说明符的作用：控制派生类从基类继承的成员是否对派生类用户可见</p>
+</blockquote>
+</li>
+<li><p>动态绑定（运行时绑定）：在运行时，根据传入的实参，动态选择函数版本，称为动态绑定</p>
+<blockquote>
+<p>基类通过在成员函数前加上<code>virtual</code> 关键字使得函数执行运行时动态绑定。</p>
+<p>任何构造函数之外的非静态函数都可以是虚函数</p>
+<p>关键字<code>virtual</code> 只能出现在类内声明语句中，而不能出现在定义语句中</p>
+<p>没有用<code>virtual</code> 声明的函数，其解析发生在编译时，而非运行时</p>
+</blockquote>
+</li>
+<li><p>访问控制：</p>
+<p>如果类的成员能被派生类访问，但不能被其他类访问，它应该被定义为<code>protected</code> </p>
+</li>
+</ul>
+<ul>
+<li><p>派生类的构造函数</p>
+<p>派生类必须使用基类的构造函数初始化其基类的部分</p>
+</li>
+<li><p>防止继承 定义类的时候使用<code>final</code> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NoDerived</span> <span class="keyword">final</span> &#123;<span class="comment">/* ... */</span>&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="纯虚函数和抽象基类"><a href="#纯虚函数和抽象基类" class="headerlink" title="纯虚函数和抽象基类"></a>纯虚函数和抽象基类</h3><ul>
+<li><p>纯虚函数</p>
+<p>通过在函数声明的分号前添加 = 0 即可声明这个函数为纯虚函数</p>
+<p>纯虚函数只是提供了一个接口，无需定义纯虚函数</p>
+</li>
+<li><p>含有纯虚函数的类是抽象基类， 不能直接创造一个抽象基类对象</p>
+</li>
+</ul>
+<h3 id="Protected"><a href="#Protected" class="headerlink" title="Protected"></a>Protected</h3><ul>
+<li>派生类的成员和友元只能访问派生类中的基类部分的受保护成员，而不能通过派生类访问基类的受保护成员</li>
+<li>基类成员对于它的派生类 的用户来说，访问权限主要受两部分影响<ol>
+<li>若基类的访问说明符</li>
+<li>派生类派生列表的访问说明符（对于派生类用户来说，此条的优先级更高）</li>
+</ol>
+</li>
+<li>对于派生类成员来说，它可以访问基类的<code>public</code> 和<code>private</code> 部分</li>
+</ul>
+<h3 id="改变个别成员的可访问性"><a href="#改变个别成员的可访问性" class="headerlink" title="改变个别成员的可访问性"></a>改变个别成员的可访问性</h3><p>可以在派生类中使用<code>using</code> 声明改变它继承自基类的成员的可访问性</p>
+<p>但<code>using</code>声明只能改变它能访问的成员的可访问性，即它不能改变基类的私有成员的在派生类中的可访问性。</p>
+<h3 id="struct-和-class的区别"><a href="#struct-和-class的区别" class="headerlink" title="struct 和 class的区别"></a>struct 和 class的区别</h3><ol>
+<li>struct是C语言的关键字，它定义结构体，而C语言没有构造函数和拷贝控制函数</li>
+<li>在C++中struct和class除了他们的可访问性以外，没有任何不同，c++的编译器都会为他们生成构造析构函数和拷贝控制函数</li>
+<li>他们的可访问性：<ol>
+<li>struct的默认成员都是public，class的默认成员都是private</li>
+<li>struct定义的类，它的继承默认是公有继承，class定义的类，默认继承方式是私有继承</li>
+</ol>
+</li>
+</ol>
+<h3 id="类的作用域"><a href="#类的作用域" class="headerlink" title="类的作用域"></a>类的作用域</h3><ul>
+<li><p>每个类定义自己的作用域，在这个作用域内我们定义自己的成员函数。</p>
+<p>当存在派生关系时，派生类的作用域嵌套在基类的作用域内：当我们遇到一个派生类中的名字，在派生类作用域中找不到这个名字，就会在基类的作用域内继续搜索这个名字。</p>
+</li>
+</ul>
+<ul>
+<li><p>一个对象、引用 或 指针的静态类型，决定了该对象究竟有那些对象是可见的。</p>
+<p>如果我们用基类指针绑定了派生类的成员，我们不能用这个指针去访问派生了特有的成员，因为对于这个成员名字的搜索将从基类的作用域开始，这决定了我们永远不会搜索派生类的作用域。</p>
+<p>与往常一样，内层作用域会隐藏与存在于它内部的名字重名的外层作用域名字。</p>
+<blockquote>
+<p>编译器解析类的函数调用的过程：</p>
+<p>例如<code>obj.func()</code></p>
+<ol>
+<li><p>确定obj的静态类型，去对应的类的作用域内查找该名称</p>
+</li>
+<li><p>如果在类的作用域内找不到该名称，则继续查找它的基类的作用域，如果一直到派生链的顶端也找不到该名子，编译器报错。</p>
+</li>
+<li><p>如果找到了该名子，编译器进行类型检查，看这次调用是否合法。</p>
+</li>
+<li><p>如果调用合法，看这个函数是不是虚函数，调用对象是不是指针或引用，如果是，编译器执行动态绑定，生成运行时决定调用那个函数的代码。</p>
+<p>否则直接进行函数调用。</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>声明在内层作用域中的函数不会重载声明在外层作用域中的函数，即使派生类中的函数的形参列表与基类中的形参列表不一样，也不会重载。</li>
+<li><p>因此虚函数与其在派生类中的覆盖函数，它们的形参列表必须相同，否则就不会导致虚函数机制，而是直接用内层作用域中的函数覆盖外层作用域中的函数。</p>
+</li>
+<li><p>成员函数无论是否是虚函数，都可以重载，因此对于基类的重载函数，派生类如果想要看到基类的全部重载的某个成员函数，它必须全部覆盖基类的重载虚函数 或者 一个重载虚函数也不覆盖。</p>
+<p>如果想要让覆盖重载虚函数的一些函数，但其他函数也不会因为作用域的原因而不可见，可以使用<code>using</code> 声明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">char</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> base::func;</span><br><span class="line">    <span class="comment">// 使用using 我们可以只覆盖重载虚函数的一个实例而让其他的虚函数也可见</span></span><br><span class="line">    <span class="built_in">func</span>(<span class="type">int</span>) <span class="keyword">override</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cfla</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfla</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '04Cb1hKhS46C40AAoWX7DdEw-gzGzoHsz',
+      appKey     : 'qp0Ojo0wkFhB7QKVLOS13J5m',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-Hans' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
