@@ -613,6 +613,7 @@
     <title>Visual Studio 用法</title>
     <url>/2023/03/09/Visual-Studio%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<h3 id="引入第三方库-（以OpenCV为例）"><a href="#引入第三方库-（以OpenCV为例）" class="headerlink" title="引入第三方库 （以OpenCV为例）"></a>引入第三方库 （以OpenCV为例）</h3><p>在右侧导航栏项目名称上右键，点击属性</p>
+<span id="more"></span>
 <p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931479.png" alt="image-20230309191119122"> </p>
 <p>在VC++页面中，找到包含目录和库目录，将要引用的第三方库的<code>include</code>目录和二进制库文件分别添加到里面去。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931480.png" alt="image-20230309191325578"> </p>
@@ -620,7 +621,6 @@
 <p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931481.png" alt="image-20230309192108457"> </p>
 <p>最后在【链接器 → 输入】里面，指定具体需要用到的库</p>
 <p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202303091931482.png" alt="image-20230309191425790"> </p>
-<span id="more"></span>
 <h3 id="汇编语言环境-（MASM）"><a href="#汇编语言环境-（MASM）" class="headerlink" title="汇编语言环境 （MASM）"></a>汇编语言环境 （MASM）</h3><ul>
 <li><p>配置汇编项目</p>
 <blockquote>
@@ -2830,6 +2830,7 @@
 <p>柏拉图的理念论</p>
 </li>
 </ol>
+<span id="more"></span>
 <p>从这里记录一下自己的想法：</p>
 <ol>
 <li><p>很多哲学家都强调过一些东西：</p>
@@ -2839,7 +2840,6 @@
 <p>他们的意思都大体相同，都是在强调通过理性形成自己的观点。</p>
 </li>
 </ol>
-<span id="more"></span>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="苏格拉底"><a href="#苏格拉底" class="headerlink" title="苏格拉底"></a>苏格拉底</h2><ul>
 <li><p>苏格拉底感兴趣的是 认识论 和 伦理-政治问题</p>
 </li>
@@ -3628,11 +3628,9 @@
     <content><![CDATA[<h2 id="Ch-2-Justifying-the-state"><a href="#Ch-2-Justifying-the-state" class="headerlink" title="Ch 2 Justifying the state"></a>Ch 2 Justifying the state</h2><p>为什么我们对政府具有道德上的责任？</p>
 <p>Consent Theory: 对于洛克(Locke)，他认为人生来自由、平等、独立，任何人都不能生来就能够统治他人。若是，则其他人必须同意(consent)他的统治。因此，对于洛克，政府的合法性问题就转变成了政府的权威如何能与每个每个人自然的自治的生活（the natural autonomy of the individual）相适应(reconciled)。[p.35]</p>
 <p>Utilitarian Theory: 对于边沁(Bentham)，政府的合法性来源于它能最大化社会的总体幸福(total happiness)，并且只有它比其他的政府更能做好这一点，它才具有合法性，而个人的同意是不相关的。[p.35]</p>
-<hr>
-<p>什么是政府(The State)?</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><p>什么是政府(The State)?</p>
 <p>洛克认为，政府至少拥有政治权力(Political Power)，政治权力即制定法律，惩罚违法者的权力。[p.36]</p>
 <p>马克斯·韦伯(Max Weber)认为，在一个给定的领土上，政府垄断合法的暴力。在它的统治范围内，一切合法的暴力都直接或间接地来源于政府，例如警察，军队，人的自卫。它的反面是，政府有保护其领土上的所有人不受非法的暴力的责任。[p.36]</p>
-<span id="more"></span>
 <hr>
 <p>什么是 Justifying the State？</p>
 <p>它是说，在原则上，在正常情况下，每个人都有Universal Political Obligation，即每个政府下的公民都有遵守法律的道德责任。[p.38]</p>
@@ -4034,6 +4032,7 @@
 <p>Monroe C Beardsley </p>
 <p>[美] 门罗 · C.比厄斯利 高建平译本</p>
 <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>美学(aesthetics)与艺术哲学(philosophy of art)，虽然他们的内容很相似，但也存在一些区别。作者和很多通行的做法都使用美学来概括那些属于艺术哲学范畴的东西。</p>
+<span id="more"></span>
 <blockquote>
 <p>“美学”一词（Aesthetics）源自希腊语“αἰσθητικός”，意为美学的、敏感的、感性的，是一个用于修饰感觉、知觉的形容词。</p>
 <p>——维基百科：<a href="https://zh.wikipedia.org/zh-hans/美学">美学</a> </p>
@@ -4041,7 +4040,6 @@
 <p>原文網址: 甚麼是：美學 - EP04 | 香港01 <a href="https://www.hk01.com/article/40737?utm_source=01articlecopy&amp;utm_medium=referral">https://www.hk01.com/article/40737?utm_source=01articlecopy&amp;utm_medium=referral</a> </p>
 </blockquote>
 <p>可见，美学的研究范畴更加经验性。</p>
-<span id="more"></span>
 <p>对美学边界的界定：</p>
 <p>针对对艺术作品的提问可以划分出三个层次</p>
 <ol>
