@@ -650,110 +650,6 @@
       </tags>
   </entry>
   <entry>
-    <title>cmake学习之路</title>
-    <url>/2022/10/22/cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/</url>
-    <content><![CDATA[<h1 id="cmake-学习之路"><a href="#cmake-学习之路" class="headerlink" title="cmake 学习之路"></a>cmake 学习之路</h1><blockquote>
-<p>参考链接</p>
-<p><a href="https://www.zhihu.com/question/58949190/answer/999701073">CMake 如何入门？ - 知乎 (zhihu.com)</a> </p>
-<p><a href="https://github.com/ttroy50/cmake-examples">ttroy50/cmake-examples: Useful CMake Examples (github.com)</a> </p>
-<p><a href="https://blog.csdn.net/Kprogram/article/details/126010833">超详细的cmake入门教程【转载】_Korpse的博客-CSDN博客_cmake 教程</a> </p>
-</blockquote>
-<h2 id="01-basic"><a href="#01-basic" class="headerlink" title="01-basic"></a>01-basic</h2><h3 id="A-hello-cmake"><a href="#A-hello-cmake" class="headerlink" title="A-hello cmake"></a>A-hello cmake</h3><p>概念：</p>
-<blockquote>
-<p><code>CMakeLists.txt</code> : 存储cmake命令，当在一个文件夹中运行cmake时，cmake会寻找这个文件，如果找不到会报错。</p>
-</blockquote>
-<p>三个命令：</p>
-<blockquote>
-<p><code>cmake_minimum_required(VERSION 3.5)</code> 最小的cmake版本</p>
-<p><code>project()</code> 指定项目的名称，cmake可以通过include一个项目名称来引用另一个项目，这对多项目是很方便的。另外这个命令也会创建一个名为 <code>$&#123;PROJECT_NAME&#125;</code> 的变量，它的内容就是我们指定的项目名称。</p>
-<p><code>add_executable(hello_cmake hello_cmake.cpp)</code> 第一个参数是我们生成可执行文件的名称，第二个参数以后则是为了生成这个可执行文件需要的源文件列表</p>
-</blockquote>
-<p>两种构建方式</p>
-<ol>
-<li><p>In-Place Build</p>
-<p>将生成的二进制文件和源文件放在一起，这样构建会比较混乱</p>
-<p>在Linux上的方法是 </p>
-<p><code>cmake .</code> 参数代表CMakeLists.txt 所在的位置</p>
-<p><code>make</code></p>
-<blockquote>
-<p>注意，在window上，默认的生成器是nmake</p>
-<p>要使用mingw的make应当这样：</p>
-<p><code>cmake -G &quot;MinGW Makefiles&quot; .</code> 注意字符串大小写严格</p>
-<p><code>cmake .</code></p>
-<p><code>make</code></p>
-</blockquote>
-</li>
-<li><p>Out-of-Source Build</p>
-<p>将生成的二进制文件单独放在一个文件夹中，这样比较整洁</p>
-<p>具体的方法是（Linux） </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir build </span><br><span class="line">cd build </span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-<p>在 window上的方法是</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir build </span><br><span class="line">cd build </span><br><span class="line">cmake -G &quot;MinGW Makefiles&quot; ..</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="B-hello-headers"><a href="#B-hello-headers" class="headerlink" title="B hello headers"></a>B hello headers</h3><p>将头文件和源文件分离编译</p>
-<p>我们有一个include目录和一个src目录</p>
-<p>CMakeLists.txt ：</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Set the minimum version of CMake that can be used</span></span><br><span class="line"><span class="comment"># To find the cmake version run</span></span><br><span class="line"><span class="comment"># $ cmake --version</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the project name</span></span><br><span class="line"><span class="keyword">project</span> (hello_headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a sources variable with a link to all cpp files to compile</span></span><br><span class="line"><span class="keyword">set</span>(SOURCES</span><br><span class="line">    src/Hello.cpp</span><br><span class="line">    src/main.cpp</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add an executable with the above sources</span></span><br><span class="line"><span class="keyword">add_executable</span>(hello_headers <span class="variable">$&#123;SOURCES&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the directories that should be included in the build command for this target</span></span><br><span class="line"><span class="comment"># when running g++ these will be included as -I/directory/path/</span></span><br><span class="line"><span class="keyword">target_include_directories</span>(hello_headers</span><br><span class="line">    PRIVATE </span><br><span class="line">        <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="keyword">include</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p> 有两个需要注意的点：</p>
-<ol>
-<li><p>首先我们使用了set函数，将源文件甚至为了其内容，<code>add_executable()</code> 函数的第二个参数也使用该变量。</p>
-</li>
-<li><p>使用了<code>target_include_directories</code> 函数，这个函数的文档<a href="[target_include_directories — CMake 3.0.2 Documentation](https://cmake.org/cmake/help/v3.0/command/target_include_directories.html">在这里</a>) ，需要注意的是，这个函数必须在我们已经添加了源文件或库之后才能使用。否则会构建失败。</p>
-<p>详见文档</p>
-<blockquote>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">target_include_directories</span>(&lt;<span class="keyword">target</span>&gt; [SYSTEM] [BEFORE]</span><br><span class="line">  &lt;INTERFACE|PUBLIC|PRIVATE&gt; [items1...]</span><br><span class="line">  [&lt;INTERFACE|PUBLIC|PRIVATE&gt; [items2...] ...])</span><br></pre></td></tr></table></figure>
-<p>Specify include directories or targets to use when compiling a given target. The named <code>&lt;target&gt;</code> must have been created by a command such as <a href="https://cmake.org/cmake/help/v3.0/command/add_executable.html#command:add_executable"><code>add_executable()</code></a> or <a href="https://cmake.org/cmake/help/v3.0/command/add_library.html#command:add_library"><code>add_library()</code></a> and must not be an <a href="https://cmake.org/cmake/help/v3.0/prop_tgt/IMPORTED.html#prop_tgt:IMPORTED"><code>IMPORTED</code></a> target.</p>
-</blockquote>
-</li>
-</ol>
-<p>附：cmake 预先定义的一些变量</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Variable</th>
-<th style="text-align:left">Info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">CMAKE_SOURCE_DIR</td>
-<td style="text-align:left">The root source directory</td>
-</tr>
-<tr>
-<td style="text-align:left">CMAKE_CURRENT_SOURCE_DIR</td>
-<td style="text-align:left">The current source directory if using sub-projects and directories.</td>
-</tr>
-<tr>
-<td style="text-align:left">PROJECT_SOURCE_DIR</td>
-<td style="text-align:left">The source directory of the current cmake project.</td>
-</tr>
-<tr>
-<td style="text-align:left">CMAKE_BINARY_DIR</td>
-<td style="text-align:left">The root binary / build directory. This is the directory where you ran the cmake command.</td>
-</tr>
-<tr>
-<td style="text-align:left">CMAKE_CURRENT_BINARY_DIR</td>
-<td style="text-align:left">The build directory you are currently in.</td>
-</tr>
-<tr>
-<td style="text-align:left">PROJECT_BINARY_DIR</td>
-<td style="text-align:left">The build directory for the current project.</td>
-</tr>
-</tbody>
-</table>
-</div>
-]]></content>
-      <categories>
-        <category>琐碎记录</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>cmake</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>const 和 constexpr 的详解和区别</title>
     <url>/2022/09/26/const-%E5%92%8C-constexpr-%E7%9A%84%E8%AF%A6%E8%A7%A3%E5%92%8C%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h1 id="const和constexpr"><a href="#const和constexpr" class="headerlink" title="const和constexpr"></a><code>const</code>和<code>constexpr</code></h1><h2 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a><code>constexpr</code></h2><p>常量表达式：是指值不会改变且在编译期间就可以计算处结果的表达式</p>
@@ -788,25 +684,6 @@
 <p>因此<strong>尽量将不会改变形参的函数的形参定义成底层<code>const</code></strong> ，因为这样定义我们可以使用字面量（rvalue）。</p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>琐碎记录</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>placement new</title>
-    <url>/2022/12/17/placement-new/</url>
-    <content><![CDATA[<h1 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h1><p>最典型的<code>placement new</code> 的签名如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> * <span class="keyword">operator</span> <span class="title">new</span><span class="params">(std::<span class="type">size_t</span>, <span class="type">void</span> * pMemory)</span> <span class="title">throw</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p><code>placement new</code> 就得名于这个最典型的new。</p>
-<p>下面这个程序将展示这种<code>placement new</code> 的用法：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;new&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">obj</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">obj</span>() &#123;num = <span class="number">233</span>;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;cout &lt;&lt; num &lt;&lt; endl;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">sizeof</span>(obj);</span><br><span class="line">    obj * p = (obj *)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span> (obj));</span><br><span class="line">    p-&gt;<span class="built_in">print</span>();</span><br><span class="line">    obj * t = <span class="built_in">new</span>(p) <span class="built_in">obj</span>();       <span class="comment">// placement new : 在一片已分配但未使用的区域调用构造函数</span></span><br><span class="line">    p-&gt;<span class="built_in">print</span>();</span><br><span class="line">    cout &lt;&lt; p &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; t;        <span class="comment">// p 和 t的值相同，说明placement new 的返回值就是p</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">411689296</span></span><br><span class="line"><span class="number">233</span></span><br><span class="line"><span class="number">0xb25fb0</span> <span class="number">0xb25fb0</span></span><br></pre></td></tr></table></figure>
-<p>当最初使用malloc时，<code>obj</code>的构造函数并没有被调用，因此<code>num</code>的值是垃圾值，当使用<code>placement new</code>之后，在原位置调用了构造函数，因此<code>num</code>的值变为了233，而这个<code>placement new</code>的返回值也就是我们传入的那个<code>rawMemory</code></p>
 ]]></content>
       <categories>
         <category>琐碎记录</category>
@@ -866,35 +743,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什么是启蒙运动？</title>
-    <url>/2022/12/19/%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%AF%E8%92%99%E8%BF%90%E5%8A%A8/</url>
-    <content><![CDATA[<h3 id="康德-什么是启蒙运动？"><a href="#康德-什么是启蒙运动？" class="headerlink" title="康德|什么是启蒙运动？"></a>康德|什么是启蒙运动？</h3><ul>
-<li>启蒙运动就是人类脱离自己所加之于自己的不成熟状态，不成熟状态就是不经别人的引导，就对运用自己的理智无能为力。当其原因不在于缺乏理智，而在于不经别人的引导就缺乏勇气与决心去加以运用时，那么这种不成熟状态就是自己所加之于自己的了。Sapere Aude！要有勇气运用你自己的理智！这就是启蒙运动的口号。</li>
-<li>懒惰和怯懦乃是何以有如此大量的人，当大自然早己把他们从外界的引导之下释放出来以后（naturalitermaiorennes）时，却仍然愿意终身处于不成熟状态之中，以及别人何以那么轻而易举地就俨然以他们的保护人自居的原因所在。处于不成熟状态是那么安逸。如果我有一部书能替我有理解，有一位牧师能替我有良心，有一位医生能替我规定食谱，等等；那么我自己就用不着操心了。只要能对我合算，我就无需去思想：自有别人会替我去做这类伤脑筋的事。</li>
-<li>绝大部分的人（其中包括全部的女性）都把步入成熟状态认为除了是非常之艰辛而外并且还是非常之危险的；这一点老早就被每一个一片好心在从事监护他们的保护人关注到了。保护人首先是使他们的牲口愚蠢，并且小心提防着这些温驯的畜牲不要竟敢冒险从锁着他们的摇车里面迈出一步；然后就向他们指出他们企图单独行走时会威胁他们的那种危险。可是这种危险实际上并不那么大，因为他们跌过几交之后就终于能学会走路的；然而只要有过一次这类事例，就会使人心惊胆战并且往往吓得完全不敢再去尝试了。</li>
-<li>任何一个个人要从几乎已经成为自己天性的那种不成熟状态之中奋斗出来，都是很艰难的。他甚至于已经爱好它了，并且确实暂时还不能运用他自己的理智，因为人们从来都不允许他去做这种尝试。条例和公式这类他那天分的合理运用、或者不如说误用的机械产物，就是对终古长存的不成熟状态的一副脚梏。谁要是抛开它，也就不过是在极狭窄的沟渠上做了一次不可靠的跳跃而己，因为他并不习惯于这类自由的运动。因此就只有很少数的人才能通过自己精神的奋斗而摆脱不成熟的状态，并且从而迈出切实的步伐来。</li>
-<li>然而公众要启蒙自己，却是很可能的；只要允许他们自由，这还确实几乎是无可避免的。因为哪怕是在为广大人群所设立的保护者们中间，也总会发见一些有独立思想的人；他们自己在抛却了不成熟状态的羁绊之后，就会传播合理地估计自己的价值以及每个人的本分就在于思想其自身的那种精神。这里面特别值得注意的是：公众本来是被他们套上了这种羁绊的，但当他们的保护者（其本身是不可能有任何启蒙的）中竟有一些人鼓动他们的时候，此后却强迫保护者们自身也处于其中了；种下偏见是那么有害，因为他们终于报复了本来是他们的教唆者或者是他们教唆者的先行者的那些人。因而公众只能是很缓慢地获得启蒙。通过一场革命或许很可以实现推翻个人专制以及贪婪心和权势欲的压迫，但却绝不能实现思想方式的真正改革；而新的偏见也正如旧的一样，将会成为驾驭缺少思想的广大人群的圈套。</li>
-<li>然而，这一启蒙运动除了自由而外并不需要任何别的东西，而且还确乎是一切可以称之为自由的东西之中最无害的东西，那就是在一切事情上都有公开运用自己理性的自由。可是我却听到从四面八方都发出这样的叫喊：不许争辩！军官说：不许争辩，只许操练！税吏说：不许争辩，只许纳税。神甫说：不许争辩，只许信仰。（举世只有一位君主说：可以争辩，随便争多少，随便争什么，但是要听话！君主指普鲁士腓德烈大王）到处都有对自由的限制。</li>
-<li>然则，哪些限制是有碍启蒙的，哪些不是，反而是足以促进它的呢？—我回答说：必须永远有公开运用自己理性的自由，并且唯有它才能带来人类的启蒙。私下运用自己的理性往往会被限制得很狭隘，虽则不致因此而特别妨碍启蒙运动的进步。而我所理解的对自己理性的公开运用，则是指任何人作为学者在全部听众面前所能做的那种运用。一个人在其所受任的一定公职岗位或者职务上所能运用的自己的理性，我就称之为私下的运用。</li>
-<li>就涉及共同体利益的许多事物而言，则我们必须有一定的机器，共同体的一些成员必须靠它来保持纯粹的消极态度，以便他们由于一种人为的一致性而由政府引向公共的目的，或者至少也是防止破坏这一目的。在这上面确实是不容许有争辩的；而是人们必须服从。但是就该机器的这一部分同时也作为整个共同体的，乃至于作为世界公民社会的成员而论，从而也就是以一个学者的资格通过写作面向严格意义上的公众时，则他是绝对可以争辩的，而不致因此就有损于他作为一个消极的成员所从事的那种事业。因此，一个服役的军官在接受他的上级交下某项命令肘，竟抗声争辩这项命令的合目的性或者有用性，那就会非常坏事；他必须服从。但是他作为学者而对军事业务上的错误进行评论并把它提交给公众来作判断时，就不能公开地加以禁止了。公民不能拒绝缴纳规定于他的税额；对所加给他的这类赋税惹事生非地擅行责难，甚至可以当作诽谤（这可能引起普遍的反抗）而加以惩处。然而这同一个人作为一个学者公开发表自己的见解，抗议这种课税的不适宜与不正当不一样，他的行动并没有违背公民的义务。同样地，一个牧师也有义务按照他所服务的那个教会的教义向他的教义问答班上的学生们和他的会众们作报告，因为他是根据这一条件才被批准的。但是作为一个学者，他却有充分自由、甚至于有责任，把他经过深思熟虑有关那种教义的缺点的全部善意的意见以及关于更好地组织宗教团体和教会团体的建议传达给公众。这里面并没有任何可以给他的良心增添负担的东西。因为他把作为一个教会工作者由于自己职务的关系而讲授的东西，当作是某种他自己并没有自由的权力可以按照自己的心意进行讲授的东西；他是受命根据别人的指示并以别人的名义选行讲述的。他将要说：我们的教会教导这些或那些；这里就是他们所引用的论据。于是，他就从他自己不会以完全的信服而赞同、虽则他很可以使自己负责进行宣讲的那些条文中—因为并非是完全不可能其中也隐藏着真理，而且无论如何至少其中不会发见有任何与内心宗教相违背的东西，—为他的听众引绎出全部的实用价值来。因为如果他相信其中可以发见任何与内心宗教相违背的东西，那么他就不能根据良心而尽自己的职务了，他就必须辞职。一个就任的宣教师之向他的会众运用自己的理性，纯粹是一种私下的运用；因为那往往只是一种家庭式的聚会，不管是多大的聚会；而在这方面他作为一个牧师是并不自由的，而且也不能是自由的，因为他是在传达别人的委托。反之，作为一个学者通过自己的著作而向真正的公众亦即向全世界讲话时，则牧师在公开运用他的理性上便享有无限的自由可以使用他自己的理性，并以他自己本人的名义发言。因为人民（在精神事务上）的保护者而其本身居然也不成熟，那便可以归结为一种荒谬性，一种永世长存的荒谬性了。</li>
-<li>然则一种牧师团体、一种教会会议或者一种可敬的教门法院（就象他们在荷兰人中间所自称的那样），是不是有权宣誓他们自己之间对某种不变的教义负有义务，以便对其每一个成员并且由此也就是对全体人民进行永不中辍的监护，甚至于使之永恒化呢？我要说：这是完全不可能的。这样一项向人类永远封锁住了任何进一步启蒙的契约乃是绝对无效的，哪怕它被最高权力、被国会和最庄严的和平条约所确认。一个时代决不能使自己负有义务并从而发誓，要把后来的时代置于一种决没有可能扩大自己的（尤其是十分迫切的）认识、清除错误以及一般地在启蒙中继续进步的状态之中。这会是一种违反人性的犯罪行为，人性本来的天职恰好就在于这种进步；因此后世就完全有权拒绝这种以毫无根据而且是犯罪的方式所采取的规定。</li>
-<li>凡是一个民族可以总结为法律的任何东西，其试金石都在于这样一个问题：一个民族是不是可以把这样一种法律加之于其自身？它可能在一个有限的短时期之内就好像是在期待着另一种更好的似的，为的是好实行一种制度，使得每一个公民而尤其是牧师都能有自由以学者的身份公开地，也就是通过著作，对现行组织的缺点发表自己的言论。这种新实行的制度将要一直延续下去，直到对这类事情性质的洞见已经是那么公开地到来并且得到了证实，以致于通过他们联合（即使是并不一致）的呼声而可以向王位提出建议，以便对这一依据他们更好的洞见的概念而结合成另一种已经改变了的宗教组织加以保护，而又不致于妨碍那些仍愿保留在旧组织之中的人们。但是统一成一个固定不变的、没有人能够（哪怕在一个人的整个一生中）公开加以怀疑的宗教体制，从而也就犹如消灭了人类朝着改善前进的整整一个时代那样，并由此给后代造成损害，使得他们毫无收获，—这却是绝对不能容许的。一个人确实可以为了他本人并且也只是在一段时间之内，推迟对自己有义务加以认识的事物的启蒙；然而迳行放弃它，那就无论是对他本人，而更其是对于后代，都可以说是违反而且践踏人类的神圣权利了。</li>
-<li>而人民对于他们本身都不能规定的事，一个君主就更加不可以对他的人民规定了；因为他的立法威望全靠他把全体人民的意志结合为他自己的意志。只要他注意使一切真正的或号称的改善都与公民秩序结合在一起，那么此外他就可以把他的臣民发觉对自己灵魂得教所必须做的事情留给他们自己去做；这与他无关，虽则他必须防范任何人以强力妨碍别人根据自己的全部才能去做出这种决定并促进这种得救。如果他干预这种事，要以政府的监督来评判他的臣民借以亮明他们自己的见识的那些作品；以及如他凭自己的最高观点来这样做，而使自己受到Caesarnon estt supragrammaticos（凯撒并不高于文法学家）的这种责难；那就会有损于他的威严。如果他把自己的最高权力降低到竟至去支持自己国内的一些暴君对他其余的臣民实行精神专制主义的时候，那就更加每况愈下了。</li>
-<li>如果现在有人问：我们目前是不是生活在一个启蒙了的时代？那么回答就是：并不是，但确实是在一个启蒙运动的时代。目前的情形是，要说人类总的说来已经处于，或者是仅仅说已经被置于，一种不需别人引导就能够在宗教的事情上确切地而又很好地使用自己的理智的状态了，则那里面还缺乏许多东西。可是现在领域已经对他们开放了，他们可以自由地在这上面工作了，而且对普遍启蒙的、或者说对摆脱自己所加给自己的不成熟状态的障碍也逐渐地减少了；关于这些我们都有着明确的信号。就这方面考虑，这个时代乃是启蒙的时代，或者说乃是腓德烈的世纪。</li>
-<li>一个不以如下说法为与自己不相称的国君：他认为自己的义务就是要在宗教事务方面决不对人们加以任何规定，而是让他们有充分的自由，但他又甚至谢绝宽容这个高傲的名称；这位国君本人就是启蒙了的，并且配得上被天下后世满怀感激之忱尊之为率先使得人类，至少从政权方面而言，脱离了不成熟状态，并使每个人在任何有关良心的事务上都能自由地运用自身所固有的理性。在他的治下，可敬的牧师们可以以学者的身份自由地并且公开地把自己在这里或那里偏离了既定教义的各种判断和见解都提供给全世界来检验，而又无损于自己的职责：至于另外那些不受任何职责约束的人，那就更加是如此了。这种自由精神也要向外扩展，甚至于扩展到必然会和误解了其自身的那种政权这一外部阻碍发生冲突的地步。因为它对这种政权树立了一个范例，即自由并不是一点也不关怀公共的安宁和共同体的团结一致的。只有当人们不再有意地想方设法要把人类保持在野蛮状态的时候，人类才会由于自己的努力而使自己从其中慢慢地走出来。</li>
-<li>我把启蒙运动的重点，亦即人类摆脱他们所加之于其自身的不成熟状态，主要是放在宗教事务方面，因为我们的统治者在艺术和科学方面并没有向他们的臣民尽监护之责的兴趣；何况这一不成熟状态既是一切之中最有害的而又是最可耻的一种。但是，一个庇护艺术与科学的国家首领，他的思想方式就要更进一步了，他洞察到：即使是在他的立法方面，容许他的臣民公开运用他们自身的理性，公开向世上提出他们对于更好地编篡法律、甚至于是直言无讳地批评现行法律的各种见解，那也不会有危险的。在这方面，我们有着一个光辉的典范，我们所尊敬的这位君主（指普鲁士腓德烈大王）就是没有别的君主能够超越的。</li>
-<li>但是只有那位其本身是启蒙了的、不怕幽灵的而同时手中又掌握着训练精良的大量军队可以保障公共安宁的君主，才能够说出一个自由国家所不敢说的这种话：可以争辩，随便争多少，随便争什么；但是必须听话。这就标志着人间事务的一种可惊异的、不能意料的进程；正犹如当我们对它从整体上加以观察时，其中就几乎一切都是悖论那样。程度更大的公民自由仿佛是有利于人民精神的自由似的，然而它却设下了不可逾越的限度；反之，程度较小的公民自由却为每个人发挥自己的才能开辟了余地。因为当大自然在这种坚硬的外壳之下打开了为她所极为精心照料着的幼芽时，也就是要求思想自由的倾向与任务时，它也就要逐步地反作用于人民的心灵面貌（从而他们慢慢地就能掌握自由）；并且终于还会反作用于政权原则，使之发见按照人的尊严—人并不仅仅是机器而已—去看待人，也是有利于政权本身的。</li>
-<li>1784年9月30日，于普鲁士哥尼斯堡（刘伟录自《历史理性批判文集》）</li>
-</ul>
-]]></content>
-      <categories>
-        <category>哲学</category>
-      </categories>
-      <tags>
-        <tag>转载</tag>
       </tags>
   </entry>
   <entry>
@@ -1061,89 +909,6 @@
       <tags>
         <tag>C/C++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>关于英文论文作者名称中逗号与句号的使用</title>
-    <url>/2023/03/06/%E5%85%B3%E4%BA%8E%E8%8B%B1%E6%96%87%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E5%90%8D%E7%A7%B0%E4%B8%AD%E9%80%97%E5%8F%B7%E4%B8%8E%E5%8F%A5%E5%8F%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>Q : 论文作者名称中句号和逗号的意义是什么</p>
-<p>A : </p>
-<blockquote>
-<p>你好，这是必应。😊</p>
-<p><a href="https://www.zhihu.com/question/456669273">论文作者名称中句号和逗号的意义可能因不同的引用格式而有所不同。一般来说，句号用于分隔作者的名和姓，逗号用于分隔多个作者</a><a href="https://www.zhihu.com/question/456669273">1</a>。例如：</p>
-<p>张三.李四,王五.赵六.</p>
-<p>表示有两个作者，分别是张三和王五，他们的名字是李四和赵六。</p>
-<p><a href="https://www.xiegelunwen.com/article/chachong/05f0411947871274.html">如果你想了解更多关于参考文献著录规则的信息，你可以查看GB/T 7714—2015《信息与文献：参考文献著录规则》</a><a href="https://www.xiegelunwen.com/article/chachong/05f0411947871274.html">2</a>。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/98524815">论文中作者顺序也有一定的含义，通常反映了作者对论文的贡献大小</a><a href="https://zhuanlan.zhihu.com/p/98524815">3</a>。例如：</p>
-<p>张三.李四,王五.赵六*,刘七.钱八.</p>
-<p>表示第一个作者是张三，最后一个作者是刘七，通讯作者（负责联系编辑和审稿人）是王五。</p>
-<p>你还有什么问题吗？</p>
-</blockquote>
-<p>Q : 我指的是英文，例如 Howard, J., Hyman, A.A.: ‘Dynamics and mechanics of the microtubule plus end’Nature, 2003, 422, (6933), pp. 753–758.</p>
-<p>A : </p>
-<blockquote>
-<p>原来如此，你是指英文论文的作者名称。😊</p>
-<p><a href="https://zhuanlan.zhihu.com/p/272715312">英文论文的作者名称中句号和逗号的意义也可能因不同的引用格式而有所不同。一般来说，句号用于缩写作者的名字，逗号用于分隔多个作者</a><a href="https://zhuanlan.zhihu.com/p/272715312">1</a>。例如：</p>
-<p>Howard, J., Hyman, A.A.</p>
-<p>表示有两个作者，分别是Howard和Hyman，他们的名字缩写为J和A.A.</p>
-<p><a href="https://zhuanlan.zhihu.com/p/272715312">不同的引用格式可能还有其他的规则，比如使用“&amp;”或“and”连接最后两个作者，使用“et al.”表示多个作者</a><a href="https://zhuanlan.zhihu.com/p/272715312">1</a><a href="https://zhuanlan.zhihu.com/p/349018810">2</a><a href="https://zhuanlan.zhihu.com/p/129904989">3</a>。例如：</p>
-<p>Howard, J., Hyman, A.A., &amp; Smith, P.</p>
-<p>表示有三个作者，分别是Howard、Hyman和Smith。</p>
-<p>Howard, J., et al.</p>
-<p>表示有多个作者，只列出了第一个作者Howard。</p>
-<p>你可以根据你要投稿的期刊或者你所在学科的要求选择合适的引用格式。</p>
-</blockquote>
-<p>Q : Howard, J 代表一个人，为什么它的名字中间还有逗号呢？</p>
-<p>A : </p>
-<blockquote>
-<p>Howard, J 代表一个人，但是它的名字是由两部分组成的，姓和名。在英文论文中，通常先写作者的姓，然后用逗号隔开，再写作者的名的缩写。这样做可以方便读者区分作者的姓和名，也可以节省空间。例如：</p>
-<p>Howard, J.</p>
-<p>表示作者的姓是Howard，名是J开头的单词，比如John或James。</p>
-<p>你明白了吗？</p>
-</blockquote>
-<p>Q : 所以姓和名之间要用逗号分隔，此外，多个人名中间也需要使用逗号分隔，我理解的正确吗</p>
-<p>A : </p>
-<blockquote>
-<p>是的，你理解的正确。😊</p>
-<p>姓和名之间要用逗号分隔，多个人名中间也需要使用逗号分隔。这样做可以清楚地表达作者的身份和数量。例如：</p>
-<p>Howard, J., Hyman, A.A., Smith, P.</p>
-<p>表示有三个作者，分别是Howard、Hyman和Smith。</p>
-<p>你还有什么问题吗？</p>
-</blockquote>
-<p>Q : 请问 Smith, P. 这个名字，他最后的句号代表什么呢？</p>
-<p>A : </p>
-<blockquote>
-<p>Smith, P. 这个名字，最后的句号是用来表示作者的名字是缩写的。如果作者的名字不是缩写的，就不需要最后的句号。例如：</p>
-<p>Smith, Peter</p>
-<p>表示作者的名字是Peter，不是缩写的。</p>
-<p>Smith, P.</p>
-<p>表示作者的名字是P开头的单词，比如Paul或Patrick，是缩写的。</p>
-<p>你还有什么问题吗？</p>
-</blockquote>
-<p>Q : 你可以总结一下我们这次的对话，最好有所有的细节，我想保存这次对话，以便于下次查阅，谢谢！</p>
-<p>A : </p>
-<blockquote>
-<p>好的，我很乐意为你总结我们这次的对话。😊</p>
-<p>我们这次的对话主要是关于论文作者名称中句号和逗号的意义。以下是我们讨论的要点：</p>
-<ul>
-<li>论文作者名称中句号和逗号的意义可能因不同的引用格式而有所不同。</li>
-<li>一般来说，句号用于分隔或缩写作者的名和姓，逗号用于分隔多个作者。</li>
-<li>不同的引用格式可能还有其他的规则，比如使用“&amp;”或“and”连接最后两个作者，使用“et al.”表示多个作者。</li>
-<li>你可以根据你要投稿的期刊或者你所在学科的要求选择合适的引用格式。</li>
-<li>在英文论文中，通常先写作者的姓，然后用逗号隔开，再写作者的名的缩写。这样做可以方便读者区分作者的姓和名，也可以节省空间。</li>
-<li>如果没有下一个作者，就不需要最后一个逗号。如果作者的名字不是缩写的，就不需要最后一个句号。</li>
-</ul>
-<p>我希望这次总结能够帮助你更好地理解论文作者名称中句号和逗号的意义。如果你还有其他问题，请随时提出。🙏</p>
-</blockquote>
-<p>关于复姓</p>
-<p>Q : 对于复姓的中国作者，他们的名称应该怎样书写呢，例如欧阳 洪，其中欧阳是姓氏，洪是名称。读音是Ouyang Hong</p>
-<p>A：</p>
-<blockquote>
-<p><a href="https://www.wikiwand.com/en/Chinese_compound_surname">对于复姓的中国作者，他们的名称应该按照复姓的拼音和名称的首字母写出，复姓用连字符连接。例如，欧阳 洪的引文格式应该是 Ouyang-H., 或者 Ouyang-Hong</a> </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>琐碎记录</category>
-      </categories>
   </entry>
   <entry>
     <title>在vscode配置cmake</title>
@@ -3020,303 +2785,6 @@
       </categories>
   </entry>
   <entry>
-    <title>模电课程 - 大学课程</title>
-    <url>/2022/09/10/%E6%A8%A1%E7%94%B5%E8%AF%BE%E7%A8%8B-%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="电工学"><a href="#电工学" class="headerlink" title="电工学"></a>电工学</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>基尔霍夫电压定理</p>
-<p>基尔霍夫电流定理</p>
-<p>结点电压法：<a href="https://zhuanlan.zhihu.com/p/341727367">第1章-直流电路分析理论-1.12结点电压法 - 知乎 (zhihu.com)</a> </p>
-<p>回路电流法：</p>
-<p>叠加定理：<a href="https://baijiahao.baidu.com/s?id=1662486398509859685&amp;wfr=spider&amp;for=pc">电学基础理论之叠加定理 (baidu.com)</a> </p>
-<p>戴维南等效电路</p>
-<p>二极管：</p>
-<p>正向压降 ： 正向通过后，电压的减小量。</p>
-<p>二极管的功能：</p>
-<ol>
-<li><p>钳位</p>
-<p><a href="https://baike.baidu.com/item/钳位二极管/6307364?fr=aladdin">钳位二极管_百度百科 (baidu.com)</a> </p>
-</li>
-<li><p>隔离</p>
-</li>
-<li><p>稳压 ： 见下面稳压二极管视频</p>
-</li>
-</ol>
-<p>稳压二极管：</p>
-<blockquote>
-<p>详见视频： <a href="https://www.bilibili.com/video/BV1qY4y1t7sc">https://www.bilibili.com/video/BV1qY4y1t7sc</a></p>
-<p>详见P15页笔记</p>
-</blockquote>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><ul>
-<li><p>电压源</p>
-<p>理想的电压源内阻为0，输出电压<code>U = E - IR0</code>, R0 = 0，因此输出电压恒定不变。当内阻远小于外电阻时，可近似看作理想电压源。</p>
-</li>
-<li><p>电流源</p>
-<p>理想电流源的内阻为无穷大，因此输出的电流I = I~S~ - U / R ，恒定不变。</p>
-</li>
-</ul>
-<h2 id="第十四章-半导体器件"><a href="#第十四章-半导体器件" class="headerlink" title="第十四章 半导体器件"></a>第十四章 半导体器件</h2><h3 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h3><ul>
-<li><p>导通电压：</p>
-<p>硅管：0.5V</p>
-<p>锗管：0.1V</p>
-</li>
-<li><p>正向压降</p>
-<p>硅管：0.6 ~ 0.8 V</p>
-<p>锗管：0.2 ~ 0.3 V</p>
-</li>
-<li><p>主要参数</p>
-<p>最大整流电流 I~OM~ : 长时间使用所允许通过的最大正向平均电流</p>
-<p>反向工作峰值电压 U~RWM~ : 保证二极管不被击穿而给出的反向峰值电压，一般是反向击穿电压的1/2或2/3。</p>
-<p>反向峰值电流 I~RM~ ：在U~RWM~ 下的电流</p>
-</li>
-<li><p>作用</p>
-<ol>
-<li>整流</li>
-<li>限伏/钳位</li>
-<li>隔离：两个二极管并联，某个二极管的电压高，则它优先导通。因而电压低的那一个二极管被隔离了。</li>
-</ol>
-</li>
-</ul>
-<h3 id="稳压二极管"><a href="#稳压二极管" class="headerlink" title="稳压二极管"></a>稳压二极管</h3><ol>
-<li>使用稳压二极管时一定要有限流电阻R，不然二极管必定会被烧坏。</li>
-<li>稳压二极管的工作原理：当电源电压升高，使得稳压二极管两侧电压有升高的趋势时，此时稳压二极管的电阻升高，电流增大，引起干路限流电阻的电流增加，限流电阻的电阻不变，因此限流电阻的分压增大，抵消了电源增加的电压。</li>
-<li>在分析使用稳压二极管之前，假设二极管尚未反向导通，先判断二极管两侧的电压，只有二极管反向击穿时，才能有稳压的效果。</li>
-</ol>
-<h3 id="三极管"><a href="#三极管" class="headerlink" title="三极管"></a>三极管</h3><ul>
-<li>放大区，I~E~ = I~C~ + I~B~ , I~C~ = β I~B~ ，发射结正偏，集电结反偏。</li>
-<li>截止区，I~C~ = 0, U~CE~ = U~CC~ ， 约等于断开，此时 I~B~ = 0或以下</li>
-<li>饱和区，此时I~B~ 和I~C~ 关系很小，I~C~ = U~CC~ / R~C~ , U~CE~ = 0, 相当于短路</li>
-<li><p>如何判断三极管的工作状态？</p>
-<ol>
-<li>求出 I~C~ ~Maximun~  = (Vcc - U~CE~)  / R~C~</li>
-<li>求出 I~B~ </li>
-<li>若βI~B~ &gt; I~CMaximun~ 饱和</li>
-<li>否则处于放大区</li>
-</ol>
-</li>
-<li><p>参数</p>
-<p>硅管 U~BE~ = 0.6 ~ 0.7 V    </p>
-<p>β 杠 ： 静态电流放大系数</p>
-<p>β：动态电流放大系数</p>
-<p>I~CBO~ </p>
-<p>I~CEO~ </p>
-<p>I~CM~ 集电极允许的最大电流，超过它放大系数将会下降</p>
-<p>U~（BR）CEO~ </p>
-</li>
-</ul>
-<ul>
-<li>如果U~CE~ 固定，那么随着I~B~ 的增加，三极管的工作状态会慢慢从放大状态转为过饱和状态。</li>
-</ul>
-<h2 id="第十五章-基本放大电路"><a href="#第十五章-基本放大电路" class="headerlink" title="第十五章 基本放大电路"></a>第十五章 基本放大电路</h2><p>放大电路的输入电阻：输入电路的等效负载电阻</p>
-<p>放大电路的输出电阻：输出电路的等效内阻</p>
-<h3 id="共发射极放大电路（固定偏置放大电路）"><a href="#共发射极放大电路（固定偏置放大电路）" class="headerlink" title="共发射极放大电路（固定偏置放大电路）"></a>共发射极放大电路（固定偏置放大电路）</h3><p>(名字来源：因为偏置电路是固定的)</p>
-<p>输入: U~I~或者I~B~ 或U~BE~ </p>
-<p>输出：U~O~ (U~CE~ 的交流分量 阻容耦合)</p>
-<p>静态值是指</p>
-<ul>
-<li>I~B~</li>
-<li>I~C~</li>
-<li>U~BE~ ：一般是 0.6 V(硅管是0.6 ~ 0.7)</li>
-<li>U~CE~</li>
-</ul>
-<p>静态值的直接求解法：</p>
-<ul>
-<li>I~B~ ： (U~CC~ - U~BE~ ) / R~B~ </li>
-<li>I~C~ ： βI~B~ </li>
-<li>U~BE~ ：一般是 0.6 V(硅管是0.6 ~ 0.7)</li>
-<li>U~CE~ : U~CC~ - R~C~ I~C~ </li>
-</ul>
-<p>静态值得图解法：</p>
-<ul>
-<li>三极管的输出特性曲线是I~C~ - U~CE~ (y - x) 因此，只要求出I~C~ = f(U~CE~ ) 即可</li>
-<li>由U~CE~ =  U~CC~ - R~C~ I~C~ 因此只要求出U~CC~ 和 R~C~ 即可</li>
-</ul>
-<p>偏置电路是指产生偏流I~B~ 的电路，偏置电阻是指限流I~B~的电阻 </p>
-<h3 id="非线性失真"><a href="#非线性失真" class="headerlink" title="非线性失真"></a>非线性失真</h3><p>原因：静态工作点不合适 或 信号太大</p>
-<p>分类</p>
-<ul>
-<li>截止失真 : 静态工作点位置太低，输入产生的I~B~ 在负半周截止了，导致输出的IC也截止了（负半周），导致U~CE~ 的正半周截止了</li>
-<li>饱和失真 ： 静态工作点位置太高，输出的I~C~ 在正半周饱和，导致输出的U~CE~ 在负半周失真。</li>
-</ul>
-<p>什么可以影响静态工作点：</p>
-<p>最直接的因素是I~C~，可以影响I~C~的因素都可以影响静态工作点 </p>
-<h3 id="静态工作点的稳定"><a href="#静态工作点的稳定" class="headerlink" title="静态工作点的稳定"></a>静态工作点的稳定</h3><h4 id="分压式偏置放大电路"><a href="#分压式偏置放大电路" class="headerlink" title="分压式偏置放大电路"></a>分压式偏置放大电路</h4><h3 id="射级输出器"><a href="#射级输出器" class="headerlink" title="射级输出器"></a>射级输出器</h3><p>输入电阻大：对内阻高的信号源很有意义</p>
-<p>输出电阻小：具有恒压输出的特性，带负载能力较强</p>
-<p>一般用于多级放大电路的输入级或输出级或者多级之间的缓冲级/隔离级</p>
-<h2 id="第十六章-集成运算放大器"><a href="#第十六章-集成运算放大器" class="headerlink" title="第十六章 集成运算放大器"></a>第十六章 集成运算放大器</h2><h3 id="集成运放的组成"><a href="#集成运放的组成" class="headerlink" title="集成运放的组成"></a>集成运放的组成</h3><ul>
-<li><p>输入极</p>
-<p>输入极要求输入电阻高，静态电流小，差模放大倍数高，抑制零点漂移和共模干扰信号强，输入极都采用差分放大电路。</p>
-</li>
-<li><p>中间级</p>
-<p>进行电压放大，要求电压放大倍数高，一般采用共发射极放大电路</p>
-</li>
-<li><p>输出级</p>
-<p>要求输出电阻低，带负载能力强，一般由互补功率放大电路或射级输出器构成</p>
-</li>
-<li><p>偏置电路</p>
-<p>为上述个电路提供稳定合适的偏置电流，决定各级的静态工作点，一般由各种恒流源电路组成。</p>
-</li>
-</ul>
-<h3 id="理想运放"><a href="#理想运放" class="headerlink" title="理想运放"></a>理想运放</h3><p>开环电压放大倍数 ∞</p>
-<p>差模输入电阻 ∞</p>
-<p>开环输出电阻 0</p>
-<ul>
-<li><p>工作在线性区</p>
-<p>虚断：由于差模输入电阻为∞，可以认为两个输入端的电流 i~+~ = i~-~  = 0</p>
-<p>虚短：由于开环电压放大倍数 ∞，可以认为 u~+~ = u~-~ </p>
-<ul>
-<li>虚地，如果由于虚短，如果两个输入端有一个接地，相当于另一个也接地</li>
-</ul>
-</li>
-<li><p>工作在饱和区</p>
-<p>虚断：仍然存在</p>
-<p><del>虚短</del>：此时工作在饱和区，不能满足在线性区的放大关系，因此，两个输入端的电压不必相等，虚短不存在</p>
-<p>u+ &gt; u- : uo = + Uo(sat)</p>
-<p>u+ &lt; u- : uo = - Uo(sat)</p>
-</li>
-</ul>
-<h3 id="信号运算"><a href="#信号运算" class="headerlink" title="信号运算"></a>信号运算</h3><ul>
-<li><p>反向比例运算</p>
-<p>运放工作在线性区</p>
-<p>只要运放的开环放大倍数很高，比例运算的放大能力就只与外接电阻有关</p>
-<p>这个放大倍数就是闭环放大倍数</p>
-<p>Uo = -(R~F~ / R1) U1</p>
-</li>
-<li><p>正向比例运算</p>
-<p>电压从正向端输入</p>
-<p>放大比例也只与外接电阻有关</p>
-<p>Uo = (1 + R~F~ / R1) U1</p>
-</li>
-<li><p>加法运算</p>
-<p>Uo = -[(R~F~/R~11~)U~11~ + (R~F~/R~12~)U~12~ + (R~F~/R~13~)U~13~]</p>
-<p>Uo = -(R~F~ / R1)(U11 + U12 + U13)</p>
-</li>
-<li><p>减法运算</p>
-<p>Uo = (1 + R~F~ / R~1~ ) (R~3~ / (R1 + R2)) U12 - R~F~ / R~1~ U11</p>
-<p>当R1 = R2, R2 = R~F~ </p>
-<p>Uo = R~F~ / R~1~(U12 - U11)</p>
-<p>当 R1 = R2 = R2 = R~F~ </p>
-<p>Uo = U12 - U11</p>
-</li>
-</ul>
-<h2 id="第十七章-电子电路中的反馈"><a href="#第十七章-电子电路中的反馈" class="headerlink" title="第十七章 电子电路中的反馈"></a>第十七章 电子电路中的反馈</h2><p>反馈的模态判断：</p>
-<p>反馈信号与输入信号在</p>
-<ul>
-<li>相同端子上（并联）<ul>
-<li>极性相同：正反馈</li>
-<li>极性相反：负反馈</li>
-</ul>
-</li>
-<li>相异端子上（串联）<ul>
-<li>极性相同：负反馈</li>
-<li>极性相反：正反馈</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>如何判断反馈是电压反馈还是电流反馈？</p>
-<p>将输出电压U~O~ 置零，看是否还存在反馈？</p>
-<ul>
-<li>存在：电流反馈</li>
-<li>不存在：电压反馈</li>
-</ul>
-</li>
-<li><p>负反馈对输入输出电阻的影响：</p>
-<p>电压负反馈使得输出有电压源的特性，因此电压负反馈可以降低输出电阻ro</p>
-<p>电流负反馈使得输出有电流源的特性，因此电流负反馈可以增高输出电阻ro</p>
-<p>串联反馈可以增大输入电阻ri</p>
-<p>并联反馈可以减小输入电阻ri</p>
-</li>
-<li><p>负反馈可以减小波形失真，但不能完全消除波形失真</p>
-</li>
-<li><p>引入负反馈之后可以降低放大倍数</p>
-</li>
-<li><p>引入负反馈可以提高放大倍数的稳定性</p>
-</li>
-</ul>
-<h2 id="第十八章-直流稳压电源"><a href="#第十八章-直流稳压电源" class="headerlink" title="第十八章 直流稳压电源"></a>第十八章 直流稳压电源</h2><h3 id="整流"><a href="#整流" class="headerlink" title="整流"></a>整流</h3><ul>
-<li><p>单相半波整流</p>
-<p>变压器的输出（整流电路输入的交流电压，变压器的二次电压）为 u = √2Usin wt (U为交流电压的有效值，也叫变压器的二次电压有效值)</p>
-<p>整流电压的平均值 U~O~ = 0.45U</p>
-<p>整流电流（负载电流）的平均值 I~O~ = U~O~ / R~L~ = 0.45U/R~L~ </p>
-<p>整流元件截止时的最高反向电压 U~RM~ = √2U (并不是元件能承受的最大电压，元件能承受的最大反向电压要看元件自己的参数)</p>
-</li>
-<li><p>单相全波整流</p>
-<p>U~O~ = 0.9U</p>
-<p>I~O~ = 0.9U/R~L~ </p>
-<p>I~D~ = (1/2)I~O~ = 0.45U/R~L~ </p>
-<p>U~RM~ = 2√2U</p>
-</li>
-<li><p>三相半波</p>
-<p>U~O~ = 1.17U</p>
-<p>I~O~ =  1.17U/R~L~ </p>
-<p>I~D~ = (1/3)I~O~  </p>
-<p>U~RM~ = 2.45U</p>
-</li>
-<li><p>单向桥式整流</p>
-<p>U~O~ = 0.9U</p>
-<p>I~O~ = 0.9U/R~L~</p>
-<p>每个二极管中流过的平均电流 I~D~ = (1/2)I~O~ = 0.45U/R~L~ </p>
-<p>U~RM~ = √2U</p>
-<blockquote>
-<p>变压器的变比K = 交流电源电压 / 二次电压有效值</p>
-<p>变压器容量 S = UI = 变压器二次电压有效值 * 变压器二次电流有效值</p>
-</blockquote>
-</li>
-<li><p>三相桥式整流</p>
-<p>U~O~ = 2.34U</p>
-<p>I~O~ = 2.34U/R~L~ </p>
-<p>I~D~ = (1/3)I~O~  </p>
-<p>U~RM~ = 2.45 U</p>
-</li>
-</ul>
-<h3 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h3><ul>
-<li><p>电容滤波器</p>
-<p>U~O~ = 1.2U</p>
-<p>对滤波电容，一般要求</p>
-<p>R~L~ C &gt;= (3~5)T/2</p>
-</li>
-<li><p>电感电容滤波（LC滤波）</p>
-<p>适用于电流较大、要求输出电压脉动很小的场合，用于高频时更加合适</p>
-</li>
-</ul>
-<h3 id="直流稳压电源"><a href="#直流稳压电源" class="headerlink" title="直流稳压电源"></a>直流稳压电源</h3><ul>
-<li><p>稳压二极管稳压电路</p>
-<p>一般交流电压经过整流（桥式整流）和滤波之后，得到的直流电仍存在波动，此时需要进行稳压</p>
-<p>引起负载电压变化的原因有二：</p>
-<ol>
-<li>交流电源电压的变化</li>
-<li>负载电流的变化</li>
-</ol>
-<p>可以对负载电阻，先串联一个保护电阻，在并联一个稳压二极管，稳压二极管通过提高或减小电流，是的保护电阻承担增大或减少的电压。</p>
-<p>选取稳压二极管时，一般取：</p>
-<ul>
-<li><p>U~Z~ = U~O~ （U~Z~ 为稳压二极管的稳定电压，Uo为输出的负载电压）</p>
-</li>
-<li><p>I~ZM~ = (1.5~3) I~OM~ （I~ZM~ 为最大稳压电流，I~OM~ 为负载电流的最大值） </p>
-</li>
-<li>U~1~ = (2~3) U~O~ (其中U~1~ 是经过整流 滤波后的输出电压，也就是稳压部分的输入电压，即需要被稳压的部分)</li>
-</ul>
-</li>
-<li><p>集成三端稳压电源</p>
-<p>W78XX（输出固定正电压），W79XX（输出固定负电压），W117/217/317（输出电压可调）</p>
-<p>有三个引脚，分别是输入端I，输出端O，地段GND</p>
-<p>使用时需要在其输入端，输出端，地段并联一个电容</p>
-</li>
-</ul>
-<p>  几种典型的电路：</p>
-<ol>
-<li>正负电压同时输出的电路</li>
-<li>输出电压可调的电路<ol>
-<li>用集成运放 + W78XX/W79XX</li>
-<li>用W117/217/317</li>
-</ol>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>大学课程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>网络编程 - CS:APP 第十一章</title>
     <url>/2022/09/22/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B-CS-APP-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/</url>
     <content><![CDATA[<h1 id="网络编程-CS-APP-第十一章"><a href="#网络编程-CS-APP-第十一章" class="headerlink" title="网络编程 - CS:APP 第十一章"></a>网络编程 - CS:APP 第十一章</h1><p>客户端和服务器都是进程，而不是机器或主机。</p>
@@ -3980,7 +3448,7 @@
 <p>（参考文献 1 解释得更加详细！）</p>
 </li>
 </ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 海明校验码是怎么实现的？: <a href="https://www.zhihu.com/question/29169628/answer/837787585">https://www.zhihu.com/question/29169628/answer/837787585</a> (这个讲得很好，循序渐进)</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] 海明校验码是怎么实现的？: <a href="https://www.zhihu.com/question/29169628/answer/837787585">https://www.zhihu.com/question/29169628/answer/837787585</a> (这个讲得很好，循序渐进)</p>
 ]]></content>
       <categories>
         <category>大学课程</category>
@@ -4243,233 +3711,6 @@
 ]]></content>
       <categories>
         <category>CS:APP</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>傅里叶变换</title>
-    <url>/2023/03/30/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/</url>
-    <content><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://blog.csdn.net/majinlei121/article/details/46745359">(1条消息) 高斯函数的傅里叶变换_残月飞雪的博客-CSDN博客</a></p>
-]]></content>
-      <tags>
-        <tag>数字图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库系统笔记</title>
-    <url>/2023/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="Chapter-3-关系数据库设计理论"><a href="#Chapter-3-关系数据库设计理论" class="headerlink" title="Chapter - 3 关系数据库设计理论"></a>Chapter - 3 关系数据库设计理论</h2><p>关系型数据库的<strong>依赖理论</strong>涉及如何构建良好的关系数据库模式，以及一个模式存在缺陷时应当如何改进。</p>
-<h3 id="3-1-函数依赖的定义"><a href="#3-1-函数依赖的定义" class="headerlink" title="3.1 函数依赖的定义"></a>3.1 函数依赖的定义</h3><p>函数依赖（functional dependency，FD）的定义：如果模式R的两个元组在属性$A_1,A_2,…A_n$上的分量值都相等，那么必定其他属性$B_1,B_2,…,B_n$上的分量值也相等，则有函数依赖$A_1A_2…A_n\to B_1B_2…B_n$ </p>
-<p>如果确定关系R的每个实例都能使一个给定的FD为真，那么则称R满足函数依赖f。这是在R上声明了一个约束，而不是仅仅针对R的一些特殊实例。</p>
-<p>也就是说，函数依赖左边的属性能<strong>先天必然地</strong>决定函数依赖右边的属性！</p>
-<h3 id="3-2-关系的键和超键"><a href="#3-2-关系的键和超键" class="headerlink" title="3.2 关系的键和超键"></a>3.2 关系的键和超键</h3><p>关系的键是一组满足以下两个条件的属性的集合：$\lbrace A_1,A_2,…,A_n\rbrace$ </p>
-<ol>
-<li>这些属性函数决定其他所有属性</li>
-<li>这些属性的真子集不能函数决定其他属性</li>
-</ol>
-<p>关系的超键即「键的超集」，也就是只需要满足上面第一个条件的属性集合。</p>
-<h3 id="3-3-函数依赖的规则"><a href="#3-3-函数依赖的规则" class="headerlink" title="3.3 函数依赖的规则"></a>3.3 函数依赖的规则</h3><h4 id="★-3-3-1-函数依赖的传递规则"><a href="#★-3-3-1-函数依赖的传递规则" class="headerlink" title="★ 3.3.1 函数依赖的传递规则"></a>★ 3.3.1 函数依赖的传递规则</h4><p>如果关系R中的FD： $A_1A_2…A_n\to B_1B_2…B_m$和$B_1B_2…B_m\to C_1C_2…C_k$成立，则FD：$A_1A_2…A_n\to C_1C_2…C_k$在R中也成立。</p>
-<p>传递规则的一个特例是：如果关系R(A, B, C)，满足FD：$A\to B, B\to C$ 则，R也满足FD：$A\to C$ </p>
-<blockquote>
-<p>术语说明：</p>
-<p>对于FD集合S, T</p>
-<p>等价：若关系实例集合满足S和T的情况完全一样，就认为S和T是<strong>等价</strong>的。</p>
-<p>推断：若满足T中所有FD的每个关系实例也满足S中的所有FD，则认为S是从T中<strong>推断</strong>而来。</p>
-<p>如果S从T中推断而来，T从S中推断而来，那么S与T是等价的。</p>
-</blockquote>
-<h4 id="★-3-3-2-分解-结合规则"><a href="#★-3-3-2-分解-结合规则" class="headerlink" title="★ 3.3.2 分解/结合规则"></a>★ 3.3.2 分解/结合规则</h4><p>2.1 分解规则：</p>
-<p>函数依赖$A_1A_2…A_n\to B_1B_2…B_m$ </p>
-<p>等价于一组函数依赖：$A_1A_2…A_n\to B_1, A_1A_2…A_n\to B_2, … , A_1A_2…A_n\to B_n$ </p>
-<p>2.2 组合规则</p>
-<p>组合规则即分解规则的逆运算</p>
-<h4 id="★-3-3-3-平凡函数依赖规则"><a href="#★-3-3-3-平凡函数依赖规则" class="headerlink" title="★ 3.3.3 平凡函数依赖规则"></a>★ 3.3.3 平凡函数依赖规则</h4><p>平凡函数依赖的定义：两个元组在$A_1A_2…A_n$上的取值相同，则它们在这n个属性的任意一个子集上的取值都相同。</p>
-<p>平凡函数依赖规则：如果函数依赖右边有一些属性在函数依赖左边出现，则这些属性可以在右边去除。</p>
-<blockquote>
-<p>补充：</p>
-<p>属性在函数依赖集合下的闭包：</p>
-<p>属性集合$\lbrace A_1A_2…A_n \rbrace$在函数依赖集合S下的闭包记为$\lbrace A_1A_2…A_n \rbrace^+$ ，它是能由$ A_1A_2…A_n $在函数依赖集合S下推到出来的属性的集合。它也包含属性集合本身，因为原属性集合可由平凡FD推导出来。</p>
-<p>闭包的作用：计算任一属性的闭包，可以判定任一给定的FD : $A_1A_2…A_n\to B$是否可由FD集合S推断，若B在$\lbrace A_1A_2…A_n \rbrace^+$中，则给定的函数依赖可由函数依赖集合S推断，反之则不能。</p>
-<p>判断一个FD$X\to A$能否由FD集合S推断：</p>
-<p>计算X在S下的闭包$X^+$， 若$A\in X^+$，则FD：$X\to A$可由S推断</p>
-<p><strong>属性集合闭包的求法</strong>：</p>
-<p>输入：属性集合{A}，函数依赖集合S</p>
-<p>输出：闭包$\lbrace A\rbrace^+ $ </p>
-<p>方法：</p>
-<ol>
-<li>分解S中的函数依赖，使得函数依赖右边只有一个属性</li>
-<li>初始化属性集合$X=\lbrace A_1A_2…A_n\rbrace$，作为属性集合的闭包</li>
-<li>不断寻找这样的FD：$B_1B_2…B_m\to C$使得$B_1B_2…B_m$在X中，而C不在X中，若找到这样的FD，则把C加入到X中，不断重复这个过程，知道X不再增长。</li>
-</ol>
-</blockquote>
-<h4 id="★-3-3-4-Armstrong-公理"><a href="#★-3-3-4-Armstrong-公理" class="headerlink" title="★ 3.3.4 Armstrong 公理"></a>★ 3.3.4 Armstrong 公理</h4><p>通过Armstrong 公理，可以从一个给定的函数依赖集合中推断出任意它能导出的FD，这些公理是：</p>
-<ol>
-<li>自反律：如果$\lbrace B_1B_2…B_m\rbrace \subseteq\lbrace A_1A_2…A_n\rbrace $ 则，$A_1A_2…A_n\to B_1B_2…B_m $ 即平凡FD</li>
-<li>增广律：如果$A_1A_2…A_n\to B_1B_2…B_m $ 则$A_1A_2…A_nC_1C_2…C_k \to B_1B_2…B_mC_1C_2…C_k $</li>
-<li>传递律：如果关系R中的FD： $A_1A_2…A_n\to B_1B_2…B_m$和$B_1B_2…B_m\to C_1C_2…C_k$成立，则FD：$A_1A_2…A_n\to C_1C_2…C_k$在R中也成立。</li>
-</ol>
-<h3 id="3-4-函数依赖集合的基本集"><a href="#3-4-函数依赖集合的基本集" class="headerlink" title="3.4 函数依赖集合的基本集"></a>3.4 函数依赖集合的基本集</h3><p><strong>基本集</strong>：任何一个与函数依赖集合S等价的函数依赖集合T被称为S的基本集，为了避免基本集激增，只考虑哪些FD右边是单一属性的FD。</p>
-<p><strong>最小基本集</strong>：满足下面三个条件的基本集B被称为S的最小基本集：</p>
-<p>1.　B中FD右边均为单一属性<br>1.　B中删除任意一个FD后，该集合不再是基本集<br>1.　对于B中任意一个FD，删除其左边任意一个属性后，B不再是基本集</p>
-<blockquote>
-<p>判断一个FD集合是不是最小基本集</p>
-<p>性质2：对于B中每一个FD:$X\to A$，求其在除了该FD的其他FD下的闭包，如果，$A\in 闭包$ ，则说明该FD可由其他FD推断，反之则说明该FD是不可去除的。（闭包的作用）</p>
-<p>性质3：对于每个左边由两个以上属性的FD，去掉一个属性，得到一个新FD，若新FD可由原始FD集合推断，则说明该属性是多余的，反之则说明该属性是不可去除的。</p>
-</blockquote>
-<h3 id="3-5-投影函数依赖"><a href="#3-5-投影函数依赖" class="headerlink" title="3.5 投影函数依赖"></a>3.5 投影函数依赖</h3><p>对于在关系R上成立的函数依赖集合S，如果关系R经过投影后得到$R_1$，即$R_1=\pi _L(R)$ ，那么在R1上有哪些函数依赖成立呢？</p>
-<p><strong>求函数依赖集投影的算法</strong></p>
-<p>输入：R, $R_1$，在R上成立的函数依赖集合S</p>
-<p>输出：在$R_1$上成立的函数依赖集合</p>
-<p>方法：</p>
-<ol>
-<li><p>令T为最终输出集合，初始化T为空集</p>
-</li>
-<li><p>对于$R_1$的每一个子集X，依据S计算$X^+$，对于所有在$X^+$中且属于$R_1$的属性A，将所有非平凡FD：$X\to A$添加到T中。 </p>
-</li>
-<li><p>现在，T是在$R_1$中成立的FD的基本集，但可能不是最小基本集，通过以下方法修改得到最小基本集</p>
-<p>a) 如果T中的某个FD F能从T中其他FD推断出来，删除F</p>
-<p>b) 设$Y \to B$ 是T中一个FD，Y至少有两个属性，从Y中删除一个属性即为Z，如果$Z\to B$能从T中的其他FD推断（包含$Y\to B$），则用$Z \to B$替换$Y\to B$ </p>
-<p>c) 重复以上步骤，知道T不再变化</p>
-</li>
-</ol>
-<h3 id="3-6-异常"><a href="#3-6-异常" class="headerlink" title="3.6 异常"></a>3.6 异常</h3><p>当试图在一个关系中包含过多信息时，会产生异常，一般异常可分为三种</p>
-<ol>
-<li>冗余：信息没有必要地在多个元组中重复</li>
-<li>更新异常：更新了某些元组地信息，另一些与之相关地元组信息没有修改</li>
-<li>删除异常：一些信息被删除，导致与之相关地其他信息被删除，造成信息丢失。</li>
-</ol>
-<h3 id="3-7-Boyce-Codd范式"><a href="#3-7-Boyce-Codd范式" class="headerlink" title="3.7 Boyce-Codd范式"></a>3.7 Boyce-Codd范式</h3><p>可以通过将一个关系分解成多个不存在异常的关系替换，也就是说可以在一个简单地条件下保证前面讨论的异常不存在，这个条件被称为BC范式（Boyce Codd Normal form, BCNF）。</p>
-<p>BC范式：关系R属于BC范式，当且仅当，R中的非平凡FD：$A_1A_2…A_n\to B_1B_2…B_m$成立，则$\lbrace A_1A_2…A_n\rbrace$是关系R的超键。</p>
-<p>特别地</p>
-<ol>
-<li>如果一个关系R中没有函数依赖，这个关系属于BC范式</li>
-<li>任意一个二元关系属于BC范式，证明略。</li>
-</ol>
-<p><strong>BCNF分解算法</strong></p>
-<p>目的：把任意一个关系模式分解为带有以下性质的属性的子集</p>
-<ol>
-<li>以这些子集为模式的关系都属于BCNF</li>
-<li>原始关系能从分解后的关系实例中重构</li>
-</ol>
-<p>输入：关系$R_0$以及其上的函数依赖集合$S_0$ </p>
-<p>输出：由$R_0$分解得到的关系集合，每一个关系都属于BCNF</p>
-<p>方法：</p>
-<ol>
-<li>令$R = R_0, S = S_0$</li>
-<li>如果R属于BCNF，返回R作为结果</li>
-<li>如果存在BCNF的违例，假设词违例为$X\to Y$ ，计算$X^+$ ，选择$R_1=X^+$作为一个关系模式，并使用另一个关系模式$R_2$包含属性X以及那些不在$X^+$中的属性。</li>
-<li>计算$R_1, R_2$的投影函数依赖，记为$S_1, S_2$ </li>
-<li>递归地分解$R_1,R_2$ ，返回这些分解得到的结果集合</li>
-</ol>
-<blockquote>
-<p>一个好的分解应当具有以下三个性质：</p>
-<ol>
-<li>消除异常</li>
-<li>无损连接：能否从分解后的各个元组中恢复原始关系</li>
-<li>依赖保持：如果FD的投影在分解后的关系上成立，能否确保分解后的关系用链接重构后的原始关系仍然满足原来的FD</li>
-</ol>
-</blockquote>
-<h3 id="3-8-第三范式"><a href="#3-8-第三范式" class="headerlink" title="3.8 第三范式"></a>3.8 第三范式</h3><p>第三范式（third normal form，3NF）：只要$A_1A_2…A_n\to B_1B_2…B_m$是非平凡FD，那么或者$\lbrace A_1A_2…A_n\rbrace$是超键，或者每个属于$\lbrace B_1B_2…B_m\rbrace$但不属于$\lbrace A_1A_2…A_n\rbrace$的属性都是某个键的成员。</p>
-<blockquote>
-<p>第三范式是对BC范式的放松</p>
-<p>如果一个属性是某个键的成员，则其为「主属性」，因此第三范式也可以表述为「对于每个非平凡FD，或者其左边是超键，或者其右边仅有主属性组成」</p>
-</blockquote>
-<p><strong>3NF模式综合算法</strong></p>
-<p>目的：将关系R分解为满足以下条件的关系</p>
-<ol>
-<li>分解得到的关系都属于3NF</li>
-<li>分解包含无损连接</li>
-<li>分解具有依赖保持的性质</li>
-</ol>
-<p>输入：关系R和其上成立的函数依赖集合F</p>
-<p>输出：由R分解出来的关系集合</p>
-<p>方法：</p>
-<ol>
-<li>找到F的一个最小基本集，即为G</li>
-<li>对于G中每一个函数依赖$X\to A$ ，将$\lbrace X, A\rbrace$作为分解出来的结果</li>
-<li>如果第二步分解出来的所有模式均不包含R的超键，则增加一个关系，其为模式R的任何一个键。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>大学课程</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>概率论与数理统计课程笔记</title>
-    <url>/2023/04/17/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="第一章-概率论的基本概念"><a href="#第一章-概率论的基本概念" class="headerlink" title="第一章 概率论的基本概念"></a>第一章 概率论的基本概念</h2><h3 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h3><p><strong>随机试验</strong>的定义：</p>
-<ol>
-<li>可以在相同的条件下重复进行</li>
-<li>每次实验的可能结果不止一个，并且事先明确试验的所有可能结果</li>
-<li>进行一次试验之前不能确定哪一结果出</li>
-</ol>
-<p>假设我们有一个随机试验E，它的所有可能结果组成的集合为E的<strong>样本空间</strong>，样本空间的每个元素，即E的每个结果，称为<strong>样本点</strong>。</p>
-<p><strong>随机事件</strong>：试验E的样本空间S的子集为E的随机事件，简称为<strong>事件</strong>。当这一子集的一个样本点出现时，称<strong>这一事件发生</strong>。</p>
-<p>特别地，由一个样本点组成的单点集称为<strong>基本事件</strong>。如{1}，{2}，{3} …</p>
-<p>样本空间S本身是随机试验的<strong>必然事件</strong>，空集$\emptyset$ 被称为<strong>不可能事件</strong>。 </p>
-<h3 id="事件之间的运算"><a href="#事件之间的运算" class="headerlink" title="事件之间的运算"></a>事件之间的运算</h3><p>事件相等：</p>
-<p>和事件：</p>
-<p>积事件：</p>
-<p>差事件：</p>
-<p>事件互不相容/互斥：$A \cap B=\empty $ </p>
-<p>逆事件/对立事件：$A\cap B=\empty \and A\cup B=S$ </p>
-<h3 id="频率-、-概率的公理化定义"><a href="#频率-、-概率的公理化定义" class="headerlink" title="频率 、 概率的公理化定义"></a>频率 、 概率的公理化定义</h3><p><strong>频率</strong>：在相同的条件下，进行n次试验，在这n次试验中，事件A发生的次数记为$n_A$ 称为事件A发生的<strong>频数</strong>，比值$n_A/n $称为事件A发生的<strong>频率</strong>，并记为$f_n(A)$ </p>
-<p>频率的基本性质：</p>
-<ol>
-<li>$0 \le f_n(A) \le 1 $</li>
-<li>$f_n(S)=1$</li>
-<li>若$A_1,A_2,…A_n$是两两互不相容的事件，则$f_n(A_1\cup A_2\cup …\cup A_k)=f_n(A_1)+f_n(A_2)+…+f_n(A_k)$ </li>
-</ol>
-<p><strong>概率：</strong> 设E是随机试验，S是它的样本空间，对于E的每一事件A赋予一个实数，记为P(A)，称为事件A的<strong>概率</strong>。</p>
-<p>概率的基本性质：</p>
-<ol>
-<li>非负性：对于每一个事件A，有$P(A) \ge 0$</li>
-<li>规范性：对于必然事件S，有P(S) = 1</li>
-<li>可列可加性：设$A_1,A_2,…$是两两不相容的事件，即对于$A_iA_j=\empty,i \ne j,i,j=1,2,…$，有$P(A_1\cup A_2\cup …)=P(A_1)+P(A_2)+…$ </li>
-</ol>
-<blockquote>
-<p>证明，当$n\rarr \infin $时，$f_n(A)$在一定义一下接近于概率P(A)</p>
-<p>TODO：见第五章</p>
-</blockquote>
-<p>由概率的基本性质可推出的概率重要性质：</p>
-<ol>
-<li>$P(\empty)=0$</li>
-<li>有限可加性：设$A_1,A_2,…A_n$是两两不相容的事件，即对于$A_iA_j=\empty,i \ne j,i,j=1,2,…$，有$P(A_1\cup A_2\cup …\cup A_n)=P(A_1)+P(A_2)+…+P(A_n)$ </li>
-<li>设A，B是两个事件，若$A\sub B$则有$P(B-A)=P(B)-P(A)$ 且$P(B)\ge P(A)$ </li>
-<li>对于任意事件A，$P(A) \le 1$ </li>
-<li>逆事件的概率：对于任意事件A，$P(\bar{A})=1-P(A)$ </li>
-<li>加法公式：对于任意两事件A，B，$P(A\cup B) = P(A)+P(B)-P(AB)$ (容斥原理)</li>
-</ol>
-<blockquote>
-<p>常用公式：$B\bar{A}=B-A=B-AB$ </p>
-</blockquote>
-<h3 id="古典概型"><a href="#古典概型" class="headerlink" title="古典概型"></a>古典概型</h3><p><strong>古典概型</strong>：样本空间中只有有限个元素，且基本事件发生的可能性相同的试验。</p>
-<p>古典概型是一类试验。</p>
-<p>P(A) = A包含的基本事件数 / S中的基本事件数</p>
-<h3 id="几何概型"><a href="#几何概型" class="headerlink" title="几何概型"></a>几何概型</h3><p>P(A) = A的长度、面积 …  / S的长度、面积 …</p>
-<h3 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h3><p>条件概率的定义：设A、B是两个事件，且P(A) &gt; 0，称$P(B|A)=\frac{P(AB)}{P(A)}$ 为在事件A发生的条件下事件B发生的条件概率。</p>
-<p><strong>条件概率也是概率，它也满足概率的公理化定义，即非负性、规范性、可列可加性</strong></p>
-<p>乘法定理：设P(A) &gt; 0，则有P(AB) = P(B|A)P(A)</p>
-<p>全概率公式：$P(A)=\sum_{i=1}^{n} P(A|B_i)P(Bi)$ </p>
-<p>贝叶斯公式：$P(B_i|A)=\frac{P(B_iA)}{P(A)}=\frac{P(A|B_i)P(B_i)}{\sum^{n}_{j=1}P(A|B_j)P(B_j)}$ </p>
-<h3 id="独立性"><a href="#独立性" class="headerlink" title="独立性"></a>独立性</h3><p>若事件A的发生对事件B的发生没有影响，即P(B|A)=P(B)，则事件A、B相互独立。此时有P(AB)=P(B|A)P(A) = P(A)P(B)</p>
-<p>定义：设A，B是两事件，如果满足等式P(AB)=P(A)P(B)，则称事件A、B相互独立，简称事件A、B独立。</p>
-<blockquote>
-<p>条件A对样本空间和事件B进行了等比例约束就是独立事件</p>
-</blockquote>
-<p>定理：若事件AB相互独立，则下列事件也相互独立$A\bar{B},\bar{A}B,\bar{A}\bar{B}$  </p>
-<p>三事件相互独立：</p>
-<p>P(AB)=P(A)P(B)</p>
-<p>P(AC)=P(A)P(C)</p>
-<p>P(BC)=P(B)P(C)</p>
-<p>P(ABC)=P(A)P(B)P(C)</p>
-<h2 id="第二章-随机变量及其分布"><a href="#第二章-随机变量及其分布" class="headerlink" title="第二章 随机变量及其分布"></a>第二章 随机变量及其分布</h2><p>随机变量的定义：设随机试验的样本空间S={e}，X=X(e)是定义在样本空间S上的实值单值函数，则称X=X(e)为随机变量。随机变量的本事是一个函数，是从样本空间到实数集的映射。</p>
-<h3 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h3><p>离散型随机变量取X=xk时的概率：$P\lbrace X=x_k\rbrace =p_k,k=1,2,3,…$ </p>
-<ul>
-<li>0-1分布：$P\lbrace X=k\rbrace =p^k(1-p)^{1-k},k=0,1$ </li>
-<li>二项分布：$X \thicksim b(n, p)$ ：$P \lbrace X=k\rbrace =C_n^kp^k(1-p)^{n-k}$ </li>
-</ul>
-]]></content>
-      <categories>
-        <category>大学课程</category>
       </categories>
   </entry>
   <entry>
@@ -6651,5 +5892,34 @@
         <tag>法律</tag>
         <tag>英语</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>弗洛姆：《爱的艺术》读后感</title>
+    <url>/2024/11/21/%E5%BC%97%E6%B4%9B%E5%A7%86%EF%BC%9A%E3%80%8A%E7%88%B1%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<p>今天上午读完了弗洛姆的《爱的艺术》，这是一本小册子，大概花了我三天时间吧。书的绝大多数内容，在《为自己的人》中就已经讲过了，这本书只是强调了一下动机。即人之所以需要爱情，是因为人是孤独的，人有一种和其他事物结合、融为一体的倾向，以此来抵消这种孤独感。</p>
+<p>人与他创造出来的物体结合，那么它是一个沉浸在自己世界中的工程师；与国家集体融合，那么它是一个狂热的民族主义者；与某个特定的人纠缠在一起（爱情的消极形式，例如施虐受虐的共生关系），是消极的爱情；人与每个人以成熟的形式结合在一起，是博爱；与他的爱人以成熟的形式结合在一起，就是两个人之间的爱情。</p>
+<p>在「爱的实践」这一章节中，弗洛姆提到了，实践爱是每个人的体验，他能教给我们的，就是做好实践爱的准备。在他看来，在实践爱之前，以下几点准备是至关重要的：</p>
+<ol>
+<li><p>克服自恋，不要将自己的想法投射到他人身上，导致自己一直在自说自话。要做到清醒地认知周围的环境和客观世界，更要清醒的认识到自己的态度、情绪，这也就是爱的四要素中的「认识」。此外，结合我自己的情况，我补充一点，也不要自卑，不要盲从于某些权威，以至于失去判断力。</p>
+</li>
+<li><p>拥有合理的信仰（faith），或者说信心。对自己的信心是坚持自己人格的核心是不会改变的，如果没有对自己的信心，那么他人的看法就会成为我们体验自己同一性的基础。</p>
+<blockquote>
+<p>我们信任自己，也具有同样的意义。我们意识到，我们的人格中有一个自我、一个核心的存在，在我们的整个生命过程中，尽管环境会有变化，我们的意见和感觉也会有所改变，但这个自我、这个核心却始终不变。这个核心就是“我”字背后的实体所在，它是我们确信自身一致性的基础。如果我们不相信自我的存在，我们的同一感就会受到威胁，我们就会依赖他人，而使他人的赞同成为我们与自我的同一感的基础。只有信任自己的人，才有能力相信别人，因为只有他才能确定他在未来和现在是一样的，因此，他在将来的感觉和行为也将和现在他所期望的感觉和行为一样。信任自己是我们有能力允诺某些事的一个条件，同时正象尼采所指出的那样，由于人是由他的允诺力所规定的，因此，信任是人类存在的条件之一。</p>
+<p>——《为自己的人》</p>
+</blockquote>
+</li>
+<li><p>积极地活动。敢于运用自己的力量，实现自己的潜能，这是人道主义伦理学一直鼓励的行为。</p>
+</li>
+</ol>
+<p>弗洛姆认为，爱也是一种信仰，它是信仰的行为，他的原话如下：</p>
+<blockquote>
+<p>爱一个人就是要献出自己，而不期待得到回报，但相信自己的爱一定会唤起对方的爱。爱情是信仰的一种行动，信仰少的人必定爱得也少。</p>
+</blockquote>
+<p>正是因为弗洛姆认为爱是一种信仰，因此他才会认为，「人对自己有信心」，即一个稳定的人格同一性的构建，是至关重要的。他说「信任自己是我们有能力允诺某些事的一个条件」，而爱某个人或博爱是对自己的许诺——我对自己许诺，将来的我也会认同当下的我做出的爱的选择。</p>
+<p>也许有人会说，如果相信自己的爱一定会唤起他人的回应，岂不是和舔狗一样了吗？我想这两者的区别是，后者忽略了爱的四要素，即关心、责任、尊重、认识，中的后两者。舔狗们只有关心和责任，却没有尊重和认识。并不是随意两个人都能够建立起亲密关系，只有双方都有足够的认识，属于两个人的爱才能继续发展。</p>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
   </entry>
 </search>
