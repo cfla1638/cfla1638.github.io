@@ -24,14 +24,14 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="cfla&#39;s blog">
-<meta property="og:url" content="https://cfla1638.github.io/page/2/index.html">
+<meta property="og:url" content="https://cfla1638.github.io/invalid_page/page/2/index.html">
 <meta property="og:site_name" content="cfla&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="cfla">
 <meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cfla1638.github.io/page/2/">
+<link rel="canonical" href="https://cfla1638.github.io/invalid_page/page/2/">
 
 
 <script id="page-configurations">
@@ -183,634 +183,6 @@
 
           <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cfla">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cfla's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/" class="post-title-link" itemprop="url">模板与泛型编程 - C++</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-08 16:43:49" itemprop="dateCreated datePublished" datetime="2022-10-08T16:43:49+08:00">2022-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-09 17:00:04" itemprop="dateModified" datetime="2022-10-09T17:00:04+08:00">2022-10-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">琐碎记录</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/" class="post-meta-item leancloud_visitors" data-flag-title="模板与泛型编程 - C++" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/10/08/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B-C/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="模板与泛型编程"><a href="#模板与泛型编程" class="headerlink" title="模板与泛型编程"></a>模板与泛型编程</h1><h2 id="定义模板"><a href="#定义模板" class="headerlink" title="定义模板"></a>定义模板</h2><p>模板的定义以关键字<code>template</code> 开始，它的形式如下</p>
-<p><code>template &lt;typename T, typename T1, ...&gt;</code> ，尖括号括起来的部分叫做模板参数列表，我们使用模板时，显示或隐式地将模板实参绑定到模板参数列表上。</p>
-<p><code>typename</code> 关键字也可以用<code>class</code> 关键字代替，在模板参数列表中，它们是等价的。</p>
-<p><strong>模板参数：</strong></p>
-<p><code>T</code>  叫做模板类型参数。</p>
-<blockquote>
-<p>也可以定义非类型的模板参数，它必须是整形或指向对象的或函数的指针或者左值引用，整形必须是一个常量表达式，指针或者引用必须要具有静态生存期。总而言之，它必须能够在编译期间被确定。</p>
-<p>例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="type">unsigned</span> N, <span class="type">unsigned</span> M&gt;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">(<span class="type">const</span> <span class="type">char</span> (&amp;p1)[N], <span class="type">const</span> <span class="type">char</span> (&amp;p2)[M])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">strcmp</span>(p1, p2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p><strong>模板编译：</strong></p>
-<p>编译器遇到模板的定义时，并不会生成代码，只有在使用模板时，编译器才会生成代码。</p>
-<blockquote>
-<p>建议：函数模板和类模板成员函数的定义通常放在头文件中</p>
-<p>当我们使用一个函数时，我们只需要它的声明，它的定义可以由链接器在链接期间与其他文件链接。</p>
-<p>而模板通常在使用时就要实例化，生成代码，因此，模板的声明和定义最好都放在头文件中。</p>
-</blockquote>
-<h3 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h3><p>函数模板通常是使用隐式模板实参推断，编译器会用函数的实参推断模板实参。</p>
-<p>在函数模板中，模板类型参数 <code>T</code> 可用于指定返回类型或函数的参数类型，也可以在函数体内声明变量和进行类型转换。</p>
-<h3 id="类模板"><a href="#类模板" class="headerlink" title="类模板"></a>类模板</h3><p>编译器不能为类模板推断模板类型参数，我们必须显式指明。</p>
-<p><strong>类模板的成员函数：</strong></p>
-<p>在类内部定义的成员函数隐式<code>inline</code> </p>
-<p>在类模板外部定义成员函数：</p>
-<p>必须以template + 模板参数列表开始，因为不同类型的模板实例对应不同的成员函数</p>
-<p><strong>类模板的模板实例化：</strong></p>
-<p>只有程序用到类模板时，才会实例化它。如果没有用到某个成员函数，只用到了这个类，那么这个成员函数也不会被实例化。</p>
-<p><strong>简化模板类名</strong></p>
-<p>模板名不是类型，只有提供模板实参，模板名才能称为类名。因此我们在使用模板类型时，必须提供模板实参。</p>
-<p>但在类模板的作用域内，我们可以只是用模板名，而省略模板实参。</p>
-<blockquote>
-<p>在类模板的定义外，只有遇到类名之后，我们才进入类的作用域。在此之前，例如我们想要是使用模板类型作为返回值，都不能省略模板实参</p>
-</blockquote>
-<p><strong>类模板和友元</strong> </p>
-<p>如果一个类模板包含一个非模板友元，则友元被授权可以访问所有的模板实例，</p>
-<p>如果友元自身是模板，则友元可以授予模板的所有实例，也可以授予部分实例。</p>
-<p><strong>模板类型的静态成员</strong></p>
-<p>对于每个类型的模板实例，都有一个静态成员。</p>
-<p><strong>默认模板实参</strong></p>
-<p>可以像函数形参一样，提供一个默认参数。</p>
-<p>对于类模板，就算我们需要使用默认模板实参，我们也不能省略尖括号。</p>
-<p><code>templateType&lt;&gt; foo;        // 使用默认模板实参</code> </p>
-<p><strong>成员模板</strong> </p>
-<p>可以将类模板或普通类的成员函数声明称模板</p>
-<p>普通类：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="type">void</span> <span class="title">mem</span><span class="params">(<span class="type">const</span> T &amp;)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类模板</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> <span class="title class_">base</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt; <span class="built_in">base</span>(It begin, It end);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="模板作用域"><a href="#模板作用域" class="headerlink" title="模板作用域"></a>模板作用域</h3><p>模板参数遵循普通的作用域规则，一个模板参数的可用范围在其声明之后，至模板声明或定义结束之前。模板参数会隐藏外层作用域中声明相同的名字。</p>
-<blockquote>
-<p>使用类的类型和类的静态成员：</p>
-<p>当我们模板使用<code>classType::name</code> 引用类的类型或静态成员，会导致语义不明（因为只有用到模板是才会生成代码，错误检查不会立即发生）</p>
-<p>我们必须使用<code>typename</code> 关键字显式声明这是一个类内定义的类型</p>
-<p>例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">typename</span> T::value_type <span class="title">top</span><span class="params">(<span class="type">const</span> T&amp; c)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">/*...*/</span>&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="显式实例化"><a href="#显式实例化" class="headerlink" title="显式实例化"></a>显式实例化</h3><p>两个独立编译的源文件使用相同的模板，并提供了相同的模板实参，每个文件中就都会有一个模板的实例。在一个大型工程中，会造成很大空间浪费。</p>
-<p>因此我们需要显式控制模板实例化</p>
-<p>形式</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> chass&lt;string&gt;;</span><br></pre></td></tr></table></figure>
-<h2 id="模板实参推断"><a href="#模板实参推断" class="headerlink" title="模板实参推断"></a>模板实参推断</h2><p>对于传递给模板类型参数的实参，编译器可以选择对实参进行类型转换，也可以不进行类型转换直接生成新的模板。</p>
-<blockquote>
-<p>对于非类型的参数，会进行</p>
-</blockquote>
-<p>只有在一下两种情况会进行类型转换，其他的情况都会生成新的模板</p>
-<ul>
-<li>非const转换成const，顶层const会被忽略</li>
-<li>数组或函数指针：数组可以转换成指针（即使它们的大小不同，但引用不可以，因为对不同长度的数组的引用不是同一个类型），，函数可以转换成函数指针</li>
-</ul>
-<p>特殊情况：因为模板不会进行算数转换，如果一个函数的两个参数使用一个模板形参。即使，传递的实参可以转换成一个类型，调用也会报错：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">const</span> T &amp;, <span class="type">const</span> T &amp;)</span></span>;</span><br><span class="line"><span class="type">long</span> lint = <span class="number">456</span>;</span><br><span class="line"><span class="built_in">cmp</span>(<span class="number">123</span>, lint);    <span class="comment">// 错误，类型不匹配</span></span><br></pre></td></tr></table></figure>
-<p>这是我们可以这样处理</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">const</span> T1 &amp;, <span class="type">const</span> T2 &amp;)</span></span>;</span><br></pre></td></tr></table></figure>
-<h3 id="函数模板显式指定模板参数"><a href="#函数模板显式指定模板参数" class="headerlink" title="函数模板显式指定模板参数"></a>函数模板显式指定模板参数</h3><p>放在函数名之后，模板名之前，靠右的模板参数如果可以通过实参推断出来，则可以省略。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;</span><br><span class="line"><span class="function">T1 <span class="title">cmp</span><span class="params">(<span class="type">const</span> T2 &amp;, <span class="type">const</span> T3 &amp;)</span></span>;</span><br><span class="line"><span class="built_in">cmp</span>&lt;<span class="type">long</span> <span class="type">long</span>&gt;(<span class="number">20</span>, <span class="number">30</span>);    <span class="comment">// T1被显式指定，T2、T3自动推断</span></span><br></pre></td></tr></table></figure>
-<p>显式指定参数之后，模板函数即可执行正常的类型转换</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">const</span> T &amp;, <span class="type">const</span> T &amp;)</span></span>;</span><br><span class="line"><span class="type">long</span> lint = <span class="number">456</span>;</span><br><span class="line"><span class="built_in">cmp</span>(<span class="number">123</span>, lint);    <span class="comment">// 错误，类型不匹配</span></span><br><span class="line"><span class="built_in">cmp</span>&lt;<span class="type">long</span>&gt;(<span class="number">123</span>, lint);  <span class="comment">// 正确，显式指定模板类型参数之后就可以执行正常的类型转换了。</span></span><br></pre></td></tr></table></figure>
-<h3 id="尾置返回类型"><a href="#尾置返回类型" class="headerlink" title="尾置返回类型"></a>尾置返回类型</h3><p>当返回类型需要传入的实参，经过<code>decltype</code> 推断后得出时，我们遇到了一个问题，在写返回类型时，形参还没有被创建。</p>
-<p>针对这种情况，我们可以使用尾置返回类型，将返回类型放在参数列表后面</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">func</span><span class="params">(It beg, It end)</span> -&gt; <span class="title">decltype</span><span class="params">(*beg)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><code>省略608 - 613 关于右值引用 和 转发</code></p>
-<h2 id="模板重载"><a href="#模板重载" class="headerlink" title="模板重载"></a>模板重载</h2><blockquote>
-<p>C++ Primer P614 - P617</p>
-</blockquote>
-<p>重载规则：</p>
-<ol>
-<li>对于一个调用，其候选包括所有的模板实参推断和非模板函数</li>
-<li>如果有一个函数（不论是模板还是非模板），提供比其他类型的函数更好的匹配，选择它</li>
-<li>如果有多个函数提供同样好的匹配，则<ol>
-<li>如果同样好的函数中，有一个时非模板函数，选择它</li>
-<li>如果都是模板函数，则选择更加特例化的哪一个模板函数</li>
-<li>否则，调用有歧义</li>
-</ol>
-</li>
-</ol>
-<h3 id="模板特例化"><a href="#模板特例化" class="headerlink" title="模板特例化"></a>模板特例化</h3><p>模板函数的特例化：必须为模板函数的每一个模板参数提供模板实参，不能部分特例化，因此，函数模板特例化必须以<code>template&lt;&gt;</code> 开始。</p>
-<p>模板特例化本质上是接管了编译器的工作，特例化的函数也是一个模板实例而不是一个重载函数。</p>
-<p>类模板特例化</p>
-<p>特例化方法与函数模板特例化无异，但类模板特例化可以部分特例化，详见P628。</p>
-<blockquote>
-<p>感觉我也不会用到多少这东西。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/29/C-OOP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cfla">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cfla's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/29/C-OOP/" class="post-title-link" itemprop="url">C++ OOP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-29 15:48:03" itemprop="dateCreated datePublished" datetime="2022-09-29T15:48:03+08:00">2022-09-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-08 16:47:52" itemprop="dateModified" datetime="2022-10-08T16:47:52+08:00">2022-10-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%90%90%E7%A2%8E%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">琐碎记录</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/09/29/C-OOP/" class="post-meta-item leancloud_visitors" data-flag-title="C++ OOP" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/09/29/C-OOP/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/29/C-OOP/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="C-OOP"><a href="#C-OOP" class="headerlink" title="C++ OOP"></a>C++ OOP</h1><h2 id="C-的类"><a href="#C-的类" class="headerlink" title="C++ 的类"></a>C++ 的类</h2><h3 id="this-指针"><a href="#this-指针" class="headerlink" title="this 指针"></a>this 指针</h3><p>调用成员函数时，成员函数通过名为this的额外隐式参数访问调用它的那个对象。</p>
-<p>在成员函数内部，任何对类成员的直接访问都被看作是对this的隐式使用</p>
-<p><strong>this指针总是指向调用成员函数的对象，因此，this指针是一个常量指针，它的const是顶层const，即它永远不会改变它指向的位置。</strong></p>
-<h3 id="常量成员函数"><a href="#常量成员函数" class="headerlink" title="常量成员函数"></a>常量成员函数</h3><p>即使this指针是隐式的，但初始化this指针也要遵循初始化规则，即不能用一个常量去初始化非底层<code>const</code>的的this指针。</p>
-<p>由于这条规则的存在，我们无法调用一个被声明成const的对象的普通成员函数，因为这个成员函数的this指针不是底层const的指针。</p>
-<p>为了解决这个问题，我们可以将成员函数声明成<code>const</code> </p>
-<p>例如，像下面这样，在参数列表后添加上<code>const</code> </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">get_a</span><span class="params">()</span> <span class="type">const</span> </span>&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此时，这个this指针，既是顶层<code>const</code> (this指针所固有的属性)，又是底层<code>const</code> （我们声明的结果）</p>
-<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><blockquote>
-<p>P241, P250，P545</p>
-</blockquote>
-<p>想让其他类或其他函数访问类的私有成员，需要在一条友元声明，友元声明必须出现在类的内部</p>
-<p>由于友元声明并不是类的成员，因此他和访问说明符（public:, private:） 无关，可以出现在类的任意位置</p>
-<p>可以将一个类声明成另一个类的友元</p>
-<blockquote>
-<p> 如果一个类是另一个类的友元，那么友元类的成员函数可以访问类的所有成员</p>
-</blockquote>
-<p>可以将一个类的成员函数声明成另一个类的友元函数</p>
-<p>友元声明是单向的，友元声明不具有传递性</p>
-<p>关于友元的作用域：P252</p>
-<p>友元关系是不能继承的</p>
-<ul>
-<li>基类的友元在访问派生类时没有特殊性。</li>
-<li>派生类的友元也不能访问基类的私有成员</li>
-</ul>
-<h3 id="类的类型成员"><a href="#类的类型成员" class="headerlink" title="类的类型成员"></a>类的类型成员</h3><p>类的成员不只可以有变量和函数，还可以有类型</p>
-<p>类内定义的类型也有访问权限的限制</p>
-<p>用来定义类型的成员必须先定义再使用</p>
-<blockquote>
-<p>原因：// TODO</p>
-</blockquote>
-<h3 id="类的内联函数"><a href="#类的内联函数" class="headerlink" title="类的内联函数"></a>类的内联函数</h3><blockquote>
-<p>内联函数(inline)：一些小的，简单的函数可以被定义为内联函数，以减少调用函数的开销</p>
-<p>内联函数会在编译时，被编译器展开</p>
-<p>例如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">const</span> string &amp; <span class="title">shorterString</span><span class="params">(<span class="type">const</span> string &amp;s1, <span class="type">const</span> string &amp;s2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.<span class="built_in">size</span>() &lt;= s2.<span class="built_in">size</span>() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>max(), min() 之类的函数特别适合被定义为内联函数</p>
-</blockquote>
-<ul>
-<li>定义在类内部的成员函数，它们默认是内联函数</li>
-<li>可以在类内声明时使用<code>inline</code>，同时在类外定义函数时也同时使用<code>inline</code> ，但最好是只在类外部定义函数时使用<code>inline</code> 声明。</li>
-</ul>
-<h3 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h3><blockquote>
-<p>from effective c++</p>
-<p>编译器执行的const检查时定义上的，不是逻辑上的，如果类内有些成员是可变的，但不影响它在逻辑上是const，我们可以把它声明为<code>mutable</code> </p>
-</blockquote>
-<p>如果在定义类的成员时，使用<code>mutable</code> 关键字，那么，即使这个对象被声明成<code>const</code> ，我们依然可以改变这个成员变量的值。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">     public:</span><br><span class="line">    <span class="type">void</span> <span class="title function_">inc</span><span class="params">()</span> <span class="type">const</span>;</span><br><span class="line">    private:</span><br><span class="line">    mutable <span class="type">size_t</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">A::inc</span><span class="params">()</span> <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line">    cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="返回-this-左值"><a href="#返回-this-左值" class="headerlink" title="返回*this 左值"></a>返回*this 左值</h3><p>当成员函数是const 版本时，this指针具有底层的const， 因此它的返回的左值也是带底层const的左值</p>
-<p>我们可以根据this指针是否具有底层<code>const</code> 来对函数进行重载</p>
-<blockquote>
-<p>底层const的重载见：P206</p>
-<p>P247</p>
-</blockquote>
-<h3 id="类的前向声明"><a href="#类的前向声明" class="headerlink" title="类的前向声明"></a>类的前向声明</h3><p>可以使用类似这种形式声明类</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>;</span><br></pre></td></tr></table></figure>
-<p>这是一个不完整类型，我们可以使用这种类型的指针或者引用，但不能创建这种类型的引用。</p>
-<p>前向声明可以放在类的头文件中，从而减少依赖。</p>
-<h3 id="类的名字查找"><a href="#类的名字查找" class="headerlink" title="类的名字查找"></a>类的名字查找</h3><ul>
-<li><p>我们可以在成员函数的任意地方使用类的成员</p>
-<blockquote>
-<p>原因在于编译器如何处理类：</p>
-<ol>
-<li>编译所有的成员声明</li>
-<li>编译函数体</li>
-</ol>
-</blockquote>
-</li>
-<li><p>如果编译器无法在类内找到一个符号，编译器会在类的外层作用域继续寻找该名字，但只会考虑该语句之前出现过的外层作用域里的符号。</p>
-</li>
-<li><p>在内层作用域中可以重定义名字，但外层作用域中定义的类型（使用<code>typedef</code> 或使用<code>using symbol = type</code>）不能再类中重定义。</p>
-</li>
-<li><p>成员函数的名字查找规则</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 在成员函数内查找名字（成员函数体定义的名字，形参的名字）</span><br><span class="line"><span class="bullet">2.</span> 在类作用域内查找名字</span><br><span class="line"><span class="bullet">3.</span> 在成员函数定义之前的作用域内继续查找</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果想要在成员函数内使用一个类作用域的名字（该名字已经在成员函数的块作用域内被覆盖），可以使用作用域运算符。</p>
-</li>
-</ul>
-<h3 id="类的隐式类型转换"><a href="#类的隐式类型转换" class="headerlink" title="类的隐式类型转换"></a>类的隐式类型转换</h3><blockquote>
-<p>P263 隐式的类类型转换 P514 重载类型转换运算符</p>
-</blockquote>
-<ul>
-<li><p>如果类的某个构造函数只接受一个参数，它就是一个转换构造函数，定义了一个由其他类型到这个类的隐式类型转换</p>
-<p>这种类型转换只允许一步类型转换</p>
-</li>
-<li><p>一直类的隐式类型转换：</p>
-<p>使用关键字<code>explicit</code> </p>
-<p>该关键字只能在类内声明中使用，不能在类外重复</p>
-<p>该关键字只能用于接受一个值的构造函数前面</p>
-</li>
-</ul>
-<h3 id="类的静态成员"><a href="#类的静态成员" class="headerlink" title="类的静态成员"></a>类的静态成员</h3><p>类的静态成员存在于任何对象之外，对象中不包括任何于静态成员有关的数据，相当于一个全局变量。合成的默认构造函数也不会初始化它，他被初始化为0</p>
-<p>类的静态成员函数不与任何成员绑定，没有this指针，因此也不能是const的</p>
-<p>由于静态成员和全局变量一样，都需要链接器来处理，因此，两者的性质十分相似</p>
-<ul>
-<li>在<code>.h</code> 文件的类的定义中，静态成员可以是不完整类型，因为它需要链接器处理</li>
-<li>我们可以使用类的静态成员作为成员函数的默认实参</li>
-</ul>
-<h2 id="拷贝控制"><a href="#拷贝控制" class="headerlink" title="拷贝控制"></a>拷贝控制</h2><blockquote>
-<p>类的初始化、对象拷贝、移动、销毁</p>
-<p>由以下六个函数决定：</p>
-<ul>
-<li>构造函数</li>
-<li>拷贝构造函数</li>
-<li>拷贝赋值运算符</li>
-<li>移动构造函数</li>
-<li>移动赋值运算符</li>
-<li>析构函数</li>
-</ul>
-<p>后五个称为类的拷贝控制操作</p>
-</blockquote>
-<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><blockquote>
-<p>C++ Primer P235、P257、P551、P689</p>
-</blockquote>
-<ul>
-<li>构造函数没有返回值</li>
-<li>构造函数可以重载</li>
-<li>构造函数不能被声明称const，在构造const对象时，构造函数可以改变它，只有构造函数完成初始化之后，该对象才具有const的属性。</li>
-</ul>
-<h4 id="合成的默认构造函数"><a href="#合成的默认构造函数" class="headerlink" title="合成的默认构造函数"></a>合成的默认构造函数</h4><p>如果没有定义构造函数，编译器会为类定义默认的构造函数，规则如下</p>
-<ol>
-<li>如果存在类内的初始值，用它来初始化成员</li>
-<li>否则，默认初始化。（内置类型垃圾值，其他类调用默认构造函数）</li>
-</ol>
-<p>如果出现以下情况，编译器无法为类构造合成的默认构造函数</p>
-<ol>
-<li><p>类有定义一个构造函数</p>
-<blockquote>
-<p>遇到这种情况，可以使用 <code>类名() = defalut</code> 来给予类一个默认的构造函数</p>
-</blockquote>
-</li>
-<li><p>类存在一个成员，这个成员没有默认的构造函数</p>
-</li>
-</ol>
-<h4 id="构造函数的初始化列表"><a href="#构造函数的初始化列表" class="headerlink" title="构造函数的初始化列表"></a>构造函数的初始化列表</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Sales_data</span>(<span class="type">const</span> std::string &amp;s) : <span class="built_in">BookNo</span>(s) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>当某个数据成员被构造函数的初始化列表忽略时，它将以合成默认构造函数相同的方式隐式初始化</p>
-<p>（重要）当某个数据成员被构造函数的初始化列表忽略时，他将在执行构造函数函数体之前被默认初始化</p>
-<p>由于有的类没有默认构造函数，因此我们必须使用列表初始化对其进行初始化。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="comment">// 没有默认构造函数</span></span><br><span class="line">public:</span><br><span class="line">    A(<span class="type">int</span> num) : elem(num) &#123;&#125;</span><br><span class="line">private:</span><br><span class="line">    <span class="type">int</span> elem = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">public:</span><br><span class="line">    B(<span class="type">int</span> num) : elem_int(num) &#123;&#125;  <span class="comment">// 错误，因为A没有默认构造函数，所以必须对它进行列表初始化</span></span><br><span class="line">private:</span><br><span class="line">    A elem_A;</span><br><span class="line">    <span class="type">int</span> elem_int;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>因为所有的类成员都会在构造函数体执行前进行初始化（列表初始化或默认初始化）因此使用列表初始化一定会比在构造函数中赋值更加高效。</p>
-<p>（重要）列表初始化的初始化顺序</p>
-<p>列表初始化的顺序与他们在类的定义中出现的顺序一样，而与列表初始化的列表顺序无关，如果初始化变量之间会相互依赖，一定要注意他们初始化的顺序！！</p>
-<h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Sales_data</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 非委托构造函数要使用的构造函数</span></span><br><span class="line">    <span class="built_in">Sales_data</span>(std::string s, <span class="type">unsigned</span> cnt, <span class="type">double</span> price) : </span><br><span class="line">          <span class="built_in">bookNo</span>(s), <span class="built_in">units_sold</span>(cnt), <span class="built_in">revenue</span>(cnt * price) &#123;&#125;</span><br><span class="line">    <span class="comment">// 委托构造函数</span></span><br><span class="line">    <span class="built_in">Sales_data</span>() : <span class="built_in">Sales_data</span>(<span class="string">&quot;&quot;</span>, <span class="number">0</span>, <span class="number">0</span>)&#123;&#125;</span><br><span class="line">    <span class="built_in">Sales_data</span>(std::string s) : <span class="built_in">Sales_data</span>(s, <span class="number">0</span>, <span class="number">0</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">Sales_data</span>(std::istream &amp;is) : <span class="built_in">Sales_data</span>() &#123;<span class="built_in">read</span>(is, *<span class="keyword">this</span>);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>委托构造函数首先执行列表初始化的被委托构造函数的列表初始化，在执行被委托构造函数的函数体，最后执行委托构造函数的函数体</p>
-<h4 id="默认构造函数被调用的时机"><a href="#默认构造函数被调用的时机" class="headerlink" title="默认构造函数被调用的时机"></a>默认构造函数被调用的时机</h4><blockquote>
-<p>C++ Primer P262</p>
-</blockquote>
-<p>默认初始化</p>
-<ol>
-<li>在块作用域内不适用任何初始值定义一个非静态变量</li>
-<li>一个类类型本身含有类成员，并且使用合成的默认构造函数时</li>
-<li>没有在列表初始化中被显示初始化时</li>
-</ol>
-<p>值初始化</p>
-<ol>
-<li>数组初始化时，提供的值小于数组的大小</li>
-<li>不适用初始值定义一个局部静态变量</li>
-<li>使用<code>T()</code> 这种表达式来显示请求值初始化</li>
-</ol>
-<h4 id="继承体系中的合成的默认构造函数"><a href="#继承体系中的合成的默认构造函数" class="headerlink" title="继承体系中的合成的默认构造函数"></a>继承体系中的合成的默认构造函数</h4><ul>
-<li><p>派生类的合成的默认构造函数，首先会调用其基类的构造函数，其基类的构造函数也会调用其基类的构造函数，直到继承链的顶端，接着继承链顶端的基类开始初始化其成员，再执行其构造函数体，接着向下，最后执行派生类的构造函数。</p>
-</li>
-<li><p>继承直接基类的构造函数，使用<code>using</code> 语句 P557 一种语法糖，可以让编译器根据直接基类的构造函数为派生类生成构造函数</p>
-</li>
-</ul>
-<h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p>定义：如果一个构造函数的第一个参数是自身类型的引用，且其他任何的额外参数都有默认值，则此构造函数是一个拷贝构造函数。</p>
-<blockquote>
-<p>拷贝构造函数的形式通常是 <code>ClassType(const ClassType &amp;)</code> </p>
-<p>拷贝构造函数通常不应该是explicit的</p>
-</blockquote>
-<h4 id="合成的拷贝构造函数"><a href="#合成的拷贝构造函数" class="headerlink" title="合成的拷贝构造函数"></a>合成的拷贝构造函数</h4><p>如果我们没有定义类的拷贝构造函数，编译器会为我们合成一个默认的拷贝构造函数</p>
-<p>对于内置类型，合成的拷贝构造函数会直接拷贝</p>
-<p>对于类类型，合成的拷贝构造函数会调用它的拷贝构造函数</p>
-<p>对于数组，合成的拷贝构造函数会逐个拷贝它的元素</p>
-<blockquote>
-<p> <strong>一、默认初始化、值初始化、直接初始化和拷贝初始化 几个术语的含义及其区别：</strong></p>
-<blockquote>
-<p>几种初始化的区别：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38231713/article/details/106291397">https://blog.csdn.net/qq_38231713/article/details/106291397</a></p>
-</blockquote>
-<p> 默认初始化：对象可能产生未定义的值，出现场景：</p>
-<ol>
-<li>块作用域内不使用任何初始值定义一个非静态变量；</li>
-<li><p>类通过默认构造函数来控制默认初始化过程，默认构造函数以如下规则初始化类的数据成员</p>
-<ul>
-<li>如果存在类内初始值，用它来初始化成员</li>
-<li>否则，默认初始化该成员</li>
-</ul>
-<p>值初始化：对象的值是确定（预设）的，出现场景：</p>
-</li>
-<li><p>数组初始化时，初始值数量小于数组的长度。</p>
-</li>
-<li><p>不使用初始值定义一个静态变量（带有初始值0）</p>
-</li>
-<li><p>使用类似<code>classType()</code> 形式表达式显示请求值初始化</p>
-</li>
-<li><p>只提供vector可以容纳的元素数量，不提供初始值，库会自动进行值初始化</p>
-<p><code>vector&lt;int&gt; vec(10);</code> 值初始化为0 </p>
-<p>直接初始化：使用<code>classType()</code> 初始化对象</p>
-<p>拷贝初始化：使用<code>classType foo = classType()</code> 初始化对象</p>
-</li>
-</ol>
-<ul>
-<li>不光在使用 = 赋值时会发生拷贝初始化，在以下情况时也会发生拷贝初始化<ol>
-<li>将参数作为实参传递给非引用类型的形参</li>
-<li>从返回类型为非引用的函数返回一个对象</li>
-<li>使用花括号列表初始化数组或聚合类</li>
-<li>初始化标准库容器或者使用insert或push（顺带一提使用emplace会直接初始化，不会调用拷贝构造函数）</li>
-</ol>
-</li>
-</ul>
-<p> <strong>二、不同的初始化方式会调用那种构造函数</strong></p>
-<blockquote>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sksukai/article/details/104741675/">https://blog.csdn.net/sksukai/article/details/104741675/</a></p>
-</blockquote>
-<p> 当定义类时，会有直接初始化和拷贝初始化两种区别</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo var1;      <span class="comment">// 直接初始化，使用默认构造函数</span></span><br><span class="line"><span class="function">foo <span class="title">var2</span><span class="params">(<span class="number">1</span>)</span></span>;    <span class="comment">// 直接初始化，使用一个参数的构造函数</span></span><br><span class="line">foo var3 = <span class="number">50</span>;    <span class="comment">// 拷贝初始化，本来是50先使用构造函数构造临时对象，再使用拷贝构造函数初始化var3，但经过实际测试，编译优化了这一部分，直接使用构造函数初始化了var3</span></span><br><span class="line">foo var4 = <span class="built_in">foo</span>(<span class="number">50</span>); <span class="comment">// 和var3的情况完全相同，优化后也是只使用了一次接受一个对象的构造函数</span></span><br><span class="line">foo var5 = var3;  <span class="comment">// 拷贝初始化，调用拷贝构造函数</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="继承体系中的拷贝构造函数"><a href="#继承体系中的拷贝构造函数" class="headerlink" title="继承体系中的拷贝构造函数"></a>继承体系中的拷贝构造函数</h4><p>我们需要使用基类的拷贝构造函数显示的初始化基类的成员</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span> &#123;<span class="comment">/* ... */</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">derived</span>(<span class="type">const</span> derived &amp;d) : <span class="built_in">base</span>(d)    <span class="comment">// 显式的使用基类的拷贝构造函数+</span></span><br><span class="line">    &#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="拷贝赋值运算符"><a href="#拷贝赋值运算符" class="headerlink" title="拷贝赋值运算符"></a>拷贝赋值运算符</h3><blockquote>
-<p>可能会误以为拷贝初始化<code>classType obj = ori;</code> 会使用拷贝赋值运算符，事实上，这只调用拷贝构造函数</p>
-<p>当我们定义了拷贝赋值运算符，我们就重载了它的赋值运算符</p>
-<p>此外我们还可以定义两种赋值运算符</p>
-<ol>
-<li>移动赋值运算符</li>
-<li>其他类型到此类型的赋值运算符</li>
-</ol>
-<p>但这个运算符是最常用的运算符</p>
-</blockquote>
-<p>拷贝赋值运算符的形式通常是<code>classType operator=(const classType &amp;)</code> 因为他是一个成员函数，因此它的左侧成员自动绑定</p>
-<h4 id="合成的拷贝赋值运算符"><a href="#合成的拷贝赋值运算符" class="headerlink" title="合成的拷贝赋值运算符"></a>合成的拷贝赋值运算符</h4><p>合成的拷贝赋值运算符会将右侧的每个非static成员赋值给左侧成员，对于数组类型，它会逐个拷贝</p>
-<h4 id="继承体系中的拷贝赋值运算符"><a href="#继承体系中的拷贝赋值运算符" class="headerlink" title="继承体系中的拷贝赋值运算符"></a>继承体系中的拷贝赋值运算符</h4><p>派生类的拷贝赋值运算符要显式调用基类的拷贝赋值运算符，之后我们再为派生类的成员完成赋值操作</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">classType &amp; classType::<span class="keyword">operator</span>=(<span class="type">const</span> classType &amp; rhs)</span><br><span class="line">&#123;</span><br><span class="line">    Base::<span class="keyword">operator</span>=(rhs);  <span class="comment">// 调用基类的拷贝赋值运算符，即使他是合成的运算符也可以这样调用</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    派生类成员的赋值操作</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>释放对象使用的资源，销毁对象的非static成员</p>
-<p>析构函数的形式是<code>~classType()</code> 没有返回值，不接受参数</p>
-<p>不能被重载，对于任意一个类有且只有一个析构函数</p>
-<blockquote>
-<p>析构函数不能是删除的</p>
-</blockquote>
-<p>析构函数首先执行析构函数体，接着按初始化顺序逆序销毁成员</p>
-<ul>
-<li><p>继承体系中的析构函数</p>
-<p>派生类的析构函数只需要处理它自己的成员，不需要在析构函数体里显示调用基类的析构函数。它们所占用的资源（除了申请的堆资源），都会隐式的销毁。</p>
-<p>对象销毁的顺序：先销毁派生类的资源，再销毁基类的成员直到继承体系顶端。</p>
-</li>
-</ul>
-<h3 id="移动构造函数"><a href="#移动构造函数" class="headerlink" title="移动构造函数"></a>移动构造函数</h3><h3 id="类的拷贝控制成员被默认定义为删除的"><a href="#类的拷贝控制成员被默认定义为删除的" class="headerlink" title="类的拷贝控制成员被默认定义为删除的"></a>类的拷贝控制成员被默认定义为删除的</h3><blockquote>
-<p>P450、P476、P553、P751</p>
-</blockquote>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><ul>
-<li><p>类派生列表：首先是一个类名之后的冒号，接着是基类名，基类名之间以逗号隔开，每个基类名之前有访问说明符，</p>
-<blockquote>
-<p>派生类列表的访问说明符的作用：控制派生类从基类继承的成员是否对派生类用户可见</p>
-</blockquote>
-</li>
-<li><p>动态绑定（运行时绑定）：在运行时，根据传入的实参，动态选择函数版本，称为动态绑定</p>
-<blockquote>
-<p>基类通过在成员函数前加上<code>virtual</code> 关键字使得函数执行运行时动态绑定。</p>
-<p>任何构造函数之外的非静态函数都可以是虚函数</p>
-<p>关键字<code>virtual</code> 只能出现在类内声明语句中，而不能出现在定义语句中</p>
-<p>没有用<code>virtual</code> 声明的函数，其解析发生在编译时，而非运行时</p>
-</blockquote>
-</li>
-<li><p>访问控制：</p>
-<p>如果类的成员能被派生类访问，但不能被其他类访问，它应该被定义为<code>protected</code> </p>
-</li>
-</ul>
-<ul>
-<li><p>派生类的构造函数</p>
-<p>派生类必须使用基类的构造函数初始化其基类的部分</p>
-</li>
-<li><p>防止继承 定义类的时候使用<code>final</code> </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NoDerived</span> <span class="keyword">final</span> &#123;<span class="comment">/* ... */</span>&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="纯虚函数和抽象基类"><a href="#纯虚函数和抽象基类" class="headerlink" title="纯虚函数和抽象基类"></a>纯虚函数和抽象基类</h3><ul>
-<li><p>纯虚函数</p>
-<p>通过在函数声明的分号前添加 = 0 即可声明这个函数为纯虚函数</p>
-<p>纯虚函数只是提供了一个接口，无需定义纯虚函数</p>
-</li>
-<li><p>含有纯虚函数的类是抽象基类， 不能直接创造一个抽象基类对象</p>
-</li>
-</ul>
-<h3 id="Protected"><a href="#Protected" class="headerlink" title="Protected"></a>Protected</h3><ul>
-<li>派生类的成员和友元只能访问派生类中的基类部分的受保护成员，而不能通过派生类访问基类的受保护成员</li>
-<li>基类成员对于它的派生类 的用户来说，访问权限主要受两部分影响<ol>
-<li>若基类的访问说明符</li>
-<li>派生类派生列表的访问说明符（对于派生类用户来说，此条的优先级更高）</li>
-</ol>
-</li>
-<li>对于派生类成员来说，它可以访问基类的<code>public</code> 和<code>private</code> 部分</li>
-</ul>
-<h3 id="改变个别成员的可访问性"><a href="#改变个别成员的可访问性" class="headerlink" title="改变个别成员的可访问性"></a>改变个别成员的可访问性</h3><p>可以在派生类中使用<code>using</code> 声明改变它继承自基类的成员的可访问性</p>
-<p>但<code>using</code>声明只能改变它能访问的成员的可访问性，即它不能改变基类的私有成员的在派生类中的可访问性。</p>
-<h3 id="struct-和-class的区别"><a href="#struct-和-class的区别" class="headerlink" title="struct 和 class的区别"></a>struct 和 class的区别</h3><ol>
-<li>struct是C语言的关键字，它定义结构体，而C语言没有构造函数和拷贝控制函数</li>
-<li>在C++中struct和class除了他们的可访问性以外，没有任何不同，c++的编译器都会为他们生成构造析构函数和拷贝控制函数</li>
-<li>他们的可访问性：<ol>
-<li>struct的默认成员都是public，class的默认成员都是private</li>
-<li>struct定义的类，它的继承默认是公有继承，class定义的类，默认继承方式是私有继承</li>
-</ol>
-</li>
-</ol>
-<h3 id="类的作用域"><a href="#类的作用域" class="headerlink" title="类的作用域"></a>类的作用域</h3><ul>
-<li><p>每个类定义自己的作用域，在这个作用域内我们定义自己的成员函数。</p>
-<p>当存在派生关系时，派生类的作用域嵌套在基类的作用域内：当我们遇到一个派生类中的名字，在派生类作用域中找不到这个名字，就会在基类的作用域内继续搜索这个名字。</p>
-</li>
-</ul>
-<ul>
-<li><p>一个对象、引用 或 指针的静态类型，决定了该对象究竟有那些对象是可见的。</p>
-<p>如果我们用基类指针绑定了派生类的成员，我们不能用这个指针去访问派生了特有的成员，因为对于这个成员名字的搜索将从基类的作用域开始，这决定了我们永远不会搜索派生类的作用域。</p>
-<p>与往常一样，内层作用域会隐藏与存在于它内部的名字重名的外层作用域名字。</p>
-<blockquote>
-<p>编译器解析类的函数调用的过程：</p>
-<p>例如<code>obj.func()</code></p>
-<ol>
-<li><p>确定obj的静态类型，去对应的类的作用域内查找该名称</p>
-</li>
-<li><p>如果在类的作用域内找不到该名称，则继续查找它的基类的作用域，如果一直到派生链的顶端也找不到该名子，编译器报错。</p>
-</li>
-<li><p>如果找到了该名子，编译器进行类型检查，看这次调用是否合法。</p>
-</li>
-<li><p>如果调用合法，看这个函数是不是虚函数，调用对象是不是指针或引用，如果是，编译器执行动态绑定，生成运行时决定调用那个函数的代码。</p>
-<p>否则直接进行函数调用。</p>
-</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>声明在内层作用域中的函数不会重载声明在外层作用域中的函数，即使派生类中的函数的形参列表与基类中的形参列表不一样，也不会重载。</li>
-<li><p>因此虚函数与其在派生类中的覆盖函数，它们的形参列表必须相同，否则就不会导致虚函数机制，而是直接用内层作用域中的函数覆盖外层作用域中的函数。</p>
-</li>
-<li><p>成员函数无论是否是虚函数，都可以重载，因此对于基类的重载函数，派生类如果想要看到基类的全部重载的某个成员函数，它必须全部覆盖基类的重载虚函数 或者 一个重载虚函数也不覆盖。</p>
-<p>如果想要让覆盖重载虚函数的一些函数，但其他函数也不会因为作用域的原因而不可见，可以使用<code>using</code> 声明</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="title">func</span><span class="params">(<span class="type">char</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> base::func;</span><br><span class="line">    <span class="comment">// 使用using 我们可以只覆盖重载虚函数的一个实例而让其他的虚函数也可见</span></span><br><span class="line">    <span class="built_in">func</span>(<span class="type">int</span>) <span class="keyword">override</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
   
   
@@ -2289,10 +1661,519 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="post-title-link" itemprop="url">存储器层次结构 - CS:APP 第六章</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-04 11:28:41" itemprop="dateCreated datePublished" datetime="2022-09-04T11:28:41+08:00">2022-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-25 22:13:47" itemprop="dateModified" datetime="2022-09-25T22:13:47+08:00">2022-09-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS-APP/" itemprop="url" rel="index"><span itemprop="name">CS:APP</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="post-meta-item leancloud_visitors" data-flag-title="存储器层次结构 - CS:APP 第六章" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/04/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84-CS-APP-%E7%AC%AC%E5%85%AD%E7%AB%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="存储器层次结构-CS-APP-第六章"><a href="#存储器层次结构-CS-APP-第六章" class="headerlink" title="存储器层次结构 - CS:APP 第六章"></a>存储器层次结构 - CS:APP 第六章</h1><p>本章的主要内容有四：</p>
+<ol>
+<li>介绍存储技术 </li>
+<li>介绍存储器的层次结构思想</li>
+<li>特别介绍高速缓存的原理和细节</li>
+<li>使用局部性优化程序的性能</li>
+</ol>
+<p>本文主要介绍前三条内容，第四条内容可以说是优化程序性能的一部分，所以本文暂不深入。另外，本章和第九章虚拟内存密切相关，因此本文也会介绍第九章的虚拟内存，来完整的总结计算机的存储系统。</p>
+<h2 id="1-存储器的层次结构"><a href="#1-存储器的层次结构" class="headerlink" title="1 存储器的层次结构"></a>1 存储器的层次结构</h2><p>根据我们的经验观察，读取速度越快的存储器/存储技术，成本越高，容量越小，读取速度越慢的存储器，成本越低，容量越大。</p>
+<p>因此我们可以将大量的数据都存放在成本低，速度慢的存储器上。</p>
+<p>但随着技术的发展，CPU的时钟周期越来越快，如果让CPU直接和这些慢速存储器交互会浪费大量的性能，因此我们可以上速度快的存储器缓存低速存储器的内容，与CPU交互，这就是存储器层次结构的思想。</p>
+<blockquote>
+<p>存储器层次结构的中心思想是，对于每个k，位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的缓存。</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">L0  寄存器</span><br><span class="line">L1  L1高速缓存 SRAM</span><br><span class="line">L2  L2高速缓存 SRAM</span><br><span class="line">L3  L3高速缓存 SRAM</span><br><span class="line">L4  主存 DRAM</span><br><span class="line">L5  本地二级存储（本地磁盘）</span><br><span class="line">L6  远程二级缓存（分布式文件系统、二级服务器）</span><br></pre></td></tr></table></figure>
+<p>下面我们介绍它们的存在基础，存储技术。</p>
+<h2 id="2-存储技术"><a href="#2-存储技术" class="headerlink" title="2 存储技术"></a>2 存储技术</h2><p>我们要介绍的存储技术如下</p>
+<ul>
+<li>随机存储器RAM<ul>
+<li>SRAM</li>
+<li>DRAM</li>
+</ul>
+</li>
+<li>非易失性存储器 ROM<ul>
+<li>PROM 可编程ROM</li>
+<li>EPRROM 可擦可写可编程ROM</li>
+<li>flash memory 闪存（基于EPRROM）</li>
+<li>SSD （基于闪存，固态硬盘就是使用SSD技术）</li>
+</ul>
+</li>
+<li>磁盘</li>
+</ul>
+<h3 id="2-1-随机访问存储器"><a href="#2-1-随机访问存储器" class="headerlink" title="2.1 随机访问存储器"></a>2.1 随机访问存储器</h3><p>随机存储器分为两种材类：SRAM和DRAM</p>
+<p>SRAM 静态随机存储器，通电之后，数据就是稳定的，因此被称为静态随机存储器。速度最快，造价高，一般计算机的高速缓存是SRAM。</p>
+<p>DRAM 动态随机存储器，其原理是电容充电，DRAM上的单元在10 ~ 100ms 内就会放电，所以要定期刷新以保持数据，因此被称为动态随机存储器。速度相对SRAM慢，造价相对低，一般用于计算机的内存 或叫做主存。</p>
+<h4 id="2-1-1-DRAM-内存的工作原理"><a href="#2-1-1-DRAM-内存的工作原理" class="headerlink" title="2.1.1 DRAM / 内存的工作原理"></a>2.1.1 DRAM / 内存的工作原理</h4><p>内存由若干个DRAM芯片构成，被称作内存模块(memory module)</p>
+<p>每个DRAM芯片由超单元矩阵、内部行缓冲区、内存控制器构成，DRAM芯片上还有由于信息输入输出的脚针。</p>
+<p>每个超单元内存储若干个位，一般是一字节八位。　</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">内存/主存</span><br><span class="line">|</span><br><span class="line">|- 内存模块</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|- 内存模块</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br><span class="line">|  |- DRAM 芯片</span><br></pre></td></tr></table></figure>
+<p>首先介绍DRAM 芯片：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041151521.png" alt="image-20220904115118409"> </p>
+<p>DRAM 芯片由超单元矩阵、内部行缓冲区、内存控制器构成。一个DRAM芯片中由d个超单元，这些超单元被组织成 r 行 c 列的长方形矩阵(r * c = d)，每个超单元内存储w位，我们称这是一个d×w的DRAM芯片。</p>
+<p>我们可以看到两个引脚，一个addr引脚向内部输送行列信息，一个data引脚向外输送存储在一个超单元上的位。一个超单元有多少位，data引脚就有多少位。</p>
+<p>接下来看一下工作流程：</p>
+<p>首先内存控制器在addr引脚上发送行地址，DRAM将相应的一行放到内部行缓冲区上作为相应，接着内存控制器在addr引脚上发送列地址，DRAM将内部行缓冲区上的列放到data引脚上传输出去 作为相应。</p>
+<p>接着介绍内存模块：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209041158562.png" alt="image-20220904115757187"> </p>
+<p>一个内存模块由若干个DRAM芯片构成，当内存控制器给内存模块发送一个行列信息(i, j) 时，内存模块会将它所有的DRAM芯片上（i, j）位置的超单元的位 取下来，将所有的这些字节拼成一个字，再传输出去，如上图所示。 </p>
+<h3 id="2-2-磁盘-amp-ROM"><a href="#2-2-磁盘-amp-ROM" class="headerlink" title="2.2 磁盘 &amp; ROM"></a>2.2 磁盘 &amp; ROM</h3><p>ROM可分为</p>
+<ul>
+<li>PROM 可编程ROM</li>
+<li>EPRROM 可擦可写可编程ROM</li>
+<li>flash memory 闪存（基于EPRROM）</li>
+</ul>
+<p>我们不多介绍，只需要知道他们的名字和依赖关系即可</p>
+<p>磁盘：通常指的是机械硬盘，也不过多介绍。</p>
+<h2 id="3-高速缓存"><a href="#3-高速缓存" class="headerlink" title="3 高速缓存"></a>3 高速缓存</h2><p>首先我们补充存储器层次结构方面的知识，由于这部分知识和本节密切相关，因此我们放到这里介绍：</p>
+<blockquote>
+<ul>
+<li><p>对于存储器层次的k+1层，该层的存储器被分为连续的数据对象组块(chunk)，称为块(block)，块的大小通常是固定的。</p>
+</li>
+<li><p>而第k层的存储器被划分为较少的块的集合，每个块的大小与k+1层的块的大小是一样的，在任意时刻，第k层的缓存包含第k+1层块的一个子集的副本。</p>
+</li>
+<li>数据总是以块大小为传送单元，在第k层和第k+1层之间来回复制，虽然在层次结构中的任意一对相邻的层次之间块大小是固定的，但是其他层次对之间可以有不同块大小。</li>
+</ul>
+</blockquote>
+<p>以上是书上的原话，他们介绍了一个重要的概念——块。你要记住在层次之间传送的是块。</p>
+<p>令人迷惑的是第三句话，相邻层次的块大小是相同的，但隔层之间的块可以是不同的。如果相邻层之间的块，大小是相同的，那么所有层次的块，大小都应该是相同的。</p>
+<p>这句话暂且悬置。</p>
+<p>当然，硬要解释也是可以的，你可以理解为，相邻块之间总是传输大小相同的单元，但下层块一旦到了上层，就会被划分为更小的块，用于与上层交互。</p>
+<p>但最好还是理解成所有块的大小都是相同的，方便理解下面的内容。</p>
+<h3 id="3-1-高速缓存的结构"><a href="#3-1-高速缓存的结构" class="headerlink" title="3.1 高速缓存的结构"></a>3.1 高速缓存的结构</h3><p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209042138819.png" alt="image-20220904213832532"> </p>
+<p>一个计算机存储器的地址有m位，他被分为三部分：</p>
+<ul>
+<li>高t位是标记位</li>
+<li>中间s位是组索引位</li>
+<li>低b位是组偏移位。</li>
+</ul>
+<p>高速缓存被组织为这样的结构：</p>
+<ul>
+<li><p>高速缓存有2^s^ 组，每组被编号位0，1，2，…，2^s^ - 1</p>
+</li>
+<li><p>每个组中最多有2^t^ 个高速缓存行</p>
+</li>
+<li>每个高速缓存行也由三部分组成<ul>
+<li>一位有效位，标记着这个高速缓存行是否有效</li>
+<li>t个标记位，用于与该组中的其他高速缓存行区分，因此每组只能由2^t^ 个高速缓存行</li>
+<li>2^b^ 大小的数据，存储的是在下一层复制上来的块(block)，一行就存储了一个块的内容，有时候，“行” 和 “块” 这两个术语可以交替使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-高速缓存的工作原理"><a href="#3-2-高速缓存的工作原理" class="headerlink" title="3.2 高速缓存的工作原理"></a>3.2 高速缓存的工作原理</h3><p>当CPU向高速缓存发起读指令时，高速缓存首先确定缓存是否命中，如果命中，直接发送给CPU的寄存器。如果不命中就向主存取，等待数据到达某个高速缓存行，接着发送给CPU的寄存器。</p>
+<p>确定是否命中有三个步骤：</p>
+<ol>
+<li>组选择</li>
+<li>行匹配</li>
+<li>字抽取</li>
+</ol>
+<ol>
+<li><p>组选择</p>
+<p>回忆我们的地址的中间s位是组索引，所以我们只要抽取组索引就可以找到对应的组，而且由于一共有2^s^ 个组，所以，组一定会命中。</p>
+</li>
+<li><p>行匹配</p>
+<p>如果一个组里的某一行，改行的有效位被设置，且标记位等于地址的标记位，则行匹配成功。</p>
+<p>如果行不命中，就要牺牲某一行，将它驱逐，相应的块从低层次的存储层次中取上来。</p>
+</li>
+</ol>
+<p>   补充 : </p>
+<p>   我们先回忆一下地址的构成</p>
+<p>   标记位 t + 索引位 s + 偏移位b</p>
+<p>   假设有一个四位的地址，t = 1，s = 2，b = 1</p>
+<p>   这四位地址的所有组合如下：</p>
+<p>   <img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209042239062.png" alt="image-20220904223950779"> </p>
+<p>   我们把目光投向一对缓存层，由于地址的限制，较低层有8块，而较高层有4组（这里的4组是我们规定的）。</p>
+<p>   我们的低层有8块，高层有4组，对于低层块如何在高层放置，我们做出如下规定：对于低层的块i，它必须存放在高层的 i mod 4 组上。</p>
+<p>   这样我们较低层的 0、4 映射到了较高层的0组，</p>
+<p>   1、5映射到了1，</p>
+<p>   2、6映射到了2，</p>
+<p>   3、7映射到了3</p>
+<p>   一个组中可以有最多2^t^ 行，如果我们一组中只有一行。</p>
+<p>   如果我们首先引用了块0，那么块0每放在较高层的组0，</p>
+<p>   接下来我们再引用块4的时候，由于我们规定一组只有一行，这时就出现了一个冲突，我们必须选择一个牺牲行，来放置块4，在这里毫无疑问我们将选择唯一的一行。我们将块4放到了组0的唯一一行。</p>
+<p>   通过上面的例子，我想说明两点</p>
+<p>   一、并不是所有组都只有1行，如果一个组有多行，如果出现上述情况，我们只能使用严格复杂的策略去选择牺牲行，或者直接随机选择一个牺牲行。</p>
+<p>   二、如果我们获得了一个地址，这个地址的组索引是0组，但该组里并没有一个有效的标记与我们地址的标记匹配，这是我们要怎样在下层存储中找到我们要得到的块呢？</p>
+<p>   注意到，将地址的标记位（1位）和组索引位（2位），合起来（3位），刚好是块在较低存储层的编号。这样就可以快速在较低层定位块。</p>
+<p>   其实，将地址分成标记位和索引位，并不能扩充地址空间的大小，但可以增快寻址速度，这一点就是利用了这个原理。</p>
+<ol>
+<li>字抽取</li>
+</ol>
+<p>只要根据地址中的块偏移定位到行的某个位置，就可以取出在此之后的任意长度的位。</p>
+<h2 id="4-虚拟内存"><a href="#4-虚拟内存" class="headerlink" title="4 虚拟内存"></a>4 虚拟内存</h2><p>从上面的叙述我们可以看出，计算机的存储系统是复杂的。为了简化内存管理，现代系统提供了一种对主存的抽象概念，叫做虚拟内存。它为每个进程提供一个大的、一致的私有地址空间。</p>
+<blockquote>
+<p>虚拟内存提供三个重要的能力：</p>
+<ol>
+<li>它将主存堪称是一个存储在磁盘上的地址空间的高速缓存，在主存中只保存活动区域，并根据需要在磁盘和主存之间来回传送数据，通过这种方式，它搞笑地利用了主存。</li>
+<li>它位每个进程提供了一致的地址空间，从而简化了内存管理。</li>
+<li>它保护了每个进程的地址空间不被其他进程破坏。</li>
+</ol>
+</blockquote>
+<p>从上面的原文我们可以看出，虚拟内存是对磁盘的抽象，它管理的是磁盘上的块，按需要将磁盘上的块传送到主存DRAM中。同时我们要知道，虚拟内存将磁盘上的N个连续的字节大小的单元组织成数组，每个单元都有唯一的地址。</p>
+<p>虚拟内存的存在基础：</p>
+<p>同一个数据对象，它在不同的地址空间里可以有不同的地址，主存中的每一个字节都可以有一个选自虚拟地址空间的地址和一个选自物理地址空间的地址。</p>
+<h3 id="4-1-虚拟内存原理"><a href="#4-1-虚拟内存原理" class="headerlink" title="4.1 虚拟内存原理"></a>4.1 虚拟内存原理</h3><p>首先介绍两个概念，我们知道，在两个相邻的存储层次，他们传输的是块(block)，而在磁盘和主存中传输的块被称为页: </p>
+<blockquote>
+<p>PP(Physical page) 物理页 : 在磁盘和主存之间传输的块</p>
+<p>VP (virtual page ) 虚拟页 : 在虚拟内存系统中与物理页对应的块</p>
+</blockquote>
+<p>真正的页就是物理页，而虚拟内存管理的页就是虚拟页，虚拟页和物理页是一一对应的，大小相等的。</p>
+<p>我们知道，主存的容量远小于磁盘，而我们的虚拟内存是对磁盘空间的映射，所以，主存有时并不能放下某个进程的全部虚拟内存。而且，计算机要同时运行多个程序，不能只在主存中存放某个进程的虚拟内存。因此我们只能将某个进程暂时用到的虚拟内存的某部分存放到主存中。</p>
+<h3 id="4-2-虚拟内存的结构"><a href="#4-2-虚拟内存的结构" class="headerlink" title="4.2 虚拟内存的结构"></a>4.2 虚拟内存的结构</h3><p>在CPU上有一个名叫内存管理单元(Memory Management Unit)的硬件，利用存放在主存中的页表来动态翻译虚拟地址。</p>
+<p>页表：每个进程都有一个页表，页表将虚拟页映射到物理页。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209051937453.png" alt="image-20220905193713696"> </p>
+<p>快表 (Translation Lookaside Buffer，TLB)：在MMU中的对页表的缓存，因为页表存储在主存中，所以与同为主存的高速缓存一样，快表的结构也是组加行，寻址时，首先进行组选择，接着进行行匹配，最后字抽取。</p>
+<h3 id="4-3-虚拟内存的地址翻译"><a href="#4-3-虚拟内存的地址翻译" class="headerlink" title="4.3 虚拟内存的地址翻译"></a>4.3 虚拟内存的地址翻译</h3><p>下面简单概括以下虚拟内存的地址翻译：</p>
+<ol>
+<li>处理器产生一个虚拟地址，并将它传送给MMU</li>
+<li>MMU生成一个页表条目地址(Page Table Entry Address, PTEA)，首先在快表中搜索该PTEA，如果快表命中，我们得到页表条目(Page Table Entry, PTE)转4，否则在页表中寻找该页表条目地址，转3</li>
+<li>由于快表没有命中PTEA，所以我们在高速缓存的页表中寻找该PTEA，如果命中，那么我们得到页表条目转4，如果高速缓存中的页表没有命中，那么我们要向主存请求页表，再从新的页表中搜寻PTEA，然后得到PTE，转4</li>
+<li>现在我们已经得到了PTE，PTE在MMU中被翻译成物理地址，如果该物理地址在高速缓存中命中，那么我们直接将数据发送给处理器。如果高速缓存没有命中，我们就要在主存中请求该物理地址。</li>
+</ol>
+<p><img src="C:\Users\cfla\AppData\Roaming\Typora\typora-user-images\image-20220905200451112.png" alt="image-20220905200451112"> </p>
+<p>下面我们介绍虚拟地址翻译中的一些细节：</p>
+<ol>
+<li><p>什么是页表条目地址(Page Table Entry Address, PTEA)，它是怎样被生成的？</p>
+<p>要解答这个问题，首先我们要介绍虚拟地址的格式。</p>
+<p>| 虚拟页号 VPN | 虚拟页偏移 VPO |<br>| —————— | ——————— |</p>
+<p>页表条目地址PTEA和虚拟页号VPN其实是同一个东西，两者没有区别。例如，VPN 0 选择PTE 0，VPN 1选择 PTE 1。</p>
+</li>
+<li><p>PTE 是什么，它的结构是什么？</p>
+<p>PTE 是页表条目，他的结构是这样的</p>
+<p>| SUP 有效位 | READ 有效位 | WRITE 有效位 | PPN 物理页号 (Physical Page Number) |<br>| ————— | —————- | —————— | —————————————————- |</p>
+<p>前三段是有效位，如果SUP有效位设置为1表示该页只能在超级用户（内核模式）下才能被访问，READ有效位设置为1表示该页可读，WRITE有效位设置为1，表示该页可写。</p>
+<p>PPN 物理页号是什么呢？</p>
+<p>让我们回忆以下我们在介绍高速缓存时用到的物理地址</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052139387.png" alt="image-20220905213937545"> </p>
+<p>如图所示，物理地址是由高t位的标记位，中间s位的组索引和低b位的快偏移 组成的。</p>
+<p>而标记位和组索引合起来就是PPN。</p>
+<p>而块偏移和虚拟地址的虚拟页偏移VPO是一样的</p>
+<p>因此，地址翻译的时候，只需要将PTE中的PPN取出来，和VPO拼接起来就得到了物理地址。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052144414.png" alt="image-20220905214401855"> </p>
+<ol>
+<li><p>快表TLB的工作原理是什么？</p>
+<p>快表和高速缓存的原理是类似的，我们首先重新审视一下虚拟地址：</p>
+<p>虚拟地址由VPN和VPO组成</p>
+<p>| 虚拟页号 VPN | 虚拟页偏移 VPO |<br>| —————— | ——————— |</p>
+<p>而虚拟页号VPN又可以分为两部分：</p>
+<p>| VPN           | VPN           | VPO  |<br>| ——————- | ——————- | —— |<br>| TLB标记(TLBT) | TLB索引(TLBI) | VPO  |</p>
+<p>TLB首先进行组选择，即使用TLBI来匹配TLB内的组，这是一定可以命中的，原因详见高速缓存。</p>
+<p>接着进行行匹配，即匹配TLB组内标记和TLBT相同的行。这一步就不一定会命中。如果按照我们之前的模型，由许多个页表条目PTE，只要他们的TLB索引相同（或者说VPN对2^S^ 取模，得到的值相同。PS: 其实这和组索引相同 是同一的，因为对2^s^ 取模就是取TLB索引，在这里，s指TLBI的位数），他们就会被映射到同一个组。如果没有命中，那么我们只能去高速缓存里继续从页表里翻找页表条目PTE了。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-高速缓存系统和虚拟内存系统的对比"><a href="#5-高速缓存系统和虚拟内存系统的对比" class="headerlink" title="5 高速缓存系统和虚拟内存系统的对比"></a>5 高速缓存系统和虚拟内存系统的对比</h2><p>高速缓存系统 是在主存DRAM 和高速缓存SRAM 之间调度的系统</p>
+<p>虚拟内存系统 是在磁盘(机械硬盘 或 SSD) 和主存DRAM 之间调度的系统</p>
+<p>存储在某个存储层，在存储层之间传输的单元叫做块(block)</p>
+<p>在高速缓存SRAM中，它叫做高速缓存行，或者行</p>
+<p>在主存DRAM中，它叫做块(block)</p>
+<p>在虚拟内存系统中，它叫做页(page)</p>
+<p>调度策略</p>
+<p>高速缓存不命中，替换策略往往很简单，因为不命中的惩罚很小</p>
+<p>DRAM不命中，替换策略往往很复杂，因为DRAM与磁盘的速度相差很大，不命中的惩罚很大</p>
+<h2 id="6-技术总结"><a href="#6-技术总结" class="headerlink" title="6 技术总结"></a>6 技术总结</h2><p>在介绍3.2 高速缓存工作原理时，我们看到了索引位和标记位的使用。同样我们在4.3 虚拟地址的翻译中也看到了TLBT和TLBI的使用。在这里我们对这种技术进行抽象和总结。</p>
+<p>有两个存储层次，较下层的存储层次容量大，速度慢，我们称之为B层，较上层的存储层次容量小，速度快，我们称之为A层，我们要使用A层来缓存B层的内容。</p>
+<p>我们将B层想象成一个数组，我们用n位的地址来表示这个数组的每个位。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052218205.png" alt="image-20220905221756883"> </p>
+<p>B层可以容纳 2^n^ 大小的位。我们将B层划分为 2^m^ 块，其中每块的大小为 2^o^ ，这样数组的前2^o^ 位为第一个块，接着2^o^ 位是第二个块，依此类推。而这些块一共有2^m^ 个。我们有n = m + o。</p>
+<p>现在我们通过巧妙地在地址中间花了一道线，不改变地址本身的结构，将线性的地址划分成了一个又一个的块。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052220108.png" alt="image-20220905222017878"> </p>
+<p>由于A层的空间有限，我们只能将B层的2^i^ 块映射到A层，我们要怎么去映射呢？</p>
+<p>我们的方法是取出我们地址的前m位，去这m位的低i位，这低i位相同的块映射到同一组，而我们使用这m位的高t = m - i 位来作为标记，区分一组中的不同块。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cfla1638/Img/202209052224081.png" alt="image-20220905222457743"></p>
+<p>通过这种方式，我们就实现了将B层的块映射到A层，通过这种映射，只要我们知道某数据对象位于B层的地址，我们就能很方便的在A层找到它。 </p>
+<p>为什么使用中间位作为索引？</p>
+<p>如果使用高位作为索引，连续的块可能会被映射到同一组，这样不能利用程序的局部性，造成比较大的损失。</p>
+<p>接下来我们概括一下内存系统：</p>
+<p>一个进程有自己的私有虚拟内存，它可以通过虚拟内存引用程序里的数据，io设备等。</p>
+<p>如果他要引用一个数据，它生成一个虚拟地址，虚拟地址被CPU上的MMU转换成物理地址，然后依次开始在高速缓存、主存、磁盘 … 上寻址。</p>
+<h2 id="7-术语索引"><a href="#7-术语索引" class="headerlink" title="7 术语索引"></a>7 术语索引</h2><p>主存储器(main memory 主存) : 即通常理解的使用DRAM内存。</p>
+<p>块（block）: 对于存储器层次的k+1层，该层的存储器被分为连续的数据对象组块(chunk)，称为块(block)</p>
+<p>VM (Virtual Memory) 虚拟内存</p>
+<p>VA(Virtual Address) 虚拟地址</p>
+<p>MMU(Memory Management Unit)：内存管理单元，一种硬件</p>
+<p>VP (virtual page ) 虚拟页 : 在虚拟内存系统中与物理页对应的块</p>
+<p>PP(Physical page) 物理页 : 在磁盘和主存之间传输的块</p>
+<p>页表 ：一个数据类型位PTE的数组</p>
+<p>PTE(Page Table Entry) 页表条目：存放在页表数组的每个元素的类型</p>
+<p>页 : 在虚拟内存的习惯说法中，块(block) 被称为页。在磁盘和内存之间传送页的活动叫做交换(swapping) 或页面调度(paging)</p>
+<p>缺页：DRAM缓存不命中称为page fault</p>
+<p>内存映射：将一组连续的虚拟页映射到任意文件中的任意位置的表示法称作内存映射(memory mapping)。P566</p>
+<p>快表 (Translation Lookaside Buffer，TLB)：在MMU中的对页表的缓存，因为页表存储在主存中，所以与同为主存的高速缓存一样，快表的结构也是组加行，寻址时，首先进行组选择，接着进行行匹配，最后字抽取。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cfla1638.github.io/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cfla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cfla's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-title-link" itemprop="url">CS:APP 读后感</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-02 14:23:07" itemprop="dateCreated datePublished" datetime="2022-09-02T14:23:07+08:00">2022-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-03 23:05:12" itemprop="dateModified" datetime="2022-09-03T23:05:12+08:00">2022-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS-APP/" itemprop="url" rel="index"><span itemprop="name">CS:APP</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-meta-item leancloud_visitors" data-flag-title="CS:APP 读后感" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/09/02/CS-APP-%E8%AF%BB%E5%90%8E%E6%84%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CS-APP-读后感"><a href="#CS-APP-读后感" class="headerlink" title="CS:APP 读后感"></a>CS:APP 读后感</h1><p>这本书，给了我 一个在Linux下运行的程序 的直观印象。下面是每一章让我产生 “惊讶” 的内容，这些内容是我在这本书中新接触到的内容。（以下内容是在阅读完第一遍之后，第二遍之前写的）</p>
+<p>接下来会陆续更新各章的详细笔记 … </p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>目录：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">第1章    计算机系统漫游</span><br><span class="line">--- 程序结构和执行</span><br><span class="line">第2章    信息的表示和处理</span><br><span class="line">第3章    程序的机械级表示</span><br><span class="line">第4章    处理器体系结构</span><br><span class="line">第5章    优化程序性能</span><br><span class="line">第6章    存储器的层次结构</span><br><span class="line">--- 在系统上运行程序</span><br><span class="line">第7章    链接</span><br><span class="line">第8章    异常控制流</span><br><span class="line">第9章    虚拟内存</span><br><span class="line">--- 程序间的交互和通信</span><br><span class="line">第10章  系统及I/O</span><br><span class="line">第11章  网络编程</span><br><span class="line">第12章  并发编程</span><br></pre></td></tr></table></figure>
+<p>本书一共分为12章，第一章可以说是对全书的介绍，简单介绍了本书的所有内容。</p>
+<p>剩下的十一章是本书的正式部分，我认为本书的核心在第 7~9 章，2~6章的内容可以说是为读者补充了前置知识，例如，第六章的内容就和第九章密切相关。而 10 ~ 12 章则主要以实践为主，第十章IO和第十一章网络编程，在介绍他们本来内容的同时，也是为在第十二章建立一个并发网络服务器构建基础。</p>
+<h2 id="分章介绍"><a href="#分章介绍" class="headerlink" title="分章介绍"></a>分章介绍</h2><h3 id="第二章-信息的表示和处理"><a href="#第二章-信息的表示和处理" class="headerlink" title="第二章 信息的表示和处理"></a>第二章 信息的表示和处理</h3><blockquote>
+<p>这一章读起来很抽象，特别是2.2 2.3 介绍原码和补码以及他们之间的互相转换，看的人头疼，第一次读的时候放弃了一次，第二次才一口气读完的。2.4 介绍浮点数表示，虽然也很抽象，但相比整数的部分，浮点数有趣很多，IEEE的表示方法真的很奇妙，它看起来很丝滑，随着表示位数的增加，能表示的最小数增加的很自然，有种“天选”，“本来就应该是这样子” 的感觉。</p>
+</blockquote>
+<p><strong>2.1.3 寻址和字节顺序</strong>： 介绍了在计算机硬件上存储字节的两种不同顺序：大端法和小段法。明白了这个，才能知道网络协议做了什么，他们将不同硬件上的字节顺序转换成了网络字节顺序，便于传输。</p>
+<p><strong>2.16 布尔代数介绍</strong> ： 可以使用位向量来表示有限集合。</p>
+<p><strong>2.2 整数表示</strong> ： 介绍了整数原码和补码的表示，以及他们之间的转换。</p>
+<p><strong>2.3 整数运算</strong> ： 介绍了整数运算可能出现的错误，以及来源。</p>
+<p><strong>2.4</strong> ：介绍了浮点数的IEEE表示方法，具体规则。以及使用IEEE浮点数运算可能导致的错误。</p>
+<h3 id="第三章-程序的机器级表示"><a href="#第三章-程序的机器级表示" class="headerlink" title="第三章 程序的机器级表示"></a>第三章 程序的机器级表示</h3><blockquote>
+<p>相比于上一章的枯燥，这一章可以说让我开眼了，介绍汇编语言的可能有点难懂，但绝不枯燥，更加深刻的理解了c语言。</p>
+<p>这一章之前的内容是上个学期考试周之前看的，具体内容不如这一章记得清楚。</p>
+<p>从这一张开始到最后，才是一口气看完的。</p>
+</blockquote>
+<p>3.2 ：介绍了程序从c语言到汇编语言的过程，介绍了<code>objdump</code> 的使用</p>
+<p>3.4 3.5 3.6 3.7：介绍了x86-64的寄存器，以及汇编语言的指令，通过阅读这部分，你可以看懂汇编语言。从hello world 到函数递归的汇编语言都介绍的很详细。</p>
+<p>3.9 ：介绍了异质的数据结构 结构体 联合 的存储方式，介绍了数据对齐的概念。</p>
+<p>3.10.4 ：介绍了几种对抗缓冲区溢出攻击的方法</p>
+<h3 id="第四章-处理器体系结构"><a href="#第四章-处理器体系结构" class="headerlink" title="第四章 处理器体系结构"></a>第四章 处理器体系结构</h3><blockquote>
+<p>这一章我看懂的部分不必我在计算机导论大作业里懂得更多，这一章确实抽象，我只看了一般就看不下去了，等我学完数字逻辑再来看吧。</p>
+</blockquote>
+<h3 id="第五章-优化程序性能"><a href="#第五章-优化程序性能" class="headerlink" title="第五章 优化程序性能"></a>第五章 优化程序性能</h3><blockquote>
+<p>呃呃 感觉含金量不是很高，没啥看了之后让我感觉很厉害的东西。</p>
+</blockquote>
+<p>客观一点就是 普通人日常写代码小技巧</p>
+<h3 id="第六章-存储器层次结构"><a href="#第六章-存储器层次结构" class="headerlink" title="第六章 存储器层次结构"></a>第六章 存储器层次结构</h3><blockquote>
+<p>没留下很深刻的印象，只记得和虚拟内存那一章有关，等我再看一遍吧。</p>
+</blockquote>
+<h3 id="第七章-链接"><a href="#第七章-链接" class="headerlink" title="第七章 链接"></a>第七章 链接</h3><blockquote>
+<p>含金量高的来了</p>
+<p>这一章基本全都是“惊讶” ，学习c语言时都了解过，但不知道细节。读这一章就像揭开了一层面纱一样。</p>
+<p>这一章基本全都是之前没学过的内容，以至于我只要把本章的目录简单偷过来，就是本章的重点</p>
+</blockquote>
+<p>7.1 编译器驱动程序： 详细介绍了编译的过程： c预处理器cpp -&gt; 编译器ccl -&gt; 汇编器as -&gt; 链接器 ld</p>
+<p>7.2 静态链接 ： 介绍了静态链接的流程：符号解析 重定位</p>
+<p>7.3 7.4 7.5：介绍了讲静态链接的前置知识：目标文件、符号和符号表</p>
+<p>7.6.2 ： 介绍了如何打包生成静态库以及与静态库链接</p>
+<p>7.6.3 ：很重要！介绍了静态链接的细节，以及容易出错的地方</p>
+<p>动态链接：与加载的时候链接的类型</p>
+<p>库打桩机制</p>
+<h3 id="第八章-异常控制流"><a href="#第八章-异常控制流" class="headerlink" title="第八章 异常控制流"></a>第八章 异常控制流</h3><blockquote>
+<p>最重要的一章之一，介绍了并发编程的基础——异常控制流</p>
+<p>介绍了进程，简单带领读者入门了并发编程</p>
+<p>讲了信号，有助于以后学习事件驱动的GUI编程</p>
+<p>这一章基本全都是之前没学过的内容，以至于我只要把本章的目录简单偷过来，就是本章的重点</p>
+</blockquote>
+<p>8.2 异常</p>
+<p>8.3 进程</p>
+<p>8.4 用C语言操作进程：fork execve</p>
+<p>8.5 信号  SIGINT … </p>
+<h3 id="第九章-虚拟内存"><a href="#第九章-虚拟内存" class="headerlink" title="第九章 虚拟内存"></a>第九章 虚拟内存</h3><blockquote>
+<p>最重要的一章之一</p>
+<p>这一章基本全都是之前没学过的内容，以至于我只要把本章的目录简单偷过来，就是本章的重点</p>
+</blockquote>
+<p>本章可以分为三部分</p>
+<p>第一部分介绍了虚拟内存的工作机制，在9.6 详细介绍了虚拟地址是如何被翻译成物理地址的</p>
+<p>第二部分介绍了Linux上的虚拟内存，并在这个角度观察了上一章讲的 fork 和execve</p>
+<p>第三部分介绍了一个内存分配器的实现( malloc() )</p>
+<h3 id="第十章-系统级-I-O"><a href="#第十章-系统级-I-O" class="headerlink" title="第十章 系统级 I/O"></a>第十章 系统级 I/O</h3><blockquote>
+<p>这一章读起来很简单，没有什么要理解的东西</p>
+</blockquote>
+<p>首先介绍了Linux的文件，即每个IO设备都被抽象成了文件，每个文件都有一个文件描述符，通过这个描述符 加上 操作文件的函数，可以对IO设备进行访。</p>
+<p>然后着介绍了RIO包，即包装后的IO函数。</p>
+<p>本章完</p>
+<h3 id="第十一章-网络编程"><a href="#第十一章-网络编程" class="headerlink" title="第十一章 网络编程"></a>第十一章 网络编程</h3><blockquote>
+<p>这一章需要理解的地方不多，只有介绍网络编程的部分</p>
+<p>第二和第三部分，如果不好好实践一番，光靠眼睛看，是很难理解的。</p>
+</blockquote>
+<p>首先介绍了网络编程</p>
+<p>接着介绍了Linux的套接字函数</p>
+<p>最后实现了一个小web服务器</p>
+<p>11.5.3 HTTP事务 介绍了在命令行的HTTP协议使用，有助于更深刻地理解HTTP协议</p>
+<h3 id="第十二章-并发编程"><a href="#第十二章-并发编程" class="headerlink" title="第十二章 并发编程"></a>第十二章 并发编程</h3><blockquote>
+<p>和上一章差不多的感觉</p>
+</blockquote>
+<p>本章也分为三部分</p>
+<p>首先介绍了实现并发编程的三种方法</p>
+<ol>
+<li>进程</li>
+<li>IO多路复用</li>
+<li>线程</li>
+</ol>
+<p>之后 介绍了用信号量同步线程的方法，同时实现了一个并发服务器。</p>
+<p>最后介绍了并发编程容易出现的问题：死锁、访问共享变量 … </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/invalid_page/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/invalid_page/">1</a><span class="page-number current">2</span><a class="page-number" href="/invalid_page/page/3/">3</a><a class="extend next" rel="next" href="/invalid_page/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2358,7 +2239,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
